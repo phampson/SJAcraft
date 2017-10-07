@@ -1,0 +1,18 @@
+/* Nav Bar */
+.navbar {
+	margin-bottom: 0px;
+}
+
+/* Play Button */
+.btn-play {
+	background-color: red;
+	color: white;
+
+	padding: 18px 28px;
+	font-size: 22px;
+	border-radius: 8px;
+}
+
+/* Logo */
+.logo {
+}
