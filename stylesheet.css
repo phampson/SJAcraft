@@ -13,6 +13,9 @@
 	border-radius: 8px;
 }
 
+.body {
+	background-color: red;
+}
 /* Logo */
 .logo {
 }
