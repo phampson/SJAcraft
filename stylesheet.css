@@ -13,9 +13,10 @@
 	border-radius: 8px;
 }
 
-.body {
-	background-color: red;
-}
+html, body {
+	background: url("img/Texture.png") repeat;
+} 
+
 /* Logo */
 .logo {
 }
