@@ -43,7 +43,7 @@
 		margin-bottom: 25px;
 	}
 
-	.loginForm input[type="user"], input[type="password"] {
+	.loginForm input[type="user"], input[type="password"], input[type="email"] {
 		border: none;
 		border-bottom: 1px solid #fff;
 		background: transparent;
@@ -77,7 +77,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.html">About</a></li>
+				<li><a href="#">About</a></li>
 				<li class="">
 					<a class="dropdown-toggle" data-toggle="dropdown"href="#">Download
 					<span class="caret"></span></a>
@@ -90,8 +90,8 @@
 				<li><a href="#">Forum</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../signup/signup.html"> Sign Up</a></li>
-				<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+				<li class="active"><a href="#"> Sign Up</a></li>
+				<li><a href="../login/login.html"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
 			</ul>
 		</div>
 	</div>
@@ -99,18 +99,20 @@
 
 <!-- Login form -->
 <div class="loginForm">
-	<h2>Log In</h2>
+	<h2>Sign Up</h2>
 	<form>
+		<p1>Email</p1>
+		<input type="email" id="email" name="" placeholder="Enter Email">
 		<p1>Username</p1>
-		<input type="user" name="" placeholder="Enter Username or Email">
+		<input type="user" id="user" name="" placeholder="Enter Username">
 		<p1>Password</p1>
-		<input type="password" name="" placeholder="Enter Password">
-		<input type="button" class="button" value="Sign In">
-		<a href="#">Forgot Your Password?</a><br>
-		<a href="../signup/signup.html">Click Here</a>
-		<p2>to create a new account</tp2>
+		<input type="password" id="pass" name="" placeholder="Enter Password">
+		<input type="button" onclick="myWelcome()" class="button" value="Create Account">
+		<p2>Already have an exisiting account?</p2>
+		<a href="../login/login.html">Click Here</a>
 	</form>
 </div>
 
 </body>
+<script type="text/javascript" src="signup.js"></script>
 </html>
