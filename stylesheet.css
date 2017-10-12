@@ -14,7 +14,7 @@
 }
 
 html, body {
-	background: url("img/Texture.png") repeat;
+	background: url("./img/Texture.png") repeat;
 } 
 
 /* Logo */
