@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Warcraft II</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- CSS Styling -->
+<style>
+	.loginForm {
+		position:absolute;
+		top: 50%;
+		left: 50%;
+		padding: 70px 40px;
+		transform: translate(-50%, -50%);
+		width: 400px;
+		height: 460px;
+		background: rgba(0,0,0,0.4);
+	}
+
+	.loginForm h2 {
+		color: white;
+		text-align: center;
+	}
+
+	.loginForm p1 {
+		color: white;
+		font-size: 16px;
+	}
+
+	.loginForm p2 {
+		color: white;
+		font-size: 15px;
+	}
+	
+	.loginForm input {
+		width: 100%;
+		margin-bottom: 25px;
+	}
+
+	.loginForm input[type="user"], input[type="password"], input[type="email"] {
+		border: none;
+		border-bottom: 1px solid #fff;
+		background: transparent;
+		color: #fff;
+	}
+
+	.button {
+		background-color: #30546c;
+		border: 1px solid;
+		border-radius: 4px;
+		color: white;
+		padding: 12px 20px;
+		margin: 14px 0px 0px 0px;
+		cursor: pointer;
+		width: 100%;
+	}
+
+</style>
+
+<!-- Nav Bar -->
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">WarCraft II</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#">About</a></li>
+				<li class="">
+					<a class="dropdown-toggle" data-toggle="dropdown"href="#">Download
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Download the game</a></li>
+						<li><a href="../cdn/cdn.html">Download maps</a></li>
+					</ul>
+				</li>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">Forum</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="#"> Sign Up</a></li>
+				<li><a href="../login/login.html"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Login form -->
+<div class="loginForm">
+	<h2>Sign Up</h2>
+	<form>
+		<p1>Email</p1>
+		<input type="email" id="email" name="" placeholder="Enter Email">
+		<p1>Username</p1>
+		<input type="user" id="user" name="" placeholder="Enter Username">
+		<p1>Password</p1>
+		<input type="password" id="pass" name="" placeholder="Enter Password">
+		<input type="button" onclick="myWelcome()" class="button" value="Create Account">
+		<p2>Already have an exisiting account?</p2>
+		<a href="../login/login.html">Click Here</a>
+	</form>
+</div>
+
+</body>
+<script type="text/javascript" src="signup.js"></script>
+</html>
