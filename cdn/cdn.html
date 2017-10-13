@@ -60,6 +60,7 @@
 				</a>
 			</div>
 		</div>
+
 		<div class="col-sm-3">
 			<div class="thumbnail">
 				<a href="../img/maps/map2.jpg" target="_blank">
@@ -104,19 +105,26 @@
 				</a>
 			</div>
 		</div>
+
+		<!--<script type = "text/php" src="show_maps.php"></script>-->
 		<div class="col-sm-3">
-			<div class="thumbnail" onclick="addMap()">
-				<a href="#">
+			<!--<div class="thumbnail" onclick="addMap()">-->
+				<div class="thumbnail">
+				<!--<a href="#"> -->
+					
 					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
 					<div class="caption">
-						<p>Upload a Map</p>
+						<form action="upload.php" method="post" enctype="multipart/form-data">
+						    Select map to upload:
+						    <input type="file" name="fileToUpload" id="fileToUpload"> 
+						    <input type="submit" value="Upload Image" name="submit">
+					</form>
 					</div>
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 </body>
 <script type="text/javascript" src="cdn.js"></script>
