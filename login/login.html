@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Warcraft II</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- <link rel="stylesheet" href="stylesheet.css"> -->
+	<link rel="stylesheet" href="../stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <!-- CSS Styling -->
-<style>
-	html, body {
-	/*background: url("../img/texture.png") repeat;}*/
-</style>
 
 <!-- Nav Bar -->
 <nav class="navbar navbar-inverse">
@@ -25,17 +22,24 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">WarCraft II</a>
+			<a class="navbar-brand" href="../index.html">WarCraft II</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="../index.html">About</a></li>
-				<li><a href="#">Download</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Forum</a></li>
+				<li><a href="index.html">About</a></li>
+				<li class="">
+					<a class="dropdown-toggle" data-toggle="dropdown"href="#">Download
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Download the game</a></li>
+						<li><a href="../dlc/dlc.html">Download maps</a></li>
+					</ul>
+				</li>
+				<li><a href="../faq/faq.html">FAQ</a></li>
+				<li><a href="../forum/forum.html">Forum</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../signUp/signUp.html"> Sign Up</a></li>
+				<li><a href="../signup/signup.html"> Sign Up</a></li>
 				<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
 			</ul>
 		</div>
@@ -45,15 +49,15 @@
 <!-- Login form -->
 <div class="loginForm">
 	<h2>Log In</h2>
-	<form action="login.php" method="post" enctype="multipart/form-data">
+	<form>
 		<p1>Username</p1>
-		<input type="user" name="username" placeholder="Enter Username or Email">
+		<input type="user" name="" placeholder="Enter Username or Email">
 		<p1>Password</p1>
-		<input type="password" name="password" placeholder="Enter Password">
-		<input type="submit" class="button" value="Sign In">
+		<input type="password" name="" placeholder="Enter Password">
+		<input type="button" class="button" value="Sign In">
 		<a href="#">Forgot Your Password?</a><br>
-		<a href="#">Click Here</a>
-		<p2>to create a new account</p2>
+		<a href="../signup/signup.html">Click Here</a>
+		<p2>to create a new account</tp2>
 	</form>
 </div>
 
