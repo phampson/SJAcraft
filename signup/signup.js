@@ -1,18 +1,42 @@
-function myWelcome() {
-	var email = document.getElementById("email").value;
-	var user = document.getElementById("user").value;
-	var pass = document.getElementById("pass").value;
+console.log(location.href+'#'+location.hash+'?'+location.search);
+	function signUpError(form) {
 
-	if(email == "") {
-		alert("Please enter email");
+		var email = document.getElementById("email").value;
+		var user = document.getElementById("username").value;
+		var pass = document.getElementById("password").value;
+
+		if (email == "") {
+   			displayAlert();
+			return false;
+		}
+		else if(user == "") {
+			displayAlert();
+			return false;
+		}
+		else if(pass == "") {
+			displayAlert();
+			return false;
+		}
+		
+		return true;
 	}
-	else if(user == "") {
-		alert("Please enter username");
+
+	function displayAlert() {
+		 $('#myAlert').show('fade');
+            setTimeout(function () {
+                $('#myAlert').hide('fade');
+            }, 3000);
+
 	}
-	else if(pass == "") {
-		alert("Please enter password");
-	}
-	else {
-		alert("Welcome " + user + "!");
-	}
-}
+
+	 $('#form').submit(function (e) {
+        if (!signUpError(this)) e.preventDefault();
+    });
+
+	 // function displayAlert {
+	 // 	 $('#myAlert').show('fade');
+	 // 	 setTimeout(function () {
+  //               $('#myAlert').hide('fade');
+  //           }, 2000);
+	 // }
+
