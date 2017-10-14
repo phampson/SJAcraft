@@ -43,6 +43,7 @@ if ($uploadOk == 0) {
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
+    header("location: dlc.php");
 }
 ?>
 

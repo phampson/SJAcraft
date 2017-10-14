@@ -8,6 +8,7 @@ $password = $_POST['password'];
 $sql = 'insert into user_info (username, password) values("'.$username.'", "'.$password.'")';
 if ($mysqli->query($sql)) {
 	echo "houston we don't have a problem";
+	echo "username: " . $username;
 }
 
 else {
