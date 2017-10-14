@@ -3,14 +3,11 @@
 <head>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- <link rel="stylesheet" href="stylesheet.css"> -->
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<!-- CSS Styling -->
-
 
 <!-- Nav Bar -->
 <nav class="navbar navbar-inverse">
@@ -42,17 +39,16 @@
 <!-- Login form -->
 <div class="loginForm">
 	<h2>Log In</h2>
-	<form action="login.php" method="post" enctype="multipart/form-data">
+	<form id="form" action="login.php" method="post" enctype="multipart/form-data">
 		<p1>Username</p1>
-		<input type="user" name="username" placeholder="Enter Username or Email">
+		<input type="user" id="username" name="" placeholder="Enter Username or Email">
 		<p1>Password</p1>
-		<input type="password" name="password" placeholder="Enter Password">
-		<input type="submit" class="button" value="Sign In">
+		<input type="password" id="password" name="" placeholder="Enter Password">
+		<input type="submit" onsubmit="return loginError(this)" class="button" value="Sign In">
 		<a href="#">Forgot Your Password?</a><br>
-		<a href="#">Click Here</a>
-		<p2>to create a new account</p2>
 	</form>
 </div>
 
 </body>
+<script type="text/javascript" src="login.js"></script>
 </html>
