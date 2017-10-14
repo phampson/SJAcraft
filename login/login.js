@@ -6,15 +6,23 @@ console.log(location.href+'#'+location.hash+'?'+location.search);
 
 
 		if(user == "") {
-			alert("Please enter username or email");
+			displayAlert();
 			return false;
 		}
 		else if(pass == "") {
-			alert("Please enter password");
+			displayAlert();
 			return false;
 		}
 		
 		return true;
+	}
+
+	function displayAlert() {
+		 $('#myAlert').show('fade');
+            setTimeout(function () {
+                $('#myAlert').hide('fade');
+            }, 3000);
+
 	}
 
 	 $('#form').submit(function (e) {
