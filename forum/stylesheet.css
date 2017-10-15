@@ -1,0 +1,18 @@
+h1 {
+	color: white;
+	text-align: center;
+	font-size: 70px;}
+
+table {
+	color: white;
+	background-color: black;
+	opacity: .6;}
+
+.table-hover tbody tr:hover > th {
+	background-color:  #2471a3 ;}
+
+.table-hover tbody tr:hover > td {
+	background-color:  #2471a3 ;}
+
+.table tbody tr > td > a {
+	color: white;}
