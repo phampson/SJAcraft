@@ -44,8 +44,11 @@
 		<input type="user" id="username" name="" placeholder="Enter Username or Email">
 		<p1>Password</p1>
 		<input type="password" id="password" name="" placeholder="Enter Password">
-		<input type="submit" onsubmit="return loginError(this)" class="button" value="Sign In">
-		<a href="#">Forgot Your Password?</a><br>
+		<button id="btnSubmit" onclick="return loginError(this)" class="button">Create Account</button><br></br>
+		<a href="#">Forgot Your Password?</a><br></br>
+		<div id="myAlert" class="alert alert-danger collapse">
+    		<strong>Error: </strong> Please fill in all the fields.
+		</div>
 	</form>
 </div>
 

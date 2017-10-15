@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../login/stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -47,16 +48,21 @@
 <!-- Login form -->
 <div class="loginForm">
 	<h2>Sign Up</h2>
-	<form>
+	<form id="form" action="signup.php" method="post" enctype="multipart/form-data>">
 		<p1>Email</p1>
 		<input type="email" id="email" name="" placeholder="Enter Email">
 		<p1>Username</p1>
-		<input type="user" id="user" name="" placeholder="Enter Username">
+		<input type="user" id="username" name="" placeholder="Enter Username">
 		<p1>Password</p1>
-		<input type="password" id="pass" name="" placeholder="Enter Password">
-		<input type="button" onclick="myWelcome()" class="button" value="Create Account">
-		<p2>Already have an exisiting account?</p2>
+		<input type="password" id="password" name="" placeholder="Enter Password">
+		<button id="btnSubmit" onclick="return signUpError(this)" class="button">Create Account</button> 
+		<br></br>
+		<p2>Already have an existing account?</p2>
 		<a href="../login/login.html">Click Here</a>
+		<br></br>
+		<div id="myAlert" class="alert alert-danger collapse">
+    		<strong>Error: </strong> Please fill in all the fields.
+		</div>
 	</form>
 </div>
 
