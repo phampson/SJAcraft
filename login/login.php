@@ -5,14 +5,21 @@ include('start.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = 'insert into user_info (username, password) values("'.$username.'", "'.$password.'")';
-if ($mysqli->query($sql)) {
-	echo "houston we don't have a problem";
-	echo "username: " . $username;
+$sql = 'select * from user_info where username="'.$username.'" and password="'.$password.'"';
+
+$query = $mysqli->query($sql);
+if ($query->num_rows > 0) {
+	echo "Welcome! ";
+	echo $username;
+	$update = 'update user_info set logged="1" where username="'.$username.'"';
+	//$mysqli->query($update);
+	if ($mysqli->query($update)) {
+		echo " is online";	
+	}
 }
 
 else {
-	echo "houston we do have a problem";
+	echo "username or password invalid";
 }
 
 ?>
