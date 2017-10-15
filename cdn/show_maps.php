@@ -9,19 +9,21 @@ if ($mysqli->connect_errno){
     echo "we have a problem";
 }
 
-echo "GOLD";
-$sql = "select map_name from map";
-$result = mysqli_query($sql);
-if (!$result) {
-    echo "GOLDEN RETREIVER";
+$query = "select map_name, map_path from map";
+if ($result = $mysqli->query($query)) {
+    printf("Select returned %d rows.<br>", $result->num_rows);
+
+    $result->close();
 }
 
-while ($row = mysql_fetch_assoc($result)) {
-    echo $row['map_name'];
-    echo $row['map_path'];
-}*/
 
+if ($result = $mysqli->query($query)) {
+    while ($row = $result->fetch_assoc()) {
+        echo "name: " . $row['map_name'] . " path: " . $row['map_path'] . "<br>";
+    }
 
+    $result->close();
+}
 
-echo "working??";
+echo "reached the end";
 ?>
