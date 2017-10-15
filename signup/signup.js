@@ -32,11 +32,3 @@ console.log(location.href+'#'+location.hash+'?'+location.search);
 	 $('#form').submit(function (e) {
         if (!signUpError(this)) e.preventDefault();
     });
-
-	 // function displayAlert {
-	 // 	 $('#myAlert').show('fade');
-	 // 	 setTimeout(function () {
-  //               $('#myAlert').hide('fade');
-  //           }, 2000);
-	 // }
-
