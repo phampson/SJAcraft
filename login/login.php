@@ -12,7 +12,6 @@ if ($query->num_rows > 0) {
 	echo "Welcome! ";
 	echo $username;
 	$update = 'update user_info set logged="1" where username="'.$username.'"';
-	//$mysqli->query($update);
 	if ($mysqli->query($update)) {
 		echo " is online";	
 	}
