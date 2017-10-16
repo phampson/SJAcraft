@@ -11,7 +11,7 @@
 <!-- CSS Styling -->
 <style>
   html, body {
-  background: url("wowbackground.jpg"), url("img/texture.png") repeat; 
+  background: url("../img/wowbackground.jpg"), url("../img/texture.png") repeat; 
  background-size: 1500px , auto;
  } 
 
@@ -68,34 +68,41 @@
 
 <!-- Nav Bar -->
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">WarCraft II</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#"> About</a></li>
-        <li><a href="#">Download</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Forum</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"> Sign Up</a></li>
-        <li><a href="#">Log in</a></li>
-      </ul>
-    </div>
-  </div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">WarCraft II</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">About</a></li>
+				<li class="">
+					<a class="dropdown-toggle" data-toggle="dropdown"href="#">Download
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="../downloadthegame/downloadthegame.html">Download the game</a></li>
+						<li><a href="../dlc/dlc.php">Download maps</a></li>
+					</ul>
+				</li>
+				<li><a href="../faq/faq.html">FAQ</a></li>
+				<li><a href="#">Forum</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../signup/signup.html"> Sign Up</a></li>
+				<li><a href="../login/login.html"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+			</ul>
+		</div>
+	</div>
 </nav>
 
 
 <div class="blackbox">
-  <img align= left src="warcraft.jpg" alt="Warcraft main picture" style="width:100px;height:125px;">
+  <img align= left src="../img/warcraft.jpg" alt="Warcraft main picture" style="width:100px;height:125px;">
   <b><h2>Introduction</h2></b>
   <p1>Ever since the fall of Azeroth in the First war against the Orc from their homeworld Draenor, the humans of Azeroth have been forced into nearby kingdom of Lordaeron. Together with the elves and Dwarves, the humans formed the Alliance to fight against the Orc who have now set their sights on Lordaeron. You, a human, must defend the kingdom of Lordaeron.</p1>
 </div>
