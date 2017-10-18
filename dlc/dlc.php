@@ -62,7 +62,7 @@
 		    echo "we have a problem";
 		}
 
-		$query = "select map_name, map_path from map";
+		$query = "select * from map";
 		
 		if ($result = $mysqli->query($query)) {
 			$count = 0;
@@ -72,11 +72,12 @@
 			}
 			$map_path = $row['map_path'];
 			$map_name = $row['map_name'];
+			$map_thumbnail = $row['map_thumbnail'];
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
 				<a href=$map_path download>
-					<img src=$map_path alt='Map1' style='width:100%'>
+					<img src=$map_thumbnail alt='Map1' style='width:100%'>
 					<div class='caption'>
 						<p>$map_name</p>
 						 <p>2 - 4 players</p>

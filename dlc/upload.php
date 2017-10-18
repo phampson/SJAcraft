@@ -34,19 +34,25 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file to server
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-	$sql = 'insert into map (map_name, map_path) values(" '.$name.' "," '.$target_file.' ")';
+	$thumbnail_path = "maps/thumbnails/" . substr($name,0,strlen($name)-4) . ".png";
+	$sql = 'insert into map (map_name, map_path, map_thumbnail) values(" '.$name.' "," '.$target_file.' "," '.$thumbnail_path.' ")';
 	if($mysqli->query($sql)) {
 		echo "label success";
 	} 
 	else {
 		echo $sql."label failed ";
 	}
-
+	echo $thumbnail_path;
+	echo $target_file;
+	exec("./png $thumbnail_path $target_file");
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    	//header("location: dlc.php");
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
-    header("location: dlc.php");
+
+
+
 }
 ?>
 
