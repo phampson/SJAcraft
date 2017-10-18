@@ -75,7 +75,7 @@
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
-				<a href=$map_path target='_blank'>
+				<a href=$map_path download>
 					<img src=$map_path alt='Map1' style='width:100%'>
 					<div class='caption'>
 						<p>$map_name</p>

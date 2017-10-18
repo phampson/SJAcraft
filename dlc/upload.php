@@ -24,7 +24,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 1000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -35,9 +35,12 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	$sql = 'insert into map (map_name, map_path) values(" '.$name.' "," '.$target_file.' ")';
-	if($mysqli->query($sql))
-	    {echo "label success";} 
-	else{echo $sql."label failed ";}
+	if($mysqli->query($sql)) {
+		echo "label success";
+	} 
+	else {
+		echo $sql."label failed ";
+	}
 
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
