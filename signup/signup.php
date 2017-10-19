@@ -6,18 +6,25 @@ $email = $_POST['email'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = 'insert into user_info (username, password) values("'.$username.'", "'.$password.'")';
-if($mysqli->query($sql)) {
-	echo "Account created\n";
+$check = 'select * from user_info where username="'.$username.'"';
+$insert = 'insert into user_info (username, password) values("'.$username.'", "'.$password.'")';
+
+$query = $mysqli->query($check);
+if ($query->num_rows > 0) {
+	echo "Username already taken";
 }
 
 else {
-	echo "Username already taken\n";
-}
 
-echo "email: ";
-echo $email;
-echo "\nusername: ";
-echo $username; 
+	if($mysqli->query($insert)) {
+		echo "Account created ";
+		echo "username: ";
+		echo $username;
+	}
+
+	else {
+		echo "Error";
+	}
+}
 
 ?>
