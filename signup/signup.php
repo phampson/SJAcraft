@@ -7,7 +7,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $check = 'select * from user_info where username="'.$username.'"';
-$insert = 'insert into user_info (username, password) values("'.$username.'", "'.$password.'")';
+$insert = 'insert into user_info (username, password, email) values("'.$username.'", "'.$password.'", "'.$email.'")';
 
 $query = $mysqli->query($check);
 if ($query->num_rows > 0) {

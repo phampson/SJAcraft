@@ -1,5 +1,7 @@
 <?php
 
+session_start();//begin session
+
 include('start.php');
 
 $username = $_POST['username'];
@@ -12,7 +14,7 @@ if ($query->num_rows > 0) {
 	$email_verify = $fetch['email_verfy'];
 	$reset_pass = $fetch['reset_pass'];
 
-	if ($email_verify == 0){
+	if ($email_verify != 0){
 		echo "email not verified ";	
 	}
 	else if ($reset_pass == 1){
@@ -25,6 +27,8 @@ if ($query->num_rows > 0) {
 		$update = 'update user_info set logged="1" where username="'.$username.'"';
 		if ($mysqli->query($update)) {
 			echo " is online ";	
+			$_SESSION['user_id'] = $username;
+			header("Location: ../forum/test.php");
 		}
 	}
 }
