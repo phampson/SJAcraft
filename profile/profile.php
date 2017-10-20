@@ -5,17 +5,21 @@ include('start.php');
 error_reporting(E_ALL); ini_set('display_errors', '1');
 session_start();
 if(isset($_SESSION['user_id'])){
-   echo $_SESSION['user_id'];
-   $sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
-   $query = $mysqli->query($sql);
-   if($query) {
-      $fetch = $query->fetch_assoc();
-      $username = $fetch['username'];
-      $email = $fetch['email'];
-      echo $email;
-   }
+	echo $_SESSION['user_id'];
+	$sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
+	$query = $mysqli->query($sql);
+	if($query) {
+		$fetch = $query->fetch_assoc();
+		$username = $fetch['username'];
+		$email = $fetch['email'];
+		echo $email;
+	}
 }
-else{echo"nothing";}
+else{
+	echo"nothing";
+	$username = "username unknown";
+	$email = "email unknown";
+}
 ?>
 
 <!DOCTYPE html>
