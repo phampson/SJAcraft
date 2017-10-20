@@ -12,6 +12,7 @@ if(isset($_SESSION['user_id'])){
 		$fetch = $query->fetch_assoc();
 		$username = $fetch['username'];
 		$email = $fetch['email'];
+		$avatarPath = $fetch['avatar_path'];
 		echo $email;
 	}
 }
@@ -144,6 +145,13 @@ else{
 <!--profile picture-->
 <div class="profilePic">
 	<img src="profile.jpg" alt="This is where your profile picture goes" style="width:225px;height:228px;">
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
+
+<?php echo $avatarPath; ?>
 </div>
 
 <!-- profile -->
