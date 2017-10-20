@@ -11,10 +11,11 @@ $sql = 'select * from user_info where username="'.$username.'" and password="'.$
 
 $query = $mysqli->query($sql);
 if ($query->num_rows > 0) {
+	$fetch = $query->fetch_assoc();
 	$email_verify = $fetch['email_verfy'];
 	$reset_pass = $fetch['reset_pass'];
 
-	if ($email_verify != 0){
+	if ($email_verify != 0){//wrong for now for testing. should be ==0
 		echo "email not verified ";	
 	}
 	else if ($reset_pass == 1){
@@ -22,13 +23,12 @@ if ($query->num_rows > 0) {
 	}	
 	else {
 		echo "Welcome! ";
-		$fetch = $query->fetch_assoc();
 		echo $fetch['username'];
 		$update = 'update user_info set logged="1" where username="'.$username.'"';
 		if ($mysqli->query($update)) {
 			echo " is online ";	
 			$_SESSION['user_id'] = $username;
-			header("Location: ../forum/test.php");
+			header("Location: ../profile/profile.php");
 		}
 	}
 }
