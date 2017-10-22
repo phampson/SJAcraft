@@ -14,12 +14,15 @@ if(isset($_SESSION['user_id'])){
 		$email = $fetch['email'];
 		$avatarPath = $fetch['avatar_path'];
 		echo $email;
+		$navpath = "../navbar/navbarlogged.html";
 	}
 }
 else{
 	echo"nothing";
 	$username = "username unknown";
 	$email = "email unknown";
+	$navpath = "../navbar/navbar.html";
+	echo "\n" . $navpath;
 }
 ?>
 
@@ -47,6 +50,7 @@ else{
 		width: 1200px;
 		height: 500px;
 		background: rgba(0,0,0,0.4);
+		z-index: -999;
 	}
 
 	.profilePic{
@@ -104,37 +108,13 @@ else{
 </style>
 
 <!-- Nav Bar -->
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="../index.html">WarCraft II</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="#">About</a></li>
-				<li class="">
-					<a class="dropdown-toggle" data-toggle="dropdown"href="#">Download
-					<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="../downloadgame/downloadgame.html">Download the game</a></li>
-						<li><a href="../dlc/dlc.php">Download maps</a></li>
-					</ul>
-				</li>
-				<li><a href="../faq/faq.html">FAQ</a></li>
-				<li><a href="../forum/forum.html">Forum</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
+<div id="navbar"></div>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+?>
 
 
 <!-- gray background -->
@@ -143,8 +123,10 @@ else{
 </div>
 
 <!--profile picture-->
-<div class="profilePic">
-	<img src="profile.jpg" alt="This is where your profile picture goes" style="width:225px;height:228px;">
+<?php
+echo "<div class='profilePic', id='profilePic'>
+	 <img src=$avatarPath alt='This is where your profile picture goes' style='width:225px;height:228px;'>";
+?>   
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
