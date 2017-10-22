@@ -12,10 +12,10 @@ $sql = 'select * from user_info where username="'.$username.'" and password="'.$
 $query = $mysqli->query($sql);
 if ($query->num_rows > 0) {
 	$fetch = $query->fetch_assoc();
-	$email_verify = $fetch['email_verfy'];
+	$email_verify = $fetch['email_verify'];
 	$reset_pass = $fetch['reset_pass'];
 
-	if ($email_verify != 0){//wrong for now for testing. should be ==0
+	if ($email_verify == 0){//wrong for now for testing. should be ==0
 		echo "email not verified ";	
 	}
 	else if ($reset_pass == 1){
