@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Warcraft II</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../login/stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<script>
+        $("#navbar").load("../navbar/navbar.html")
+</script>
+
+<!-- Login form -->
+<div class="loginForm">
+        <h2>Reset Password</h2>
+        <form action="findpw.php" method="post" enctype="multipart/form-data">
+		<p1>Email</p1>
+                <input type="email" name="email" placeholder="Enter Email">
+                <p1>Username</p1>
+                <input type="user" name="username" placeholder="Enter Username">
+                <input type="submit" class="button" value="Submit">
+                <a href="#">Click Here</a>
+                <p2>to create a new account</p2>
+        </form>
+</div>
+
+</body>
+<!--<script type="text/javascript" src="signup.js"></script>-->
+</html>
