@@ -33,7 +33,7 @@ Please click this link to activate your account:
 52.37.38.192/signup/verification.php?email='.$email.'&hash='.$hash.'
  
 '; // Our message above including the link
-		mail("davidatomassi@gmail.com","Test",$msg,"From:ecs160test@gmail.com");
+		mail($email,"Test",$msg,"From:ecs160test@gmail.com");
 		echo "<br> Go verify your email!";
 	} else {
 		echo "Error";
