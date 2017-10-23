@@ -1,18 +1,211 @@
-h1 {
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#postContainer {
+	position: fixed;
+    display: none;
+    z-index: 2;
+    width:50%;
+	left: 25%;
+	top: 15%;
+	bottom: 15%;
+    padding: 0px 0px 0px 0px;
+    background-color: white;
+    border-radius: 10px;
+    border:2px solid gray;
+}
+
+#postContainer form {
+	top: 200px;
+    bottom: 200px;
+	left: 50%;
+	border-radius:10px;
+	font-family:raleway;
+	background-color:#fff
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#button {
+	background-color: #30546c;
+	border: 1px solid;
+	border-radius: 4px;
 	color: white;
-	text-align: center;
-	font-size: 70px;}
+	padding: 12px 20px;
+	margin: 14px 0px 0px 0px;
+	cursor: pointer;
+	width: 20%
+}
 
-table {
+#searchBar {
+	padding-bottom: 30px;
+}
+
+#searchBar #hdrContainer button {
+	height: 34px;
+}
+
+#postContainer .profInfo h3 {
+	font-style: italic;
+	font-family: sans-serif;
+	font-size: 10px;
+	font-weight: 2;
+	text-align-left: center;
+}
+
+#postContainer .profInfo {
+	margin: 30px;
+	float: left;
+}
+
+#postContainer .postInfo {
+	right: 50px;
+	width: 65%;
+	margin: 30px;
+	float: right;
+}
+
+hr {
+	border:1;
+	border-top:1px solid #ccc;
+	margin:0px;
+}
+
+#postContainer h1 {
+	background-color:#395C94;
+	padding:20px 35px;
+	margin:-1px;
+	text-align:center;	
+	border-radius:10px 10px 0 0;
+	font-family:sans-serif;
 	color: white;
-	background-color: black;
-	opacity: .6;}
+	font-size: 20px;
+}
 
-.table-hover tbody tr:hover > th {
-	background-color:  #2471a3 ;}
+#postContainer h2 {
+	font-family: sans-serif;
+	font-size: 15px;
+	text-align: right;
+    clear: both;
+    float: left;
+    margin-right: 15px;
+}
 
-.table-hover tbody tr:hover > td {
-	background-color:  #2471a3 ;}
+textarea {
+	width:100%;
+	height:150px;
+	resize:none;
+	margin-top:0px;
+	border: 1px solid #ccc;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-size: 16px;
+	font-family: sans-serif;
+	margin-bottom: 0px;
+}
 
-.table tbody tr > td > a {
-	color: white;}
+#postContainer input[type="dropdown-menu"] {
+	width: 40%;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+#postContainer input[type="text"] {
+	width: 100%;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+#postContainer .button {
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+img#close {
+	position:absolute;
+	right:5px;
+	top:5px;
+	cursor:pointer;
+	width: 30px;
+	height: 30px;
+}
+
+#searchBar #discussionButton {
+/*	margin: 0px;*/
+	margin-top: 2px;
+	padding: 10px;
+}
+
+#searchBar #myProfButton {
+	margin-top: -1px;
+	margin-right: 8px;
+	padding: 10px;
+}
+
+#searchBar input[type="text"] {
+	width: 100%;
+	font-size:14px;
+	padding-left: 10px;
+}
+
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+#tabContainer #tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+#tabContainer #tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+#tabContainer #tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+#tabContainer #tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+#tabContainer .tabcontent {
+    display: none;
+    padding: 6px 6px 6px 6px; 
+    overflow:scroll;
+
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color:white; 
+}
+
