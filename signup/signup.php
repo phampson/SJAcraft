@@ -30,7 +30,7 @@ Password: '.$password.'
 ------------------------
  
 Please click this link to activate your account:
-52.37.38.192/signup/verification.php?email='.$email.'&hash='.$hash.'
+'.$_SERVER['HTTP_HOST'].'/signup/verification.php?email='.$email.'&hash='.$hash.'
  
 '; // Our message above including the link
 		if(mail($email,"Test",$msg,"From:ecs160test@gmail.com")) {
