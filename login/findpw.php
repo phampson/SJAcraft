@@ -24,7 +24,7 @@ E-mail: '.$email.'
 ------------------------
  
 Please click this link to reset your password:
-52.37.38.192/login/resetpw.php?email='.$email.'&hash='.$hash.'
+'.$_SERVER['HTTP_HOST'].'/login/resetpw.php?email='.$email.'&hash='.$hash.'
  
 '; // Our message above including the link
 	if(mail($email,"No-reply Reset your password",$msg,"From:ecs160test@gmail.com")) {
