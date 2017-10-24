@@ -24,7 +24,7 @@ if ($query->num_rows > 0) {
 	else {
 		echo "Welcome! ";
 		echo $fetch['username'];
-		$update = 'update user_info set logged="1" where username="'.$username.'"';
+		$update = 'update user_info set web_logged="true" where username="'.$username.'"';
 		if ($mysqli->query($update)) {
 			echo " is online ";	
 			$_SESSION['user_id'] = $username;
