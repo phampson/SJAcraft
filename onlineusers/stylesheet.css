@@ -7,3 +7,12 @@
 .transparent-background li {
 	font-size: 20px;
 }
+
+.nav-tabs > li > a:hover {
+	color: white;
+}
+
+.my-user-name {
+	font-size: 50px;
+	color: blue;
+}

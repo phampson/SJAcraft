@@ -36,6 +36,48 @@ else{
 	<link rel="stylesheet" href="../stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+var operatingSystem = "Unknown";
+var appVer = "";
+var mobileOS = "";
+var isMobileOS = false;
+
+function findOS() 
+{
+    isMobile();
+    if (isMobileOS) {
+        operatingSystem = mobileOS;
+    } else {
+        appVer = navigator.appVersion;
+        switch(appVer != "") {
+            case (appVer.indexOf("Win")!=-1):
+                operatingSystem = "Windows";
+                break;
+            case (appVer.indexOf("Mac")!=-1):
+                operatingSystem = "MacOS";
+                break;
+            case (appVer.indexOf("X11")!=-1):
+                operatingSystem = "UNIX";
+                break;
+            case (appVer.indexOf("Linux")!=-1):
+                operatingSystem = "Linux";
+                break;      
+        }       
+    }
+    document.getElementById("download").appendChild = '<button onclick="">Download the game!</button>';
+}
+
+function isMobile()
+{
+    if(navigator.userAgent.match(/Android/i)) {
+        isMobileOS = true;
+        mobileOS = "Android";
+    } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+        isMobileOS = true;
+        mobileOS = "iOS";
+    }
+}
+</script>
 </head>
 <body>
 
@@ -49,6 +91,8 @@ echo "</script>\n";
 ?>
 
 <div class="sysreq">
+	<div id="download"></div>
+	
 	<h1>From Blizzard support:</h1>
 	<h1>System requirements</h1>
 		<h2>MS-DOS / Windows 3.1 / Windows 95:</h2>
