@@ -90,7 +90,7 @@ int main(int argc, char** argv) {
 
   std::string name, line;
   std::getline(map,line); // useless line "# Map Name"
-  std::getline(map,name);
+  std::getline(map,name); // map name
 
   std::getline(map,line); // useless line "# Map Dimensions W x H"
 
@@ -146,5 +146,17 @@ int main(int argc, char** argv) {
     }
   }
 
+  std::getline(map,line); // # Map Partial Info or something like that
+  for (int i=0; i<=h+1; ++i) {
+    std::getline(map,line);
+  } // throw away the map partial info or whatever
+
+
+  std::getline(map,line); // # Map Num Players or something like that
+  std::string numPlayers = "-1";
+  map >> numPlayers; // get number of players
+
   encodeOneStep(fileout,image,w,h);
+
+  std::cout << numPlayers << name;
 }
