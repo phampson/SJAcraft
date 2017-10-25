@@ -27,6 +27,25 @@
                 <li>Aech</li>
                 <li>IOI-675333</li>
         </ul>
+	<script id="source" language="javascript" type="text/javascript">
+		function getproject()
+		{
+		var hr = new XMLHttpRequest();
+		hr.open("POST", "online.php", true);
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		hr.onreadystatechange = function() 
+			{
+			if(hr.readyState == 4 && hr.status == 200) 
+				{var rec= hr.responseText;
+				var str = JSON.stringify(rec, null, 2); 
+				console.log(str);}
+			}
+		 hr.send("request=getpro");
+		}		
+		getproject();
+
+		
+	</script>
 </div>
 
 </body>
