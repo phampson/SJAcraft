@@ -46,7 +46,7 @@ h4 {
 	width: 80%;
 	margin: auto;
 	height: 100%;
-	background-image: url("img/wowbckgrnd.jpg"); 
+	background-image: url("../img/wowbckgrnd.jpg"); 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
