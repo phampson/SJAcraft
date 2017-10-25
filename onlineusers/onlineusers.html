@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Warcraft II</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<script>
+	$("#navbar").load("../navbar/navbar.html")
+</script>
+
+<!-- Tabs -->
+<div class="container col-sm-6 col-sm-offset-3 transparent-background">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#web">Web</a></li>
+		<li><a data-toggle="tab" href="#game">Game</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="web" class="tab-pane fade in active">
+			<h1>Online Users</h1>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-1">
+					<img align=left src="../img/default.png" style="width:60px;height:60px" alt="Warcraft main picture"></img>
+				</div>
+				<div class="col-sm-4">
+					<h3>Parzival</h3>
+				</div>
+				<div class="col-sm-5">
+					<img align=left src="../img/maps/plus.jpg" style="width:60px;height:60px" alt="Add Friend picture"></img>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+                                <div class="col-sm-2 col-sm-offset-1">
+                                        <img align=left src="../img/default.png" style="width:60px;height:60px" alt="Warcraft main picture"></img>
+                                </div>
+                                <div class="col-sm-4">
+                                        <h3>Art3mis</h3>
+                                </div>
+                                <div class="col-sm-5">
+					<img align=left src="../img/maps/plus.jpg" style="width:60px;height:60px" alt="Add Friend picture"></img>
+                                </div>
+                        </div>
+			<div id="new_user_container"></div>
+		</div>
+		<div id="game" class="tab-pane fade">
+			<h1>Online Users</h1>
+			<ul>
+				<li>Parzival</li>
+				<li>Art3mis</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- Leader Board 
+<div class="container col-sm-6 col-sm-offset-3 transparent-background">
+	<h1>Logged In Users (Game)</h1>
+	<br>
+	<ul>
+		<li>Parzival</li>
+		<li>Art3mis</li>
+		<li>Aech</li>
+		<li>IOI-675333</li>
+	</ul>
+</div>
+-->
+
+</body>
+<script src="onlineusers.js"></script>
+</html>
