@@ -14,6 +14,8 @@ if ($query->num_rows > 0) {
 	$fetch = $query->fetch_assoc();
 	$email_verify = $fetch['email_verify'];
 	$reset_pass = $fetch['reset_pass'];
+	$_SESSION['user_id'] = $fetch['id'];
+	$id = $fetch['id'];
 
 	if ($email_verify == 0){//wrong for now for testing. should be ==0
 		echo "email not verified ";	
@@ -24,10 +26,9 @@ if ($query->num_rows > 0) {
 	else {
 		echo "Welcome! ";
 		echo $fetch['username'];
-		$update = 'update user_info set web_logged="true" where username="'.$username.'"';
+		$update = 'update user_info set web_logged="true" where id="'.$id.'"';
 		if ($mysqli->query($update)) {
 			echo " is online ";	
-			$_SESSION['user_id'] = $username;
 			header("Location: ../profile/profile.php");
 		}
 	}

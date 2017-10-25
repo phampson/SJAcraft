@@ -1,3 +1,21 @@
+<?php
+
+include('../login/start.php');
+
+error_reporting(E_ALL); ini_set('display_errors', '1');
+session_start();
+if(isset($_SESSION['user_id'])){
+	$sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
+	$query = $mysqli->query($sql);
+	if($query) {
+		$navpath = "../navbar/navbarlogged.html";
+	}
+}
+else{
+	$navpath = "../navbar/navbar.html";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +30,12 @@
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
-<script>
-        $("#navbar").load("../navbar/navbar.html")
-</script>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+?>
 
 <!-- CDN gallery -->
 <h2 style="color: white; text-align: center;">Map Gallery</h2>
