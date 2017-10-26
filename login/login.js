@@ -1,4 +1,5 @@
 console.log(location.href+'#'+location.hash+'?'+location.search);
+
 	function loginError(form) {
 
 		var user = document.getElementById("username").value;
