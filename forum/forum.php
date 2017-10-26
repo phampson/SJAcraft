@@ -128,24 +128,18 @@ echo "</script>\n";
 
 
   <div id="Beginners" class="tabcontent">
-    <h3>Beginners</h3>
     <p>
-        <div class="container">
+        
           <a href="#">
             <div class="jumbotron">
               <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
               <h3> How do I move around?</h3>
               <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
 
-              <footer> 
-              10/17/17
-
-              </align</footer>
+              <footer> 10/17/17 </footer>
             </div>
           </a>
-        </div>
 
-        <div class="container">
           <a href="#">
             <div class="jumbotron">
               <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
@@ -153,48 +147,106 @@ echo "</script>\n";
               <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
             </div>
           </a>
-        </div>
-
-        <div class="container">
-          <a href="#">
-            <div class="jumbotron">
-              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
-              <h3> How do I win?</h3>
-              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
-            </div>
-            </a>
-        </div>
-        <div class="container">
-          <a href="#">
-            <div class="jumbotron">
-              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
-              <h3> How do I win?</h3>
-              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
-            </div>
-          </a>
-        </div>
 
     </p>
   </div>
 
+
   <div id="Strategies" class="tabcontent">
-    <h3>Strategies</h3>
-    <p>Paris is the capital of France.</p> 
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p> 
   </div>
 
   <div id="Maps" class="tabcontent">
-    <h3>Maps</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
 
   <div id="Game_Updates" class="tabcontent">
-    <h3>Game Updates</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
 
   <div id="General" class="tabcontent">
-    <h3>General</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+<a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
   
 <!-- Create Post Overlay -->
@@ -240,3 +292,4 @@ echo "</script>\n";
 </script>
 
 </html>
+
