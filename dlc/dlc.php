@@ -48,14 +48,15 @@
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
-				<a href=$map_path download>
+				
 					<img src=$map_thumbnail alt='Map1' style='width:100%'>
 					<div class='caption'>
 						<p>$map_name</p>
 						 <p>2 - 4 players</p>
 					</div>
-				</a>
+				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
 			</div>
+			
 		</div>";
 			if($count % 4 == 3){
 				echo "</div>";		
