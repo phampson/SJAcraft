@@ -43,7 +43,7 @@ else {
 		transform: translate(-50%, -50%);
 		width: 1200px;
 		height: 500px;
-		background: rgba(0,0,0,0.4);
+		background-image: url("../img/wowDoge.jpg");
 		z-index: -999;
 
 	}
@@ -105,7 +105,7 @@ else {
 
 	.message {
 		position:absolute;
-		left: 500px;
+		left: 510px;
 		top: 250px;
 		font-size: 20px;
 	}
