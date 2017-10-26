@@ -1,30 +1,50 @@
 <?php
 
+/*
+ * TO DO
+ * 1. Add functionality to make sure that in order to create a new post, user SHOULD provide ALL details, i.e.
+ *      1. Post Category.
+ *      2. Post Name.
+ *      3. Message.
+ * 2. Only logged in users should be able to create a new post.
+ */
+
+
+// Helper function
+function phpConsole($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('PHP Console: " . $output . "');</script>";
+} // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
+
+
+
+// Imports & Error Reporting
 include('../login/start.php');
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL); 
+ini_set('display_errors', '1');
+
 session_start();
-if(isset($_SESSION['user_id'])){
-	echo $_SESSION['user_id'];
-	$sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
+if(isset($_SESSION['user_id'])) {
+	$sql = 'select * from user_info where username="' . $_SESSION['user_id'] . '"';
+    	$query = $mysqli->query($sql);
+	$navpath = "../navbar/navbarlogged.html";
 	if($query) {
 		$fetch = $query->fetch_assoc();
 		$username = $fetch['username'];
 		$email = $fetch['email'];
-		$avatarPath = $fetch['avatar_path'];
-		echo $email;
-		$navpath = "../navbar/navbarlogged.html";
 	}
 }
+
 else{
-	echo"nothing";
-	$username = "username unknown";
-	$email = "email unknown";
 	$navpath = "../navbar/navbar.html";
-	echo "\n" . $navpath;
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,24 +119,18 @@ echo "</script>\n";
 
 
   <div id="Beginners" class="tabcontent">
-    <h3>Beginners</h3>
     <p>
-        <div class="container">
+        
           <a href="#">
             <div class="jumbotron">
               <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
               <h3> How do I move around?</h3>
               <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
 
-              <footer> 
-              10/17/17
-
-              </align</footer>
+              <footer> 10/17/17 </footer>
             </div>
           </a>
-        </div>
 
-        <div class="container">
           <a href="#">
             <div class="jumbotron">
               <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
@@ -124,48 +138,106 @@ echo "</script>\n";
               <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
             </div>
           </a>
-        </div>
-
-        <div class="container">
-          <a href="#">
-            <div class="jumbotron">
-              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
-              <h3> How do I win?</h3>
-              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
-            </div>
-            </a>
-        </div>
-        <div class="container">
-          <a href="#">
-            <div class="jumbotron">
-              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
-              <h3> How do I win?</h3>
-              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
-            </div>
-          </a>
-        </div>
 
     </p>
   </div>
 
+
   <div id="Strategies" class="tabcontent">
-    <h3>Strategies</h3>
-    <p>Paris is the capital of France.</p> 
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p> 
   </div>
 
   <div id="Maps" class="tabcontent">
-    <h3>Maps</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
 
   <div id="Game_Updates" class="tabcontent">
-    <h3>Game Updates</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
 
   <div id="General" class="tabcontent">
-    <h3>General</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <p>
+
+<a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
+              <h3> How do I move around?</h3>
+              <p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
+
+              <footer> 10/17/17 </footer>
+            </div>
+          </a>
+
+
+          <a href="#">
+            <div class="jumbotron">
+              <div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Kelly</p></div>
+              <h3> How do I win?</h3>
+              <p> So yeah, how exactly do I win at warcraft? Do I collect resouces or build buildings?</p>
+            </div>
+          </a>
+
+    </p>
   </div>
   
 <!-- Create Post Overlay -->
@@ -174,7 +246,7 @@ echo "</script>\n";
 
 <!-- Create Post Container  -->
 <div class="container" id="postContainer">
-	<form action="#" method="post">
+	<form action="post.php" method="post">
 
 		<img id="close" src="../img/close.png" onclick ="off()">
 		<h1>Create a New Post</h1>
@@ -190,19 +262,19 @@ echo "</script>\n";
 			<select name="category">
 				<option value="" disabled selected>Select One</option>
 			    <option value="beginner">Beginner</option>
+			    <option value="strategies">Strategies</option>
 			    <option value="maps">Maps</option>
+			    <option value="gameUpdates">Game Updates</option>
 			    <option value="general">General</option>
   			</select>
   			<br>
 			<label>Post Name: </label>
-			<input type="text" id="postName" name="" placeholder="Enter Post Name"><br><br>
+			<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
 			<label> Message: </label><br>
-			<textarea id="postMsg" name="" placeholder="Message"></textarea>
+			<textarea id="postMsg" name="message" placeholder="Message"></textarea>
 			<button class="btn-link" onclick="" id="submit">Send</button>
 		</div>
-
 	</form>
-
 </div>
 
 </body>
@@ -211,3 +283,4 @@ echo "</script>\n";
 </script>
 
 </html>
+

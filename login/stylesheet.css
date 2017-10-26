@@ -1,7 +1,8 @@
 /*login css styling*/
 
 html, body {
-	background: url("../img/texture.png") repeat;} 
+        background: url("../img/Texture.png") repeat;
+}
 
 .loginForm {
 	position:absolute;

@@ -5,24 +5,10 @@ include('../login/start.php');
 error_reporting(E_ALL); ini_set('display_errors', '1');
 session_start();
 if(isset($_SESSION['user_id'])){
-	echo $_SESSION['user_id'];
-	$sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-	if($query) {
-		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
-		$email = $fetch['email'];
-		$avatarPath = $fetch['avatar_path'];
-		echo $email;
-		$navpath = "../navbar/navbarlogged.html";
-	}
+	$navpath = "../navbar/navbarlogged.html";
 }
 else{
-	echo"nothing";
-	$username = "username unknown";
-	$email = "email unknown";
 	$navpath = "../navbar/navbar.html";
-	echo "\n" . $navpath;
 }
 ?>
 

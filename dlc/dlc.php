@@ -1,3 +1,17 @@
+<?php
+
+include('../login/start.php');
+
+error_reporting(E_ALL); ini_set('display_errors', '1');
+session_start();
+if(isset($_SESSION['user_id'])){
+	$navpath = "../navbar/navbarlogged.html";
+}
+else{
+	$navpath = "../navbar/navbar.html";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +26,12 @@
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
-<script>
-        $("#navbar").load("../navbar/navbar.html")
-</script>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+?>
 
 <!-- CDN gallery -->
 <h2 style="color: white; text-align: center;">Map Gallery</h2>
@@ -45,14 +62,17 @@
 			$map_path = $row['map_path'];
 			$map_name = $row['map_name'];
 			$map_thumbnail = $row['map_thumbnail'];
+			$numPlayers = $row['num_players'];
+			$displayName = $row['display_name'];
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
+
 				
-					<img src=$map_thumbnail alt='Map1' style='width:100%'>
+					<img src=$map_thumbnail alt=$map_name style='width:100%'>
 					<div class='caption'>
-						<p>$map_name</p>
-						 <p>2 - 4 players</p>
+						<p>$displayName</p>
+						 <p>$numPlayers players</p>
 					</div>
 				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
 			</div>

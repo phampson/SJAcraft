@@ -78,7 +78,7 @@ if ($uploadedOk == 1) {
     }
 
     // Redirect to file
-    //header('Location: ' . '../dlc/dlc.php'); 
+    header('Location: ' . 'profile.php'); 
 }
 
 ?>
