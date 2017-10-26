@@ -5,11 +5,7 @@ include('../login/start.php');
 error_reporting(E_ALL); ini_set('display_errors', '1');
 session_start();
 if(isset($_SESSION['user_id'])){
-	$sql = 'select * from user_info where username="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-	if($query) {
-		$navpath = "../navbar/navbarlogged.html";
-	}
+	$navpath = "../navbar/navbarlogged.html";
 }
 else{
 	$navpath = "../navbar/navbar.html";
