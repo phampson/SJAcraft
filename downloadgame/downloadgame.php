@@ -10,7 +10,6 @@ else{
 }
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -21,68 +20,9 @@ else{
 	<link rel="stylesheet" href="../stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="detectOS.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-	$(document).ready(function (){
-		findOS();
-	});
-var operatingSystem = "Unknown";
-var appVer = "";
-var mobileOS = "";
-var isMobileOS = false;
-function findOS() 
-{
-    isMobile();
-    if (isMobileOS) {
-        operatingSystem = mobileOS;
-    } else {
-        appVer = navigator.appVersion;
-        switch(appVer != "") {
-            case (appVer.indexOf("Win")!=-1):
-                //operatingSystem = "Windows";
-		operatingSystem = 0;
-                break;
-            case (appVer.indexOf("Mac")!=-1):
-                //operatingSystem = "MacOS";
-		operatingSystem = 1;
-                break;
-            case (appVer.indexOf("X11")!=-1):
-                //operatingSystem = "UNIX";
-		operatingSystem = 2;                
-		break;
-            case (appVer.indexOf("Linux")!=-1):
-                //operatingSystem = "Linux";
-		operatingSystem = 3;
-                break;      
-        }       
-    }
-	switch(operatingSystem != -9) {
-		case(operatingSystem == 0):
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
-			break;
-		case(operatingSystem == 1):
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
-			break;
-		case(operatingSystem == 2):
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
-			break;
-		case(operatingSystem == 3):
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
-			break;
-	}
-}
-function isMobile()
-{
-    if(navigator.userAgent.match(/Android/i)) {
-        isMobileOS = true;
-        mobileOS = "Android";
-    } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        isMobileOS = true;
-        mobileOS = "iOS";
-    }
-}
-</script>
 <!-- Nav Bar -->
 <div id="navbar"></div>
 <?php
@@ -90,10 +30,10 @@ echo "<script>\n";
 	echo '$("#navbar").load("'.$navpath.'")';
 echo "</script>\n";
 ?>
-<div id="downloadButton"></div>
+
 <div id = "container" class="container">
 	<div id = "bannerctnr">
-		<h1>Install World of Warcraft</h1> 
+		<h1>Install Warcraft II</h1> 
 	</div>
 	<div id = "reqTable" class="sysreq" >
 			<table>
@@ -129,7 +69,9 @@ echo "</script>\n";
 				</tr>
 			</table>
 	`		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			
+			<div id="downloadButton">
+				<button src="../img/dldbtn.png"></button>
+			</div>
 	</div>
 </div>
 
