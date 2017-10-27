@@ -55,27 +55,14 @@ else {
 		float:left;
 	}
 
-.button {
-    background-color: #e7e7e7;
-    border: none;
-    color: black;
-    padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 4px 10px;
-    cursor: pointer;
-}
 
 
-
-	.profile userinfo {
+	.profile username {
 		position:absolute;
 		top: 30px;
-		left: 400px;
-		color: black;
-		font-size: 19px;
+		left: 40%;
+		color: white;
+		font-size: 40px;
 
 
 	}
@@ -86,7 +73,7 @@ else {
 	.profile email{
 		position:absolute;
 		top: 90px;
-		left: 400px;	
+		left: 40%;	
 		font-size: 18px;
 		text-align: center;
 		color: white;
@@ -109,6 +96,80 @@ else {
 		top: 250px;
 		font-size: 20px;
 	}
+
+
+.box {
+  position: absolute;
+  top: 35%;
+  left: 45%;
+  background: white;
+  padding: 10px 0px;
+
+
+  
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  width: 10px;
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+  
+}
+.button:hover {
+  background: #8c8c8c;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 150px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+}
+
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #999999;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
 
 </style>
 
@@ -135,24 +196,45 @@ echo "</script>\n";
 
 	<!--profile picture-->
 	<?php
-		echo "<div class='profilePic', id='profilePic'>
-		<img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
-	?>   
+	echo "<div class='profilePic', id='profilePic'>
+		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
+	?>
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 	    <upload><font color ="white" >Select image to upload:</upload>
 	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
+
+	<?php echo $avatarPath; ?>
 	</div>
 
 	<userinfo>
-		<?php 
-			echo " <form id=\"form\" method=\"post\">
-  			<input type=\"text\" name=\"usrname\"><button  id=\"usr\">Update</button>username<br>
-			<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>real name<br>
-			<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>email<br>
-			</form> "
-		?> 
+
+		<username><?php echo $username; ?></username>
+		<email><?php echo $email; ?>Temp email </email>
+
+		<div class="box">
+		<a class="button" href="#popup1" style=background-color: white>Edit info</a>
+		</div>
+
+		<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Edit Information</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+			
+				<?php 
+				echo " <form id=\"form\" method=\"post\">
+	  			<input type=\"text\" name=\"usrname\"><button  id=\"usr\">Update</button>username<br>
+				<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>real name<br>
+				<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>email<br>
+				</form> "
+				?> 
+			
+
+			</div>
+		</div>
+		</div>
 	</userinfo>
 
 		<!--
