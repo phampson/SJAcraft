@@ -94,11 +94,11 @@ echo "</script>\n";
 		if ($mysqli->connect_errno){
 		    echo "we have a problem";
 		}
-				echo " <form id=\"form\" method=\"post\">
+				echo ' <form id=\"form\" method=\"post\">
 	  			<input type=\"text\" name=\"usrname\" placeholder= \"Username\"><button  id=\"usrname\">Update</button><br>
 				<input type=\"text\" name=\"firstname\" placeholder= \"Real name\"><button  id=\"firstname\">Update</button><br>
 				<input type=\"text\" name=\"email\" placeholder=\"Email\"><button  id=\"email\">Update</button><br>
-				</form> "
+				</form> ';
 
 		$mysqli->close();
 		?> 
