@@ -70,16 +70,16 @@ else {
 
 
 
-	.profile username {
+	.profile userinfo {
 		position:absolute;
 		top: 30px;
 		left: 400px;
-		color: white;
-		font-size: 40px;
+		color: black;
+		font-size: 19px;
 
 
 	}
-	.username{ 
+	.userinfo{ 
 		position: static;
 	}
 
@@ -110,7 +110,6 @@ else {
 		font-size: 20px;
 	}
 
-
 </style>
 
 <!-- Nav Bar -->
@@ -136,25 +135,30 @@ echo "</script>\n";
 
 	<!--profile picture-->
 	<?php
-	echo "<div class='profilePic', id='profilePic'>
-		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
+		echo "<div class='profilePic', id='profilePic'>
+		<img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
 	?>   
 	<form action="upload.php" method="post" enctype="multipart/form-data">
-	    <upload> <font color ="white" >Select image to upload:</upload>
+	    <upload><font color ="white" >Select image to upload:</upload>
 	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
-
-	<?php echo $avatarPath; ?>
 	</div>
 
-	
-		<username><?php echo $username; ?>Temp bc doesn't work <button class="button username" id="">Change username</button> </username>
-		
-		<email><?php echo $email; ?>Temp email <button class="button email" id="">Change username</button> </email>
-		<button class="button addFriend" id="">Add Friend</button>
-		<button class="button message" id="">Message</button>
-	
+	<userinfo>
+		<?php 
+			echo " <form id=\"form\" method=\"post\">
+  			<input type=\"text\" name=\"usrname\"><button  id=\"usr\">Update</button>username<br>
+			<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>real name<br>
+			<input type=\"text\" name=\"firstname\"><button  id=\"\">Update</button>email<br>
+			</form> "
+		?> 
+	</userinfo>
+
+		<!--
+	<button class="button addFriend" id="">Add Friend</button>
+	<button class="button message" id="">Message</button>
+	-->
 </div>
 
 
