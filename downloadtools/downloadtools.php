@@ -33,41 +33,9 @@ echo "</script>\n";
 
 <div id = "container" class="container">
 	<div id = "bannerctnr">
-		<h1>Install Warcraft II</h1> 
+		<h1>Install Warcraft II Tools</h1> 
 	</div>
 	<div id = "reqTable" class="sysreq" >
-			<table>
-				<tr>
-					<th>System requirements</th>
-					<th>MS-DOS / Windows 3.1 / Windows 95</th>
-					<th>Macintosh System 7.5 or higher</th>
-				</tr>
-				<tr>
-					<td>Processor: </td>
-					<td>33 MHz 486 or faster</td>
-					<td>68040 or PowerPC processor</td>
-				</tr>
-				<tr>
-					<td>RAM:</td>
-					<td>8 MB </td>
-					<td>8 MB </td>
-				</tr>
-				<tr>
-					<td>Display: </td>
-					<td>Super VGA graphics card</td>
-					<td>A 13" or better 256-color display</td>
-				</tr>
-				<tr>
-					<td>Hard drive</td>
-					<td>Needed</td>
-					<td>Needed</td>
-				</tr>
-				<tr>
-					<td>CD-ROM drive:</td>
-					<td>Needed (To view the animations from the cd, your CD-ROM drive must be double-speed or faster)</td>
-					<td>Needed (To view the animations from the cd, your CD-ROM drive must be double-speed or faster)</td>
-				</tr>
-			</table>
 	`		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<div id="downloadButton">
 				<button src="../img/dldbtn.png"></button>

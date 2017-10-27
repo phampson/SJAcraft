@@ -23,95 +23,16 @@ else {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Warcraft II</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<!-- CSS Styling -->
-<style>
-	html, body {
-	background: url("../img/Texture.png") repeat;} 
 
-		.profile {
-		position:absolute;
-		top: 50%;
-		left: 50%;
-		padding: 40px 40px;
-		transform: translate(-50%, -50%);
-		width: 1200px;
-		height: 500px;
-		background-image: url("../img/wowDoge.jpg");
-		z-index: -999;
-
-	}
-
-	.profilePic{
-		position:absolute;
-		left: 50px;
-		top: 50px;
-		float:left;
-	}
-
-.button {
-    background-color: #e7e7e7;
-    border: none;
-    color: black;
-    padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 4px 10px;
-    cursor: pointer;
-}
-
-
-
-	.profile username {
-		position:absolute;
-		top: 30px;
-		left: 400px;
-		color: white;
-		font-size: 40px;
-
-
-	}
-	.username{ 
-		position: static;
-	}
-
-	.profile email{
-		position:absolute;
-		top: 90px;
-		left: 400px;	
-		font-size: 18px;
-		text-align: center;
-		color: white;
-		font-size: 35px;
-	}
-	.email{
-		position:static;
-	}
-
-	.addFriend {
-		position:absolute;
-		left: 500px;
-		top: 200px;
-		font-size: 20px;
-	}
-
-	.message {
-		position:absolute;
-		left: 510px;
-		top: 250px;
-		font-size: 20px;
-	}
-
-
-</style>
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -123,7 +44,7 @@ echo "</script>\n";
 ?>
 
 
-<!-- gray background -->
+<!--background -->
 <div class="background">
 
 </div>
@@ -138,9 +59,9 @@ echo "</script>\n";
 	<?php
 	echo "<div class='profilePic', id='profilePic'>
 		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
-	?>   
+	?>
 	<form action="upload.php" method="post" enctype="multipart/form-data">
-	    <upload> <font color ="white" >Select image to upload:</upload>
+	    <upload><font color ="white" >Select image to upload:</upload>
 	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
@@ -148,13 +69,50 @@ echo "</script>\n";
 	<?php echo $avatarPath; ?>
 	</div>
 
-	
-		<username><?php echo $username; ?>Temp bc doesn't work <button class="button username" id="">Change username</button> </username>
-		
-		<email><?php echo $email; ?>Temp email <button class="button email" id="">Change username</button> </email>
-		<button class="button addFriend" id="">Add Friend</button>
-		<button class="button message" id="">Message</button>
-	
+	<userinfo>
+
+		<username><?php echo $username; ?></username>
+		<email><?php echo $email; ?>Temp email </email>
+
+		<div class="box">
+		<a class="button" href="#popup1" style=background-color: white>Edit info</a>
+		</div>
+
+		<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Edit Information</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+			
+		<?php 
+		$host= "localhost";  //database host
+		$username="root";  //database username for log in
+		$userpass="ecs160web"; //database password for log in
+		$databasew="web"; //database schema name
+		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+
+		if ($mysqli->connect_errno){
+		    echo "we have a problem";
+		}
+				echo ' <form id=\"form\" method=\"post\">
+	  			<input type=\"text\" name=\"usrname\" placeholder= \"Username\"><button  id=\"usrname\">Update</button><br>
+				<input type=\"text\" name=\"firstname\" placeholder= \"Real name\"><button  id=\"firstname\">Update</button><br>
+				<input type=\"text\" name=\"email\" placeholder=\"Email\"><button  id=\"email\">Update</button><br>
+				</form> ';
+
+		$mysqli->close();
+		?> 
+			
+
+			</div>
+		</div>
+		</div>
+	</userinfo>
+
+		<!--
+	<button class="button addFriend" id="">Add Friend</button>
+	<button class="button message" id="">Message</button>
+	-->
 </div>
 
 

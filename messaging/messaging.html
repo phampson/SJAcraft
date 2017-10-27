@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="../stylesheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="messaging.js"></script>
 </head>
 
 <body>
+
 <!-- Nav Bar -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="../profile/profile.phpbs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -27,7 +29,7 @@
             <ul class="nav navbar-nav">
                 <li class=""><a href="../about/about.php">About</a></li>
                 <li class="">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Download
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="../profile/profile.php">Download
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../downloadgame/downloadgame.php">Download the game</a></li>
@@ -45,18 +47,129 @@
     </div>
 </nav>
 
-<!--Chat Window-->
-<div>
-    <div id="chat_window_1" class="topright">
-    	<div class="panel panel-default">
-            <div class="panel-heading top-bar">
+
+<!-- Inbox Side-Panel --> 
+<div class="container">       
+    <div id="inbox" class="topleft">
+        <div class="panel panel-default">
+            <div class="panel-heading topBar">
                 <div>
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat with noob666</h3>
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-message-in">
+                        </span> Inbox <span class="badge">0 new</span>
+                    </h3>
                 </div>
             </div>
 
-            <div class="panel-body msg_container_base">
-                <div class="row msg_container base_sent">
+        <div class="panel-body msgContainerBase1">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                            <div class="chatImg pull-left">
+                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                            </div>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
+                                <div class="messages">
+                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Create Post Overlay -->
+<div id="overlay">
+</div>
+
+<!-- Chat Window -->
+<div class="container">
+    <div id="chat_window_1"  class="hidden" class="topright">
+    	<div class="panel panel-default">
+            <div class="panel-heading topBar">
+                <div>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Conversation with noob666 - Subject: idk
+                    <img class="close pull-right" src="../img/close.png" onclick ="hide(this, 'chat_window_1')" value="hide"></h3>
+                </div>
+            </div>
+
+            <div class="panel-body msgContainerBase2">
+                <div class="row msgContainer base_sent">
                     <div class="col-md-10 col-xs-10">
                         <div class="messages msg_sent">
                             <p>Washup dude?</p>
@@ -68,7 +181,7 @@
                     </div>
                 </div>
                 
-                <div class="row msg_container base_receive">
+                <div class="row msgContainer base_receive">
                     <div class="col-md-2 col-xs-2 avatar">
                         <img src="../img/profpic.png" class=" img-responsive ">
                     </div>
@@ -80,7 +193,7 @@
                     </div>
                 </div>
                 
-                <div class="row msg_container base_receive">
+                <div class="row msgContainer base_receive">
                     <div class="col-md-2 col-xs-2 avatar">
                         <img src="../img/profpic.png" class=" img-responsive ">
                     </div>
@@ -92,7 +205,7 @@
                     </div>
                 </div>
 
-                <div class="row msg_container base_sent">
+                <div class="row msgContainer base_sent">
                     <div class="col-md-10 col-xs-10">
                         <div class="messages msg_sent">
                             <p>wow</p>
@@ -102,8 +215,7 @@
                     <div class="col-md-2 col-xs-2 avatar">
                         <img src="../img/profpic.png" class=" img-responsive ">
                     </div>
-                </div>
-                
+                </div>    
             </div>
             <div class="panel-footer">
                 <div class="input-group">
@@ -113,7 +225,7 @@
                     </span>
                 </div>
             </div>
-	</div>
+		</div>
     </div>
 </div>
 </body>
