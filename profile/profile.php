@@ -23,76 +23,16 @@ else {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Warcraft II</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<!-- CSS Styling -->
-<style>
-	html, body {
-	background: url("../img/Texture.png") repeat;} 
 
-	.profile {
-		position:absolute;
-		top: 50%;
-		left: 50%;
-		padding: 40px 40px;
-		transform: translate(-50%, -50%);
-		width: 1200px;
-		height: 500px;
-		background: rgba(0,0,0,0.4);
-		z-index: -999;
-	}
-
-	.profilePic{
-		position:absolute;
-		left: 50px;
-		top: 50px;
-		float:left;
-	}
-
-
-	.profile username {
-		position:absolute;
-		top: 30px;
-		left: 300px;
-		color: white;
-		font-size: 40px;
-	}
-
-
-	.profile email{
-		position:absolute;
-		top: 0%;
-		left: 0%;	
-		width: 350px;
-		height: 80px;
-		background: rgba(220, 220, 171, 0.74);
-		font-size: 18px;
-		text-align: center;
-	}
-
-	.profile addFriend {
-		position:relative;
-		left: -170px;
-		top: 200px;
-		color: gray;
-		font-size: 20px;
-	}
-
-	.profile addFriend2 {
-		position:relative;
-		left: 320px;
-		top: 200px;
-		color: gray;
-		font-size: 20px;
-	}
-
-
-</style>
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -104,7 +44,7 @@ echo "</script>\n";
 ?>
 
 
-<!-- gray background -->
+<!--background -->
 <div class="background">
 
 </div>
@@ -118,23 +58,61 @@ echo "</script>\n";
 	<!--profile picture-->
 	<?php
 	echo "<div class='profilePic', id='profilePic'>
-		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:200px;height:200px;'>";
-	?>   
+		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
+	?>
 	<form action="upload.php" method="post" enctype="multipart/form-data">
-	    <upload>Select image to upload:</upload>
-	    <input type="file" name="fileToUpload" id="fileToUpload">
+	    <upload><font color ="white" >Select image to upload:</upload>
+	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
 
 	<?php echo $avatarPath; ?>
 	</div>
 
-	
-		<username><?php echo $username; ?>Temp bc doesn't work</username>
-		<status><?php echo $email; ?>Temp email</status>
-		<addFriend> <a href="#">Add Friend</a><br> </addFriend>
-		<addFriend2> <a href="#">Message</a> </addFriend2>
-	
+	<userinfo>
+
+		<username><?php echo $username; ?></username>
+		<email><?php echo $email; ?>Temp email </email>
+
+		<div class="box">
+		<a class="button" href="#popup1" style=background-color: white>Edit info</a>
+		</div>
+
+		<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Edit Information</h2>
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+			
+		<?php 
+		$host= "localhost";  //database host
+		$username="root";  //database username for log in
+		$userpass="ecs160web"; //database password for log in
+		$databasew="web"; //database schema name
+		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+
+		if ($mysqli->connect_errno){
+		    echo "we have a problem";
+		}
+				echo " <form id=\"form\" method=\"post\">
+	  			<input type=\"text\" name=\"usrname\" placeholder= \"Username\"><button  id=\"usrname\">Update</button><br>
+				<input type=\"text\" name=\"firstname\" placeholder= \"Real name\"><button  id=\"firstname\">Update</button><br>
+				<input type=\"text\" name=\"email\" placeholder=\"Email\"><button  id=\"email\">Update</button><br>
+				</form> "
+
+		$mysqli->close();
+		?> 
+			
+
+			</div>
+		</div>
+		</div>
+	</userinfo>
+
+		<!--
+	<button class="button addFriend" id="">Add Friend</button>
+	<button class="button message" id="">Message</button>
+	-->
 </div>
 
 
