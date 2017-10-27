@@ -2,7 +2,7 @@ $(document).ready(AddUser);
 
 function AddUser() 
 {
-	var container = document.getElementById("new_user_container");
+	var container = document.getElementById("new_user_container_web");
 
 	// request
 	var hr = new XMLHttpRequest();
