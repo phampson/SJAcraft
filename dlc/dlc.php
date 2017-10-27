@@ -64,17 +64,24 @@ echo "</script>\n";
 			$map_thumbnail = $row['map_thumbnail'];
 			$numPlayers = $row['num_players'];
 			$displayName = $row['display_name'];
+			$uploaderID = $row['uploader'];
+			
+			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
+			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
-				<a href=$map_path download>
+
+				
 					<img src=$map_thumbnail alt=$map_name style='width:100%'>
 					<div class='caption'>
 						<p>$displayName</p>
-						 <p>$numPlayers players</p>
+						<p>$numPlayers players</p>
+						<p>Uploaded by: $uploaderName</p>
 					</div>
-				</a>
+				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
 			</div>
+			
 		</div>";
 			if($count % 4 == 3){
 				echo "</div>";		

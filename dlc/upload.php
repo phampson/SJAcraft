@@ -1,5 +1,12 @@
 <?php
 //db connection
+session_start();
+
+if ($_SESSION['user_id']==NULL) {
+	echo 'Please <a href="../login/login.html">log in</a> to upload a map!';
+	exit;
+}
+
 $host= "localhost";  //database host
 $username="root";  //database username for log in
 $userpass="ecs160web"; //database password for log in
@@ -34,11 +41,12 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file to server
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+	$uploader = $_SESSION['user_id'];
 	$thumbnail_path = "maps/thumbnails/" . substr($name,0,strlen($name)-4) . ".png";
 	$output = exec("./png $thumbnail_path $target_file");
 	$numPlayers = substr($output,0,1);
 	$displayName = substr($output,1,strlen($output)-1);
-	$sql = 'insert into map (map_name, map_path, map_thumbnail, num_players, display_name) values(" '.$name.' "," '.$target_file.' "," '.$thumbnail_path.'"," '.$numPlayers.'"," '.$displayName.'")';
+	$sql = 'insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values(" '.$name.' "," '.$target_file.' "," '.$thumbnail_path.'"," '.$numPlayers.'"," '.$displayName.'","'.$uploader.'")';
 	if($mysqli->query($sql)) {
 		echo "label success";
 	} else {
@@ -48,7 +56,7 @@ if ($uploadOk == 0) {
 	echo $target_file;
 	echo $numPlayers;
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    	//header("location: dlc.php");
+    	header("location: dlc.php");
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
