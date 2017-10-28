@@ -99,7 +99,7 @@ function formatHtmlString(data, path, container)
 	var html_string = ' \
              	<a href="#"> \
             		<div class="jumbotron"> \
-              			<div class="col-sm-2"> <img align=left src="' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + data[1] +' </p></div> \
+              			<div class="col-sm-2"> <img align=left src="' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
               			<h3> ' + header + '</h3> \
               			<p> ' + content + ' </p> \
               			<footer> ' + date +' </footer> \
