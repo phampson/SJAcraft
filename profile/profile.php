@@ -72,7 +72,7 @@ echo "</script>\n";
 	<userinfo>
 
 		<username><?php echo $username; ?></username>
-		<email><?php echo $email; ?>Temp email </email>
+		<email><?php echo $email; ?></email>
 
 		<div class="box">
 		<a class="button" href="#popup1" style=background-color: white>Edit info</a>
@@ -84,25 +84,17 @@ echo "</script>\n";
 			<a class="close" href="#">&times;</a>
 			<div class="content">
 			
-		<?php 
-		$host= "localhost";  //database host
-		$username="root";  //database username for log in
-		$userpass="ecs160web"; //database password for log in
-		$databasew="web"; //database schema name
-		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+		
+				<form id="form" action="changeUserInfo.php" method="post">
+	  			<input type="text" name="usrname" placeholder= "Username"><button  id="usrname">Update</button><br>
+				</form>
+				<form id="form" action="changeEmailInfo.php" method="post">
+				<input type="text" name="email" placeholder="Email"><button  id="email">Update</button><br>
+				</form>
+				<form id="form" action="changePasswordInfo.php" method="post">
+				<input type="text" name="password" placeholder= "Password"><button  id="password">Update</button><br>
+				</form>
 
-		if ($mysqli->connect_errno){
-		    echo "we have a problem";
-		}
-				echo ' <form id=\"form\" method=\"post\">
-	  			<input type=\"text\" name=\"usrname\" placeholder= \"Username\"><button  id=\"usrname\">Update</button><br>
-				<input type=\"text\" name=\"firstname\" placeholder= \"Real name\"><button  id=\"firstname\">Update</button><br>
-				<input type=\"text\" name=\"email\" placeholder=\"Email\"><button  id=\"email\">Update</button><br>
-				</form> ';
-
-		$mysqli->close();
-		?> 
-			
 
 			</div>
 		</div>
