@@ -25,7 +25,7 @@ $userID = $_SESSION['user_id'];
 $targetDir = "avatar_pics/";
 $fileName = basename($_FILES["fileToUpload"]["name"]);
 $fileSize = $_FILES["fileToUpload"]["size"]; 
-$targetFile = $targetDir . $fileName; // CHECK: later change it to $targetFile = $targetDir . $userID . "_" . $fileName;
+$targetFile = $targetDir . $userID . ".jpg"; // CHECK: later change it to $targetFile = $targetDir . $userID . "_" . $fileName;
 $uploadedOk = 1;
 
 
@@ -39,12 +39,6 @@ echo "fileSize: " . $fileSize . "<br>";
 
 
 // Error Checking
-
-// Check if file exists
-if (file_exists($targetFile)) {
-    echo "Error: File already exists.";
-    $uploadedOk = 0;
-}
 
 // Check file size
 if ($fileSize > 1000000) {
@@ -68,9 +62,9 @@ if ($uploadedOk == 1) {
 
 
 
-	    } else {
-		    phpConsole("Label failed");
-	    }
+        } else {
+            phpConsole("Label failed");
+        }
         
         echo "The file " . $fileName . " has been uploaded.";
     } else {

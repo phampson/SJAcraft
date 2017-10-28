@@ -9,6 +9,7 @@ else{
 	$navpath = "../navbar/navbar.html";
 }
 
+$usrnm = "";
 $host= "localhost";  //database host
 $username="root";  //database username for log in
 $userpass="ecs160web"; //database password for log in
@@ -54,7 +55,6 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-
 <!-- Inbox Side-Panel --> 
 <div class="container">       
     <div id="inbox" class="topleft">
@@ -78,7 +78,7 @@ echo "</script>\n";
                             </div>
                             <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
                                 <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                    <strong>$jeff | Subject: idk | <time>10:30pm</time></strong>
                                 </div>
                             </button>
                         </div>
@@ -104,10 +104,15 @@ echo "</script>\n";
                             <div class="chatImg pull-left">
                                 <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
                             </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1');test();" value="unhide">
+                                <div class="messages"> 
+                                    <div id="username"><strong><?php echo $ab;?></strong></div>
                                 </div>
+				<script>
+				function test() {
+					console.log("hello");
+				}
+				</script>
                             </button>
                         </div>
                     </div>
