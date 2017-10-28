@@ -17,8 +17,8 @@ session_start();
 
 // User logged in
 if(isset($_SESSION['user_id'])) {
-    
-	$sql = 'select * from user_info where username="' . $_SESSION['user_id'] . '"';
+    	$posterID = $_SESSION['user_id'];
+	$sql = "SELECT * FROM user_info WHERE id=$posterID";
     $query = $mysqli->query($sql);
 
 	if($query) {
@@ -27,6 +27,43 @@ if(isset($_SESSION['user_id'])) {
 		$email = $fetch['email'];
 		$avatarPath = $fetch['avatar_path'];
 		$navpath = "../navbar/navbarlogged.html";
+
+		phpConsole($_SESSION['user_id']);
+		phpConsole($navpath);
+		phpConsole($avatarPath);
+		phpConsole($email);
+		phpConsole($username);
+	
+
+		// Error Reporting & Global variables
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+
+		$postName = $_POST['postName'];
+		$message = $_POST['message'];
+		$category = $_POST['category'];
+
+
+
+		// Print Statements (Delete later)
+		echo "Post Name: " . $postName . "<br>";
+		echo "Message: " . $message . "<br>";
+		echo "Category: " . $category . "<br>";
+		
+		
+
+
+		// Store in database
+		$sql = 'INSERT into post (post_user, post_header, post_content, post_date, tag) 
+			values("' . $username . '", "' . $postName . '", "' . $message . '", "' . date("Y/m/d") . '", "' . $category . '")';
+
+		if ($mysqli->query($sql)) {
+		    phpConsole("Succesfully updated database.");
+		}
+
+		else {
+		    phpConsole("Error in updating the database.");
+		}
 	}
 }
 
@@ -41,34 +78,7 @@ else {
 
 
 
-// Error Reporting & Global variables
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
-$postName = $_POST['postName'];
-$message = $_POST['message'];
-$category = $_POST['category'];
-
-
-
-// Print Statements (Delete later)
-echo "Post Name: " . $postName . "<br>";
-echo "Message: " . $message . "<br>";
-echo "Category: " . $category . "<br>";
-
-
-
-// Store in database
-$sql = 'INSERT into post (post_user, post_header, post_content, post_date, tag) 
-        values("' . $username . '", "' . $postName . '", "' . $message . '", "' . date("Y/m/d") . '", "' . $category . '")';
-
-if ($mysqli->query($sql)) {
-    phpConsole("Succesfully updated database.");
-}
-
-else {
-    phpConsole("Error in updating the database.");
-}
 
 
 

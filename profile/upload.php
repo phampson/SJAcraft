@@ -61,7 +61,7 @@ if ($uploadedOk == 1) {
  
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
 
-        $sql = "UPDATE user_info SET avatar_path = '" . $targetFile . "' where username = '" . $userID . "'";
+        $sql = "UPDATE user_info SET avatar_path = '" . $targetFile . "' where id = '" . $userID . "'";
         
         if($mysqli->query($sql)) {
             phpConsole("Label success");

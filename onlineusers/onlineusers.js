@@ -1,19 +1,25 @@
-$(document).ready(AddUser);
+//$(document).ready(AddUser);
+function GetUser(type)
+{
+//type 1 is game logged
+//type 2 is web logged
+	$.ajax({
+		method: "POST",
+		url: "online.php",
+		data: { user_type: type },
+		success: function(data) {
+			var obj = jQuery.parseJSON(data);
+			console.log(obj);
+		}
+	});
+}
+GetUser(1);
 
 function AddUser() 
 {
 	var container = document.getElementById("new_user_container_web");
 
-	// request
-	var hr = new XMLHttpRequest();
-	hr.open("POST", "online.php", true);
-	hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-	hr.onreadystatechange = function()
-	{
-		if(hr.readyState == 4 && hr.status == 200) {
-			var rec = hr.responseText;
-			console.log("predict return: " + rec);
-		
+	// request	
 			var user_array = rec.split(",");
 			// Add User
 			for(i = 1; i < user_array.length; i++ ) {
@@ -35,7 +41,4 @@ function AddUser()
 			<br>'
 				container.insertAdjacentHTML('beforeend', html_string);
 			}
-		}
-	}
-	hr.send();
 }
