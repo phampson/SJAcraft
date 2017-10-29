@@ -1,5 +1,5 @@
 $(document).ready(AddUsers(1));
-//$(document).ready(AddUsers(2));
+$(document).ready(AddUsers(2));
 
 // returns JSON array of logged in users 
 // type 1: game
