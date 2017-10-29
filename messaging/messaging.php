@@ -69,6 +69,7 @@ echo "</script>\n";
                     <h3 class="panel-title">
                         <span class="glyphicon glyphicon-message-in">
                         </span> Inbox <span class="badge">0 new</span>
+                        <button class="btn btn-default pull-right" onclick="unhide(this, 'messageForm')" value="unhide"><span class="glyphicon glyphicon-plus"></span> New Message</button>
                     </h3>
                 </div>
             </div>
@@ -122,6 +123,34 @@ echo "</script>\n";
 
 <!-- Create Post Overlay -->
 <div id="overlay">
+</div>
+
+<!-- New Message Form -->
+<div class="container">
+    <div id="messageForm" class="hidden">
+        <div class="panel panel-default">
+            <div class="panel-heading topBar">
+                <h3 class="panel-title">Compose New Message</h3>
+            </div>
+
+            <div class="panel-body msgContainerBase2">
+                 <div class="form-group">
+                    <label for="username">To:</label>
+                    <input type="username" class="form-control" id="username" placeholder="Search Friends...">
+                    <button type="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-search"></span></button>
+                  </div>
+                  <div class="form-group">
+                    <label for="sbj">Subject: </label>
+                    <input type="sbj" class="form-control" id="sbj" placeholder="Enter Subject...">
+                  </div>
+                  <div class="form-group">
+                    <label for="msg">Message:</label>
+                    <textarea type="msg" class="form-control" id="msg" rows="6" placeholder="Write Your Message Here..."></textarea>
+                    <button type="button" class="btn btn-primary pull-right">Send</button>
+                  </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Chat Window -->
