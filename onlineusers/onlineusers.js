@@ -1,26 +1,33 @@
 $(document).ready(AddUsers(1));
-$(document).ready(AddUsers(2));
+//$(document).ready(AddUsers(2));
 
 // returns JSON array of logged in users 
 // type 1: game
 // type 2: web
-function GetUser(type)
+function Get(input)
 {
-	var obj;
-	$.ajax({
-		method: "POST",
-		url: "online.php",
-		data: { user_type: type },
-		success: function(data) {
-			obj = jQuery.parseJSON(data);
+	jQuery.extend({
+		GetUser: function(type) 
+		{	
+			var result = null;
+			$.ajax({
+			method: "POST",
+			url: "online.php",
+			async : false,
+			data: { user_type: type },
+			dataType: "json",
+			success: function(data) {
+		            result = data;
+		        }
+			});
+			 return result;
 		}
 	});
-	return obj;
+	var tem= $.GetUser(input);
+	return tem;
 }
+//console.log(tem);
 
-// adds users to the html
-// type 1: game
-// type 2: web
 function AddUsers(type) 
 {
 	if(type == 1) {
@@ -31,7 +38,7 @@ function AddUsers(type)
 	}
 
 	// request	
-	var users = GetUser(type);
+	var users = Get(type);
 
 	// add users
 	console.log("Hello");
