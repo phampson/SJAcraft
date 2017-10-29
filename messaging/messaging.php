@@ -21,15 +21,20 @@ if ($mysqli->connect_errno){
 $jeff = "jeff";
 $ab = "ab";
 $query = 'select * from message where (sender="'.$jeff.'" and receiver="'.$ab.'") or (sender="'.$ab.'" and receiver="'.$jeff.'")';
-echo $query;		
-if ($result = $mysqli->query($query)) {
-	while ($row = $result->fetch_assoc()) {
-		echo "hello";
-	}
+$id = $_SESSION['user_id'];
+		$friend_query = 'select * from friendlist where user_id="'.$id.'"';
+		
+		if ($result = $mysqli->query($friend_query)) {
+		    while ($row = $result->fetch_assoc()) {
+			$friend_id = $row['friend_id'];
+			echo $friend_id; 			    
+			$message_query = 'select* from user_info where id= "'.$friend_id.'"';
+			if ($query = $mysqli->query($message_query)) {
+				echo "NO";
 }
 else {
 	echo "error";
-}
+}}}
 ?>
 
 <!DOCTYPE html>
@@ -70,95 +75,45 @@ echo "</script>\n";
 
         <div class="panel-body msgContainerBase1">
             <div class="panel-group">
-                <div class="panel panel-default">
+		<?php
+		$host= "localhost";  //database host
+		$username="root";  //database username for log in
+		$userpass="ecs160web"; //database password for log in
+		$databasew="web"; //database schema name
+		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+		
+		if ($mysqli->connect_errno){
+		    echo "we have a problem";
+		}
+		$id = $_SESSION['user_id'];
+		$friend_query = 'select * from friendlist where user_id="'.$id.'"';
+		
+		if ($result = $mysqli->query($friend_query)) {
+		    while ($row = $result->fetch_assoc()) {
+			$friend_id = $row['friend_id']; 			    
+			$message_query = 'select* from user_info where id= "'.$friend_id.'"';
+			if ($query = $mysqli->query($message_query)) {
+				$fetch = $query->fetch_assoc();
+				$friend_name = $fetch['username'];
+				echo '
+		<div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="chatButton">
                             <div class="chatImg pull-left">
                                 <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
                             </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>$jeff | Subject: idk | <time>10:30pm</time></strong>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
-                            </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
-                            </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1');test();" value="unhide">
+                            <button class="btn btn-link" onclick="unhide(this, \'chat_window_'.$friend_id.'\');test();" value="unhide">
                                 <div class="messages"> 
-                                    <div id="username"><strong><?php echo $ab;?></strong></div>
-                                </div>
-				<script>
-				function test() {
-					console.log("hello");
-				}
-				</script>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
-                            </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
+                                    <div id="username"><strong>'.$friend_name.'</strong></div>
                                 </div>
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
-                            </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
-                            </div>
-                            <button class="btn btn-link" onclick="unhide(this, 'chat_window_1')" value="unhide">
-                                <div class="messages">
-                                    <strong>noob666 | Subject: idk | <time>10:30pm</time></strong>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </div>';
+			}   
+		    }
+		}
+		?>
             </div>
         </div>
     </div>
@@ -170,19 +125,30 @@ echo "</script>\n";
 </div>
 
 <!-- Chat Window -->
+<?php
+$id2 = $_SESSION['user_id'];
+		$friend_query2 = 'select * from friendlist where user_id="'.$id.'"';
+		
+		if ($res2 = $mysqli->query($friend_query2)) {
+		    while ($row2 = $res2->fetch_assoc()) {
+			$friend_id2 = $row2['friend_id']; 			    
+			$message_query2 = 'select* from user_info where id= "'.$friend_id2.'"';
+			if ($query2 = $mysqli->query($message_query2)) {
+				$fetch2 = $query2->fetch_assoc();
+				$friend_name2 = $fetch2['username'];
+				echo'
 <div class="container">
-    <div id="chat_window_1"  class="hidden" class="topright">
+    <div id="chat_window_'.$friend_id2.'"  class="hidden" class="topright">
     	<div class="panel panel-default">
             <div class="panel-heading topBar">
                 <div>
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Conversation with noob666 - Subject: idk
-                    <img class="close pull-right" src="../img/close.png" onclick ="hide(this, 'chat_window_1')" value="hide"></h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Conversation with '.$friend_name2.'
+                    <img class="close pull-right" src="../img/close.png" onclick ="hide(this, \'chat_window_'.$friend_id2.'\')" value="hide"></h3>
                 </div>
             </div>
 
             <div class="panel-body msgContainerBase2">
-		<?php
-
+	';
 		$host= "localhost";  //database host
 		$username="root";  //database username for log in
 		$userpass="ecs160web"; //database password for log in
@@ -193,7 +159,83 @@ echo "</script>\n";
 		    echo "we have a problem";
 		}
 		$jeff = "jeff";
-		$ab = "ab";
+		$query = 'select * from message where (sender="'.$jeff.'" and receiver="'.$friend_name2.'") or (sender="'.$friend_name2.'" and receiver="'.$jeff.'")';
+		
+		if ($result = $mysqli->query($query)) {
+		    while ($row = $result->fetch_assoc()) {
+			    $receiver = $row['receiver'];
+			    $message_content = $row['message_content'];
+			    $date = $row['message_date'];
+			    
+			    if ($receiver != $jeff) {
+			    	echo "
+		<div class='row msgContainer base_sent'>
+                    <div class='col-md-10 col-xs-10'>
+                        <div class='messages msg_sent'>
+                            <p>$message_content</p>
+                            <time>$jeff | $date</time>
+                        </div>
+                    </div>
+                    <div class='col-md-2 col-xs-2 avatar'>
+                        <img src='../img/profpic.png' class=' img-responsive '>
+                    </div>
+                </div>
+				";
+			    }
+			    else {
+			    	echo "
+		<div class='row msgContainer base_receive'>
+                    <div class='col-md-2 col-xs-2 avatar'>
+                        <img src='../img/profpic.png' class=' img-responsive '>
+                    </div>
+                    <div class='col-xs-10 col-md-10'>
+                        <div class='messages msg_receive'>
+                            <p>$message_content</p>
+                            <time>$friend_name2 | $date</time>
+                        </div>
+                    </div>
+                </div>";
+			    }
+		    }
+		}
+		
+echo '
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                    </span>
+                </div>
+            </div>
+		</div>
+    </div>';
+}}}
+?>
+<div class="container">
+    <div id="chat_window_64"  class="hidden" class="topright">
+    	<div class="panel panel-default">
+            <div class="panel-heading topBar">
+                <div>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Conversation with pranav
+                    <img class="close pull-right" src="../img/close.png" onclick ="hide(this, 'chat_window_64')" value="hide"></h3>
+                </div>
+            </div>
+
+            <div class="panel-body msgContainerBase2">
+		<?php
+		$host= "localhost";  //database host
+		$username="root";  //database username for log in
+		$userpass="ecs160web"; //database password for log in
+		$databasew="web"; //database schema name
+		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+		
+		if ($mysqli->connect_errno){
+		    echo "we have a problem";
+		}
+		$jeff = "jeff";
+		$ab = "pranav";
 		$query = 'select * from message where (sender="'.$jeff.'" and receiver="'.$ab.'") or (sender="'.$ab.'" and receiver="'.$jeff.'")';
 		
 		if ($result = $mysqli->query($query)) {
