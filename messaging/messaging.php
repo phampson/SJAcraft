@@ -69,7 +69,8 @@ echo "</script>\n";
                     <h3 class="panel-title">
                         <span class="glyphicon glyphicon-message-in">
                         </span> Inbox <span class="badge">0 new</span>
-                    </h3>
+                        <button type="button" class="btn btn-link pull-right" onclick="unhide(this,messageForm)" value="unhide">Write New Message</button>
+                     </h3>
                 </div>
             </div>
 
@@ -102,7 +103,6 @@ echo "</script>\n";
                             <div class="chatImg pull-left">
                                 <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
                             </div>
-                            <button class="btn btn-link" onclick="unhide(this, \'chat_window_'.$friend_id.'\');test();" value="unhide">
                                 <div class="messages"> 
                                     <div id="username"><strong>'.$friend_name.'</strong></div>
                                 </div>
@@ -124,6 +124,7 @@ echo "</script>\n";
 <div id="overlay">
 </div>
 
+
 <!-- Chat Window -->
 <?php
 $id2 = $_SESSION['user_id'];
@@ -138,7 +139,7 @@ $id2 = $_SESSION['user_id'];
 				$friend_name2 = $fetch2['username'];
 				echo'
 <div class="container">
-    <div id="chat_window_'.$friend_id2.'"  class="hidden" class="topright">
+    <div id="chat_window_'.$friend_id2.'"  class="hidden">
     	<div class="panel panel-default">
             <div class="panel-heading topBar">
                 <div>

@@ -1,3 +1,8 @@
+function replace(oldDiv, newDiv) {
+    document.getElementById(oldDiv).style.display="none";
+    document.getElementById(newDiv).style.display="block";
+}
+
 function unhide(clickedButton, divID) {
 var item = document.getElementById(divID);
 var ab = document.getElementById('username').innerText;
