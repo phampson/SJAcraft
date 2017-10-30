@@ -3,14 +3,19 @@ $frnm = $_POST["frnm"];
 $usid = $_POST["usid"];
 include('start.php');
 $findnewfriendid = 'select id from user_info where username  = "'.$frnm.'"';
-if ($trynewfriend = $mysqli->query($findnewfriendid)){
+$trynewfriend = $mysqli->query($findnewfriendid);
+if ($trynewfriend->num_rows >0){
     $ro = $trynewfriend->fetch_assoc();
     $frid = $ro['id'];
+    $notfriend = 'select * from friendlist where (user_id = "'.(int)$usid.'" and friend_id = "'.$frid.'") or (user_id = "'.$frid.'" and friend_id = "'.(int)$usid.'")';
+    $isfriend = $mysqli->query($notfriend);
+    if($isfriend->num_rows == 0 and $usid != $frid)
+    {
+        $addnewfriend = 'insert into friendlist (user_id,friend_id) value ("'.(int)$usid.'","'.$frid.'");insert into friendlist (user_id,friend_id) value ("'.$frid.'","'.(int)$usid.'")';
+        $mysqli->multi_query($addnewfriend);
+    }
 }
-
-$addnewfriend = 'insert into friendlist (user_id,friend_id) value ('.(int)$usid.','.(int)$frid.');insert into friendlist (user_id,friend_id) value ('.(int)$frid.','.(int)$usid.')';
-$mysqli->multi_query($addnewfriend);
-
+include('start.php');
 $query = 'select friend_id from friendlist where user_id= "'.(int)$usid.'"';
 if ($result = $mysqli->query($query)){
     while($row = $result->fetch_assoc()){
