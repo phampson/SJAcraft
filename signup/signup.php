@@ -32,7 +32,7 @@ Please click this link to activate your account:
 '.$_SERVER['HTTP_HOST'].'/signup/verification.php?email='.$email.'&hash='.$hash.'
  
 '; // Our message above including the link
-		if(mail($email,"Test",$msg,"From:ecs160test@gmail.com")) {
+		if(mail($email,"Test",$msg,"From:ubuntu@ip-172-26-11-121.us-west-2.compute.internal")) {
 			echo "<br> Go verify your email!";
 		}
 	} else {
