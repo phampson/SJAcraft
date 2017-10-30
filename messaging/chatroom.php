@@ -103,6 +103,23 @@ document.getElementById("messages").innerHTML += data;});
     //var div = document.getElementById("message");
     //div.scrollIntoView();
 }
+
+function newfriend()
+{
+    var friendname = document.getElementById("newfriname").value;
+    document.getElementById("newfriname").value="";
+
+    
+    var oldFriendlist = document.getElementById("Frilist");
+    while(oldFriendlist.hasChildNodes())
+    {
+        oldFriendlist.removeChild(oldFriendlist.firstChild);
+    }
+    $.post("newfriend.php",{usid:<?php echo $user_id;?>,frnm:friendname},function(data){
+document.getElementById("Frilist").innerHTML += data;});
+ 
+}
+
         </script>
 </head>
 <body>
@@ -125,12 +142,14 @@ echo "</script>\n";
                 <div>
                     <h3 class = "panel-title">
                         <span class = "glyphicon glyphicon-message-in">
-                        </span> Friends list
+                        </span> Friends list<br>
+                            <input type="text" id="newfriname">
+                            <button class="btn" type="submit" onclick="newfriend();">Search</button>
                     </h3>
                 </div>
             </div>
             <div class = "panel-body msgContainerBase1">
-                <div class = "panel-group">
+                <div id="Frilist" class = "panel-group">
                 <!-- Write php code to list friends -->
 		<?php ShowFriends($user_id,$mysqli);?>
                 </div>
