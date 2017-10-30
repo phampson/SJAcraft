@@ -22,13 +22,13 @@ $check = 'select * from user_info where email="'.$email2.'"';
 $query = $mysqli->query($check);
 $update = "UPDATE user_info SET email = '" . $email2 . "' where id = '" . $_SESSION['user_id'] . "'";
 
-if ($query->num_rows > 0) {
-	echo "Email already taken";
-} else {
+//if ($query->num_rows > 0) {
+//	echo "Email already taken";
+//} else {
 		if($mysqli->query($update)) {
 			echo "Email changed to: ";
 			echo $email2;
 		}
 		header('Location: ' . 'profile.php');
-	}
+//	}
 ?>
