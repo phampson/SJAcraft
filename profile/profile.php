@@ -14,7 +14,8 @@ if(isset($_GET['id'])){
     $email = $fetch["email"];
     $avatarPath = $fetch["avatar_path"];
   }
-  // if GET[ID] is set, you're trying to view someone else's picture
+  // if GET[ID] is set, you're trying to view someone else's profile,
+  // so grab their info
 }
 if(isset($_SESSION['user_id'])){
   $navpath = "../navbar/navbarlogged.html";
@@ -23,7 +24,7 @@ if(isset($_SESSION['user_id'])){
 	$query = $mysqli->query($sql);
 
 	if (!isset($_GET['id']) and $query) {
-    // if GET[ID] is set, view your own profile
+    // if GET[ID] isn't set, view your own profile so grab your own info
     $fetch = $query->fetch_assoc();
     $username = $fetch['username'];
     $email = $fetch['email'];
