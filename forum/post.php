@@ -1,5 +1,8 @@
 <?php
 
+// Imports & Error Reporting
+include('/home/ubuntu/ECS160WebServer/start.php');
+
 // Helper function
 function phpConsole($data) {
     $output = $data;
@@ -8,12 +11,6 @@ function phpConsole($data) {
 
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
-
-
-
-// Imports & Error Reporting
-include('/home/ubuntu/ECS160WebServer/start.php');
-session_start();
 
 // User logged in
 if(isset($_SESSION['user_id'])) {

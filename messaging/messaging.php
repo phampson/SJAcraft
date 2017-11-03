@@ -1,7 +1,6 @@
 <?php
 include('/home/ubuntu/ECS160WebServer/start.php');
-error_reporting(E_ALL); ini_set('display_errors', '1');
-session_start();
+
 if(isset($_SESSION['user_id'])){
 	$navpath = "../navbar/navbarlogged.html";
 }
@@ -10,14 +9,7 @@ else{
 }
 
 $usrnm = "";
-$host= "localhost";  //database host
-$username="root";  //database username for log in
-$userpass="ecs160web"; //database password for log in
-$databasew="web"; //database schema name
-$mysqli = new mysqli($host,$username,$userpass,$databasew);	
-if ($mysqli->connect_errno){
-	echo "we have a problem";
-}
+
 $jeff = "jeff";
 $ab = "ab";
 $query = 'select * from message where (sender="'.$jeff.'" and receiver="'.$ab.'") or (sender="'.$ab.'" and receiver="'.$jeff.'")';

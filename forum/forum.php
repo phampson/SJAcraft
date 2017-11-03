@@ -9,6 +9,8 @@
  * 2. Only logged in users should be able to create a new post.
  */
 
+// Imports & Error Reporting
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 // Helper function
 function phpConsole($data) {
@@ -19,15 +21,6 @@ function phpConsole($data) {
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
-
-
-// Imports & Error Reporting
-include('/home/ubuntu/ECS160WebServer/start.php');
-
-error_reporting(E_ALL); 
-ini_set('display_errors', '1');
-
-session_start();
 if(isset($_SESSION['user_id'])) {
 	$sql = 'select * from user_info where username="' . $_SESSION['user_id'] . '"';
     	$query = $mysqli->query($sql);
