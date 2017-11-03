@@ -1,7 +1,5 @@
 <?php
-include ('start.php');
-error_reporting(E_ALL); ini_set('display_errors', '1');
-session_start();
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 if(isset($_SESSION['user_id'])){
 	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';

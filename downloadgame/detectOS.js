@@ -13,42 +13,38 @@ function findOS()
     } else {
         appVer = navigator.appVersion;
         switch(appVer != "") {
-            case (appVer.indexOf("Win")!=-1):
-                //operatingSystem = "Windows";
+            case (appVer.indexOf("Win")!=-1)://Windows
 		operatingSystem = 0;
                 break;
-            case (appVer.indexOf("Mac")!=-1):
-                //operatingSystem = "MacOS";
+            case (appVer.indexOf("Mac")!=-1)://MacOS
 		operatingSystem = 1;
                 break;
-            case (appVer.indexOf("X11")!=-1):
-                //operatingSystem = "UNIX";
+            case (appVer.indexOf("X11")!=-1)://Unix
 		operatingSystem = 2;                
 		break;
-            case (appVer.indexOf("Linux")!=-1):
-                //operatingSystem = "Linux";
+            case (appVer.indexOf("Linux")!=-1)://Linux
 		operatingSystem = 3;
                 break;      
         }       
     }
 	switch(operatingSystem != -9) {
-		case(operatingSystem == 0): // Windows
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Windows"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 0): //Windows
+			document.getElementById("downloadButton").innerHTML = '<a href="gamefiles/thegame_win.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
-		case(operatingSystem == 1): // Mac
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Mac"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 1): //Mac
+			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160OSX-week3.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
-		case(operatingSystem == 2): // UNIX
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 2): //UNIX
+			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
-		case(operatingSystem == 3): // Linux
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 3): //Linux
+			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Linux-master.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
-		case(operatingSystem == 4): // Android
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Android"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 4): //Android
+			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Android-week4.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
-		case(operatingSystem == 5): // iOS
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="iOS"><img border="0" src="../img/dldbtn.png"></img></a>';
+		case(operatingSystem == 5): //iOS
+			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160iOS-week4.zip" download><img border="0" src="../img/dldbtn.png"></img></a>';
 			break;
 	}
 }

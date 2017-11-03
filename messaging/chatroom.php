@@ -4,6 +4,7 @@ include('start.php');
 
 error_reporting(E_ALL); ini_set('display_errors', '1');
 session_start();
+
 if(isset($_SESSION['user_id'])){
         $user_id = $_SESSION['user_id'];
 	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
@@ -105,6 +106,7 @@ function sendMessage(frid)
 function startNewchat(fri)
 {
     friend_id = fri;
+
     var sendbox = '<div class="input-group">' +
                     '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
                     '<span class="input-group-btn">' +
@@ -168,7 +170,6 @@ document.getElementById("Frilist").innerHTML += data;});
 
 //setInterval(update, 2500);
 
-
         </script>
 </head>
 <body>
@@ -226,7 +227,6 @@ echo "</script>\n";
 		</div>
     </div>
 </div>
-
 
 
 </body>

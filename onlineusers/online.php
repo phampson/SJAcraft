@@ -1,6 +1,5 @@
 <?php 
-include "start.php";
-error_reporting(E_ALL); ini_set('display_errors', '1');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 if(isset($_POST['user_type']))
 {

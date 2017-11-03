@@ -1,23 +1,13 @@
 <?php
 //db connection
-session_start();
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 if ($_SESSION['user_id']==NULL) {
 	echo 'Please <a href="../login/login.html">log in</a> to upload a map!';
 	exit;
 }
 
-$host= "localhost";  //database host
-$username="root";  //database username for log in
-$userpass="ecs160web"; //database password for log in
-$databasew="web"; //database schema name
-$mysqli = new mysqli($host,$username,$userpass,$databasew);
-if ($mysqli->connect_errno){
-echo "we have a problem";
-}
-
 //uploading file
-error_reporting(E_ALL); ini_set('display_errors', '1');
 $target_dir = "maps/"; 
 // you will copy file into this directory
 $name = basename($_FILES["fileToUpload"]["name"]);

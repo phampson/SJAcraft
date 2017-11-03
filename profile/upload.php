@@ -13,7 +13,7 @@ function phpConsole($data) {
 
 // Imports
 session_start();
-include('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 
 

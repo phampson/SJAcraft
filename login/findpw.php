@@ -1,5 +1,5 @@
 <?php
-include ('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 $email = $_POST['email'];
 $username = $_POST['username'];
