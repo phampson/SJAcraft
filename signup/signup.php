@@ -1,5 +1,5 @@
 <?php
-include ('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 require '/home/ubuntu/ECS160WebServer/phpmailer/PHPMailer.php';
 require '/home/ubuntu/ECS160WebServer/phpmailer/SMTP.php';

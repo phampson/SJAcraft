@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 $newpassword = $_POST['password'];
 $email = $_SESSION['email'];
 $hash = $_SESSION['hash'];

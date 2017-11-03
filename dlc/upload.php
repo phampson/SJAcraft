@@ -1,5 +1,6 @@
 <?php
 //db connection
+include('/home/ubuntu/ECS160WebServer/start.php');
 session_start();
 
 if ($_SESSION['user_id']==NULL) {
