@@ -1,7 +1,7 @@
 <?php
 $frnm = $_POST["frnm"];
 $usid = $_POST["usid"];
-include('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 $findnewfriendid = 'select id from user_info where username  = "'.$frnm.'"';
 $trynewfriend = $mysqli->query($findnewfriendid);
 if ($trynewfriend->num_rows >0){

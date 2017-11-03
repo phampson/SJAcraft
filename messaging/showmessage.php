@@ -1,7 +1,7 @@
 <?php
 $frid = $_POST["frid"];
 $usid = $_POST["usid"];
-include('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 function DisplayMessage($friend_id, $user_id)
 {

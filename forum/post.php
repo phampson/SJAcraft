@@ -12,7 +12,7 @@ function phpConsole($data) {
 
 
 // Imports & Error Reporting
-include('../login/start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 session_start();
 
 // User logged in

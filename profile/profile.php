@@ -1,18 +1,34 @@
 <?php
 
-include('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 error_reporting(E_ALL); ini_set('display_errors', '1');
 session_start();
+
+if(isset($_GET['id'])){
+  $sql = "select * from user_info where id=".$_GET['id'];
+  $query = $mysqli->query($sql);
+  if ($query) {
+    $fetch = $query->fetch_assoc();
+    $username = $fetch["username"];
+    $email = $fetch["email"];
+    $avatarPath = $fetch["avatar_path"];
+  }
+  // if GET[ID] is set, you're trying to view someone else's profile,
+  // so grab their info
+}
 if(isset($_SESSION['user_id'])){
+  $navpath = "../navbar/navbarlogged.html";
+
 	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
 	$query = $mysqli->query($sql);
-	if ($query) {
-		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
-		$email = $fetch['email'];
-		$avatarPath = $fetch['avatar_path'];
-		$navpath = "../navbar/navbarlogged.html";	
+
+	if (!isset($_GET['id']) and $query) {
+    // if GET[ID] isn't set, view your own profile so grab your own info
+    $fetch = $query->fetch_assoc();
+    $username = $fetch['username'];
+    $email = $fetch['email'];
+    $avatarPath = $fetch['avatar_path'];
 	}
 }
 else {
@@ -54,17 +70,22 @@ echo "</script>\n";
 <!-- profile -->
 <div class="profile">
 
-
 	<!--profile picture-->
 	<?php
 	echo "<div class='profilePic', id='profilePic'>
 		 <img src=$avatarPath alt='This is where your profile picture goes' style='width:300px;height:300px;'>";
 	?>
+
+  <!-- This part lets you change profile picture, which should only display
+       if $_GET["id"] isn't set, meaning you're viewing your own profile -->
+  <?php if(!isset($_GET['id'])): ?>
 	<form action="upload.php" method="post" enctype="multipart/form-data">
 	    <upload><font color ="white" >Select image to upload:</upload>
 	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
 	</form>
+  <?php endif; ?>
+  <!-- Aaaand end if -->
 
 	<?php echo $avatarPath; ?>
 	</div>
@@ -74,6 +95,9 @@ echo "</script>\n";
 		<username><?php echo $username; ?></username>
 		<email><?php echo $email; ?></email>
 
+    <!-- This part is what lets you update profile info, and should only show
+         if $_GET["id"] isn't set, meaning you're viewing your own profile -->
+    <?php if(!isset($_GET['id'])): ?>
 		<div class="box">
 		<a class="button" href="#popup1" style=background-color: white>Edit info</a>
 		</div>
@@ -94,8 +118,8 @@ echo "</script>\n";
 				<form id="form" action="changePasswordInfo.php" method="post">
 				<input type="text" name="password" placeholder= "Password"><button  id="password">Update</button><br>
 				</form>
-
-
+    <?php endif; ?>
+    <!-- Aaaaand end the if -->
 			</div>
 		</div>
 		</div>
@@ -105,6 +129,7 @@ echo "</script>\n";
 	<button class="button addFriend" id="">Add Friend</button>
 	<button class="button message" id="">Message</button>
 	-->
+
 </div>
 
 

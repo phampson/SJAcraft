@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
     // Verify data
 

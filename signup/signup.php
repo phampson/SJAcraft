@@ -1,14 +1,15 @@
 <?php
-include ('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
+require '/home/ubuntu/ECS160WebServer/phpmailer/PHPMailer.php';
+require '/home/ubuntu/ECS160WebServer/phpmailer/SMTP.php';
+require '/home/ubuntu/ECS160WebServer/phpmailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer.php';
-require 'SMTP.php';
-require 'Exception.php';
+
 
 $email = $_POST['email'];
 $username = $_POST['username'];

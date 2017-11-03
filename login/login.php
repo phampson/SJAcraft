@@ -2,7 +2,7 @@
 
 session_start();//begin session
 
-include('start.php');
+include('/home/ubuntu/ECS160WebServer/start.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];
