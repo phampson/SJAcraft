@@ -1,21 +1,60 @@
 /* Nav Bar */
-.navbar {
-	margin-bottom: 0px;
+/* Menu */
+.navbar .nav > li > a, .navbar .nav > li > a,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a {
+	font-family:	Garamond;
+	font-size:	1.3em;
+	font-variant:	small-caps;
+	padding-top:	20px;
+	padding-left:	40px;
+	padding-bottom:	0px;
 }
+ 
+/* Menu colors - Normal */
+.navbar .nav > li > a, .navbar .nav > li > a{
+	color:		rgb(170, 170, 170);
+	text-shadow:	3px 3px 4px black;
+}
+/* Menu colors - Hover */
+.navbar .nav > li > a:hover, .navbar .nav > li > a:hover {
+}
+
+/* Menu colors - Active */
+.navbar .nav > li > a:active, .navbar .nav > li > a:active,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a {
+}
+ 
+/* Dropdown Menu items */
+.dropdown-menu > li > a {
+	font-family: Helvetica;
+}
+ 
+/* Remove the Hover/Focus Colors  */
+.navbar .nav > li.current-menu-item > a, .navbar .nav > li.current-menu-ancestor > a, 
+.navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
+}
+
 
 /* Play Button */
 .btn-play {
 	background-color: red;
-	color: white;
+	color:		white;
 
-	padding: 18px 28px;
-	font-size: 22px;
-	border-radius: 8px;
+	padding: 	18px 28px;
+	font-size: 	22px;
+	border-radius: 	8px;
 }
 
+
+/* Body */
 html, body {
 	background: url("./img/Texture.png") repeat;
-} 
+}
+
 
 /* Logo */
 .logo {

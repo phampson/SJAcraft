@@ -4,6 +4,7 @@
 	<title>Warcraft II</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
 	<link rel="stylesheet" href="../login/stylesheet.css">
 	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -28,7 +29,9 @@
                 <p1>Password</p1>
                 <input type="password" id="password" name="password" placeholder="Enter Password">
 		<button id="btnSubmit" onclick="return signUpError(this)" class="button">Create Account</button>
-                <a href="../login/findpw.html">Forgot Your Password?</a><br>
+		<p2>Already have an account?</p2> 
+		<a href="../login/login.html">Click Here</a>
+		<br>
 		<div id="myAlert" class="alert alert-danger collapse">
                         <strong>Error: </strong> Please fill in all of the required fields
                 </div>
