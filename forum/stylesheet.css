@@ -208,3 +208,11 @@ body {font-family: "Lato", sans-serif;}
     background-color:white; 
 }
 
+.comments{
+    margin: 25px;
+    padding: 10px;
+    background-color: #e6e6e6;
+overflow:auto;
+    border-radius: 5px;
+
+}
