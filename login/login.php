@@ -1,7 +1,7 @@
 <?php
-
-session_start();//begin session
-
+//start session and start logout timer
+session_start();
+$_SESSION['EXPIRES'] = time() + 3600;//Change this value to increase or decrease the logout value
 include('/home/ubuntu/ECS160WebServer/start.php');
 
 $username = $_POST['username'];

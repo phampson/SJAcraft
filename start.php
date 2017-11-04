@@ -17,4 +17,15 @@ if ($mysqli->connect_errno){
 //Begin Session
 session_start();
 
+//Delete session after inactivity and log user out
+if (!isset($_SESSION['EXPIRES']) || $_SESSION['EXPIRES'] < time()+200) {
+    if(isset($_SESSION['user_id'])){
+        $id = $_SESSION['user_id'];
+        $sql = "update user_info set web_logged='false' where id=$id";
+        $query = $mysqli->query($sql);
+    }
+    session_destroy();
+    $_SESSION = array();
+}
+
 ?>
