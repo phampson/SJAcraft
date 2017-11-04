@@ -17,7 +17,7 @@ $password = $_POST['password'];
 $hash = $mysqli->escape_string(md5(rand(0,1000)));
 
 $check = 'select * from user_info where username="'.$username.'"';
-$insert = 'insert into user_info (username, password, email, hash) values("'.$username.'", "'.$password.'", "'.$email.'", "'.$hash.'")';
+$insert = 'insert into user_info (username, password, email, avatar_path, hash) values("'.$username.'", "'.$password.'", "'.$email.'", "avatar_pics/profile_default.jpg", "'.$hash.'")';
 
 $query = $mysqli->query($check);
 if ($query->num_rows > 0) {
