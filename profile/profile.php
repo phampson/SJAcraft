@@ -29,7 +29,8 @@ if(isset($_SESSION['user_id'])){
 	}
 }
 else {
-	$navpath = "../navbar/navbarlogged.html";
+	//$navpath = "../navbar/navbarlogged.html";
+    header('Location: ' . '../login/login.html');
 }
 ?>
 
@@ -105,16 +106,30 @@ echo "</script>\n";
 			<a class="close" href="#">&times;</a>
 			<div class="content">
 			
-		
-				<form id="form" action="changeUserInfo.php" method="post">
+	            <!-- These are the forms to change user info -->	
+				<form id="form" action="change.php" method="post">
+                    <input type="text" name="usrname" placeholder= "Username">
+                    <br>
+                    <input type="text" name="email" placeholder="Email">
+                    <br>
+                    <input type="password" name="password" placeholder= "Password">
+                    <br>
+                    <button  id="password">Update</button>
+                    <br>
+				</form>
+            
+
+        <!--    Old pop up menu form definition, saved in case the new one dies a horrible death   
+                <form id="form" action="changeUserInfo.php" method="post">
 	  			<input type="text" name="usrname" placeholder= "Username"><button  id="usrname">Update</button><br>
 				</form>
 				<form id="form" action="changeEmailInfo.php" method="post">
 				<input type="text" name="email" placeholder="Email"><button  id="email">Update</button><br>
 				</form>
 				<form id="form" action="changePasswordInfo.php" method="post">
-				<input type="text" name="password" placeholder= "Password"><button  id="password">Update</button><br>
-				</form>
+                    <input type="text" name="password" placeholder= "Password">
+                    <button  id="password">Update</button><br>
+				</form> -->
     <?php endif; ?>
     <!-- Aaaaand end the if -->
 			</div>
