@@ -36,7 +36,7 @@ if ($uploadOk == 0) {
 	$output = exec("./png $thumbnail_path $target_file");
 	$numPlayers = substr($output,0,1);
 	$displayName = substr($output,1,strlen($output)-1);
-	$sql = 'insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values(" '.$name.' "," '.$target_file.' "," '.$thumbnail_path.'"," '.$numPlayers.'"," '.$displayName.'","'.$uploader.'")';
+	$sql = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader')";
 	if($mysqli->query($sql)) {
 		echo "label success";
 	} else {
