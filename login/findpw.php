@@ -1,6 +1,17 @@
 <?php
 include('/home/ubuntu/ECS160WebServer/start.php');
 
+require '/home/ubuntu/ECS160WebServer/phpmailer/PHPMailer.php';
+require '/home/ubuntu/ECS160WebServer/phpmailer/SMTP.php';
+require '/home/ubuntu/ECS160WebServer/phpmailer/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
+
+
 $email = $_POST['email'];
 $username = $_POST['username'];
 
@@ -17,7 +28,7 @@ if ($query->num_rows <= 0) {
 } else {
 	$row = $query->fetch_assoc();
 	$hash = $row['hash'];
-	$msg = $message = '
+	$msg = '
 ------------------------
 Username: '.$username.'
 E-mail: '.$email.'
@@ -26,13 +37,30 @@ E-mail: '.$email.'
 Please click this link to reset your password:
 '.$_SERVER['HTTP_HOST'].'/login/resetpw.php?email='.$email.'&hash='.$hash.'
  
-'; // Our message above including the link
-	if(mail($email,"No-reply Reset your password",$msg,"From:ecs160test@gmail.com")) {
-		echo "Reset link are sent, please check  your email!";
-	} else {
-		echo "Fail to sent reset email";
-	}
+'; 
 
+
+
+	$mail = new PHPMailer;
+  $mail->isSMTP();
+  $mail->SMTPDebug = 2;
+  $mail->Host = 'smtp.gmail.com';
+  $mail->Port = 587;
+  $mail->SMTPSecure = 'tls';
+  $mail->SMTPAuth = true;
+  $mail->Username = "ecs160test@gmail.com";
+  $mail->Password = "Pineapple1";
+  $mail->setFrom('ecs160test@gmail.com', 'Web Team');
+  $mail->addAddress($email, 'New user'); 
+  $mail->Subject = 'Warcraft II Account Verification';
+  $mail->Body = "$msg";
+  $mail->AltBody = 'This is a plain-text message body'; // dunno if needed tbh
+
+  if (!$mail->send()) {
+      echo "Mailer Error: " . $mail->ErrorInfo;
+  } else {
+      echo "Please verify your account!";
+  }
 }
 
 ?>
