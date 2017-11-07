@@ -91,13 +91,15 @@ function getAvatarPath(post, container) {
 // Format the new post's html and add it to container
 function formatHtmlString(data, path, container)
 {
+	postId = data[0];	
 	username = data[1];
 	header = data[2];
 	content = data[3];
 	date = data[4];
+	
 
 	var html_string = ' \
-             	<a href="#"> \
+             	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron"> \
               			<div class="col-sm-2"> <img align=left src="' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
               			<h3> ' + header + '</h3> \

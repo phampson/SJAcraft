@@ -80,21 +80,56 @@ echo "</script>\n";
       <footer> <?php echo $date ?></footer>
   </div> 
 
-  <div class = "comments" > 
-     
-        <div class = "col-sm-1 Cinfo">
-          <img align=left src=" default.png " alt="Warcraft main picture" style="width:90px;height:90px;"> <p>Alice</p>
+<?php
+	$query = "select * from comment";
+		
+	if ($result = $mysqli->query($query)) {
+	    while ($row = $result->fetch_assoc()) {
+		$commentsPostId = $row['post_id'];
+		if ($ID == $commentsPostId)
+		{
+			$commentsUser = $row['comment_user'];
+			
+			$commentsContent = $row['comment_content'];
+			$commentsDate = $row['comment_date'];
+echo "
+       <div class = 'comments' > 
+        <div class = 'col-sm-1 Cinfo'>
+          <img align=left src=' default.png ' alt='Warcraft main picture' style='width:90px;height:90px;'> <p>$commentsUser</p>
+        </div> 
+
+        <div class = 'col-sm-9'>
+          $commentsContent 
         </div>
 
-        <div class = "col-sm-9">
+	<footer> $commentsDate </footer>
+    
+      </div>";
+		}
+	    }
+
+	    $result->close();
+	}
+
+?>
+<!--
+  <div class = 'comments' > 
+          <div class = 'col-sm-1 Cinfo'>
+            <img align=left src=' default.png ' alt='Warcraft main picture' style='width:90px;height:90px;'> <p>Alice</p>
+          </div> 
+
+        <div class = 'col-sm-9'>
           You move by clicking on a character and then clicking on a location in your map. 
         </div>
+
+	<footer> DATE </footer>
     
   </div>
+-->
 
-    <form action="uploadComments.php" method="post">
-      <textarea name="comment" placeholder="enter comments"></textarea>
-      <input type="hidden" name=postId>
+    <form id="form" action="uploadComments.php?" method="post">
+      <textarea name="comment" placeholder="enter comments "></textarea>
+      <input type="hidden" name="ID" value='<?php echo "$ID"; ?>'/>
       <button class="btn-default" onclick="" id="submit">Send</button>
     </form>
 </div>
