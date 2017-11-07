@@ -4,15 +4,25 @@ html, body {
         background: url("../img/Texture.png") repeat;
 }
 
+@media (max-width: 960px) {
 .loginForm {
-	position:absolute;
-	top: 50%;
-	left: 50%;
-	padding: 70px 40px;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	height: 460px;
+    padding: 50px 20px; 
+    margin: auto;
+    position: absolute;
+    background: rgba(0,0,0,0.4);
+}
+}
+
+@media (min-width: 961px) {
+.loginForm {
+	position: relative;
+	float: middle;
+    padding: 70px 40px;
+    width: 400px;
+    height: 460px;
+    margin: auto;
 	background: rgba(0,0,0,0.4);
+}   
 }
 
 .loginForm h2 {

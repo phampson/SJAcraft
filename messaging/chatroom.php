@@ -75,6 +75,16 @@ function ShowFriends($userid,$mysqli) {
 var friend_id;
 var oldData;
 var newData;
+
+document.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if(event.which === 13) {
+        document.getElementById("sendBtn").click();
+        return false;
+    }
+    return true;
+} );
+
 function update()
 {
     removeAllmessages();
@@ -110,7 +120,7 @@ function startNewchat(fri)
     var sendbox = '<div class="input-group">' +
                     '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
                     '<span class="input-group-btn">' +
-                    '<button type="submit" class="btn btn-primary btn-sm" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' +
+                    '<button id="sendBtn" type="submit" class="btn btn-primary btn-sm" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' +
                     '</span>' +
                 '</div>';
     
