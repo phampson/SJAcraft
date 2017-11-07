@@ -67,9 +67,9 @@ echo "</script>\n";
   <h1><font color="white"><center> Forums </center></font></h1>
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
-      <form class="navbar-form navbar-left">
+      <form class="navbar-form navbar-left" action="search.php" method="post">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Threads/Users">
+            <input type="text" name="searchText" class="form-control" placeholder="Search Threads/Users">
               <div class="input-group-btn">
                 <button class="btn btn-default" type="submit">
                   <i class="glyphicon glyphicon-search"></i>
@@ -269,4 +269,3 @@ echo "</script>\n";
 </script>
 
 </html>
-
