@@ -41,19 +41,18 @@ function AddUsers(type)
 	var users = Get(type);
 
 	// add users
-	console.log("Hello");
 	console.log(users);
 	for(var i in users) {
 		console.log(users[i]);
 		var html_string = ' \
 		<div class="row"> \
-			<div class="col-sm-2 col-sm-offset-1"> \
+			<div class="col-xs-3 col-xs-offset-1 col-sm-2"> \
 				<img align=left src="../img/default.png" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
 			</div> \
-			<div class="col-sm-4"> \
+			<div class="col-xs-4"> \
 				<h3>' + users[i] + '</h3> \
 			</div> \
-			<div class="col-sm-5"> \
+			<div class="col-xs-3 col-sm-4"> \
 				<img align=left src="../img/maps/plus.jpg" style="width:60px;height:60px" alt="Add Friend picture"></img> \
 			</div> \
 		</div> \
