@@ -84,7 +84,6 @@ echo "</script>\n";
 	</form>
   <?php endif; ?>
   <!-- Aaaand end if -->
-
 	<?php echo $avatarPath; ?>
 	</div>
 
@@ -92,6 +91,12 @@ echo "</script>\n";
 
 		<username><?php echo $username; ?></username>
 		<email><?php echo $email; ?></email>
+   <?php if(isset($_GET['id'])): ?>
+    <div class = "box">
+   		<a class="button" href="FriendFromProfile.php" style=background-color: white>Add Friend</a>
+   	</div>
+   <?php endif; ?>
+   
 
     <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
@@ -131,7 +136,6 @@ echo "</script>\n";
                     <button  id="password">Update</button><br>
 				</form> -->
     <?php endif; ?>
-    <!-- Aaaaand end the if -->
 			</div>
 		</div>
 		</div>
