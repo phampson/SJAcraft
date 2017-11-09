@@ -88,14 +88,34 @@ echo "</script>\n";
 	</div>
 
 	<userinfo>
-
 		<username><?php echo $username; ?></username>
 		<email><?php echo $email; ?></email>
    <?php if(isset($_GET['id'])): ?>
+   <?php if(isset($_SESSION['user_id'])): ?>
+	<?php
+	$query = 'select friend_id from friendlist where user_id= "'.$userid.'"';
+	$foundFriend = FALSE;
+    	if ($result = $mysqli->query($query)){
+        	while($row = $result->fetch_assoc()){
+            		$friend_id = $row['friend_id'];
+			if($friend_id = $_GET['id']){
+				$foundFriend = TRUE;
+			}
+		}
+	}
+	?>
+    <?php if($foundFriend = FALSE): ?>
     <div class = "box">
    		<a class="button" href="FriendFromProfile.php" style=background-color: white>Add Friend</a>
    	</div>
-   <?php endif; ?>
+    <?php endif?>
+    <?php if($foundFriend = TRUE): ?>
+    <div class = "box">
+   		<a class="button" href="FriendFromProfile.php" style=background-color: white>Message User</a>
+    </div>
+    <?php endif?>
+    <?php endif; ?>
+    <?php endif; ?>
    
 
     <!-- This part is what lets you update profile info, and should only show
