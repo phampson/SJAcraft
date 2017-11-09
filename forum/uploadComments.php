@@ -22,12 +22,13 @@ else {
     $insert = 'INSERT into comment (post_id, comment_user, comment_content, comment_date) values(' . $ID . ', "' . $username . '", "' . $comment . '", NOW() + INTERVAL 16 HOUR)';
 
         if($mysqli->query($insert)) {
-            echo "comment uploaded";
+            echo "Comment uploaded <br>";
+	    echo "Redirecting...";
         } else {
 		echo"comment NOT uploaded";
 	}
 
-//header( "refresh:5;url=comments.php?postId='" );
+header( 'refresh:3;url=comments.php?postId=' . $ID . '');
 
 
 

@@ -31,18 +31,6 @@ $sql = 'select * from user_info where username="' .$user. '"';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Warcraft II-FAQ</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../stylesheet.css">
-	<link rel="stylesheet" href="stylesheet.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -82,6 +70,7 @@ echo "</script>\n";
 
 <?php
 	$query = "select * from comment";
+
 		
 	if ($result = $mysqli->query($query)) {
 	    while ($row = $result->fetch_assoc()) {
@@ -90,12 +79,35 @@ echo "</script>\n";
 		{
 			$commentsUser = $row['comment_user'];
 			
+
+			$commentQuery ="SELECT avatar_path FROM user_info WHERE username = '$commentsUser' LIMIT 1";
+
+			$host= "localhost";
+			$username="root";
+			$userpass="ecs160web";
+			$databasew="web";
+			$commentSqli = new mysqli($host,$username,$userpass,$databasew);
+			if ($commentSqli->connect_errno){
+			    echo "Error connecting to Database";
+			    exit;
+			}
+
+			$commentPicPath = "../profile/avatar_pics/profile_default.jpg";
+			if($commentResult = $commentSqli->query($commentQuery)){
+				while ($commentRow = $commentResult->fetch_assoc())
+				{
+					$commentPicPath = $commentRow['avatar_path'];
+
+				}
+			} 
+			$commentSqli->close();
+	
 			$commentsContent = $row['comment_content'];
 			$commentsDate = $row['comment_date'];
 echo "
        <div class = 'comments' > 
         <div class = 'col-sm-1 Cinfo'>
-          <img align=left src=' default.png ' alt='Warcraft main picture' style='width:90px;height:90px;'> <p>$commentsUser</p>
+          <img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentsUser</p>
         </div> 
 
         <div class = 'col-sm-9'>
@@ -108,30 +120,26 @@ echo "
 		}
 	    }
 
-	    $result->close();
 	}
+
+
+
+if(isset($_SESSION['user_id'])){
+	echo "<form id='form' action='uploadComments.php?' method='post'>
+      <textarea name='comment' placeholder='enter comments'></textarea>
+      <input type='hidden' name='ID' value='$ID'/>
+      <button class='btn-default' onclick='' id='submit'>Send</button>
+    </form>";
+}
 
 ?>
 <!--
-  <div class = 'comments' > 
-          <div class = 'col-sm-1 Cinfo'>
-            <img align=left src=' default.png ' alt='Warcraft main picture' style='width:90px;height:90px;'> <p>Alice</p>
-          </div> 
-
-        <div class = 'col-sm-9'>
-          You move by clicking on a character and then clicking on a location in your map. 
-        </div>
-
-	<footer> DATE </footer>
-    
-  </div>
--->
-
     <form id="form" action="uploadComments.php?" method="post">
-      <textarea name="comment" placeholder="enter comments "></textarea>
+      <textarea name="comment" placeholder="enter comments"></textarea>
       <input type="hidden" name="ID" value='<?php echo "$ID"; ?>'/>
       <button class="btn-default" onclick="" id="submit">Send</button>
     </form>
+-->
 </div>
 
 
