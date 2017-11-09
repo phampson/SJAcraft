@@ -30,12 +30,51 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div id = "container" class="container">
-	<div id = "bannerctnr">
-		<h1>Install Warcraft II</h1> 
-	</div>
-	<div id = "reqTable" class="sysreq" >
-			<table>
+<div class="jumbotron container col-xs-12 col-sm-8 col-sm-offset-2">
+	<h1>Install World of Warcraft</h1>
+	<p>Join the community!</p>	
+</div>
+
+<div class="container col-xs-12 col-sm-8 col-sm-offset-2" id="midctnr">
+	<div id="carousel" class="carousel slide" data-ride="carousel">
+    		<!-- Indicators -->
+    		<ol class="carousel-indicators">
+	      		<li data-target="#carousel" data-slide-to="0" class="active"></li>
+	      		<li data-target="#carousel" data-slide-to="1"></li>
+	      		<li data-target="#carousel" data-slide-to="2"></li>
+    		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="../img/tower.jpg" alt="Tower" style="width:100%;">
+		      	</div>
+
+		      	<div class="item">
+				<img src="../img/monster2.jpg" alt="Monster" style="width:100%;">
+		      	</div>
+		    
+		     	 <div class="item">
+				<img src="../img/dragon.jpg" alt="Map" style="width:100%;">
+		      	</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#carousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#carousel" data-slide="next">
+		      	<span class="glyphicon glyphicon-chevron-right"></span>
+		      	<span class="sr-only">Next</span>
+		</a>
+	</div>	
+</div>
+
+<div class="container col-xs-12 col-sm-8 col-sm-offset-2" id="btmctnr">
+	<div class="container col-xs-12 col-sm-8 col-sm-offset-2">
+		<table id = "reqTable" class="table table-striped" >
+			<thread>
 				<tr>
 					<th>System requirements</th>
 					<th>MS-DOS / Windows 3.1 / Windows 95</th>
@@ -66,11 +105,13 @@ echo "</script>\n";
 					<td>Needed (To view the animations from the cd, your CD-ROM drive must be double-speed or faster)</td>
 					<td>Needed (To view the animations from the cd, your CD-ROM drive must be double-speed or faster)</td>
 				</tr>
-			</table>
-	`		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			<div id="downloadButton">
-				<button src="../img/dldbtn.png"></button>
-			</div>
+			</thread>
+		<table>
+	</div>
+	`	
+		<div id="downloadButton" class="container">
+			<button type="button" class="btn btn-primary btn-lg">CLICK HERE to download now!</button>
+		</div>
 	</div>
 </div>
 
