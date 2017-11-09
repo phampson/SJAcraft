@@ -46,7 +46,7 @@ if ($query->num_rows > 0) {
     //Create a new PHPMailer instance
     $mail = new PHPMailer;
     $mail->isSMTP();
-    $mail->SMTPDebug = 2;
+    //$mail->SMTPDebug = 2;//uncomment if debugging
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
     $mail->SMTPSecure = 'tls';
@@ -62,7 +62,7 @@ if ($query->num_rows > 0) {
     if (!$mail->send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
-        echo "Please verify your account!";
+        echo "<br>Please verify your account!";
     }
   }
 }

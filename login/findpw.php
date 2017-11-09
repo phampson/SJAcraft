@@ -43,7 +43,7 @@ Please click this link to reset your password:
 
 	$mail = new PHPMailer;
   $mail->isSMTP();
-  $mail->SMTPDebug = 2;
+  //$mail->SMTPDebug = 2;//Uncomment if debugging
   $mail->Host = 'smtp.gmail.com';
   $mail->Port = 587;
   $mail->SMTPSecure = 'tls';
