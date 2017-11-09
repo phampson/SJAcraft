@@ -31,7 +31,7 @@ echo "</script>\n";
 ?>
 
 <div class="jumbotron container col-xs-12 col-sm-8 col-sm-offset-2">
-	<h1>Install World of Warcraft</h1>
+	<h1>Install Warcraft II</h1>
 	<p>Join the community!</p>	
 </div>
 
