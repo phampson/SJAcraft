@@ -84,38 +84,55 @@ echo "</script>\n";
 	</form>
   <?php endif; ?>
   <!-- Aaaand end if -->
-	<?php echo $avatarPath; ?>
 	</div>
 
 	<userinfo>
 		<username><?php echo $username; ?></username>
 		<email><?php echo $email; ?></email>
+			
+
    <?php if(isset($_GET['id'])): ?>
    <?php if(isset($_SESSION['user_id'])): ?>
 	<?php
-	$query = 'select friend_id from friendlist where user_id= "'.$userid.'"';
+	$query = 'select friend_id from friendlist where user_id= "'.$_SESSION['user_id'].'"';
 	$foundFriend = FALSE;
     	if ($result = $mysqli->query($query)){
         	while($row = $result->fetch_assoc()){
             		$friend_id = $row['friend_id'];
-			if($friend_id = $_GET['id']){
+			if($friend_id == $_GET['id']){
 				$foundFriend = TRUE;
 			}
 		}
 	}
 	?>
-    <?php if($foundFriend = FALSE): ?>
+    <?php if($foundFriend == FALSE): ?>
     <div class = "box">
-   		<a class="button" href="FriendFromProfile.php" style=background-color: white>Add Friend</a>
+	<?php 
+	$addLink = "FriendFromProfile.php?id=".$_GET["id"];
+   	echo	
+	"<a class='button' href='$addLink' style=background-color: white>Add Friend</a>";
+	?>
    	</div>
     <?php endif?>
-    <?php if($foundFriend = TRUE): ?>
+    <?php if($foundFriend == TRUE): ?>
     <div class = "box">
-   		<a class="button" href="FriendFromProfile.php" style=background-color: white>Message User</a>
+   		<a class="button" href="../messaging/chatroom.php" style=background-color: white>Message User</a>
     </div>
     <?php endif?>
     <?php endif; ?>
     <?php endif; ?>
+
+<div class = "box2">
+		<?php
+		if (isset($_GET["id"])) {
+ 			$addLink = "maprepo.php?id=".$_GET["id"];
+		} else {
+			$addLink = "maprepo.php";
+		}
+   		echo	
+		"<a class='button' href='$addLink' style=background-color: white>Map Repo</a>";
+		?> 
+		</div>	
    
 
     <!-- This part is what lets you update profile info, and should only show
