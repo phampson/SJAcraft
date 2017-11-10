@@ -37,6 +37,11 @@ else{
 }
 ?>
 
+<script>
+    function visitProfile(){
+        window.location='../profile/profile.php';
+    }
+</script>
 
 
 <!DOCTYPE html>
@@ -80,7 +85,7 @@ echo "</script>\n";
       <ul class="nav navbar-nav navbar-right">
         <li>
         	<div id="myProfButton">
-	        	<button id="myProfButton" class="btn btn-link"> 
+	        	<button id="myProfButton" class="btn btn-link" onclick = "visitProfile();"> 
 	        		<span class="glyphicon glyphicon-user"></span> My Profile
 	        	</button>
 	        </div>
