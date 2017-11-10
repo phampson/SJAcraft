@@ -77,7 +77,7 @@ echo "</script>\n";
   <!-- This part lets you change profile picture, which should only display
        if $_GET["id"] isn't set, meaning you're viewing your own profile -->
   <?php if(!isset($_GET['id'])): ?>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
+	<form action="uploadProfile.php" method="post" enctype="multipart/form-data">
 	    <upload><font color ="white" >Select image to upload:</upload>
 	    <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	    <input type="submit" value="Upload Image" name="submit">
