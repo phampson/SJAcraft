@@ -71,6 +71,8 @@ function ShowFriends($userid,$mysqli) {
 	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	
         <script type = "text/javascript">
 var friend_id;
 var oldData;
@@ -194,49 +196,63 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<!--Message inbox -->
-<div class = "container">
-    <div id = "inbox" class = "topleft">
-        <div class = "panel panel-default">
-            <div class= "panel-heading topBar">
-                <div>
-                    <h3 class = "panel-title">
-                        <span class = "glyphicon glyphicon-message-in">
-                        </span> Friends list<br>
-                            <input type="text" id="newfriname">
-                            <button class="btn" type="submit" onclick="newfriend();">Add Friend</button>
-                    </h3>
-                </div>
-            </div>
-            <div class = "panel-body msgContainerBase1">
-                <div id="Frilist" class = "panel-group">
-                <!-- Write php code to list friends -->
-		<?php ShowFriends($user_id,$mysqli);?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!--Message window -->
-
-<div class="container">
-    <div id="chat_window_1" class="topright">
-    	<div class="panel panel-default">
-            <div class="panel-heading topBar">
-                <div>
-                    <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><!-- php code to display current friend -->
-                </div>
-            </div>
-
-            <div id="messages" class="panel-body msgContainerBase2">
-            <!-- PHP code write here -->
-            </div>
-            <div id = "sendbox" class="panel-footer">
-            </div>
+<div class = "container-fluid">
+    <div class = "panel panel-default">
+	<div class = "panel-heading topBar">
+		<h2 class= "panel-title">Chat Room</h2>
+	</div>
+	<div class="panel-body msgContainerBase2" style="overflow:scroll">
+		<div class="panel-group">
+		<!--Message inbox -->
+		<div class = "container" id="inbox">
+		    <div class = "topleft">
+			<div class = "panel panel-default">
+			    <div class= "panel-heading topBar">
+				<div>
+				    <h3 class = "panel-title">
+				        <span class = "glyphicon glyphicon-message-in">
+				        </span> Friends List<br>
+				            <input type="text" id="newfriname">
+				            <button class="btn-default" type="submit" onclick="newfriend();">Add Friend</button>
+				    </h3>
+				</div>
+			    </div>
+			    <div class = "panel-body msgContainerBase1">
+				<div id="Frilist" class = "panel-group">
+				<!-- Write php code to list friends -->
+				<?php ShowFriends($user_id,$mysqli);?>
+				</div>
+			    </div>
+			</div>
+		    </div>
 		</div>
+
+		<!--Message window -->
+
+		<div class="container" id="chat_window_1">
+		    <div class="topright">
+		    	<div class="panel panel-default">
+			    <div class="panel-heading topBar">
+				<div>
+				    <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><!-- php code to display current friend -->
+				</div>
+			    </div>
+
+			    <div id="messages" class="panel-body msgContainerBase2">
+			    <!-- PHP code write here -->
+			    </div>
+			    <div id = "sendbox" class="panel-footer">
+			    </div>
+				</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
     </div>
 </div>
+
+
 
 
 </body>
