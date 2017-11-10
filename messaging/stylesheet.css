@@ -1,3 +1,8 @@
+h2 {
+    text-align: center;
+    color: white;
+}
+
 .chatImg {
     height: 35px;
     width: 35px;
@@ -47,17 +52,18 @@
 
 .topright {
     position: absolute;
-    top: 30px;
-    left: 400px;
-    width: 740px;
+    top: 10px;
+    left: 450px;
+    width: 600px;
     font-size: 18px;
 }
 
 .topleft {
     position: absolute;
-    top: 30px;
+    top: 10px;
+    left: 95px;
     font-size: 18px;
-    width: 380px;  
+    width: 350px;  
 }
 
 .chat-window > div > .panel {
@@ -75,7 +81,7 @@
 .msgContainerBase1 {
   background: #e5e5e5;
   margin: 0;
-  height: 520px;  
+  height: 495px;  
   bottom: 0;
   overflow-x: hidden;
 }
@@ -87,6 +93,7 @@
   bottom: 0;
   overflow-x: hidden;
 }
+
 
 .topBar {
   background: #666;
