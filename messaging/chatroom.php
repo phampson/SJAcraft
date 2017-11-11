@@ -207,7 +207,7 @@ echo "</script>\n";
 		<!--Message inbox -->
 		<div class = "container" id="inbox">
 		    <div class = "topleft">
-			<div class = "panel panel-default">
+			<div class = "panel panel-primary">
 			    <div class= "panel-heading topBar">
 				<div>
 				    <h3 class = "panel-title">
@@ -232,7 +232,7 @@ echo "</script>\n";
 
 		<div class="container" id="chat_window_1">
 		    <div class="topright">
-		    	<div class="panel panel-default">
+		    	<div class="panel panel-primary">
 			    <div class="panel-heading topBar">
 				<div>
 				    <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><!-- php code to display current friend -->
