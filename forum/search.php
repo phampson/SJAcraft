@@ -52,6 +52,7 @@ if(isset($_SESSION['user_id'])) {
 
         if ($arr) {
             phpConsole($arr[0]);
+	    echo implode(",", $arr[0]);
         }
 
         else {
