@@ -48,7 +48,7 @@ else{
 <html lang="en">
 <head>
 	<title>Warcraft II-Forum</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheet.css">
 	<link rel="stylesheet" href="stylesheet.css">
@@ -165,18 +165,21 @@ echo "</script>\n";
 </div>
 
 <!-- Create Post Container  -->
-<div class="container" id="postContainer">
-	<form action="post.php" method="post">
-
+<div class="container-fluid" id="postContainer">
+<div class="panel panel-default">
+	
+	<div class="panel-heading">
+	<div class="panel-title">
 		<img id="close" src="../img/close.png" onclick ="off()">
 		<h1>Create a New Post</h1>
-		<hr></hr>
-
+	</div>
+	</div>
+	<div class="panel-body">
 		<div class="profInfo">
 			<img alt="defaultProfPic" src="../img/profpic.png" style="width:100px;height:100px;">
 			<h3>username</h3>
 		</div>
-
+		<form action="post.php" method="post">
 		<div class="postInfo">
 			<label>Select Post Category: </label>
 			<select name="category">
@@ -192,9 +195,11 @@ echo "</script>\n";
 			<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
 			<label> Message: </label><br>
 			<textarea id="postMsg" name="message" placeholder="Message"></textarea>
-			<button class="btn-link" onclick="" id="submit">Send</button>
+			<button class="btn-primary" onclick="" id="submit">Submit</button>
 		</div>
+	</div>
 	</form>
+</div>
 </div>
 
 </body>
