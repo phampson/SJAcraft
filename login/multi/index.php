@@ -17,7 +17,7 @@ if(!empty($_GET['name']))
 	}
 }
 
-if(!empty($_GET['name'])&&empty($_GET['password'])&&empty($_GET['info_request'])){
+if(!empty($_GET['name'])&&!empty($_GET['name_only'])){
 	// 
 	$name=$_GET['name'];
 	$sql = 'SELECT id FROM user_info WHERE username ="'.$name.'" ';
@@ -33,7 +33,7 @@ if(!empty($_GET['name'])&&empty($_GET['password'])&&empty($_GET['info_request'])
 		deliver_response(1,200,"User not found",NULL,"user_id");
 	}
 }
-else if(!empty($_GET['user_id'])){
+else if(!empty($_GET['user_id'])&&!empty($_GET['id_only'])){
 	// 
 	$id=$_GET['user_id'];
 	$sql = 'SELECT username FROM user_info WHERE id ="'.$id.'" ';
@@ -76,6 +76,32 @@ else if(!empty($_GET['name'])&&!empty($_GET['password'])){
 		}
 	}
 }
+else if(!empty($_GET['user_id'])&&!empty($_GET['password']))
+{
+	$id = $_GET['user_id'];
+	$pass=$_GET['password'];
+	$sql = 'SELECT id FROM user_info WHERE id ='.$id;
+	$result=$mysqli->query($sql) or die("project query fail");
+	$temp=($result->fetch_row());
+	if(empty($temp))
+	{
+		deliver_response(2,200,"User not found",NULL,"name");
+		die;
+	}
+	$sql = 'SELECT username FROM user_info WHERE id ='.$id.' and password="'.$pass.'"';
+	//echo $sql;
+	$result=$mysqli->query($sql) or die("project query fail");
+	$temp2=($result->fetch_row());
+	if(empty($temp2))
+	{
+		deliver_response(1,200,"Incorrect authentication",NULL,"name");
+		die;
+	}	
+	if(!empty($temp2))
+	{
+		deliver_response(0,200,"Correct Authentication",$temp2[0],"name");
+	}		
+}
 else if(!empty($_GET['name'])&&!empty($_GET['info_request']))
 {
 	$name=$_GET['name'];
@@ -99,7 +125,7 @@ else if(!empty($_GET['name'])&&!empty($_GET['info_request']))
 		$res=get_friend($name,$no_friend,$mysqli);
 		if($valid_username==0)
 		{
-			deliver_response(2,200,"User not found",NULL,"friends_list");
+			deliver_response(1,200,"User not found",NULL,"friends_list");
 		}
 		else if($no_friend)
 		{
@@ -130,7 +156,7 @@ else if(!empty($_GET['name'])&&!empty($_GET['info_request']))
 			$result=$mysqli->query($sql) or die("project query fail");
 			$temp=($result->fetch_row());
 			header("HTTP/1.1 200 User not found");
-			$response['return_value']=1;$response['status']=200;$response['status_message']="User not found";$response['friends_list']=$res;$response['user_ELO']=$temp[2];$response['user_id']=$temp[0];$response['user_name']=$temp[1];
+			$response['return_value']=0;$response['status']=200;$response['status_message']="Success";$response['friends_list']=$res;$response['user_ELO']=$temp[2];$response['user_id']=$temp[0];$response['user_name']=$temp[1];
 			$json_response=json_encode($response, JSON_FORCE_OBJECT);
 			echo $json_response; 
 		}
@@ -210,6 +236,47 @@ else if(!empty($_GET['game_id'])&&!empty($_GET['team'])&&!empty($_GET['user']))
 			$mysqli->query($sql) or die("project query fail");
 		}
 			deliver_response2(0,200,"Data Received");
+	}
+}
+else if(!empty($_GET['name'])&&!empty($_GET['action']))
+{
+	$name=$_GET['name'];
+	$act=$_GET['action'];
+	if($valid_username==0)
+	{
+		deliver_response2(1,200,"User not found");
+		die;
+	}
+	else 
+	{
+		$sql = 'select game_logged from user_info where username ="'.$name.'"';
+		$result=$mysqli->query($sql) or die("project query fail");
+		$temp=($result->fetch_row());	
+		if ($act == "LOGOUT")
+		{
+			if($temp[0]=="false")
+			{
+				deliver_response2(2,200,"User is not in a logged in state");
+			}
+			else
+			{
+				$sql = 'update user_info set game_logged = "false" where username ="'.$name.'"';
+				$result=$mysqli->query($sql) or die("project query fail");
+				deliver_response2(0,200,"User logged out");
+			}
+		}else if ($act == "LOGIN")
+		{
+			if($temp[0]=="true")
+			{
+				deliver_response2(2,200,"User is not in a logged out state");
+			}
+			else
+			{
+				$sql = 'update user_info set game_logged = "true" where username ="'.$name.'"';
+				$result=$mysqli->query($sql) or die("project query fail");
+				deliver_response2(0,200,"User logged in");
+			}
+		}
 	}
 }
 else 
