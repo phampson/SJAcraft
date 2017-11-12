@@ -26,6 +26,7 @@ $sql = 'select * from user_info where username="' .$user. '"';
 	$query = $mysqli->query($sql);
 	$fetch = $query->fetch_assoc();
 	$proPic = $fetch['avatar_path'];
+	$post_user_id = $fetch['id'];
 //echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
 
 
@@ -62,7 +63,7 @@ echo "</script>\n";
 <div id = "posts" class="container">
   <h1> <?php echo $tag ?> </h1>
   <div class="jumbotron">
-   <div class="col-sm-2"> <img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;"> <p> <?php echo $user ?>  </p></div>
+   <div class="col-sm-2"> <img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;"> <a href="../profile/profile.php?id=<?php echo $post_user_id?>"> <?php echo $user ?>  </a></div>
       <h3> <?php echo $header ?> </h3>
       <p> <?php echo $content ?> </p>
       <footer> <?php echo $date ?></footer>
