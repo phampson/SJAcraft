@@ -2,6 +2,21 @@
 //db connection
 include('/home/ubuntu/ECS160WebServer/start.php');
 
+if(!empty($_POST['uploader']))
+{
+	$name=$_POST['uploader'];
+	$sql = 'SELECT * FROM user_info WHERE username ="'.$name.'" ';
+	$result=$mysqli->query($sql) or die("project query fail");
+	$temp=($result->fetch_row());
+	if(empty($temp))
+	{
+		die("invalid id");	
+	}
+}
+else 
+{
+	die("no uploader");
+}
 //uploading file
 $target_dir = "maps/"; 
 // you will copy file into this directory
@@ -41,7 +56,7 @@ if ($uploadOk == 0) {
 	echo $target_file;
 	echo $numPlayers;
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    	header("location: dlc.php");
+    	//header("location: dlc.php");
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
