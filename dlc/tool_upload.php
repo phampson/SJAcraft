@@ -5,7 +5,7 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 if(!empty($_POST['uploader']))
 {
 	$name=$_POST['uploader'];
-	$sql = 'SELECT * FROM user_info WHERE username ="'.$name.'" ';
+	$sql = 'SELECT * FROM user_info WHERE id ="'.$name.'" ';
 	$result=$mysqli->query($sql) or die("project query fail");
 	$temp=($result->fetch_row());
 	if(empty($temp))
