@@ -38,8 +38,11 @@ echo "</script>\n";
 
 <div id = "btmctn" class="container col-xs-12 col-sm-8 col-sm-offset-2" >
     <div class="jumbotron" id="box">
-        <h1>Download tools now!</h1>
-        <img src="../img/tools.png"></img>
+        <div class="container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
+            <img src="../img/tools.png" style="width: 20px; height: auto; float: left; margin-right: 0px;"</img>
+            <h1 style="float: right; ">Download tools now!</h1>
+        </div>
+  
         <div class="button" id="downloadButton">
         </div>
     </div>
