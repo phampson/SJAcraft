@@ -46,9 +46,7 @@ function ShowFriends($userid,$mysqli) {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div id="chatButton">
-                            <div class="chatImg pull-left">
-                                <a href="../profile/profile.php"><img src="'.$picturePath.'"></a>  
-                            </div>
+                                <a href="../profile/profile.php"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
                             <button class="btn btn-link" id = '.$friend_id.' onclick="removeAllmessages();startNewchat(this.id)">
                                 <div class="messages">
                                     <strong>'.$friendname.'</strong>
@@ -122,7 +120,7 @@ function sendMessage(frid)
     $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
 }
 
-function startNewchat(fri)
+function startNewchat(fri, msgcnt)
 {
     friend_id = fri;
 
@@ -139,11 +137,16 @@ function startNewchat(fri)
     });
     $.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
 	document.getElementById("messages").innerHTML += data;
-	var messages = document.getElementById("messages");
-	messages.scrollTop = messages.scrollHeight; 
+	var messages = document.getElementById("messages");	
+	if (msgcnt != undefined) {
+	    $("#message").scrollTop($("*:contains('" + msgcnt + "'):last").offset().top);
+	}	
+	else {
+	    messages.scrollTop = messages.scrollHeight;
+	}	
 	//setTimeout(startNewchat, 2500);
     });
-    $("#message").scroll('100%');
+    //$("#message").scroll('100%');
     setInterval(updateData, 2500);
 }
 function updateData() {
@@ -187,6 +190,22 @@ document.getElementById("Frilist").innerHTML += data;});
 
 }
 
+function messageSearch(searchType)
+{
+    var mesSearch = document.getElementById("mesSearch").value;
+    document.getElementById("mesSearch").value="";
+
+    if (mesSearch != "" || searchType == "back") {
+        var oldFriendlist = document.getElementById("Frilist");
+        while(oldFriendlist.hasChildNodes())
+        {
+            oldFriendlist.removeChild(oldFriendlist.firstChild);
+        }
+        $.post("messageSearch.php",{usid:<?php echo $user_id;?>,msgSrch:mesSearch,type:searchType},function(data){
+document.getElementById("Frilist").innerHTML += data;});    
+    }
+}
+
 //setInterval(update, 2500);
 
         </script>
@@ -212,16 +231,17 @@ echo "</script>\n";
 	<div class="panel-body msgContainerBase2" style="overflow:scroll">
 		<div class="panel-group">
 		<!--Message inbox -->
-		<div class = "container" id="inbox">
-		    <div class = "topleft">
-			<div class = "panel panel-primary">
+		<div class = "container">
+		    <div id = "inbox" class = "topleft">
+			<div class = "panel panel-default">
 			    <div class= "panel-heading topBar">
 				<div>
 				    <h3 class = "panel-title">
 				        <span class = "glyphicon glyphicon-message-in">
 				        </span> Friends List<br>
-				            <input type="text" id="newfriname">
-				            <button class="btn-default" type="submit" onclick="newfriend();">Add Friend</button>
+				            <input type="text" id="mesSearch">
+				            <button class="btn" type="submit" onclick="removeAllmessages();messageSearch('message')">Search Messages</button> 
+                                            <button class="btn" type="submit" onclick="removeAllmessages();messageSearch('back')">Back</button>
 				    </h3>
 				</div>
 			    </div>
