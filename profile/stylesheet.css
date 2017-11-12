@@ -1,4 +1,4 @@
-.profile {
+/*.profile {
 	position:absolute;
 	top: 50%;
 	left: 50%;
@@ -10,28 +10,79 @@
 	z-index: -999;
 
 }
+*/
 
+.profile {
+    background-image: url("../img/wowDoge.jpg");
+    padding: 30px 30px;
+    background-size: cover; 
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+/*
 .profilePic{
 	position:absolute;
 	left: 50px;
-	top: 50px;
+    top: 50px;
 	float:left;
 }
+*/
 
+.img {
+    width: 100%;
+    margin: 0;      
+    
+}
 
+.selectimg {
+    margin: 0px;
+       
+}
 
-.profile username {
-	position:absolute;
+@media (min-width: 960px) {
+
+    img {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 960px) {
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.profile userinfo {
+    position: absolute;
+    top: 30px;
+    margin: 0px;
+    padding: 0px;
+    color: white;  
+}
+
+/*
+@media (min-width: 960px) {
+   .profile userinfo {
+       font-size: 30px;
+   }    
+}
+*/
+/*.profile username { */
+/*.profile userinfo {
+    position:absolute
 	top: 30px;
 	left: 40%;
 	color: white;
 	font-size: 40px;
-
-
 }
+/*
 .userinfo{ 
 	position: static;
 }
+
 
 .profile email{
 	position:absolute;
@@ -42,9 +93,11 @@
 	color: white;
 	font-size: 35px;
 }
+
 .email{
 	position:static;
 }
+*/
 
 .addFriend {
 	position:absolute;
@@ -60,23 +113,20 @@
 	font-size: 20px;
 }
 
-
 .box {
-	position: absolute;
-	top: 35%;
-	left: 45%;
+	position: relative;
+    margin: 0px;
 	background: white;
 	padding: 10px 0px;
 	text-align: center;
 }
 
 .box2 {
-	position: absolute;
-	top: 50%;
-	left: 45%;
-	background: white;
-	padding: 10px 0px;
-	text-align: center;
+    position: relative;
+    top: 110px;
+	padding: 0px;
+	text-align: center;*/
+    margin: 0px;
 }
 
 .button {
@@ -137,3 +187,5 @@
 	  max-height: 30%;
 	  overflow: auto;
 }
+
+*/
