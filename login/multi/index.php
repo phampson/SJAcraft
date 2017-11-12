@@ -152,11 +152,19 @@ else if(!empty($_GET['name'])&&!empty($_GET['info_request']))
 			{
 				$res=array();
 			}
-			$sql='select id,username,ELO from user_info WHERE username ="'.$name.'"';
+			$sql='select id,username,ELO,game_logged from user_info WHERE username ="'.$name.'"';
 			$result=$mysqli->query($sql) or die("project query fail");
 			$temp=($result->fetch_row());
 			header("HTTP/1.1 200 User not found");
 			$response['return_value']=0;$response['status']=200;$response['status_message']="Success";$response['friends_list']=$res;$response['user_ELO']=$temp[2];$response['user_id']=$temp[0];$response['user_name']=$temp[1];
+			if($temp[3]=="true")
+			{
+				$response['user_logged_in']=0;
+			}else 
+			{
+				$response['user_logged_in']=1;
+			}
+			
 			$json_response=json_encode($response, JSON_FORCE_OBJECT);
 			echo $json_response; 
 		}
