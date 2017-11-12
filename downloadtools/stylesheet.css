@@ -1,11 +1,50 @@
-/*Css style for downloadgame page*/
-
-h1 {
-  font-size: 18px;
-  color: white;
-  padding: 10px;
+/*Css style for downloadgame page */
+#banner h1 {
+    font-family: Palatino;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
 }
 
+#banner {
+    background-color: rgba(0,0,0,0.5) !important;
+   `padding: 5px;
+    margin-bottom: 0;
+    margin-top: 0;
+    border-radius: 20px 20px 0px 0px; 
+    
+}
+
+#btmctn {
+    background-color: #d3d3d3;   
+    padding: 0px;
+}
+
+#box {
+    margin: 10px;
+    position: relative;
+}
+
+@media (min-width: 960px) {
+    
+    #downloadbutton {
+        margin-top: -8%;
+        margin-right: 20px;
+        float: right;
+    }
+}
+
+@media (max-width: 960px) {
+    #downloadbutton {
+        margin: auto;
+    }
+}
+#box h1 {
+    font-size: 20px;
+}
+
+/*
 h2 {
   font-size: 25px;
   color: white;

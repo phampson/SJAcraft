@@ -21,7 +21,9 @@ else{
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="detectOS.js"></script>
 </head>
+
 <body>
+
 <!-- Nav Bar -->
 <div id="navbar"></div>
 <?php
@@ -30,16 +32,17 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div id = "container" class="container">
-	<div id = "bannerctnr">
-		<h1>Install Warcraft II Tools</h1> 
-	</div>
-	<div id = "reqTable" class="sysreq" >
-	`		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-			<div id="downloadButton">
-				<button src="../img/dldbtn.png"></button>
-			</div>
-	</div>
+<div class="jumbotron col-xs-12 col-sm-8 col-sm-offset-2" id="banner">
+	<h1>Install Warcraft II Tools</h1> 
+</div>
+
+<div id = "btmctn" class="container col-xs-12 col-sm-8 col-sm-offset-2" >
+    <div class="jumbotron" id="box">
+        <h1>Download tools now!</h1>
+        <img src="../img/tools.png"></img>
+        <div class="button" id="downloadButton">
+        </div>
+    </div>
 </div>
 
 </body>
