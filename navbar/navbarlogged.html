@@ -13,8 +13,10 @@
 			if(hr.readyState == 4 && hr.status == 200) { 
 				if(hr.responseText == true) {
 					$("#nav-msg-alert").show('fade');
+					$("#nav-msg-alert").innerText=hr.responseText;
 				} else {
 					$("#nav-msg-alert").hide('fade');
+					$("#nav-msg-alert").innerText=hr.responseText;
 				}				
 			} 
 		}; hr.send();
