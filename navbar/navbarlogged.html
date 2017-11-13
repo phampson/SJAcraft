@@ -1,4 +1,26 @@
 <!-- Nav Bar -->
+
+<script>
+	var alertPoll = setInterval(msgAlert, 1000); // 1000 ms
+	
+	function msgAlert() {
+		var rec;
+		
+		var hr = new XMLHttpRequest(); 
+		hr.open("POST", "../navbar/navbarAlert.php", true); 
+		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+		hr.onreadystatechange = function() { 
+			if(hr.readyState == 4 && hr.status == 200) { 
+				if(hr.responseText == true) {
+					$("#nav-msg-alert").show('fade');
+				} else {
+					$("#nav-msg-alert").hide('fade');
+				}				
+			} 
+		}; hr.send();
+	} 
+</script>
+
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -37,10 +59,15 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
+					<a href="../messaging/friendslist.php">Messages</a>
+					<div id="nav-msg-alert" style="color: red; position:absolute; left: 30px; top:16px;">
+             					<span class="glyphicon glyphicon-bell"></span>
+        				</div>
+				</li>
+				<li>
                                         <a class="dropdown-toggle" data-toggle="dropdown"href="#">My Account
                                         <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-						<li><a href="../messaging/friendslist.php">Messages</a></li>
 						<li><a href="">My Posts</a></li>
                                 		<li><a href="">Notifications</a></li>
                                			<li><a href="">Comment History</a></li>
