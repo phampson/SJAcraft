@@ -66,7 +66,7 @@ echo "</script>\n";
 <!-- profile -->
 <div class="profile container col-xs-12">
    
-    <div class="container uploadimg col-xs-5 col-xs-offset-1 col-s-1 col-s-offset-2" style="margin: 0; padding: 0px">
+    <div class="container uploadimg col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1" style="margin: 0; padding: 0px">
         <div class="img container" id="profilePic">
             <img src= <?php echo $avatarPath ?> class="cover" alt="This is where your profile goes">;
         </div>
@@ -92,10 +92,10 @@ echo "</script>\n";
 
    <!-- Aaaand end if --> 
 
-	<userinfo class="container col-xs-4 col-xs-offset-6 col-s-6 col-s-offset-3">
+	<userinfo class="container col-xs-10 col-xs-offset-0 col-sm-4 col-sm-offset-1">
 		<username><?php echo $username; ?></username><br>
     	<email><?php echo $email; ?></email>
-
+        <br>
         <?php if(isset($_GET['id'])): ?>
         <?php if(isset($_SESSION['user_id'])): ?>
 	    <?php
@@ -153,12 +153,12 @@ echo "</script>\n";
 			<h2>Edit Information</h2>
 			<a class="close" href="#">&times;</a>
 			<div class="content">
-			
+		
 	            <!-- These are the forms to change user info -->	
 				<form id="form" action="change.php" method="post">
-                    <input type="text" name="usrname" placeholder= "Username">
+                    <input type="value" name="usrname" placeholder= "Username">
                     <br>
-                    <input type="text" name="email" placeholder="Email">
+                    <input type="value" name="email" placeholder="Email">
                     <br>
                     <input type="password" name="password" placeholder= "Password">
                     <br>
