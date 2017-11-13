@@ -26,12 +26,13 @@ function update_newestmsg($user_id,$friend_id,$mysqli){
         $mysqli->multi_query($update_newest_sql);
     }
 }
-update_newestmsg($user_id,$friend_id,$mysqli);
-$fri_sql = 'select * from user_info where id="'.$_GET['frid'].'"';
+
+$fri_sql = 'select * from user_info where id="'.$friend_id.'"';
 if($fri_query = $mysqli->query($fri_sql)){
     $fri_fetch = $fri_query->fetch_assoc();
     $friendname = $fri_fetch['username'];
 }
+update_newestmsg($user_id,$friend_id,$mysqli);
 ?>
 
 <!DOCTYPE html>
