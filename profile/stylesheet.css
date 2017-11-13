@@ -18,9 +18,19 @@
     background-size: cover; 
     position: absolute;
     width: 100%;
-    height: auto;
 }
 
+@media (min-width: 960px) {
+    .profile {
+        height: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+    .profile {
+        height: auto;
+    }
+}
 /*
 .profilePic{
 	position:absolute;
@@ -115,10 +125,12 @@
 
 .box {
 	position: relative;
-    margin: 0px;
+    margin: 0px 0px 0px 0px;
 	background: white;
-	padding: 10px 0px;
+	padding: 5px 0px;
 	text-align: center;
+    border-radius: 20px;
+    left:0;
 }
 
 .box2 {
@@ -127,6 +139,7 @@
 	padding: 0px;
 	text-align: center;*/
     margin: 0px;
+    
 }
 
 .button {
@@ -157,13 +170,12 @@
 }
 
 .popup {
-	  margin: 150px auto;
 	  padding: 20px;
 	  background: #fff;
 	  border-radius: 5px;
-	  width: 30%;
 	  position: relative;
-}
+      top: 30%;
+  }
 
 
 .popup h2 {

@@ -63,8 +63,6 @@ echo "</script>\n";
 
 </div>-->
 
-
-
 <!-- profile -->
 <div class="profile container col-xs-12">
    
@@ -126,14 +124,12 @@ echo "</script>\n";
         <?php endif?>
         <?php if($foundFriend == TRUE): ?>
         <div class = "box">
-   		<a class="button" href="../messaging/chatroom.php" style=background-color: white>Message User</a>
+     		<a class="button" href="../messaging/chatroom.php" style=background-color: white>Message User</a>
         </div>
         <?php endif?>
         <?php endif; ?>
         <?php endif; ?>
-</div>
 
-<div class = "box2 container col-xs-4 col-xs-offset-6 col-s-6 col-s-offset-3">
 		<?php
 		if (isset($_GET["id"])) {
  			$addLink = "maprepo.php?id=".$_GET["id"];
@@ -141,20 +137,19 @@ echo "</script>\n";
 			$addLink = "maprepo.php";
         }
         ?>
-   		<div class="box" style="margin: 0;">	
-            <a class='button' href=<?php echo $addLink ?> style="background-color: white; margin: 0px;">Map Repo</a>
+   		<div class="box">	
+            <a class='button' href=<?php echo $addLink ?>>Map Repo</a>
         </div>
-        <br>
-
+        <br style="margin: 5px"> 
     <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
     <?php if(!isset($_GET['id'])): ?>
         <div class="box">
-            <a class="button" href="#popup1" style=background-color: white>Edit info</a>
+            <a class="button" href="#popup1">Edit info</a>
         </div>
         
-		<div id="popup1" class="overlay">
-		<div class="popup">
+		<div id="popup1" class="overlay container col-xs-12">
+		<div class="popup container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
 			<h2>Edit Information</h2>
 			<a class="close" href="#">&times;</a>
 			<div class="content">
