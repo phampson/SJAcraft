@@ -40,11 +40,12 @@ function DisplayMessage($friend_id, $user_id)
                     <div class='col-md-10 col-xs-10'>
                         <div class='messages msg_sent'>
                             <p>$content</p>
+				<br>
                             <time>$myname | $date</time>
                         </div>
                     </div>
                     <div class='col-md-2 col-xs-2 avatar'>
-                        <img src='$myPicturePath' class=' img-responsive '>
+                        <img class='img-circle' src='$myPicturePath' style='width:65px;' style='height:65px'>
                     </div>
                 </div>
 				";
@@ -53,7 +54,7 @@ function DisplayMessage($friend_id, $user_id)
 	        echo "
 		<div class='row msgContainer base_receive'>
                     <div class='col-md-2 col-xs-2 avatar'>
-                        <img src='$friendPicturePath' class=' img-responsive '>
+                        <img class='img-circle' src='$friendPicturePath' style='width:65px;' style='height:65px'>
                     </div>
                     <div class='col-xs-10 col-md-10'>
                         <div class='messages msg_receive'>
