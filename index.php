@@ -31,20 +31,25 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div class="container"
- 
+<div id="outerctn" class="container col-xs-12 col-xs-offset-0"
+
      <!-- Banner -->
-     <img class="banner" src="img/SplashMirror.png">
+    <img class="banner" src="img/SplashMirror.png">
 
      <!-- Logo -->
-     <img class="logo" src="img/Logo.png">
-     <br>
+     <div class="container logoctn col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
+        <img class="logo" src="img/Logo.png">
+     </div>     
+   
+    <br>
 
      <!-- Play Button -->
+    <div class="container btnctn col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">
      <button type="button" class="btn btn-play">Play Now</button>
+    </div>
 
      <!-- Leader Board -->
-     <div class="leaderboard col-sm-8 col-sm-offset-2">
+     <div class="leaderboard container col-xs-8 col-xs-offset-2">
          <h1>Leader Board</h1>
          <h4>1. Parzival</h4>
          <h4>2. Art3mis</h4>

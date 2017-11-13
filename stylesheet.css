@@ -42,113 +42,61 @@
 html, body {
     background: url("./img/Texture.png") repeat;
 }
-
-/* CSS Styling for desktops */
-@media (min-width: 960px) {
-    
-    .container {
+ 
+   .container #outctn {
         position: relative;
     }
 
     /* Logo */
     .logo {
-        width: 40%;
+        width: 100%;
         position: relative;
-        margin-left: 31.5%;
-        margin-top: 2%;
+    }
+    
+    .logoctn {
+        margin-top: -38%;
     }
 
     /* Banner */
     .banner {
-        position: absolute;
-        width: 100%;
-        margin: auto;
-        top:0;
-    }
-
-    /*LeaderBoard*/
-    .leaderboard {
-        background-color: white;
-        position: absolute;
-        border-radius: 10px;
-        border: 2px solid;
-        border-color: gray;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2%;
-        top: auto;
-        left: 22%;
-        width: 60%;
-        
-    }
-  
-    .btn-play
-    {
-        background-color: red;
-        color: white;
         position: relative;
-        padding: 18px 28px;
-        font-size: 22px;
-        border-radius: 8px;
-        width: 21%;
-        margin-left: 41%;
-        margin-top: 10%;
+        width: 100%;
+        margin:auto;
     }
 
+    .btnctn {
+        margin-top: -18%;
+    }
+
+    .leaderboard {
+        border-radius: 10px;
+        font-color: black;
+        background-color: white;
+        border: solid gray 2px;
+        margin-top: -6%;
+    }
+    .btn-play {
+        position: relative;
+        width: 100%;
+        color: white;
+        background-color: red;     
+        border-radius: 8px;
+    }
+
+@media (min-width: 960px) {
+    .btn-play {
+        font-size: 30px;
+    }
 }
 
-
-/* CSS Styling for mobiles */
 @media (max-width: 960px) {
 
-    .container {
-        position: relative;
-    }
-
-    .logo {
-        position: relative;
-        margin-left: 30%;
-        width: 40%;
-        margin-top: 2%;     
-    }
-
-    .banner {
-        margin: auto;
-        width: 100%;
-        position: absolute;
-        top:0;
-        left:0;
-    }   
-
-    .leaderboard {
-        background-color: white;
-        max-width: 250px;
-        border-radius: 10px;
-        border: 2px solid;
-        border-color: gray;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10%;
-    }
-
     .leaderboard h1 {
-        font-size: 10px;    
-    }
+        font-size: 10px;
+    }   
 
     .leaderboard h4 {
         font-size: 8px;
     }
-
-    .btn-play {
-        background-color: red;
-        color: white;
-        font-size: 10px;
-        position: relative;
-        margin-left: 39.5%;
-        margin-top: 5%;
-        width: 21%;
-    }
-
 } 
 
