@@ -19,7 +19,6 @@ else{
 	<link rel="stylesheet" href="../stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="detectOS.js"></script>
 </head>
 
 <body>
@@ -44,6 +43,7 @@ echo "</script>\n";
         </div>
   
         <div class="button" id="downloadButton">
+        <a href="game_files/ECS160Tools-week4.zip" download="ToolsApp"><img border="0" src="../img/dldbtn.png"></img></a>
         </div>
     </div>
 </div>
