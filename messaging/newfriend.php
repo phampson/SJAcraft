@@ -16,10 +16,14 @@ if ($trynewfriend->num_rows >0){
     }
 }
 include('start.php');
-$query = 'select friend_id from friendlist where user_id= "'.(int)$usid.'"';
+$query = 'select * from friendlist where user_id= "'.(int)$usid.'"';
 if ($result = $mysqli->query($query)){
     while($row = $result->fetch_assoc()){
         $friend_id = $row['friend_id'];
+            $interact_msgid = $row['interact_msgid'];
+            if($interact_msgid == NULL){
+                $interact_msgid = 0;
+            }
         $find_friend = 'select * from user_info where id = "'.$friend_id.'"';
         if ($friends = $mysqli->query($find_friend)){
            $friend = $friends->fetch_assoc();
@@ -39,7 +43,15 @@ if ($result = $mysqli->query($query)){
                                 <a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
                             <button class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
                                 <div class="messages">
-                                    <strong>'.$friendname.'</strong>'
+                                    <strong>'.$friendname.'</strong>';
+            $numNewMsg = 'select * from message where ((sender = "'.$usid.'" and receiver="'.$friend_id.'") or (sender = "'.$friend_id.'" and receiver = "'.$usid.'")) and message_id > "'.$interact_msgid.'"';
+            if($numNM = $mysqli->query($numNewMsg)){
+                $numM = $numNM->num_rows;
+                if($numM>0){
+                    echo '
+                                    <span class="redpoint">'.$numM.'</span>';
+                }
+            }
 
         echo '
                                 </div>
