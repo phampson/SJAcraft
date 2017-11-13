@@ -17,6 +17,11 @@ else {
     header("Location: ../index.php");
     exit();
 }
+
+if(isset($_GET['mid'])){
+$mid = '"#'.$_GET['mid'].'"';
+} else { $mid = '"#"';}
+
 function update_newestmsg($user_id,$friend_id,$mysqli){
     $message_sql = 'select * from message where (sender='.$user_id.' and receiver='.$friend_id.') or (sender='.$friend_id.' and receiver = '.$user_id.') ORDER BY message_date DESC';
     $message_query = $mysqli->query($message_sql);
@@ -152,6 +157,7 @@ echo "</script>\n";
                 <div>
                     <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><?php echo $friendname;?>
                 </div>
+                <button id="ssearchbtn" class="btn" type="button" onclick="window.location.href='searchresult.php?frid=<?php echo $friend_id;?>';">Search</button>
             </div>
 
             <div id="messages" class="panel-body msgContainerBase2">
@@ -165,5 +171,15 @@ echo "</script>\n";
 
 
 </body>
-<script>startNewchat(<?php echo $friend_id;?>);</script>
+<script>
+startNewchat(<?php echo $friend_id;?>);
+location.href = <?php echo $mid?>;
+</script>
+<script>
+var mid = <?php echo $mid?>;
+if (mid != '#')
+{
+    location.href = mid;
+}
+</script>
 </html>
