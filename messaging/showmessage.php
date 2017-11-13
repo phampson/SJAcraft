@@ -12,6 +12,7 @@ function DisplayMessage($friend_id, $user_id)
 	    $content = $row['message_content'];
             $receiver = $row['receiver'];
             $date = $row['message_date'];
+            $msgid = $row['message_id'];
             $sql = 'SELECT * FROM user_info WHERE id = "'.(int)$user_id.'"';
             $qry = $mysqli->query($sql);
             $myrow = $qry -> fetch_assoc();
@@ -38,7 +39,7 @@ function DisplayMessage($friend_id, $user_id)
 	        echo "
 		<div class='row msgContainer base_sent'>
                     <div class='col-md-10 col-xs-10'>
-                        <div class='messages msg_sent'>
+                        <div id='$msgid' class='messages msg_sent'>
                             <p>$content</p>
 				<br>
                             <time>$myname | $date</time>
@@ -57,7 +58,7 @@ function DisplayMessage($friend_id, $user_id)
                         <img class='img-circle' src='$friendPicturePath' style='width:65px;' style='height:65px'>
                     </div>
                     <div class='col-xs-10 col-md-10'>
-                        <div class='messages msg_receive'>
+                        <div id='$msgid' class='messages msg_receive'>
                             <p>$content</p>
                             <time>$friendname | $date</time>
                         </div>

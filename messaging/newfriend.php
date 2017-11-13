@@ -20,26 +20,33 @@ $query = 'select friend_id from friendlist where user_id= "'.(int)$usid.'"';
 if ($result = $mysqli->query($query)){
     while($row = $result->fetch_assoc()){
         $friend_id = $row['friend_id'];
-        $find_friend = 'select username from user_info where id = "'.$friend_id.'"';
+        $find_friend = 'select * from user_info where id = "'.$friend_id.'"';
         if ($friends = $mysqli->query($find_friend)){
            $friend = $friends->fetch_assoc();
            $friendname = $friend['username'];
+           $friendAvatar = $friend['avatar_path'];
+	   if (is_null($friendAvatar)) {
+		   $picturePath = '../img/profpic.png';
+	   }
+	   else {
+		   $picturePath = "../profile/$friendAvatar";
+	   }
         }
         echo '
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div id="chatButton">
-                        <div class="chatImg pull-left">
-                            <a href="../profile/profile.php"><img src="../img/profpic.png"></a>  
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div id="chatButton">
+                                <a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
+                            <button class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
+                                <div class="messages">
+                                    <strong>'.$friendname.'</strong>'
+
+        echo '
+                                </div>
+                            </button>
                         </div>
-                        <button class="btn btn-link" id = '.$friend_id.' onclick="removeAllmessages();startNewchat(this.id)">
-                            <div class="messages">
-                                <strong>'.$friendname.'</strong>
-                            </div>
-                        </button>
                     </div>
                 </div>
-             </div>
 ';
 }
 }

@@ -3,9 +3,31 @@ h2 {
     color: white;
 }
 
+.redpoint{
+    height:16px;
+    width:16px;
+    border-radius:16px;
+    display:inline-block;
+    line-height:16px;
+    text-align:center;
+    font-size:0.8em;
+    color:#fff;
+    background:red;
+    position:relative;
+    top: -8px;
+    right: 8px;
+}
+
 .chatImg {
-    height: 35px;
-    width: 35px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50% 50% 50% 50%; /*don't forget prefixes*/
+}
+
+.chatImg1 {
+  width: 65px;
+  height: 65px;
+  border-radius: 50% 50% 50% 50%; /*don't forget prefixes*/
 }
 
 .close {
@@ -197,3 +219,4 @@ img {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
+
