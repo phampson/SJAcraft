@@ -48,8 +48,7 @@ echo "</script>\n";
 <?php
 $sql = 'select * from post';
 
-echo "
-			<div class='container'>";
+
 
 	if($query = $mysqli->query($sql)) {
 		while ($row = $query->fetch_assoc()) {
@@ -63,6 +62,7 @@ echo "
 				$postDate = $row['post_date'];
 
 echo "
+				<div class='container'>
 				<a href='comments.php?postId=$postId'>
 				<div class='jumbotron'>
 					<div class='col-sm-2'> <img align=left src='../profile/$avatarPath' alt='Warcraft main picture' style='width:100px;height:100px;'> <p>$postUser</p></div>
@@ -71,7 +71,7 @@ echo "
 					<footer> $postDate </footer>
 				</div>
 			</a> 
-		</div>";
+			</div>";
 
 			} 
 
