@@ -63,7 +63,7 @@ echo "</script>\n";
 						<img src="./img/default.png" class="media-object" style="width:60px">
 					</div>
 					<div class="media-body">
-						<h4 class="media-heading">Parzival</h4>
+						<h4 class="media-heading">WebTeamIsBetterThanAI</h4>
 						<p>Rank 265</p>
 					</div>
 				</div>
@@ -83,7 +83,7 @@ echo "</script>\n";
                                                 <img src="./img/default.png" class="media-object" style="width:60px">
                                         </div>
                                         <div class="media-body">
-                                                <h4 class="media-heading">Art3mis</h4>
+						<h4 class="media-heading">Art3mis</h4>
                                                 <p>Rank 233</p>
                                         </div>
                                 </div>
