@@ -9,9 +9,10 @@ if(isset($_SESSION['user_id'])){
 else{
 	$navpath = "../navbar/navbar.html";
 }
-
+?>
+<?php
 $ID = $_GET['postId'];
-// echo "<script>console.log ('PHP Consol: " .$ID. "'); </script>"; 
+ 
 
 $sql = 'select * from post where post_id="' .$ID. '"';
 	$query = $mysqli->query($sql);
@@ -27,19 +28,6 @@ $sql = 'select * from user_info where username="' .$user. '"';
 	$fetch = $query->fetch_assoc();
 	$proPic = $fetch['avatar_path'];
 	$post_user_id = $fetch['id'];
-//echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
-
-
-?>
-
-
-<!-- Nav Bar -->
-<div id="navbar"></div>
-<?php
-
-echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
-echo "</script>\n";
 ?>
 
 
@@ -59,9 +47,18 @@ echo "</script>\n";
 
 <body>
 
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+?>
+
 
 <div id = "posts" class="container">
-  <h1> <?php echo $tag ?> </h1>
+  <h1 style="color:white;"> <?php echo $tag ?> </h1>
   <div class="jumbotron">
    <div class="col-sm-2"> <img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;"> <a href="../profile/profile.php?id=<?php echo $post_user_id?>"> <?php echo $user ?>  </a></div>
       <h3> <?php echo $header ?> </h3>
