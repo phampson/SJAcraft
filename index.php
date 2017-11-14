@@ -48,20 +48,112 @@ echo "</script>\n";
      <button type="button" class="btn btn-play">Play Now</button>
     </div>
 
-     <!-- Leader Board -->
-     <div class="leaderboard container col-xs-8 col-xs-offset-2">
-         <h1>Leader Board</h1>
-         <h4>1. Parzival</h4>
-         <h4>2. Art3mis</h4>
-         <h4>3. Aech</h4>
-         <h4>4. Daito</h4>
-         <h4>5. Shoto</h4>
-         <h4>6. IOI-655321</h4>
-         <h4>7. IOI-655892</h4>
-         <h4>8. IOI-650945</h4>
-         <h4>9. IOI-675333</h4>
-         <h4>10. IOI-630041</h4>
-     </div>
+	<!-- Leader Board -->
+	<div class="leaderboard container col-xs-12 col-sm-8 col-sm-offset-2">
+		<h2 class="text-center">Leader Board</h2>
+		<br>
+	
+		<div class="row">
+			<div class="col-xs-3">
+				<h4 class="text-right">1.</h4>
+			</div>
+			<div class="col-xs-8">	
+				<div class="media">
+					<div class="media-left">
+						<img src="./img/default.png" class="media-object" style="width:60px">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">Parzival</h4>
+						<p>Rank 265</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1">
+			</div>
+		</div>
+		<hr>
+
+		<div class="row">
+                        <div class="col-xs-3">
+                                <h4 class="text-right">2.</h4>
+                        </div>
+                        <div class="col-xs-8">
+                                <div class="media">
+                                        <div class="media-left">
+                                                <img src="./img/default.png" class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                                <h4 class="media-heading">Art3mis</h4>
+                                                <p>Rank 233</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                </div>
+		<hr>
+
+		<div class="row">
+                        <div class="col-xs-3">
+                                <h4 class="text-right">3.</h4>
+                        </div>
+                        <div class="col-xs-8">
+                                <div class="media">
+                                        <div class="media-left">
+                                                <img src="./img/default.png" class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                                <h4 class="media-heading">Aech</h4>
+                                                <p>Rank 220</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                </div>
+		<hr>
+
+		<div class="row">
+                        <div class="col-xs-3">
+                                <h4 class="text-right">4.</h4>
+                        </div>
+                        <div class="col-xs-8">
+                                <div class="media">
+                                        <div class="media-left">
+                                                <img src="./img/default.png" class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                                <h4 class="media-heading">Daito</h4>
+                                                <p>Rank 185</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                </div>
+		<hr>
+
+		<div class="row">
+                        <div class="col-xs-3">
+                                <h4 class="text-right">5.</h4>
+                        </div>
+                        <div class="col-xs-8">
+                                <div class="media">
+                                        <div class="media-left">
+                                                <img src="./img/default.png" class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                                <h4 class="media-heading">Shoto</h4>
+                                                <p>Rank 175</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                </div>
+		<br>
+
+	</div>
 </div>
 
 </body>
