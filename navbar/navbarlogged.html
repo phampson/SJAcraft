@@ -1,15 +1,18 @@
 <!-- Nav Bar -->
 
 <script>
+	$("#nav-msg-alert").hide();
+	msgAlert();
         var alertPoll = setInterval(msgAlert, 1000); // 1000 ms
         
         function msgAlert() {
-                $.post("../navbar/navbarAlert.php", function(data){
-                                if(data == "true") {
-                                        $("#nav-msg-alert").show('fade');
-                                } else {
-                                        $("#nav-msg-alert").hide('fade');
-                                }  }); 
+                $.post("../navbar/navbarAlert.php", function(data) {
+			if(data == "true") {
+				$("#nav-msg-alert").show();
+			} else {
+				$("#nav-msg-alert").hide();
+			}  
+		}); 
         } 
 </script>
 
