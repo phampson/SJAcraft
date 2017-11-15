@@ -1,58 +1,6 @@
 <?php
 include("/home/ubuntu/ECS160WebServer/start.php");
 
-/*function displayUserMaps($user,$private) {
-
-    $query = "SELECT * FROM map WHERE uploader=$user AND private=$private";
-    $maps = $mysqli->query($query);
-
-    // work on this later
-    $i=0;
-    for(; $map = $mysqli->fetch_assoc($maps); $i++) {
-        if ($i%4 == 0) {
-            echo "<div class='row'>;"
-        }
-        
-        $map_path = $row['map_path'];
-		$map_name = $row['map_name'];
-		$map_thumbnail = $row['map_thumbnail'];
-		$numPlayers = $row['num_players'];
-		$displayName = $row['display_name'];
-		$uploaderID = $row['uploader'];
-		
-		$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
-		$uploaderName = ($userNameQuery->fetch_assoc())['username'];
-		echo "
-	<div class='col-sm-3'>
-		<div class='thumbnail'>
-			
-				<img src=$map_thumbnail alt=$map_name style='width:100%'>
-				<div class='caption'>
-					<p>$displayName</p>
-					<p>$numPlayers players</p>
-					<p>Uploaded by: $uploaderName</p>
-				</div>
-			<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
-		</div>
-		
-	</div>";
-		if($i % 4 == 3){
-			echo "</div>";		
-		}
-    }
-    if($i%4 != 3) {
-        echo "</div>";
-    }
-}
-
-function displayAllUserMaps($id) {
-    echo "These are your public maps:<br>";
-    displayUserMaps($id,0);
-
-    echo "These are your private maps:<br>";
-    displayUserMaps($id,1);
-}*/
-
 function phpConsole($data) {
     $output = $data;
     if (is_array($output))
@@ -69,10 +17,10 @@ if(isset($_SESSION["user_id"])) {
 
 
 
-if(isset($_GET["id"])) {
+if (isset($_GET["id"])) {
     $user_id = $_GET["id"];
     $viewingOwnRepo = false;
-} else if (isset($_SESSION["user_id"])) {
+} elseif (isset($_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
     $viewingOwnRepo = true;
 } else {
@@ -108,14 +56,14 @@ echo "</script>\n";
 <div class="col-sm-8 col-sm-offset-2">
 
 <?php
-function showMaps($query){
-        $mysqli = $GLOBALS['mysqli'];
+function showMaps($query, $ownRepo){
+    $mysqli = $GLOBALS['mysqli'];
 		if ($result = $mysqli->query($query)) {
-			$count = 0;
+		    $count = 0;
 		    while ($row = $result->fetch_assoc()) {
-			if($count % 4 == 0){
-				echo "<div class='row'>";		
-			}
+		        if($count % 4 == 0){
+				    echo "<div class='row'>";		
+		        }
 			$map_path = "../dlc/".$row['map_path'];
 			$map_name = $row['map_name'];
 			$map_thumbnail = "../dlc/".$row['map_thumbnail'];
@@ -123,9 +71,6 @@ function showMaps($query){
 			$displayName = $row['display_name'];
 			$uploaderID = $row['uploader'];
 			
-			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
-			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
-
 			echo "
 		<div class='col-sm-3'>
 			<div class='thumbnail'>
@@ -133,8 +78,12 @@ function showMaps($query){
 					<img src=$map_thumbnail alt=$map_name style='width:100%'>
 					<div class='caption'>
 						<p>$displayName</p>
-						<p>$numPlayers players</p>
-						<p>Uploaded by: $uploaderName</p>
+						<p>$numPlayers players</p>";
+            if ($ownRepo==1) {
+                echo "Change public/private: ";
+                echo "<input type='checkbox' name='$map_name'>";
+            }
+            echo "
 					</div>
 				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
 			</div>
@@ -144,9 +93,9 @@ function showMaps($query){
 				echo "</div>";		
 			}
 			$count = $count + 1;
-		    }
-		    $result->close();
 		}
+		$result->close();
+	}
 }
 
 function displayUploadButton() {
@@ -164,14 +113,13 @@ function displayUploadButton() {
 						    Public <br>
 						    Select map to upload:
 						    <input type="file" name="fileToUpload" id="fileToUpload">
-						    <input type="submit" value="Upload Image" name="submit">
-					</form>
+						    <input type="submit" value="Upload Map" name="submit">
+					    </form>
 					</div>
-				</a>
-			</div>
+				    </a>
+			    </div>
 			</div>
 		</div>';
-		
 }
 
 
@@ -179,25 +127,32 @@ function displayUploadButton() {
 
 if ($viewingOwnRepo) {
     displayUploadButton();
+
+    echo "<form method='post' action='changepublicprivate.php'>";
+
     echo"<div class='row'>";
-    $query = "select * from map where uploader = $user_id and private=0";
     echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
-    showMaps($query);
+    $query = "select * from map where uploader = $user_id and private=0";
+    showMaps($query,1);
     echo "</div>";
+
     echo"<div class='row'>";
     echo "<h2 style='color: white; text-align: center;'>Private Repo</h2>";
     $query = "select * from map where uploader = $user_id and private=1";
-    showMaps($query);
-    echo "</div>";
+    showMaps($query,1);
+    echo "</div>,";
+
+    echo "<input type='submit' value='Apply Map Changes'>";
+    echo "</form>";
+
 } else {
     echo"<div class='row'>";
-    $query = "select * from map where uploader=$user_id and private=0";
     echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
+
+    $query = "select * from map where uploader=$user_id and private=0";
     showMaps($query);
 }
 		
-
-		?>
 
 ?>
 
