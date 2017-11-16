@@ -28,7 +28,6 @@ $sql = 'select * from user_info where id="' .$user. '"';
 	$fetch = $query->fetch_assoc();
 	$proPic = $fetch['avatar_path'];
 	$post_user_id = $fetch['id'];
-<<<<<<< HEAD
 	$username = $fetch['username'];
 //echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
 
@@ -43,8 +42,6 @@ $sql = 'select * from user_info where id="' .$user. '"';
 echo "<script>\n";
         echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
-=======
->>>>>>> d0621ff8adb20fdcce77f5888e6c7b644c67207b
 ?>
 
 
