@@ -22,6 +22,53 @@ else{
 </head>
 <body>
 
+
+<!-- Load Leaderboard -->
+<!-- In Progress (Ask Jon before editing) -->
+<script>
+        var leaderboard = document.getElementById("leaderboard");
+        var users;
+
+        <!-- Request Returns top 10 users based on ELO -->
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                        users = this.responseText;
+                }
+        };
+        xhr.open("POST", "leaderboard.php", true);
+        xhr.send();
+
+        console.log(users);
+
+        for(var i in users) {
+                var html_string = ' \
+                <div class="row"> \
+                        <div class="col-xs-3"> \
+                                <h4 class="text-right">' + i + '.</h4> \
+                        </div> \
+                        <div class="col-xs-8"> \
+                                <div class="media"> \
+                                        <div class="media-left"> \
+                                                <img src="./img/default.png" class="media-object" style="width:60px"> \
+                                        </div> \
+                                        <div class="media-body"> \
+                                                <h4 class="media-heading">' + users[i] + '</h4> \
+                                                <p>Rank' + rank + '</p> \
+                                        </div> \
+                                </div> \
+                        </div> \
+                        <div class="col-xs-1"> \
+                        </div> \
+                </div> \
+                <hr>';
+
+                container.insertAdjacentHTML('beforeend', html_string);
+        }
+
+</script>
+
+
 <!-- Nav Bar -->
 <div id="navbar"></div>
 <?php
@@ -157,4 +204,5 @@ echo "</script>\n";
 </div>
 
 </body>
+<script src="leaderboard.js">
 </html>
