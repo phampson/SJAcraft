@@ -10,7 +10,8 @@ if(isset($_SESSION['user_id'])){
         $username = $fetch['username'];
         $email = $fetch['email'];
         $avatarPath = $fetch['avatar_path'];
-        $navpath = "../navbar/navbarlogged.html";    
+        $navpath = "../navbar/navbarlogged.html";
+	$user_id = $fetch['id'];
     }
 }
 else {
@@ -19,7 +20,7 @@ else {
 
     $comment = $_POST['comment'];
     $ID = $_POST['ID'];
-    $insert = 'INSERT into comment (post_id, comment_user, comment_content, comment_date) values(' . $ID . ', "' . $username . '", "' . $comment . '", NOW() + INTERVAL 16 HOUR)';
+    $insert = "INSERT into comment (post_id, comment_user, comment_content) values('$ID','$user_id','$comment')";
 
         if($mysqli->query($insert)) {
             echo "Comment uploaded <br>";

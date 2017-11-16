@@ -13,6 +13,7 @@ if(isset($_SESSION['user_id'])){
 		$fetch = $query->fetch_assoc();
 		$username = $fetch['username'];
 		$avatarPath = $fetch['avatar_path'];
+		$user_id = $_SESSION['user_id'];
 	}
 }
 else{
@@ -52,9 +53,9 @@ $sql = 'select * from post';
 
 	if($query = $mysqli->query($sql)) {
 		while ($row = $query->fetch_assoc()) {
-			$postUser = $row['post_user'];
+			$postUser = $row['user_id'];
 
-			if ($postUser == $username)
+			if ($postUser == $user_id)
 			{
 				$postId = $row['post_id'];
 				$postHeader = $row['post_header'];
@@ -74,7 +75,6 @@ echo "
 			</div>";
 
 			} 
-
 
 		}
 	}

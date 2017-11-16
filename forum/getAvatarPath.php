@@ -17,7 +17,7 @@ if(isset($_POST['post_user']))
 {
    $uid = $_POST['post_user'];
 	
-	$sql = 'SELECT avatar_path FROM user_info Where username = "'.$uid.'"';
+	$sql = 'SELECT avatar_path FROM user_info Where id = "'.$uid.'"';
 		
 	$result = $mysqli->query($sql) or die("Failed to retrieve posts from database.");
 

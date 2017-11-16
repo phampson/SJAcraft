@@ -20,10 +20,11 @@ if(isset($_SESSION['user_id'])) {
 
 	if($query) {
 		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
+		$user_id = $fetch['id'];
 		$email = $fetch['email'];
 		$avatarPath = $fetch['avatar_path'];
 		$navpath = "../navbar/navbarlogged.html";
+		$username = $fetch['username'];
 
 		phpConsole($_SESSION['user_id']);
 		phpConsole($navpath);
@@ -51,8 +52,8 @@ if(isset($_SESSION['user_id'])) {
 
 
 		// Store in database
-		$sql = 'INSERT into post (post_user, post_header, post_content, post_date, tag) 
-			values("' . $username . '", "' . $postName . '", "' . $message . '", "' . date("Y/m/d") . '", "' . $category . '")';
+		$sql = "INSERT into post (user_id, post_header, post_content, tag) 
+			values('$user_id','$postName','$message','$category')";
 
 		if ($mysqli->query($sql)) {
 		    phpConsole("Succesfully updated database.");
@@ -68,7 +69,7 @@ if(isset($_SESSION['user_id'])) {
 else {    
     
     phpConsole("User not logged in.");
-	$username = "username unknown";
+	$user_id = "user_id unknown";
 	$email = "email unknown";
 	$navpath = "../navbar/navbar.html";
 }

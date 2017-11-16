@@ -22,7 +22,7 @@ function phpConsole($data) {
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 if(isset($_SESSION['user_id'])) {
-	$sql = 'select * from user_info where username="' . $_SESSION['user_id'] . '"';
+	$sql = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
     	$query = $mysqli->query($sql);
 	$navpath = "../navbar/navbarlogged.html";
 	if($query) {

@@ -92,7 +92,7 @@ function getAvatarPath(post, container) {
 function formatHtmlString(data, path, container)
 {
 	postId = data[0];	
-	username = data[1];
+	user_id = data[1];
 	header = data[2];
 	content = data[3];
 	date = data[4];
@@ -101,7 +101,7 @@ function formatHtmlString(data, path, container)
 	var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron"> \
-              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
+              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + user_id +' </p></div> \
               			<h3> ' + header + '</h3> \
               			<p> ' + content + ' </p> \
               			<footer> ' + date +' </footer> \

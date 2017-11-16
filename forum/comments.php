@@ -18,16 +18,33 @@ $sql = 'select * from post where post_id="' .$ID. '"';
 	$query = $mysqli->query($sql);
 	$fetch = $query->fetch_assoc();
 	$header = $fetch['post_header'];
-	$user = $fetch['post_user'];
+	$user = $fetch['user_id'];
 	$content = $fetch['post_content'];
 	$date = $fetch['post_date'];
 	$tag = $fetch['tag'];
 
-$sql = 'select * from user_info where username="' .$user. '"';
+$sql = 'select * from user_info where id="' .$user. '"';
 	$query = $mysqli->query($sql);
 	$fetch = $query->fetch_assoc();
 	$proPic = $fetch['avatar_path'];
 	$post_user_id = $fetch['id'];
+<<<<<<< HEAD
+	$username = $fetch['username'];
+//echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
+
+
+?>
+
+
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+=======
+>>>>>>> d0621ff8adb20fdcce77f5888e6c7b644c67207b
 ?>
 
 
@@ -60,7 +77,7 @@ echo "</script>\n";
 <div id = "posts" class="container">
   <h1 style="color:white;"> <?php echo $tag ?> </h1>
   <div class="jumbotron">
-   <div class="col-sm-2"> <img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;"> <a href="../profile/profile.php?id=<?php echo $post_user_id?>"> <?php echo $user ?>  </a></div>
+   <div class="col-sm-2"> <img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;"> <a href="../profile/profile.php?id=<?php echo $post_user_id?>"> <?php echo $username ?>  </a></div>
       <h3> <?php echo $header ?> </h3>
       <p> <?php echo $content ?> </p>
       <footer> <?php echo $date ?></footer>
@@ -90,7 +107,7 @@ echo "</script>\n";
 			    exit;
 			}
 
-			$commentPicPath = "../profile/avatar_pics/profile_default.jpg";
+			$commentPicPath = "../profile/avatar_pics/$commentsUser.jpg";
 			if($commentResult = $commentSqli->query($commentQuery)){
 				while ($commentRow = $commentResult->fetch_assoc())
 				{
