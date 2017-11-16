@@ -8,17 +8,19 @@ if(isset($_SESSION['user_id'])){
   $navpath = "../navbar/navbarlogged.html";
   $sql = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
       $query = $mysqli->query($sql);
-
+	
   if($query = $mysqli->query($sql)) {
     $fetch = $query->fetch_assoc();
     $username = $fetch['username'];
     $avatarPath = $fetch['avatar_path'];
+	$user_id = $fetch['id'];
   }
 }
 else{
   $navpath = "../navbar/navbar.html";
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -55,7 +57,7 @@ echo "
     while ($row = $query->fetch_assoc()) {
       $commentUser = $row['comment_user']; 
 
-      if ($commentUser == $username)
+      if ($commentUser == $user_id)
       {
 	$commentPostId = $row['post_id'];
         $commentContent = $row['comment_content'];
