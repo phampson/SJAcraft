@@ -34,5 +34,11 @@ if( $_POST['email'] != ""){
   include 'changeEmailInfo.php';
 }
 
+if ($_POST['digest'] != -1)
+{
+	 $insert = "UPDATE user_info SET digest = '" . $_POST['digest'] . "' where id = '" . $_SESSION['user_id'] . "'";
+	 $mysqli->query($insert);
+}
+
 //header('Location: ' . 'profile.php');
 ?>

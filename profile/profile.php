@@ -155,16 +155,28 @@ echo "</script>\n";
 			<div class="content">
 		
 	            <!-- These are the forms to change user info -->	
-				<form id="form" action="change.php" method="post">
+		        <form id="form" action="change.php" method="post">
                     <input type="value" name="usrname" placeholder= "Username">
                     <br>
                     <input type="value" name="email" placeholder="Email">
                     <br>
                     <input type="password" name="password" placeholder= "Password">
                     <br>
+                    <select id="digest" name ="digest">
+                        <option value="-1"></option>
+                        <option value="0">No email updates</option>
+                        <option value="1">1 hour email updates</option>
+                        <option value="2">8 hour updates</option>
+                        <option value="3"> 16 hour updates</option>
+                        <option value="4">daily updates</option>
+                        <option value="5">weekly updates</option>
+                        <option value="6">smart updates (update if unread)</option>
+                    </select>
+                    <br>
                     <button  id="password">Update</button>
                     <br>
-				</form>
+
+		         </form>
             
 
         <!--    Old pop up menu form definition, saved in case the new one dies a horrible death   
