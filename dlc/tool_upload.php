@@ -10,13 +10,13 @@ if(!empty($_POST['uploader']))
 	$temp=($result->fetch_row());
 	if(empty($temp))
 	{
-		deliver_response(1,200,"invalid id",$uploader,"uploader") ;
+		deliver_response(1,200,"invalid id",$uploader,$_POST['uploader']) ;
 		die;	
 	}
 }
 else 
 {
-	deliver_response(2,200,"no uploader",$uploader,"uploader") ;
+	deliver_response(2,200,"no uploader",$uploader,NULL) ;
 	die;
 }
 //uploading file
