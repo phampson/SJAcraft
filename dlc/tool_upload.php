@@ -40,7 +40,8 @@ if ($_FILES["fileToUpload"]["size"] > 1000000) {
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    //echo "Sorry, your file was not uploaded.";
+    deliver_response(3,200,"file was not uploaded",$uploader,"uploader") ;
 // if everything is ok, try to upload file to server
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -54,13 +55,13 @@ if ($uploadOk == 0) {
 	} else {
 		deliver_response(2,200,"query falied",$uploader,"uploader") ;
 	}
-	echo $thumbnail_path;
-	echo $target_file;
-	echo $numPlayers;
+	//echo $thumbnail_path;
+	//echo $target_file;
+	//echo $numPlayers;
         deliver_response(0,200,$_FILES["fileToUpload"]["name"]+" has been uploaded.",$uploader,"uploader") ;
     	//header("location: dlc.php");
     } else {
-        deliver_response(3,200,"unknown error",$uploader,"uploader") ;
+        deliver_response(4,200,"unknown error",$uploader,"uploader") ;
     }
 }
 
