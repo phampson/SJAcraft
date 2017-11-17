@@ -1,4 +1,4 @@
-<?php
+2<?php
 //db connection
 include('/home/ubuntu/ECS160WebServer/start.php');
 
@@ -64,7 +64,7 @@ if ($uploadOk == 0) {
 	//echo $thumbnail_path;
 	//echo $target_file;
 	//echo $numPlayers;
-        deliver_response(0,200,$_FILES["fileToUpload"]["name"]+" has been uploaded.",$uploader,"uploader") ;
+        deliver_response(0,200,$_FILES["fileToUpload"]["name"]+" has been uploaded",$uploader,"uploader") ;
         die;
     	//header("location: dlc.php");
     } else {
