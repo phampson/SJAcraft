@@ -76,11 +76,12 @@ echo "</script>\n";
         console.log(users);
 
         for(var i in users) {
+		pos = parseInt(i) + 1;
                 var html_string = ' \
 		<hr> \
                 <div class="row"> \
                         <div class="col-xs-3"> \
-                                <h4 class="text-right">' + i + '.</h4> \
+                                <h4 class="text-right">' + pos + '.</h4> \
                         </div> \
                         <div class="col-xs-8"> \
                                 <div class="media"> \
