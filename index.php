@@ -67,6 +67,7 @@ echo "</script>\n";
         xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                         users = JSON.parse(this.responseText);
+                       //console.log(Object.keys(users));
                         console.log("Inside users: " + users);
                 }
         };
@@ -77,11 +78,12 @@ echo "</script>\n";
 
         for(var i in users) {
 		pos = parseInt(i) + 1;
+	
                 var html_string = ' \
 		<hr> \
                 <div class="row"> \
                         <div class="col-xs-3"> \
-                                <h4 class="text-right">' + pos + '.</h4> \
+                                <h4 class="text-right">' + i + '</h4> \
                         </div> \
                         <div class="col-xs-8"> \
                                 <div class="media"> \
