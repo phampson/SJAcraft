@@ -10,12 +10,14 @@ if(!empty($_POST['uploader']))
 	$temp=($result->fetch_row());
 	if(empty($temp))
 	{
-		die("invalid id");	
+		deliver_response(1,200,"invalid id",$uploader,"uploader") ;
+		die;	
 	}
 }
 else 
 {
-	die("no uploader");
+	deliver_response(2,200,"no uploader",$uploader,"uploader") ;
+	die;
 }
 //uploading file
 $target_dir = "maps/"; 
@@ -29,19 +31,22 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if file already exists
 if (file_exists($target_file)) {
     //echo "Sorry, file already exists.";
-    deliver_response(1,200,"file already exists",$uploader,"uploader") ;
+    deliver_response(3,200,"file already exists",$uploader,"uploader") ;
+    die;
     $uploadOk = 0;
 }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
-	deliver_response(2,200,"file is too large",$uploader,"uploader") ;
+	deliver_response(4,200,"file is too large",$uploader,"uploader") ;
+	die;
     //echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     //echo "Sorry, your file was not uploaded.";
-    deliver_response(3,200,"file was not uploaded",$uploader,"uploader") ;
+    deliver_response(5,200,"file was not uploaded",$uploader,"uploader") ;
+    die;
 // if everything is ok, try to upload file to server
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -53,15 +58,18 @@ if ($uploadOk == 0) {
 	if($mysqli->query($sql)) {
 		//echo "label success";
 	} else {
-		deliver_response(2,200,"query falied",$uploader,"uploader") ;
+		deliver_response(6,200,"query falied",$uploader,"uploader") ;
+		die;
 	}
 	//echo $thumbnail_path;
 	//echo $target_file;
 	//echo $numPlayers;
         deliver_response(0,200,$_FILES["fileToUpload"]["name"]+" has been uploaded.",$uploader,"uploader") ;
+        die;
     	//header("location: dlc.php");
     } else {
-        deliver_response(4,200,"unknown error",$uploader,"uploader") ;
+        deliver_response(7,200,"unknown error",$uploader,"uploader") ;
+        die;
     }
 }
 
