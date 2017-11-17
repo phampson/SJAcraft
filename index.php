@@ -22,53 +22,6 @@ else{
 </head>
 <body>
 
-
-<!-- Load Leaderboard -->
-<!-- In Progress (Ask Jon before editing) -->
-<script>
-        var leaderboard = document.getElementById("leaderboard");
-        var users;
-
-        <!-- Request Returns top 10 users based on ELO -->
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                        users = this.responseText;
-                }
-        };
-        xhr.open("POST", "leaderboard.php", true);
-        xhr.send();
-
-        console.log(users);
-
-        for(var i in users) {
-                var html_string = ' \
-                <div class="row"> \
-                        <div class="col-xs-3"> \
-                                <h4 class="text-right">' + i + '.</h4> \
-                        </div> \
-                        <div class="col-xs-8"> \
-                                <div class="media"> \
-                                        <div class="media-left"> \
-                                                <img src="./img/default.png" class="media-object" style="width:60px"> \
-                                        </div> \
-                                        <div class="media-body"> \
-                                                <h4 class="media-heading">' + users[i] + '</h4> \
-                                                <p>Rank' + rank + '</p> \
-                                        </div> \
-                                </div> \
-                        </div> \
-                        <div class="col-xs-1"> \
-                        </div> \
-                </div> \
-                <hr>';
-
-                container.insertAdjacentHTML('beforeend', html_string);
-        }
-
-</script>
-
-
 <!-- Nav Bar -->
 <div id="navbar"></div>
 <?php
@@ -98,111 +51,54 @@ echo "</script>\n";
 	<!-- Leader Board -->
 	<div class="leaderboard container col-xs-12 col-sm-8 col-sm-offset-2">
 		<h2 class="text-center">Leader Board</h2>
+		<div id="leaderboard"></div>
 		<br>
-	
-		<div class="row">
-			<div class="col-xs-3">
-				<h4 class="text-right">1.</h4>
-			</div>
-			<div class="col-xs-8">	
-				<div class="media">
-					<div class="media-left">
-						<img src="./img/default.png" class="media-object" style="width:60px">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">WebTeamIsBetterThanAI</h4>
-						<p>Rank 265</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-1">
-			</div>
-		</div>
-		<hr>
-
-		<div class="row">
-                        <div class="col-xs-3">
-                                <h4 class="text-right">2.</h4>
-                        </div>
-                        <div class="col-xs-8">
-                                <div class="media">
-                                        <div class="media-left">
-                                                <img src="./img/default.png" class="media-object" style="width:60px">
-                                        </div>
-                                        <div class="media-body">
-						<h4 class="media-heading">Art3mis</h4>
-                                                <p>Rank 233</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-xs-1">
-                        </div>
-                </div>
-		<hr>
-
-		<div class="row">
-                        <div class="col-xs-3">
-                                <h4 class="text-right">3.</h4>
-                        </div>
-                        <div class="col-xs-8">
-                                <div class="media">
-                                        <div class="media-left">
-                                                <img src="./img/default.png" class="media-object" style="width:60px">
-                                        </div>
-                                        <div class="media-body">
-                                                <h4 class="media-heading">Aech</h4>
-                                                <p>Rank 220</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-xs-1">
-                        </div>
-                </div>
-		<hr>
-
-		<div class="row">
-                        <div class="col-xs-3">
-                                <h4 class="text-right">4.</h4>
-                        </div>
-                        <div class="col-xs-8">
-                                <div class="media">
-                                        <div class="media-left">
-                                                <img src="./img/default.png" class="media-object" style="width:60px">
-                                        </div>
-                                        <div class="media-body">
-                                                <h4 class="media-heading">Daito</h4>
-                                                <p>Rank 185</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-xs-1">
-                        </div>
-                </div>
-		<hr>
-
-		<div class="row">
-                        <div class="col-xs-3">
-                                <h4 class="text-right">5.</h4>
-                        </div>
-                        <div class="col-xs-8">
-                                <div class="media">
-                                        <div class="media-left">
-                                                <img src="./img/default.png" class="media-object" style="width:60px">
-                                        </div>
-                                        <div class="media-body">
-                                                <h4 class="media-heading">Shoto</h4>
-                                                <p>Rank 175</p>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-xs-1">
-                        </div>
-                </div>
-		<br>
-
 	</div>
 </div>
 
 </body>
-<script src="leaderboard.js">
+
+<!-- Load Leaderboard -->
+<script>
+        var users;
+
+        <!-- Request Returns top 10 users based on ELO -->
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                        users = JSON.parse(this.responseText);
+                        console.log("Inside users: " + users);
+                }
+        };
+        xhr.open("POST", "./leaderboard/leaderboard.php", false);
+        xhr.send();
+
+        console.log(users);
+
+        for(var i in users) {
+                var html_string = ' \
+		<hr> \
+                <div class="row"> \
+                        <div class="col-xs-3"> \
+                                <h4 class="text-right">' + i + '.</h4> \
+                        </div> \
+                        <div class="col-xs-8"> \
+                                <div class="media"> \
+                                        <div class="media-left"> \
+                                                <img src="./img/default.png" class="media-object" style="width:60px"> \
+                                        </div> \
+                                        <div class="media-body"> \
+                                                <h4 class="media-heading">' + users[i] + '</h4> \
+                                                <p>Rank:</p> \
+                                        </div> \
+                                </div> \
+                        </div> \
+                        <div class="col-xs-1"> \
+                        </div> \
+                </div>';
+
+                document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
+        }
+
+</script>
 </html>
