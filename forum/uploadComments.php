@@ -43,6 +43,7 @@ else {
 		echo "newest_comment_id not added into post table";
 	}
 
+
 	$sql = "select * from forum_digest where user_id='$session_user' AND post_id = '$ID'";
 	$query = $mysqli->query($sql);
 	if(!mysqli_num_rows($query)) {

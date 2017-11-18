@@ -1,5 +1,5 @@
 // Get all posts from database
-$(document).ready(dumpAllPosts());
+//$(document).ready(dumpAllPosts());
 
 // Turn on overlay when 'Start New Discussion' is clicked
 function on() {
@@ -48,7 +48,6 @@ function insertIntoHtml(data) {
     for (var i = 0; i < data.length; i++) {
         // console.log("element: ", data[i]);
 	
-	
 	 switch  (data[i][5]) {
                 case 'beginner': 
                 	container = document.getElementById("Beginners");
@@ -56,7 +55,7 @@ function insertIntoHtml(data) {
                 case 'strategies': 
                 	container = document.getElementById("Strategies");
 			break;
-                case 'Maps': 
+                case 'maps': 
                 	container = document.getElementById("Maps");
 			break;
                 case 'gameUpdates': 
@@ -96,18 +95,79 @@ function formatHtmlString(data, path, container)
 	header = data[2];
 	content = data[3];
 	date = data[4];
-	
 
-	var html_string = ' \
+
+    $.ajax({
+		method: "POST",
+		url: "getUsername.php",
+		data: { user_id: user_id },
+		success: function(data) {
+            var obj = jQuery.parseJSON(data);
+            console.log("obj: " + obj);
+
+	        var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron"> \
-              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + user_id +' </p></div> \
+              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + obj +' </p></div> \
               			<h3> ' + header + '</h3> \
               			<p> ' + content + ' </p> \
               			<footer> ' + date +' </footer> \
             		</div> \
-          	</a> '
+          	            </a> '
 
-		container.insertAdjacentHTML('beforeend', html_string);
+		    container.insertAdjacentHTML('beforeend', html_string);
+        }
+    });
 }
 
+// Get username from user_info
+function getUsername(userID)
+{
+
+    $.ajax({
+		method: "POST",
+		url: "getUsername.php",
+		data: { user_id: userID },
+		success: function(data) {
+            var obj = jQuery.parseJSON(data);
+            alert(obj);
+		}
+	});
+}
+
+
+// Search feature
+function search(form)
+{
+    searchText = form.searchText.value;
+
+    $.ajax({
+		method: "POST",
+		url: "search.php",
+		data: { searchText: searchText },
+		success: function(data) {
+            var obj = jQuery.parseJSON(data);
+            printSearchResults(obj);
+		}
+	});
+}
+
+function printSearchResults(data)
+{
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("postContainer").style.display = "none";
+    document.getElementById("searchBar").style.display = "none";
+    document.getElementById("tabContainer").style.display = "none";
+
+    var container = document.getElementById("searchResults");
+    
+    // ADD: Style the below html string
+    var htmlString = '\
+                     <p style="background-color:white; text-align:center"> Search Results </p> \
+                     <button onClick="window.location.reload();"> Back </button>'
+    container.insertAdjacentHTML('beforeend', htmlString);
+
+    for (var i = 0; i < data.length; i++) {
+        getAvatarPath(data[i], container); 
+    }
+}

@@ -56,7 +56,7 @@ else{
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body onload="dumpAllPosts();">
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -72,11 +72,15 @@ echo "</script>\n";
   <h1><font color="white"><center> Forums </center></font></h1>
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
-      <form class="navbar-form navbar-left" action="search.php" method="post">
+
+    <!-- Commented for now. Delete later.      
+    <form class="navbar-form navbar-left" action="search.php" method="post"> -->
+    <form class="navbar-form navbar-left">    
         <div class="input-group">
             <input type="text" name="searchText" class="form-control" placeholder="Search Threads/Users">
               <div class="input-group-btn">
-                <button class="btn btn-default" type="submit">
+                <input class="btn btn-default" type="button" name="submitButton" value="Click" onClick="search(this.form);">
+                <!-- <button class="btn btn-default" type="submit"> -->
                   <i class="glyphicon glyphicon-search"></i>
                 </button>
               </div>
@@ -102,6 +106,11 @@ echo "</script>\n";
       </ul>
     </nav>
   </div>
+</div>
+
+<!-- For search results only -->
+<div id="searchResults">
+
 </div>
 
 <!-- Tab Container -->
