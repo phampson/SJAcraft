@@ -1,5 +1,5 @@
 // Get all posts from database
-$(document).ready(dumpAllPosts());
+//$(document).ready(dumpAllPosts());
 
 // Turn on overlay when 'Start New Discussion' is clicked
 function on() {
@@ -47,7 +47,6 @@ function insertIntoHtml(data) {
 
     for (var i = 0; i < data.length; i++) {
         // console.log("element: ", data[i]);
-	
 	
 	 switch  (data[i][5]) {
                 case 'beginner': 
@@ -109,5 +108,37 @@ function formatHtmlString(data, path, container)
           	</a> '
 
 		container.insertAdjacentHTML('beforeend', html_string);
+
 }
 
+// Search feature
+function search(form)
+{
+    searchText = form.searchText.value;
+
+    $.ajax({
+		method: "POST",
+		url: "search.php",
+		data: { searchText: searchText },
+		success: function(data) {
+            var obj = jQuery.parseJSON(data);
+            printSearchResults(obj);
+		}
+	});
+}
+
+function printSearchResults(data)
+{
+    //window.location = "http://34.213.125.24/forum/searchForum.php";
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("postContainer").style.display = "none";
+    document.getElementById("searchBar").style.display = "none";
+    document.getElementById("tabContainer").style.display = "none";
+
+    var container = document.getElementById("searchResults");
+
+    for (var i = 0; i < data.length; i++) {
+        getAvatarPath(data[i], container); 
+    }
+    //container.insertAdjacentHTML('beforeend', '<p> HELLO WORLD! </p>');
+}
