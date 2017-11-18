@@ -88,7 +88,8 @@ echo "</script>\n";
                 	}
         	};
         	xhr.open("POST", "./leaderboard.php", false);
-        	xhr.send();
+        	xhr.send("order=win");
+        	console.log("1");
         	console.log(users);
         } 
 
@@ -103,6 +104,7 @@ echo "</script>\n";
                 };
                 xhr.open("POST", "./leaderboard.php", false);
                 xhr.send();
+                console.log("2");
                 console.log(users);
         } 
 
@@ -117,10 +119,12 @@ echo "</script>\n";
                 };
                 xhr.open("POST", "./leaderboard.php", false);
                 xhr.send();
+                console.log("3");
                 console.log(users);
         }
 
 	// Display
+		console.log(users);
         for(var i in users) {
             var pos = parseInt(i) + 1;
 
