@@ -3,6 +3,7 @@
 include('/home/ubuntu/ECS160WebServer/start.php');
 
 error_reporting(E_ALL); ini_set('display_errors', '1');
+$session_user = $_SESSION['user_id'];
 if(isset($_SESSION['user_id'])){
 	$navpath = "../navbar/navbarlogged.html";
 }
@@ -22,6 +23,7 @@ $sql = 'select * from post where post_id="' .$ID. '"';
 	$content = $fetch['post_content'];
 	$date = $fetch['post_date'];
 	$tag = $fetch['tag'];
+	$newest_comment_id= $fetch['newest_comment_id'];
 
 $sql = 'select * from user_info where id="' .$user. '"';
 	$query = $mysqli->query($sql);
@@ -29,6 +31,10 @@ $sql = 'select * from user_info where id="' .$user. '"';
 	$proPic = $fetch['avatar_path'];
 	$post_user_id = $fetch['id'];
 	$username = $fetch['username'];
+
+$sql = "UPDATE forum_digest SET last_read_comment_id = '$newest_comment_id' WHERE post_id = '$ID' AND user_id = '$session_user'";
+$mysqli->query($sql);
+
 //echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
 
 
