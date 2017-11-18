@@ -130,7 +130,7 @@ function displayUploadButton() {
 if ($viewingOwnRepo) {
     displayUploadButton();
 
-    echo "<form method='post' action='changepublicprivate.php'>";
+    echo "<form method='post' action='changemapsettings.php'>";
 
     echo"<div class='row'>";
     echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
