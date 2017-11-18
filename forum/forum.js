@@ -55,7 +55,7 @@ function insertIntoHtml(data) {
                 case 'strategies': 
                 	container = document.getElementById("Strategies");
 			break;
-                case 'Maps': 
+                case 'maps': 
                 	container = document.getElementById("Maps");
 			break;
                 case 'gameUpdates': 

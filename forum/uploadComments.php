@@ -29,7 +29,7 @@ else {
 		echo"comment NOT uploaded";
 	}
 
-header( 'refresh:3;url=comments.php?postId=' . $ID . '');
+header( 'refresh:0;url=comments.php?postId=' . $ID . '');
 
 
 
