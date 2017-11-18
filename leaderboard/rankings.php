@@ -22,6 +22,13 @@ else{
 <body>
 
 <!-- Nav Bar -->
+<div id="navbar"></div>
+<?php
+
+echo "<script>\n";
+        echo '$("#navbar").load("' . $navpath . '")';
+echo "</script>\n";
+?>
 
 <div class="container col-xs-12 col-xs-offset-0">
 	<!-- Leader Board -->
@@ -52,32 +59,41 @@ else{
             <div class="col-xs-1"></div>
         </div>
 
-        <div id="rankings"></div>
-
-	</div>
+        <div id="rankings"></div></div>
 </div>
 
 </body>
 
 <!-- Load Leaderboard -->
-<script> 
-    $('#order-by').change(function(){
+<script>
+    
+    updateRankings();
+    $('#order-by').change(updateRankings);
+
+    function updateRankings() {
         var dropdown = document.getElementById("order-by");
+        document.getElementById("rankings").innerHTML = "";
+
         var val = dropdown.options[dropdown.selectedIndex].value;
         var users;
 
+	// Order By Wins
         if(val == "W") {
         	var xhr = new XMLHttpRequest();
        		xhr.onreadystatechange = function() {
                 	if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
                         	users = JSON.parse(this.responseText);
                         	console.log("Inside users: " + users);
                 	}
         	};
-        	xhr.open("POST", "./leaderboard/leaderboard.php", false);
+        	xhr.open("POST", "./leaderboard.php", false);
         	xhr.send();
         	console.log(users);
-        } else if(val == "L") {
+        } 
+
+	// Order By Losses
+	else if(val == "L") {
 		var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -85,10 +101,13 @@ else{
                                 console.log("Inside users: " + users);
                         }
                 };
-                xhr.open("POST", "./leaderboard/leaderboard.php", false);
+                xhr.open("POST", "./leaderboard.php", false);
                 xhr.send();
                 console.log(users);
-        } else if(val == "E") {
+        } 
+
+	// Order By ELO
+	else if(val == "E") {
 		var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -96,38 +115,40 @@ else{
                                 console.log("Inside users: " + users);
                         }
                 };
-                xhr.open("POST", "./leaderboard/leaderboard.php", false);
+                xhr.open("POST", "./leaderboard.php", false);
                 xhr.send();
                 console.log(users);
         }
 
-
+	// Display
         for(var i in users) {
+            var pos = parseInt(i) + 1;
+
             var html_string = ' \
             <hr> \
             <div class="row"> \
                     <div class="col-xs-1"> \
-                        <h4 class="text-right">' + i + '</h4> \
+                        <h4 class="text-right">' + pos + '</h4> \
                     </div> \
                     <div class="col-xs-7"> \
                             <div class="media"> \
                                     <div class="media-left"> \
-                                            <img src="./img/default.png" class="media-object" style="width:60px"> \
+                                            <img src="../img/default.png" class="media-object" style="width:60px"> \
                                     </div> \
                                     <div class="media-body"> \
                                             <h4 class="media-heading">' + users[i].name + '</h4> \
-                                            <p>Rank:' + users[i].elo + '</p> \
+                                            <p>Rank: ' + users[i].ELO + '</p> \
                                     </div> \
                             </div> \
                     </div> \
                     <div class="col-xs-1">' + users[i].win + '</div> \
                     <div class="col-xs-1">' + users[i].lost + '</div> \
-                    <div class="col-xs-1">' + users[i].elo + '</div> \
+                    <div class="col-xs-1">' + users[i].ELO + '</div> \
                     <div class="col-xs-1"></div> \
             </div>';
 
             document.getElementById("rankings").insertAdjacentHTML('beforeend', html_string);
         }
-    });
+    }
 </script>
 </html>
