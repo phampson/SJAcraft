@@ -81,7 +81,9 @@ function showMaps($query, $ownRepo){
 						<p>$numPlayers players</p>";
             if ($ownRepo==1) {
                 echo "Change public/private: ";
-                echo "<input type='checkbox' name='$map_name'>";
+                echo "<input type='checkbox' name='$map_name"."[]' value='switch'>";
+                echo "Delete map: ";
+                echo "<input type='checkbox' name='$map_name"."[]' value='delete'>";
             }
             echo "
 					</div>
