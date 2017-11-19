@@ -66,65 +66,54 @@ echo "</script>\n";
 
 <!-- Load Leaderboard -->
 <script>
-    
     updateRankings();
     $('#order-by').change(updateRankings);
 
     function updateRankings() {
         var dropdown = document.getElementById("order-by");
-        document.getElementById("rankings").innerHTML = "";
+        document.getElementById("rankings").innerHTML = ""; // clear old rankings
+        var val = dropdown.options[dropdown.selectedIndex].value; // "W", "L", or "E"
+        var users; // array of users ordered by input
+        var input; // "win, lost, or ELO"
 
-        var val = dropdown.options[dropdown.selectedIndex].value;
-        var users;
-
-	// Order By Wins
+        // Order By Wins
         if(val == "W") {
-        	var xhr = new XMLHttpRequest();
-       		xhr.onreadystatechange = function() {
-                	if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-                        	users = JSON.parse(this.responseText);
-                        	console.log("Inside users: " + users);
-                	}
-        	};
-        	xhr.open("POST", "./leaderboard.php", false);
-        	xhr.send("order=win");
-        	console.log("1");
-        	console.log(users);
+            input = "win";
         } 
 
-	// Order By Losses
-	else if(val == "L") {
-		var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                                users = JSON.parse(this.responseText);
-                                console.log("Inside users: " + users);
-                        }
-                };
-                xhr.open("POST", "./leaderboard.php", false);
-                xhr.send();
-                console.log("2");
-                console.log(users);
-        } 
-
-	// Order By ELO
-	else if(val == "E") {
-		var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                                users = JSON.parse(this.responseText);
-                                console.log("Inside users: " + users);
-                        }
-                };
-                xhr.open("POST", "./leaderboard.php", false);
-                xhr.send();
-                console.log("3");
-                console.log(users);
+        // Order By Losses
+        else if(val == "L") {
+            input = "lost"
         }
 
-	// Display
-		console.log(users);
+        // Order By ELO
+        else if(val == "E") {
+            input = "ELO"
+        }
+
+        // Make Request
+        jQuery.extend({
+            GetUser: function(type, lim) {
+                var result = null;
+                $.ajax({
+                    method: "POST",
+                    url: "leaderboard.php",
+                    async : false,
+                    data: { order: type, limit: lim },
+                    dataType: "json",
+                    success: function(data) {
+                        result = data;
+                    }
+                });
+                return result;
+            }
+        });
+	    console.log("Input: " + input);
+        var users = $.GetUser(input, 1000);
+    
+        // Display
+        console.log(users);
+
         for(var i in users) {
             var pos = parseInt(i) + 1;
 
@@ -141,7 +130,7 @@ echo "</script>\n";
                                     </div> \
                                     <div class="media-body"> \
                                             <h4 class="media-heading">' + users[i].name + '</h4> \
-                                            <p>Rank: ' + users[i].ELO + '</p> \
+                                            <p>ELO: ' + users[i].ELO + '</p> \
                                     </div> \
                             </div> \
                     </div> \

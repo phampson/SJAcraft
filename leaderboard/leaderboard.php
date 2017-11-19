@@ -5,10 +5,15 @@ if(isset($_POST))
 { 
 	if(empty($_POST['order']))
 	{
-		$order = "lost";
+		$order = "ELO";
+    }
+    else {$order = $_POST['order'];}
+	if(!isset($_POST['limit']))
+	{
+		$limit = "10";
 	}
-	else {$order = $_POST['order'];}
-	$sql = 'SELECT username, win, lost, ELO FROM user_info ORDER BY '.$order.' DESC LIMIT 10';
+	else {$limit = $_POST['limit'];}
+	$sql = 'SELECT username, win, lost, ELO FROM user_info ORDER BY '.$order.' DESC LIMIT '.$limit;
  
         $result=$mysqli->query($sql) or die("project query fail");
         $total = array();

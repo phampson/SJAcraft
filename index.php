@@ -62,19 +62,24 @@ echo "</script>\n";
 <script>
         var users;
 
-        <!-- Request Returns top 10 users based on ELO -->
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                        users = JSON.parse(this.responseText);
-                       //console.log(Object.keys(users));
-                        console.log("Inside users: " + users);
-                }
-        };
-        xhr.open("POST", "./leaderboard/leaderboard.php", false);
-        xhr.send();
-
-        console.log(users);
+        // Request top 10 users by ELO
+        jQuery.extend({
+            GetUsers: function(type, lim) {
+                var result = null;
+                $.ajax({
+                    method: "POST",
+                    url: "leaderboard/leaderboard.php",
+                    async : false,
+                    data: { order: type, limit: lim },
+                    dataType: "json",
+                    success: function(data) {
+                        result = data;
+                   }
+               });
+               return result;
+            }
+        });
+        var users = $.GetUsers("ELO", "10");
 
         for(var i in users) {
 		pos = parseInt(i) + 1;
@@ -83,7 +88,7 @@ echo "</script>\n";
 		<hr> \
                 <div class="row"> \
                         <div class="col-xs-3"> \
-                                <h4 class="text-right">' + i + '</h4> \
+                                <h4 class="text-right">' + pos + '</h4> \
                         </div> \
                         <div class="col-xs-8"> \
                                 <div class="media"> \
@@ -91,8 +96,8 @@ echo "</script>\n";
                                                 <img src="./img/default.png" class="media-object" style="width:60px"> \
                                         </div> \
                                         <div class="media-body"> \
-                                                <h4 class="media-heading">' + users[i] + '</h4> \
-                                                <p>Rank:</p> \
+                                                <h4 class="media-heading">' + users[i].name + '</h4> \
+                                                <p>ELO: ' + users[i].ELO + '</p> \
                                         </div> \
                                 </div> \
                         </div> \
