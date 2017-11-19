@@ -32,8 +32,34 @@ echo "</script>\n";
 <h2 style="color: white; text-align: center;">Tilesets Gallery</h2>
 
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
+	<?php
+		
+		$host= "localhost";  //database host
+		$username="root";  //database username for log in
+		$userpass="ecs160web"; //database password for log in
+		$databasew="web"; //database schema name
+		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+	?>
     </div>
+    
+<!--<script type = "text/php" src="show_maps.php"></script>-->
+		<div class="col-sm-3">
+			<!--<div class="thumbnail" onclick="addMap()">-->
+				<div class="thumbnail">
+				<!--<a href="#"> -->
+					
+					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
+					<div class="caption">
+						<form action="upload.php" method="post" enctype="multipart/form-data">
+						    Select tileset to upload:
+						    <input type="file" name="fileToUpload" id="fileToUpload"> 
+						    <input type="submit" value="Upload Image" name="submit">
+					</form>
+					</div>
+				</a>
+			</div>
+		</div>
+</div>
 
 
 </body>
