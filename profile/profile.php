@@ -50,7 +50,6 @@ else {
 	<script src='https://npmcdn.com/babel-core@5.8.34/browser.min.js'></script>
 </head>
 <body>
-
 <!-- Nav Bar -->
 <div id="navbar"></div>
 <?php
@@ -205,7 +204,8 @@ echo "</script>\n";
 		</div>
 		</div>
 		
-	</userinfo>
+	</userinfo> 
+<!--Possibly move ^^ this to encapsulate bar chart ????-->
 
 		<!--
 	<button class="button addFriend" id="">Add Friend</button>
@@ -214,18 +214,18 @@ echo "</script>\n";
 </div>
 
 <svg id="barChart">
-<div class="col-xs-4">
+<div class="col-xs-3">
 
 <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e--> 
 
 <script>
-  const maxWidth = 430;
+  const maxWidth = 340;
   const maxHeight = 200;
   const margin = {
     top: 80,
     right: 0,
     bottom: 0,
-    left: 180
+    left: 40
   };
 
   const xVariable = 'winloss';
@@ -246,7 +246,7 @@ echo "</script>\n";
       left: 0
     })
 
-  const svg = d3.select('svg')
+  const svg = d3.select('#barChart')
     .attr('width', '100%')
     .attr('height', '100%');
 
@@ -265,7 +265,7 @@ echo "</script>\n";
     .classed('axis', true)
     .classed('y', true);
   
-  var tooltip = d3.select('body').append('div').attr('class','tooltip');
+  var toolTip = svg.append('div').attr('class', 'toolTip');
 
   function type(d) {
     // coerce to a Number from a String (or anything)
@@ -279,7 +279,6 @@ echo "</script>\n";
     function initChart() {
       const width = 200;
       const height = 100;
-    
     
 
       // Initialise scales
@@ -378,20 +377,23 @@ echo "</script>\n";
               'fill-opacity': 0.6
             });
         })
-	.on('mousemove', function(d) {
-	    tooltip
-	      .style("left", d3.event.pageX - 70 + "px")
-	      .style("top", d3.event.pageY - 90 + "px")
-	      .style("display","inline")
-	      .html((xVariable) + "<br>" + (yVariable))
+	.on('mousemove', function() {
+	    toolTip
+	      .style("left", d3.event.pageX - 50 + "px")
+	      .style("top", d3.event.pageY - 70 + "px")
+	      .style("display","inline-block")
+	      .html("Win or Loss" + "<br>" + "Frequency");
 	})
         .on('mouseout', function () {
           d3.select(this)
             .styles({
               'fill': 'gray',
-              'fill-opacity': '0.7'
-            });
+              'fill-opacity': '0.7'});
+	  toolTip
+	     .style("display", "none");
+	  
         });
+	
     }
   
 
