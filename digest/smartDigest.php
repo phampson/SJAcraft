@@ -27,6 +27,4 @@ use PHPMailer\PHPMailer\Exception;*/
 	$query = "SELECT * FROM user_info WHERE digest=1 AND id IN ($imploded_users)";
 	
 	sendDigest($query, "smartDigest.txt", -0.00555);
-
-	phpinfo();
 ?>
