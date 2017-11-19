@@ -57,6 +57,7 @@ if(isset($_SESSION['user_id'])) {
 			    $fetch = $query->fetch_assoc();
 		    	$postID = $fetch['post_id'];
 			    echo "ID: " . $postID . "<br>";
+			    header( 'refresh:0;url=comments.php?postId=' . $postID . '');
 		    }
 		} else {
 		    phpConsole("Error in updating the database.");
