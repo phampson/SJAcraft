@@ -98,7 +98,8 @@ echo "</script>\n";
 			$commentsUser = $row['comment_user'];
 			
 
-			$commentQuery ="SELECT avatar_path FROM user_info WHERE username = '$commentsUser' LIMIT 1";
+			$commentQuery ="SELECT avatar_path FROM user_info WHERE id = '$commentsUser' LIMIT 1";
+			$commentQuery2 ="SELECT username FROM user_info WHERE id = '$commentsUser' LIMIT 1";
 
 			$host= "localhost";
 			$username="root";
@@ -111,11 +112,17 @@ echo "</script>\n";
 			}
 
 			$commentPicPath = "../profile/avatar_pics/$commentsUser.jpg";
+			$commentUsername = "username";
 			if($commentResult = $commentSqli->query($commentQuery)){
 				while ($commentRow = $commentResult->fetch_assoc())
 				{
 					$commentPicPath = $commentRow['avatar_path'];
-
+				}
+			} 
+			if($commentResult = $commentSqli->query($commentQuery2)){
+				while ($commentRow = $commentResult->fetch_assoc())
+				{
+					$commentUsername = $commentRow['username'];
 				}
 			} 
 			$commentSqli->close();
@@ -125,14 +132,17 @@ echo "</script>\n";
 echo "
        <div class = 'comments' > 
         <div class = 'col-sm-1 Cinfo'>
-          <img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentsUser</p>
+          <img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentsDate</p>
         </div> 
 
         <div class = 'col-sm-9'>
-          $commentsContent 
+          <a href='../profile/profile.php?id=$commentsUser'> $commentUsername </a> 
         </div>
+        
 
-	<footer> $commentsDate </footer>
+	<div class = 'col-sm-11'>
+          $commentsContent
+        </div>
     
       </div>";
 		}
