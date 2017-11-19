@@ -13,10 +13,10 @@ function phpConsole($data) {
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 
-if (isset($_POST['user_id']))
+if (isset($_POST['id']))
 {
     //phpConsole("user_id is set");
-    $userID = $_POST['user_id'];
+    $userID = $_POST['id'];
 
     $sql = 'SELECT username from user_info WHERE id ="' . $userID . '"';
     $result = $mysqli->query($sql) or die("Failed to retrieve posts from database.");

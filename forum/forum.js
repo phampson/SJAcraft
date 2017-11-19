@@ -37,13 +37,13 @@ function dumpAllPosts() {
         type: 'GET',
         success: function(data) {
             var obj = jQuery.parseJSON(data);
-            insertIntoHtml(obj);
+            getCategories(obj);
         }
     });
 }
 
 // Insert data into html
-function insertIntoHtml(data) {
+function getCategories(data) {
 
     for (var i = 0; i < data.length; i++) {
         // console.log("element: ", data[i]);
@@ -81,60 +81,47 @@ function getAvatarPath(post, container) {
 		data: { post_user: post[1] },
 		success: function(data) {
 			var obj = jQuery.parseJSON(data);
-			formatHtmlString(post, obj[0], container);
+			getUsername(post, obj[0], container);
 		}
 	});
 
 }
 
 // Format the new post's html and add it to container
-function formatHtmlString(data, path, container)
+function getUsername(post, path, container)
 {
+
+    $.ajax({
+		method: "POST",
+		url: "getUsername.php",
+		data: { id: post[1] },
+		success: function(data) {
+            var obj = jQuery.parseJSON(data);
+            console.log("obj: " + obj);
+            formatHTMLString(post, path, container, obj);
+        }
+     });
+}
+
+function formatHTMLString(data, path, container, username) {
 	postId = data[0];	
 	user_id = data[1];
 	header = data[2];
 	content = data[3];
 	date = data[4];
-
-
-    $.ajax({
-		method: "POST",
-		url: "getUsername.php",
-		data: { user_id: user_id },
-		success: function(data) {
-            var obj = jQuery.parseJSON(data);
-            console.log("obj: " + obj);
-
-	        var html_string = ' \
+	
+ 			var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron"> \
-              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + obj +' </p></div> \
+              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
               			<h3> ' + header + '</h3> \
               			<p> ' + content + ' </p> \
               			<footer> ' + date +' </footer> \
             		</div> \
           	            </a> '
 
-		    container.insertAdjacentHTML('beforeend', html_string);
-        }
-    });
+		    container.insertAdjacentHTML('beforeend', html_string); 
 }
-
-// Get username from user_info
-function getUsername(userID)
-{
-
-    $.ajax({
-		method: "POST",
-		url: "getUsername.php",
-		data: { user_id: userID },
-		success: function(data) {
-            var obj = jQuery.parseJSON(data);
-            alert(obj);
-		}
-	});
-}
-
 
 // Search feature
 function search(form)
