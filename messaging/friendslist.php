@@ -109,7 +109,15 @@ function updateFriends()
 }
 
 function updateData() {
-    $.post("test.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+    var msg = "";
+    var funct = "update";
+    /*$.post("test.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+	newData = data;
+	if (oldData != newData) {
+		oldData = newData;
+    	}
+    });*/
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:friend_id, msg:msg, fnt:funct},function(data){
 	newData = data;
 	if (oldData != newData) {
 		oldData = newData;
@@ -128,14 +136,18 @@ function RemoveFriends()
 
 function newfriend()
 {
+    var msg = "";
+    var funct = "newFriend";
     var friendname = document.getElementById("newfriname").value;
     document.getElementById("newfriname").value="";
 
     RemoveFriends();
 
-    $.post("newfriend.php",{usid:<?php echo $user_id;?>,frnm:friendname},function(data){
-document.getElementById("Frilist").innerHTML += data;});
+    /*$.post("newfriend.php",{usid:<?php echo $user_id;?>,frnm:friendname},function(data){
+document.getElementById("Frilist").innerHTML += data;});*/
 
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frnm:friendname, msg:msg, fnt:funct},function(data){
+document.getElementById("Frilist").innerHTML += data;});
 }
 //setInterval(update, 2500);
         </script>

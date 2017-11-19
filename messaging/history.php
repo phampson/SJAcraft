@@ -84,12 +84,16 @@ function sendMessage(frid)
 {
     var msg = document.getElementById("btn-input").value;
     var fid = frid.getAttribute('sendto');
+    var funct = "sendMessage";
     document.getElementById("btn-input").value = "";
-    $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
+    //$.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg,fnt:funct},function(){removeAllmessages();startNewchat(fid);});
 }
 function startNewchat(fri)
 {
     friend_id = fri;
+    var msg = "";
+    var funct = "update";
     var sendbox = '<div class="input-group">' +
                     '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
                     '<span class="input-group-btn">' +
@@ -98,10 +102,20 @@ function startNewchat(fri)
                 '</div>';
     
     document.getElementById("sendbox").innerHTML += sendbox;
-    $.post("test.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
+    /*$.post("test.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
 	oldData = data;
     });
     $.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
+	document.getElementById("messages").innerHTML += data;
+	var messages = document.getElementById("messages");
+	messages.scrollTop = messages.scrollHeight; 
+	//setTimeout(startNewchat, 2500);
+    });*/
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:fri,msg:msg,fnt:funct},function(data){
+	oldData = data;
+    });
+    funct = "showMessage";
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:fri,msg:msg,fnt:funct},function(data){
 	document.getElementById("messages").innerHTML += data;
 	var messages = document.getElementById("messages");
 	messages.scrollTop = messages.scrollHeight; 
@@ -111,7 +125,16 @@ function startNewchat(fri)
     setInterval(updateData, 2500);
 }
 function updateData() {
-    $.post("test.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+    var msg = "";
+    var funct = "update";
+    /*$.post("test.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+	newData = data;
+	if (oldData != newData) {
+		updatechat();
+		oldData = newData;
+    	}
+    });*/
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:friend_id,msg:msg,fnt:funct},function(data){
 	newData = data;
 	if (oldData != newData) {
 		updatechat();
@@ -121,7 +144,19 @@ function updateData() {
 }
 function updatechat()
 {
-    $.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+    var msg = "";
+    var funct = "showMessage";
+    /*$.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+	var div = document.getElementById("messages");
+    	while(div.hasChildNodes())
+    	{
+        	div.removeChild(div.firstChild);
+    	}	
+	document.getElementById("messages").innerHTML += data;
+	var messages = document.getElementById("messages");
+	messages.scrollTop = messages.scrollHeight; 
+    });*/
+    $.post("messaging.php",{usid:<?php echo $user_id;?>,frid:friend_id,msg:msg,fnt:funct},function(data){
 	var div = document.getElementById("messages");
     	while(div.hasChildNodes())
     	{
@@ -158,6 +193,7 @@ echo "</script>\n";
                     <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><?php echo $friendname;?>
                 </div>
                 <button id="ssearchbtn" class="btn" type="button" onclick="window.location.href='searchresult.php?frid=<?php echo $friend_id;?>';">Search</button>
+                <button id="backbtn" class="btn" type="button" onclick="window.location.href='friendslist.php';">Back</button>
             </div>
 
             <div id="messages" class="panel-body msgContainerBase2">

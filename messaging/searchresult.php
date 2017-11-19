@@ -72,6 +72,7 @@ echo "</script>\n";
                 <div>
                     <h3 class="panel-title" id = "friendtitle" >Searching message history with <?php echo $friendname;?>
                 </div>
+                <button id="backbtn" class="btn" type="button" onclick="window.location.href='history.php?frid=<?php echo $friend_id;?>';">Back</button>
             </div>
 
             <div id="messages" class="panel-body msgContainerBase2">
