@@ -67,6 +67,7 @@ echo "</script>\n";
 </div>-->
 
 <!-- profile -->
+<div class="row">
 <div class="profile container col-xs-12">
    
     <div class="container uploadimg col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1" style="margin: 0; padding: 0px">
@@ -212,23 +213,23 @@ echo "</script>\n";
 	-->
 </div>
 
-<div>
+<svg id="barChart">
+<div class="col-xs-4">
+
 <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e--> 
 
 <script>
-  const maxWidth = 440;
-  const maxHeight = 180;
+  const maxWidth = 430;
+  const maxHeight = 200;
   const margin = {
-    top: 10,
+    top: 80,
     right: 0,
     bottom: 0,
-    left: 35
+    left: 180
   };
 
   const xVariable = 'winloss';
   const yVariable = 'frequency';
-
-  const faintGray = '#ededed';
 
   let xScale;
   let yScale;
@@ -245,7 +246,7 @@ echo "</script>\n";
       left: 0
     })
 
-  const svg = d3.select('body').append('svg')
+  const svg = d3.select('svg')
     .attr('width', '100%')
     .attr('height', '100%');
 
@@ -276,14 +277,10 @@ echo "</script>\n";
     console.log('data', data);
 
     function initChart() {
-      const width = 100;
-      const height = 50;
+      const width = 200;
+      const height = 100;
     
-    var valuesByCategory = d3.nest()
-	.key(function(d) { return d.winloss; })
-	.entries(data);
-
-    console.log(valuesByCategory);
+    
 
       // Initialise scales
       xScale = d3.scaleBand()
@@ -323,8 +320,8 @@ echo "</script>\n";
           .attr('transform', `translate(0, ${newHeight - margin.top - margin.bottom})`);
       }
 
-      xAxisG
-        .transition()
+        xAxisG
+          .transition()
           .duration(150)
           .attr('transform', `translate(0, ${newHeight - margin.top - margin.bottom})`)
           .call(xAxis);
@@ -338,7 +335,7 @@ echo "</script>\n";
       d3.selectAll('.axis text')
         .styles({
           'font-family': 'sans-serif',
-          'font-size': '12px'
+          'font-size': '14px'
         })
 
       d3.selectAll('.axis path')
@@ -358,7 +355,8 @@ echo "</script>\n";
       const enterSelection = updateSelection.enter()
         .append('rect')
           .classed('rect', true)
-          .style('fill', faintGray);
+          .style('fill', 'gray')
+	  .style('fill-opacity', '0.7');
 
       updateSelection.exit()
         .remove();
@@ -376,22 +374,22 @@ echo "</script>\n";
         .on('mouseover', function () {
           d3.select(this)
             .styles({
-              'fill': 'steelblue',
+              'fill': 'navy',
               'fill-opacity': 0.6
             });
         })
 	.on('mousemove', function(d) {
 	    tooltip
-	      .style("left", d3.event.pageX - 50 + "px")
-	      .style("top", d3.event.pageY - 70 + "px")
-	      .style("display","inline-block")
+	      .style("left", d3.event.pageX - 70 + "px")
+	      .style("top", d3.event.pageY - 90 + "px")
+	      .style("display","inline")
 	      .html((xVariable) + "<br>" + (yVariable))
 	})
         .on('mouseout', function () {
           d3.select(this)
             .styles({
-              'fill': faintGray,
-              'fill-opacity': 1
+              'fill': 'gray',
+              'fill-opacity': '0.7'
             });
         });
     }
@@ -415,6 +413,7 @@ echo "</script>\n";
 
 </script>
 </div>
-
+</svg>
+</div>
 </body>
 </html>
