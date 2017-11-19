@@ -26,13 +26,6 @@ if(isset($_SESSION['user_id'])) {
 		$navpath = "../navbar/navbarlogged.html";
 		$username = $fetch['username'];
 
-		phpConsole($_SESSION['user_id']);
-		phpConsole($navpath);
-		phpConsole($avatarPath);
-		phpConsole($email);
-		phpConsole($username);
-	
-
 		// Error Reporting & Global variables
 		error_reporting(E_ALL);
 		ini_set('display_errors', '1');
@@ -60,17 +53,22 @@ if(isset($_SESSION['user_id'])) {
 		    $sql = 'select * from post where user_id="'.$user_id.'" and post_header="'.$postName.'" and post_content="'.$message.'" and tag="'.$category.'"';
 		    $query = $mysqli->query($sql);
 		    if($query) {
-			echo "in query check <br>";
-			$fetch = $query->fetch_assoc();
+			    echo "in query check <br>";
+			    $fetch = $query->fetch_assoc();
 		    	$postID = $fetch['post_id'];
-			echo "ID: " . $postID . "<br>";
-			header( 'refresh:0;url=comments.php?postId=' . $postID . '');
+			    echo "ID: " . $postID . "<br>";
 		    }
-		}
-
-		else {
+		} else {
 		    phpConsole("Error in updating the database.");
 		}
+
+        $sql = 'SELECT post_id FROM post WHERE user_id="'.$user_id.'" ORDER BY post_date DESC LIMIT 1;';
+        $query = $mysqli->query($sql);
+        $fetch = $query->fetch_assoc();
+		$postID = $fetch['post_id'];
+
+        $sql = "INSERT into forum_digest (post_id, user_id) values('$postID','$posterID')";
+        $mysqli->query($sql);
 	}
 }
 

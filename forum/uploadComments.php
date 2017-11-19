@@ -55,7 +55,12 @@ else {
 		echo "last_read_comment_id not added into forum_digest table";
 	}
 
-//header( 'refresh:0;url=comments.php?postId=' . $ID . '');
+	// after comment is made, call smartDigest from digest folder, passing in post_id so
+	
+	include '../digest/smartDigest.php';
+
+
+header( 'refresh:0;url=comments.php?postId=' . $ID . '');
 
 ?>
 

@@ -44,9 +44,12 @@ else {
 	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src='barChart.js'></script>
+	<script src='https://d3js.org/d3.v4.min.js'></script>
+	<script src='https://d3js.org/d3-selection-multi.v0.4.min.js'></script>
+	<script src='https://npmcdn.com/babel-core@5.8.34/browser.min.js'></script>
 </head>
 <body>
-
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -171,7 +174,12 @@ echo "</script>\n";
                         <option value="3"> 16 hour updates</option>
                         <option value="4">daily updates</option>
                         <option value="5">weekly updates</option>
-                        <option value="6">smart updates (update if unread)</option>
+                    </select>
+                    <br>
+                    <select id="smart" name ="smart">
+                        <option value="-1"></option>
+                        <option value="0">No smart digest</option>
+                        <option value="1">Smart digest</option>
                     </select>
                     <br>
                     <button  id="password">Update</button>
@@ -204,102 +212,209 @@ echo "</script>\n";
 	-->
 </div>
 
-<div class="barChart col-xs-3 col-sm-8 col-xs-offset-8">
-<div class="row">
-<svg width="450" height="190"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<!--Adapted from https://bl.ocks.org/alandunning/274bf248fd0f362d64674920e85c1eb7 
-    and https://brendansudol.com/writing/responsive-d3-->
+<div>
+<!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e--> 
 
 <script>
-function responsivefy(svg) {
-    // get container + svg aspect ratio
-    var container = d3.select(svg.node().parentNode),
-        width = parseInt(svg.style("width")),
-        height = parseInt(svg.style("height")),
-        aspect = width / height;
+  const maxWidth = 440;
+  const maxHeight = 180;
+  const margin = {
+    top: 10,
+    right: 0,
+    bottom: 0,
+    left: 35
+  };
 
-    // add viewBox and preserveAspectRatio properties,
-    // and call resize so that svg resizes on inital page load
-    svg.attr("viewBox", "0 0 " + width + " " + height)
-        .attr("perserveAspectRatio", "xMinYMid")
-        .call(resize);
+  const xVariable = 'winloss';
+  const yVariable = 'frequency';
 
-    // to register multiple listeners for same event type, 
-    // you need to add namespace, i.e., 'click.foo'
-    // necessary if you call invoke this function for multiple svgs
-    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
-    d3.select(window).on("resize." + container.attr("id"), resize);
+  const faintGray = '#ededed';
 
-    // get width of container and resize svg to fit it
-    function resize() {
-        var targetWidth = parseInt(container.style("width"));
-        svg.attr("width", targetWidth);
-        svg.attr("height", Math.round(targetWidth / aspect));
+  let xScale;
+  let yScale;
+  let xAxis;
+  let yAxis;
+
+  d3.select('body')
+    .styles({
+      margin: 0,
+      position: 'fixed',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    })
+
+  const svg = d3.select('body').append('svg')
+    .attr('width', '100%')
+    .attr('height', '100%');
+
+  const chartArea = svg.append('g')
+    .classed('chartArea', true)
+    .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+  const barGroup = chartArea.append('g')
+    .classed('bars', true);
+
+  const xAxisG = chartArea.append('g')
+    .classed('axis', true)
+    .classed('x', true);
+
+  const yAxisG = chartArea.append('g')
+    .classed('axis', true)
+    .classed('y', true);
+  
+  var tooltip = d3.select('body').append('div').attr('class','tooltip');
+
+  function type(d) {
+    // coerce to a Number from a String (or anything)
+    d[yVariable] = Number(d[yVariable]);
+    return d;
+  }
+
+  d3.csv('data.csv', type, (error, data) => {
+    console.log('data', data);
+
+    function initChart() {
+      const width = 100;
+      const height = 50;
+    
+    var valuesByCategory = d3.nest()
+	.key(function(d) { return d.winloss; })
+	.entries(data);
+
+    console.log(valuesByCategory);
+
+      // Initialise scales
+      xScale = d3.scaleBand()
+        .domain(data.map(d => d[xVariable]));
+
+      yScale = d3.scaleLinear()
+        .domain([0, d3.max(data.map(d => d[yVariable]))]);
+      console.log(yScale);
+
+      // Build the x-axis
+      xAxis = d3.axisBottom()
+        .scale(xScale);
+
+      // Build the y-axis
+      yAxis = d3.axisLeft()
+        .scale(yScale);
     }
-}
 
-var svg = d3.select("svg"),
-    margin = {top: 10, right: 0, bottom: 20, left: 50},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom;
-  
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+    function updateScales() {
+      const newWidth = d3.min([W.getViewportWidth(), maxWidth]) - margin.left - margin.right;
+      const newHeight = d3.min([W.getViewportHeight(), maxHeight]) - margin.top - margin.bottom;
 
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-    y = d3.scaleLinear().rangeRound([height, 0]);
-  
-var colours = d3.scaleOrdinal()
-    .range(["orange", "green"]);
+      xScale
+        .range([0, newWidth])
+        .paddingInner(0.1)
+        .bandwidth(10);
 
-var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .call(responsivefy);
+      yScale.range([newHeight, 0]);
+    }
 
-d3.json("data.json", function(error, data) {
-    if (error) throw error;
+    function updateAxes(firstCall) {
+      const newHeight = d3.min([W.getViewportHeight(), maxHeight]);
 
-    x.domain(data.map(function(d) { return d.area; }));
-    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+      // position the xAxisG before the transition the first time
+      if (typeof firstCall !== 'undefined') {
+        xAxisG
+          .attr('transform', `translate(0, ${newHeight - margin.top - margin.bottom})`);
+      }
 
-    g.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+      xAxisG
+        .transition()
+          .duration(150)
+          .attr('transform', `translate(0, ${newHeight - margin.top - margin.bottom})`)
+          .call(xAxis);
 
-    g.append("g")
-      	.attr("class", "axis axis--y")
-      	.call(d3.axisLeft(y).ticks(5).tickFormat(function(d) { return parseInt(d); }).tickSizeInner([-width]))
-      .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("text-anchor", "end")
-        .attr("fill", "#5D6971");
+      yAxisG
+        .transition()
+          .duration(150)
+          .call(yAxis);
 
-    g.selectAll(".bar")
-      	.data(data)
-      .enter().append("rect")
-        .attr("x", function(d) { return x(d.area); })
-        .attr("y", function(d) { return y(d.value); })
-        .attr("width", x.bandwidth())
-        .attr("height", function(d) { return height - y(d.value); })
-        .attr("fill", function(d) { return colours(d.area); })
-        .on("mousemove", function(d){
-            tooltip
-              .style("left", d3.event.pageX - 50 + "px")
-              .style("top", d3.event.pageY - 70 + "px")
-              .style("display", "inline-block")
-              .html((d.area) + "<br>" + (d.value));
+      // style the axes
+      d3.selectAll('.axis text')
+        .styles({
+          'font-family': 'sans-serif',
+          'font-size': '12px'
         })
-    		.on("mouseout", function(d){ tooltip.style("display", "none");});
-    });
+
+      d3.selectAll('.axis path')
+        .styles({
+          fill: 'none',
+          stroke: '#161616'
+        })
+
+      d3.selectAll('.axis line')
+        .style('stroke', 'black');
+    }
+
+    function updateBars() {
+      const updateSelection = barGroup.selectAll('rect')
+        .data(data);
+
+      const enterSelection = updateSelection.enter()
+        .append('rect')
+          .classed('rect', true)
+          .style('fill', faintGray);
+
+      updateSelection.exit()
+        .remove();
+
+      enterSelection
+        .merge(updateSelection)
+        .transition()
+          .duration(150)
+          .attr('x', function(d) {return xScale(d[xVariable]);})
+          .attr('width', xScale.bandwidth)
+          .attr('y', d => yScale(d[yVariable]))
+          .attr('height', d => yScale(0) - yScale(d[yVariable]));
+
+      enterSelection
+        .on('mouseover', function () {
+          d3.select(this)
+            .styles({
+              'fill': 'steelblue',
+              'fill-opacity': 0.6
+            });
+        })
+	.on('mousemove', function(d) {
+	    tooltip
+	      .style("left", d3.event.pageX - 50 + "px")
+	      .style("top", d3.event.pageY - 70 + "px")
+	      .style("display","inline-block")
+	      .html((xVariable) + "<br>" + (yVariable))
+	})
+        .on('mouseout', function () {
+          d3.select(this)
+            .styles({
+              'fill': faintGray,
+              'fill-opacity': 1
+            });
+        });
+    }
+  
+
+    function update(firstCall) {
+      updateScales();
+      updateAxes(firstCall);
+      updateBars();
+    }
+
+    function initEvents() {
+      // Set up event handler for resizes
+      W.addListener(update);
+    }
+
+    initChart();
+    update(true); // set parameter `firstCall` to true this once
+    initEvents();
+  });
+
 </script>
 </div>
-</div>
-
-
-
 
 </body>
 </html>

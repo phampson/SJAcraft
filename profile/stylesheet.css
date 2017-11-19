@@ -180,14 +180,16 @@ body {
   shape-rendering: crispEdges;
 }
 .toolTip {
-  position: absolute;
-  display: none;
-  min-width: 80px;
-  height: auto;
-  background: none repeat scroll 0 0 #ffffff;
-  border: 1px solid #6F257F;
-  padding: 14px;
-  text-align: center;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: arial;
+    padding: 6px;
+    background: white;
+    color: black;
+    border-radius: 1px;
+    pointer-events: none;
+    height: auto;
+    position: absolute;
 }
 .barChart {
   position: absolute;

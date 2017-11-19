@@ -40,5 +40,11 @@ if ($_POST['digest'] != -1)
 	 $mysqli->query($insert);
 }
 
-//header('Location: ' . 'profile.php');
+if ($_POST['smart'] != -1)
+{
+	 $insert = "UPDATE user_info SET digest = '" . $_POST['smart'] . "' where id = '" . $_SESSION['user_id'] . "'";
+	 $mysqli->query($insert);
+}
+
+header('Location: ' . 'profile.php');
 ?>
