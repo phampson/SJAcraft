@@ -19,6 +19,24 @@ else
 	deliver_response(2,200,"no uploader",NULL,"uploader") ;
 	die;
 }
+$private=-1;
+if(!empty($_POST['private']))
+{
+	$tem=$_POST['private'];
+	if($tem=='true')
+	{
+		$private=1;
+	}
+	else if($tem=='false')
+	{
+		$private=0;
+	}
+	else {deliver_response(8,200,"incorrect private or public",$_POST['uploader'],"uploader") ; die;}
+}
+else
+{
+	else {deliver_response(9,200,"empty private or public",$_POST['uploader'],"uploader") ; die;}
+}
 //uploading file
 $target_dir = "maps/"; 
 $uploader =  $_POST['uploader'];
@@ -54,7 +72,7 @@ if ($uploadOk == 0) {
 	$output = exec("./png $thumbnail_path $target_file");
 	$numPlayers = substr($output,0,1);
 	$displayName = substr($output,1,strlen($output)-1);
-	$sql = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader')";
+	$sql = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader, private) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader','$private')";
 	if($mysqli->query($sql)) {
 		//echo "label success";
 	} else {
