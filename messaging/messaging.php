@@ -61,8 +61,16 @@ function DisplayMessage($friend_id, $user_id)
 	        echo "
 		<div class='row msgContainer base_sent'>
                     <div class='col-md-10 col-xs-10'>
-                        <div id='$msgid' class='messages msg_sent'>
-                            <p>$content</p>
+                        <div id='$msgid' class='messages msg_sent'>";
+                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                {
+                    echo "
+                         <p><a href='$content'>$content</a></p>";
+                }
+                else
+                { echo "<p>$content</p>";}
+                echo "
+                         
 				<br>
                             <time>$myname | $date</time>
                         </div>
@@ -80,8 +88,16 @@ function DisplayMessage($friend_id, $user_id)
                         <img class='img-circle' src='$friendPicturePath' style='width:65px;' style='height:65px'>
                     </div>
                     <div class='col-xs-10 col-md-10'>
-                        <div id='$msgid' class='messages msg_receive'>
-                            <p>$content</p>
+                        <div id='$msgid' class='messages msg_receive'>";
+                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                {
+                    echo "
+                         <p><a href='$content'>$content</a></p>";
+                }
+                else
+                { echo "<p>$content</p>";}
+                echo "
+                           
                             <time>$friendname | $date</time>
                         </div>
                     </div>

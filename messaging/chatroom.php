@@ -120,11 +120,30 @@ function sendMessage(frid)
     $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
 }
 
+function sendAttachment(frid)
+{
+    var attach = document.getElementById("btn-input").value;
+    var fid = frid.getAttribute('sendto');
+    var msg = "";
+    document.getElementById("btn-input").value = "";
+    $.post("attachment.php",{usid:<?php echo $user_id;?>,frid:Number(fid),attach:attach},function(data){msg = data;});
+    $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
+}
+
 function startNewchat(fri, msgcnt)
 {
     friend_id = fri;
 
     var sendbox = '<div class="input-group">' +
+                    '<div class="selectimg container">' +
+                    '<?php if(!isset($_GET[\'id\'])): ?>' +
+ 	            '<form action="uploadProfile.php" method="post" enctype="multipart/form-data">' +
+	            '<upload><font color ="white" >Select image to upload:</upload>' +
+	            '<input type="file" name="fileToUpload" id="fileToUpload"></font>' +
+	            '<input type="submit" value="Upload Image" name="submit">' +
+                    '</form>' +
+                    '<?php endif; ?>' +
+                    '</div>' +
                     '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
                     '<span class="input-group-btn">' +
                     '<button id="sendBtn" type="submit" class="btn btn-primary btn-sm" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' +
