@@ -51,6 +51,8 @@ function DisplayMessage($friend_id, $user_id)
             $friendrow = $qry -> fetch_assoc();
             $friendname = $friendrow['username'];
 	    $friendAvatar = $friendrow['avatar_path'];
+	    $regex = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+
 	    if (is_null($friendAvatar)) {
 	        $friendPicturePath = "../img/profpic.png";
 	    }
@@ -62,7 +64,7 @@ function DisplayMessage($friend_id, $user_id)
 		<div class='row msgContainer base_sent'>
                     <div class='col-md-10 col-xs-10'>
                         <div id='$msgid' class='messages msg_sent'>";
-                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                if (preg_match("/^attachment_files\/.*/", $content, $matches) || preg_match($regex, $content, $matches))
                 {
                     echo "
                          <p><a href='$content'>$content</a></p>";
@@ -89,7 +91,7 @@ function DisplayMessage($friend_id, $user_id)
                     </div>
                     <div class='col-xs-10 col-md-10'>
                         <div id='$msgid' class='messages msg_receive'>";
-                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                if (preg_match("/^attachment_files\/.*/", $content, $matches) || preg_match($regex, $content, $matches))
                 {
                     echo "
                          <p><a href='$content'>$content</a></p>";
