@@ -95,6 +95,13 @@ function startNewchat(fri)
     var msg = "";
     var funct = "update";
     var sendbox = '<div class="input-group">' +
+ 	        '<form action="attachment.php?frid='+fri+'" method="post" enctype="multipart/form-data">' +
+	            '<upload><font color ="black" >attachment</upload>' +
+	            '<input type="file" name="fileToUpload" id="fileToUpload"></font>' +
+	            '<input type="submit" value="Upload file" name="submit">' +
+                '</form>'+
+                '</div>'+
+                 '<div class="input-group">' +
                     '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
                     '<span class="input-group-btn">' +
                     '<button id="sendBtn" type="submit" class="btn btn-primary btn-sm" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' +

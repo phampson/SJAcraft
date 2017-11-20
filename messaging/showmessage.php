@@ -39,9 +39,15 @@ function DisplayMessage($friend_id, $user_id)
 	        echo "
 		<div class='row msgContainer base_sent'>
                     <div class='col-md-10 col-xs-10'>
-                        <div id='$msgid' class='messages msg_sent'>
-                            <p>$content</p>
-				<br>
+                        <div id='$msgid' class='messages msg_sent'>";
+                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                {
+                    echo "
+                         <p><a href='$content'>$content</a></p>";
+                }
+                else
+                { echo "<p>$content</p>";}
+                echo "
                             <time>$myname | $date</time>
                         </div>
                     </div>
@@ -58,8 +64,15 @@ function DisplayMessage($friend_id, $user_id)
                         <img class='img-circle' src='$friendPicturePath' style='width:65px;' style='height:65px'>
                     </div>
                     <div class='col-xs-10 col-md-10'>
-                        <div id='$msgid' class='messages msg_receive'>
-                            <p>$content</p>
+                        <div id='$msgid' class='messages msg_receive'>";
+                if (preg_match("/^attachment_files\/.*/", $content, $matches))
+                {
+                    echo "
+                         <p><a href='$content'>$content</a></p>";
+                }
+                else
+                { echo "<p>$content</p>";}
+                echo "
                             <time>$friendname | $date</time>
                         </div>
                     </div>
@@ -71,6 +84,14 @@ function DisplayMessage($friend_id, $user_id)
 }
 
 DisplayMessage($frid,$usid);
-
-
+/***
+                if (preg_match("/php/i", "PHP is the web scripting language of choice.", $matches))
+                {
+                    echo "A match was found:" . $matches[0];
+                }
+                else
+                {
+                    echo "<p>$content</p>";
+                }
+***/
 ?>
