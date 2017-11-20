@@ -1,6 +1,6 @@
 <?php
 
-include('/home/ubuntu/ECS160WebServer/start.php');
+include_once('/home/ubuntu/ECS160WebServer/start.php');
 
 $session_user = $_SESSION['user_id'];
 if(isset($_SESSION['user_id'])){
@@ -61,16 +61,48 @@ else {
 		echo "last_read_comment_id not added into forum_digest table";
 	}
 
+	
+	ignore_user_abort(true);
+	set_time_limit(60);
+
+	$strURL = "comments.php?postId=$ID ";
+	header("Location: $strURL", true);
+	header("Connection: close", true);
+	header("Content-Encoding: none\r\n");
+	header("Content-Length: 0", true);
+
+	flush();
+	ob_flush();
+
+	session_write_close();
+	/*$file = fopen("text.txt","w");
+	$time_for_execution = time() + 10;
+	flush();*/
+	sleep(0);
+	
+	exec("php ../digest/smartDigest.php 2>&1 $ID $lastComment &", $output, $return);
+	
+	/*
+	$time_later = time();
+	
+	fwrite($file, "hello" . $time_for_execution);
+	fclose($file);*/
 
 
+	//exit;
+	
 	// after comment is made, call smartDigest from digest folder, passing in post_id so
 	
-	include '../digest/smartDigest.php';
-   
-header('Location: comments.php?postId=' . $ID . '');
+	//include '../digest/smartDigest.php';
 
-//exec("../digest/smartDigest.php > /dev/null 2>&1 &", $output, $return);
+/*header('refresh:0;url=comments.php?postId=' . $ID . '');
 
+exec("nohup php ../digest/smartDigest.php 2>&1 $ID $lastComment &", $output, $return);
+//var_dump($output);
+*/
+/*foreach ($output as $line) {
+	echo "$line";
+}*/
 /*echo $return;
 if (!$return)
 {
