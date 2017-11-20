@@ -42,7 +42,7 @@ if ($_POST['digest'] != -1)
 
 if ($_POST['smart'] != -1)
 {
-	 $insert = "UPDATE user_info SET digest = '" . $_POST['smart'] . "' where id = '" . $_SESSION['user_id'] . "'";
+	 $insert = "UPDATE user_info SET smart = '" . $_POST['smart'] . "' where id = '" . $_SESSION['user_id'] . "'";
 	 $mysqli->query($insert);
 }
 
