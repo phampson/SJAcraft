@@ -21,6 +21,12 @@ else {
 
     $comment = $_POST['comment'];
     $ID = $_POST['ID'];
+    $getLastComment = "Select * from post where post_id = $ID";
+    $query = $mysqli->query($getLastComment);
+	$fetch = $query->fetch_assoc();
+	$lastComment = $fetch['newest_comment_id'];
+    //print_r($lastComment);
+    
     $insert = "INSERT into comment (post_id, comment_user, comment_content) values('$ID','$user_id','$comment')";
 	
         if($mysqli->query($insert)) {
@@ -55,12 +61,31 @@ else {
 		echo "last_read_comment_id not added into forum_digest table";
 	}
 
+
+
 	// after comment is made, call smartDigest from digest folder, passing in post_id so
 	
 	include '../digest/smartDigest.php';
+   
+header('Location: comments.php?postId=' . $ID . '');
+
+//exec("../digest/smartDigest.php > /dev/null 2>&1 &", $output, $return);
+
+/*echo $return;
+if (!$return)
+{
+    echo "success";
+    print_r($output);
+} else {
+    echo "fail";
+    print_r($output);
+}*/
 
 
-header( 'refresh:0;url=comments.php?postId=' . $ID . '');
+//sleep(60);
+//include '../digest/smartDigest.php';
+
+    
 
 ?>
 
