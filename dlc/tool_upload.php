@@ -1,6 +1,7 @@
-2<?php
+<?php
 //db connection
 include('/home/ubuntu/ECS160WebServer/start.php');
+//error_reporting(E_ALL); ini_set('display_errors', '1');
 
 if(!empty($_POST['uploader']))
 {
@@ -35,7 +36,7 @@ if(!empty($_POST['private']))
 }
 else
 {
-	else {deliver_response(9,200,"empty private or public",$_POST['uploader'],"uploader") ; die;}
+	deliver_response(9,200,"empty private or public",$_POST['uploader'],"uploader") ; die;
 }
 //uploading file
 $target_dir = "maps/"; 
