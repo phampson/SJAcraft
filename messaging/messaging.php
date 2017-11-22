@@ -111,6 +111,8 @@ function DisplayMessage($friend_id, $user_id)
 }
 
 function addFriend($frnm, $user_id) {
+    $mysqli = $GLOBALS["mysqli"];
+
     $findnewfriendid = 'select id from user_info where username  = "'.$frnm.'"';
     $trynewfriend = $mysqli->query($findnewfriendid);
     if ($trynewfriend->num_rows >0){
