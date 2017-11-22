@@ -1,7 +1,8 @@
 <?php
 include("/home/ubuntu/ECS160WebServer/start.php");
 
-function phpConsole($data) {
+function phpConsole($data) 
+{
     $output = $data;
     if (is_array($output))
         $output = implode( ',', $output);
@@ -56,7 +57,7 @@ echo "</script>\n";
 <div class="col-sm-8 col-sm-offset-2">
 
 <?php
-function showMaps($query, $ownRepo){
+function showMaps($query, $ownRepo, $private){
     $mysqli = $GLOBALS['mysqli'];
 		if ($result = $mysqli->query($query)) {
 		    $count = 0;
@@ -84,6 +85,32 @@ function showMaps($query, $ownRepo){
                 echo "<input type='checkbox' name='$map_name"."[]' value='switch'>";
                 echo "Delete map: ";
                 echo "<input type='checkbox' name='$map_name"."[]' value='delete'>";
+                
+                if ($private == true) {
+                    echo "<br>Share with a friend only:
+				          <select name='$map_name"."[]' value='share'>
+				            <option value='share'></option>";
+	                $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
+	                while ($friend = $friends->fetch_assoc()) {
+	                    $friendID = $friend["friend_id"];
+	                    $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
+	                    echo "<option value='$friendID'>$friendUserName</option>";
+	                }
+		            echo '</select>';
+		            
+		            phpConsole($map_name);
+		            $friendsSharedWith = $mysqli->query("SELECT shared_user FROM map_settings WHERE map_name='$map_name'");
+		      
+		            echo "<br>Unshare with a friend: <br> <select name='$map_name"."[]' value='share'><option value='unshare'></option>";
+		            while ($friend = $friendsSharedWith->fetch_assoc()) {
+		                $friendID = $friend["shared_user"];
+		                phpConsole($friendID);
+		                $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
+		                
+		                echo "<option value='$friendID'>$friendUserName</option>";
+		            }
+		            echo '</select>';
+		        }
             }
             echo "
 					</div>
@@ -100,7 +127,10 @@ function showMaps($query, $ownRepo){
 	}
 }
 
-function displayUploadButton() {
+function displayUploadButton() 
+{
+    $mysqli = $GLOBALS["mysqli"];
+    
 		echo'
 		<div class="row">
 		    <div class="col-sm-3">
@@ -115,7 +145,17 @@ function displayUploadButton() {
 						    Public <br>
 						    Select map to upload:
 						    <input type="file" name="fileToUpload" id="fileToUpload">
-						    <input type="submit" value="Upload Map" name="submit">
+				            Share with a friend only:
+				            <select>
+				            <option value=""></option>"';
+	    $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
+	    while ($friend = $friends->fetch_assoc()) {
+	        $friendID = $friend["friend_id"];
+	        $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
+	        echo "<option value='$friendID'>$friendUserName</option>";
+	    }
+		echo '			    </select> 
+		                    <input type="submit" value="Upload Map" name="submit">
 					    </form>
 					</div>
 				    </a>
@@ -135,13 +175,13 @@ if ($viewingOwnRepo) {
     echo"<div class='row'>";
     echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
     $query = "select * from map where uploader = $user_id and private=0";
-    showMaps($query,1);
+    showMaps($query,1,false);
     echo "</div>";
 
     echo"<div class='row'>";
     echo "<h2 style='color: white; text-align: center;'>Private Repo</h2>";
     $query = "select * from map where uploader = $user_id and private=1";
-    showMaps($query,1);
+    showMaps($query,1,true);
     echo "</div>,";
 
     echo "<input type='submit' value='Apply Map Changes'>";
