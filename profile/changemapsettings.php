@@ -30,20 +30,37 @@ if ($list = $mysqli->query("SELECT * FROM map WHERE uploader=$id")) {
             if ($_POST[$stupidPOSTMapNameConversion][0]=='switch') {
                 $mysqli->query("UPDATE map SET private=$new WHERE map_name='$mapName' AND uploader=$id");
             } elseif ($_POST[$stupidPOSTMapNameConversion][0]=='delete') {
-
-            // only other option is delete 
                 $mapPath = $map['map_path'];
                 $thumbnail = $map['map_thumbnail'];
                 exec("rm ../dlc/$mapPath ../dlc/$thumbnail");
                 $mysqli->query("DELETE FROM map WHERE map_name='$mapName'");
-            } else {
-                // empty else I guess
+            } elseif ($_POST[$stupidPOSTMapNameConversion][0]!='share') {
+                echo "<br>GOING TO SHARE<br>";
+		        $mapName = $map['map_name'];
+                $friendID = $_POST[$stupidPOSTMapNameConversion][0];
+		        $mysqli->query("INSERT INTO map_settings (map_name, uploader, shared_user) VALUES ('$mapName','$id','$friendID')") or die($myqli->error);
                 
+            } else {
+                // empty else lol.
+            }
+            
+            if (isset($_POST[$stupidPOSTMapNameConversion][1])) {
+                if ($_POST[$stupidPOSTMapNameConversion][0]=='share' and $_POST[$stupidPOSTMapNameConversion][1]!='unshare') {
+                    $mapName = $map['map_name'];
+                    $friendID = $_POST[$stupidPOSTMapNameConversion][1];
+		            $mysqli->query("DELETE FROM map_settings WHERE map_name='$mapName' AND uploader=$id AND shared_user=$friendID");;
+                }
+            }
+            
+            if ($_POST[$stupidPOSTMapNameConversion][2]!='unshare') {
+                $mapName = $map['map_name'];
+                $friendID = $_POST[$stupidPOSTMapNameConversion][2];
+                $mysqli->query("DELETE FROM map_settings WHERE map_name='$mapName' AND uploader=$id AND shared_user=$friendID");
             }
         }
     }
 }
 
 
-header("Location: maprepo.php");
+//header("Location: maprepo.php");
 ?>

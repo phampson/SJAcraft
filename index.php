@@ -45,7 +45,7 @@ echo "</script>\n";
 
      <!-- Play Button -->
     <div class="container btnctn col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">
-     <button type="button" class="btn btn-play">Play Now</button>
+     <button type="button" class="btn btn-fancy-play">Play Now</button>
     </div>
 
 	<!-- Leader Board -->
