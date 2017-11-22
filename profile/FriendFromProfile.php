@@ -59,7 +59,7 @@ $mysqli->query($addFriend1) or die("Add friend 1");
 $mysqli->query($addFriend2) or die ("Add friend 2");
 echo "You have a new friend! :-)";
 
-header("profile.php?id=".$_GET['id']);
+header("Location: profile.php?id=".$_GET['id']);
 ?>
 
 
