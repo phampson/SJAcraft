@@ -30,13 +30,13 @@ if ($uploadOk == 0) {
 } else {
 	echo "Your tileset will be properly uploaded once the tileset database is set up.";
 	
-    /*if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 	$uploader = $_SESSION['user_id'];
-	$thumbnail_path = "maps/thumbnails/" . substr($name,0,strlen($name)-4) . ".png";
-	$output = exec("./png $thumbnail_path $target_file");
-	$numPlayers = substr($output,0,1);
-	$displayName = substr($output,1,strlen($output)-1);
-	$sql = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader')";
+	//$thumbnail_path = "tilesets/thumbnails/" . substr($name,0,strlen($name)-4) . ".png";
+	//$output = exec("./png $thumbnail_path $target_file");
+	//$numPlayers = substr($output,0,1);
+	//$displayName = substr($output,1,strlen($output)-1);
+	$sql = "insert into tilesets (tileset_name, tileset_path, uploader) values('$name','$target_file','$uploader')";
 	if($mysqli->query($sql)) {
 		echo "label success";
 	} else {
@@ -44,11 +44,10 @@ if ($uploadOk == 0) {
 	}
 	echo $thumbnail_path;
 	echo $target_file;
-	echo $numPlayers;
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    	header("location: dlc.php");
+    	header("location: downloadtilesets.php");
     } else {
         echo "Sorry, there was an error uploading your file.";
-    }*/
+    }
 }
 ?>
