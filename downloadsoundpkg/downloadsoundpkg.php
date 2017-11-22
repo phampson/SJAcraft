@@ -97,7 +97,7 @@ echo "</script>\n";
 					<form action="upload.php" method="post" enctype="multipart/form-data">
 						Select sound package to upload:
 							<input type="file" name="fileToUpload" id="fileToUpload"> 
-							<input type="submit" value="Upload Image" name="submit">
+							<input type="submit" value="Upload Package" name="submit">
 					</form>
 				</div>
 			</div>
