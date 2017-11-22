@@ -127,7 +127,7 @@ echo "</script>\n";
         <?php endif?>
         <?php if($foundFriend == TRUE): ?>
         <div class = "box">
-     		<a class="button" href="../messaging/chatroom.php" style=background-color: white>Message User</a>
+     		<a class="button" href="../messaging/friendslist.php" style=background-color: white>Message User</a>
         </div>
         <?php endif?>
         <?php endif; ?>
