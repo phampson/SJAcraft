@@ -10,95 +10,116 @@
 	padding-left:	40px;
 	padding-bottom:	0px;
 }
- 
-/* Menu colors - Normal */
 .navbar .nav > li > a, .navbar .nav > li > a{
 	color:		rgb(170, 170, 170);
 	text-shadow:	3px 3px 4px black;
 }
-/* Menu colors - Hover */
-.navbar .nav > li > a:hover, .navbar .nav > li > a:hover {
-}
-
-/* Menu colors - Active */
-.navbar .nav > li > a:active, .navbar .nav > li > a:active,
-.navbar .nav > li.current-menu-item > a, 
-.navbar .nav > li.current-menu-ancestor > a,
-.navbar .nav > li.current-menu-item > a, 
-.navbar .nav > li.current-menu-ancestor > a {
-}
- 
-/* Dropdown Menu items */
 .dropdown-menu > li > a {
 	font-family: Helvetica;
 }
  
-/* Remove the Hover/Focus Colors  */
-.navbar .nav > li.current-menu-item > a, .navbar .nav > li.current-menu-ancestor > a, 
-.navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
-} 
+ 
+/* Outer Container */
+.container #outctn {
+    position: relative;
+}
+
+
+/* Logo */
+.logo {
+    width: 100%; 
+    position: relative;
+}
+.logoctn {
+    margin-top: -38%;
+}
+
+
+/* Banner */
+.banner {
+    position: relative;
+    width: 100%;
+    margin:auto;
+}
+
+
+/* Leader board */
+.leaderboard {
+    border-radius: 10px;
+    font-color: black;
+    background-color: white;
+    border: solid gray 2px;
+    margin-top: -6%;
+}
+
+
+/* Divs */
+div.div1 {
+    background: url('./img/textures/metalBlue.png');
+    background-repeat: repeat;
+    background-size: 300px 300px;
+}
+div.div2 {
+    background: url('./img/textures/metalLight.png');
+    background-repeat: repeat;
+    background-size: 300px 300px;
+}
+#border-gold { 
+    border: 50px solid transparent;
+    -webkit-border-image: url("./img/borders.png") 50 round; /* Safari 3.1-5 */
+    -o-border-image: url("./img/borders.png") 50 round; /* Opera 11-12.1 */
+    border-image: url("./img/borders.png") 50 round;
+}
+
 
 /* Body */
-html, body {
-    background: url("./img/Texture.png") repeat;
-}
- 
-   .container #outctn {
-        position: relative;
-    }
-
-    /* Logo */
-    .logo {
-        width: 100%;
-        position: relative;
-    }
-    
-    .logoctn {
-        margin-top: -38%;
-    }
-
-    /* Banner */
-    .banner {
-        position: relative;
-        width: 100%;
-        margin:auto;
-    }
-
-    .btnctn {
-        margin-top: -18%;
-    }
-
-    .leaderboard {
-        border-radius: 10px;
-        font-color: black;
-        background-color: white;
-        border: solid gray 2px;
-        margin-top: -6%;
-    }
-    .btn-play {
-        position: relative;
-        width: 100%;
-        color: white;
-        background-color: red;     
-        border-radius: 8px;
-    }
-
-
-@media (min-width: 960px) {
-    .btn-play {
-        font-size: 30px;
-    }
+body {
+    background: url('./img/textures/metalDark.png');
+    background-repeat: repeat;
+    background-size: 300px 300px;
 }
 
-@media (max-width: 960px) {
 
-    .leaderboard h1 {
-        font-size: 15px;
-    }   
-    .leaderboard h4 {
-        font-size: 12px;
-    }
-    .leaderboard p {
-        font-size: 10px;
-    }
-} 
+/* Buttons */
+.btn-fancy-play {
+    background: url('./img/buttons/play/play.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-play:hover {
+    background: url('./img/buttons/play/playHover.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-play:active {
+    background: url('./img/buttons/play/playActive.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-download {
+    background: url('./img/buttons/download/download.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-download:hover {
+    background: url('./img/buttons/download/downloadHover.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-download:active {
+    background: url('./img/buttons/download/downloadActive.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
