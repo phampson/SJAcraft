@@ -6,6 +6,7 @@ if ($_SESSION['user_id']==NULL) {
 	exit;
 }
 
+
 //uploading file
 $target_dir = "soundpkg/";
     
@@ -23,7 +24,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 1000000) {
+if ($_FILES["fileToUpload"]["size"] > 10000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -36,14 +37,14 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         //define uploder, and create the insert query
         $uploader = $_SESSION['user_id'];   
-	    $sql = "insert into soundpkgs (soundpkg_name, soundpkg_path, uploader) values('$name', '$target_file', '$uploader' )";
+	$sql = "insert into soundpkgs (soundpkg_name, soundpkg_path, uploader) values('$name', '$target_file', '$uploader' )";
 
         //try to do the insert 
         if($mysqli->query($sql) or die($mysqli->error)) {
 		    echo "label success";
         } else {
 		    echo $sql."label failed ";
-	    }
+	}
         
         //on success you will redirect back to soundpkg.php
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
