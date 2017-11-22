@@ -2,7 +2,21 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-if(isset($_GET['id'])){
+function phpConsole($data) 
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode( ',', $output);
+    echo "<script>console.log('PHP Console: " . $output . "');</script>";
+} // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
+
+
+
+
+
+
+
+/*if(isset($_GET['id'])){
   $sql = "select * from user_info where id=".$_GET['id'];
   $query = $mysqli->query($sql);
   if ($query) {
@@ -31,20 +45,21 @@ if(isset($_SESSION['user_id'])){
 else {
 	//$navpath = "../navbar/navbarlogged.html";
     header('Location: ' . '../login/login.html');
-}
+}*/
 
 /*$addnewfriend = 'insert into friendlist (user_id,friend_id) value ("'.(int)$_SESSION['user_id'].'","'.$_GET['id'].'");insert into friendlist (user_id,friend_id) value ("'.$_GET['id'].'","'.(int)$_SESSION['user_id'].'")';
  $mysqli->multi_query($addnewfriend);*/
+
 $user1 = $_GET["id"];
 $user2 = $_SESSION["user_id"];
 $addFriend1 = "INSERT INTO friendlist (user_id,friend_id) VALUES ('$user1','$user2')";
 $addFriend2 = "INSERT INTO friendlist (user_id,friend_id) VALUES ('$user2','$user1')";
 
-$mysqli->query($addFriend1);
-$mysqli->query($addFriend2);
+$mysqli->query($addFriend1) or die("Add friend 1");
+$mysqli->query($addFriend2) or die ("Add friend 2");
 echo "You have a new friend! :-)";
 
-header("profile.php?id=$_GET['id']")
+header("profile.php?id=".$_GET['id']);
 ?>
 
 
