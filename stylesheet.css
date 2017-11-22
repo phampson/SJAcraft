@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
 /* Nav Bar */
-/* Menu */
 .navbar .nav > li > a, .navbar .nav > li > a,
 .navbar .nav > li.current-menu-item > a, 
 .navbar .nav > li.current-menu-ancestor > a {
@@ -58,6 +60,7 @@ div.div1 {
     background: url('./img/textures/metalBlue.png');
     background-repeat: repeat;
     background-size: 300px 300px;
+    padding-top: 0px;
 }
 div.div2 {
     background: url('./img/textures/metalLight.png');
@@ -79,6 +82,49 @@ body {
     background-size: 300px 300px;
 }
 
+
+/* Fonts / Headings */
+h1 {
+    font-family: 'Alegreya', serif;
+    margin-top: 0px;
+    padding-top: 0px;
+    color: rgb(255, 195, 0);
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 80px;
+    text-shadow: -1px -1px 3px black;
+}
+h2 {
+    font-family: 'Alegreya', serif;
+    margin-top: 0px;
+    padding-top: 0px;
+    color: rgb(255, 195, 0);
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 50px;
+}
+h3 {
+    font-family: 'Alegreya', serif;
+    margin-top: 0px;
+    padding-top: 0px;
+    color: rgb(255, 195, 0);
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 30px;
+}
+p {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: lighter;
+    font-size: 17px;
+}
+
+
+/* Horizontal Line */
+hr {
+    background-color: darkgrey;
+    color: darkgrey;
+}
 
 /* Buttons */
 .btn-fancy-play {
