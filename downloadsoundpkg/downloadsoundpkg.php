@@ -29,14 +29,11 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<!-- CDN gallery -->
+<!-- Sound Package gallery -->
 <h2 style="color: white; text-align: center;">Sound Packages Gallery</h2>
 
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
-</div>
-    
-<!-- ********************************************************************* -->
 <?php
 	//Connect to the database
 	$host= "localhost";  //database host
@@ -67,12 +64,24 @@ echo "</script>\n";
 			echo "
 				<div class='col-sm-3'>
 					<div class='thumbnail'>
-						<img src='soundpkg/soundPic.png' alt='Fuck these stupid ass bugs' style='width:100%'>
-						<div class='caption'>
+						<img src='soundpkg/soundPic.png' alt='I hate bugs, yes I do' style='width:100%'>
+						<div class='caption'>		
+							<audio id='$count'>
+								<source src='soundpkg/$soundpkg_name'>
+							</audio>
 							<p>$soundpkg_name</p>
 							<p>Uploaded by: $uploaderName</p>
 						</div>
-					<div style='text-align: center'><button><a href=$soundpkg_path download>Download</a></button></div>
+					<div style='text-align: center'>";
+						echo '
+						<button onclick="document.getElementById(\'' . $count . '\').play()">Play</button>
+						<button onclick="document.getElementById(\'' . $count . '\').pause()">Pause</button>
+						<button onclick="document.getElementById(\'' . $count . '\').pause(); document.getElementById(\'' . $count . '\').currentTime = 0;">Stop</button>
+
+						';
+						echo "
+						<button><a href=$soundpkg_path download>Download</a></button>
+					</div>
 				</div>
 		
 				</div>";
@@ -85,23 +94,21 @@ echo "</script>\n";
 	    $result->close();
 	}
 	?>
-<!-- ********************************************************************* -->
 
-
-		<!-- Block to upload sound packages -->
-		<div class="col-sm-3">
-			<div class="thumbnail">
-				<img src="../img/maps/plus.jpg" alt="Insert Sound" style="width:100%">
-				<div class="caption">
-					<!-- Form that calls upload.php -->
-					<form action="upload.php" method="post" enctype="multipart/form-data">
-						Select sound package to upload:
-							<input type="file" name="fileToUpload" id="fileToUpload"> 
-							<input type="submit" value="Upload Package" name="submit">
-					</form>
-				</div>
+	<!-- Block to upload sound packages -->
+	<div class="col-sm-3">
+		<div class="thumbnail">
+			<img src="../img/maps/plus.jpg" alt="Insert Sound" style="width:100%">
+			<div class="caption">
+				<!-- Form that calls upload.php -->
+				<form action="upload.php" method="post" enctype="multipart/form-data">
+					Select sound package to upload:
+					<input type="file" name="fileToUpload" id="fileToUpload"> 
+					<input type="submit" value="Upload Package" name="submit">
+				</form>
 			</div>
 		</div>
+	</div>
 </div>
 
 
