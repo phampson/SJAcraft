@@ -39,9 +39,48 @@ echo "</script>\n";
 		$userpass="ecs160web"; //database password for log in
 		$databasew="web"; //database schema name
 		$mysqli = new mysqli($host,$username,$userpass,$databasew);
-	?>
-    </div>
-    
+
+		if ($mysqli->connect_errno){
+	    echo "we have a problem";
+	}
+	$query = "select * from tilesets";
+	
+	if ($result = $mysqli->query($query)) {
+		$count = 0;
+	    while ($row = $result->fetch_assoc()) {
+			if($count % 4 == 0){
+				echo "<div class='row'>";		
+			}
+			$tileset_path = $row['tileset_path'];
+			$tileset_name = $row['tileset_name'];
+			//$displayName = $row['display_name'];
+			$uploaderID = $row['uploader'];
+		
+			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
+			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
+			echo "
+				<div class='col-sm-3'>
+					<div class='thumbnail'>
+						<img src='soundpkg/soundPic.png' alt='should be replaced with tileset preview thumbnail' style='width:100%'>
+						<div class='caption'>
+							<p>$tileset_name</p>
+							<p>Uploaded by: $uploaderName</p>
+						</div>
+					<div style='text-align: center'>";
+						echo "
+						<button><a href=$tileset_path download>Download</a></button>
+					</div>
+				</div>
+		
+				</div>";
+			if($count % 4 == 3){
+				echo "</div>";		
+			}
+			$count = $count + 1;
+	    }
+	    $result->close();
+	}
+	?>    
 <!--<script type = "text/php" src="show_maps.php"></script>-->
 		<div class="col-sm-3">
 			<!--<div class="thumbnail" onclick="addMap()">-->
