@@ -67,7 +67,7 @@ echo "</script>\n";
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
-		<div class='col-sm-3'>
+		<div class='div1 col-sm-3'>
 			<div class='thumbnail'>
 
 				
