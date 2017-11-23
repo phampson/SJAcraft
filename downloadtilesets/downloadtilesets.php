@@ -61,7 +61,7 @@ echo "</script>\n";
 			echo "
 				<div class='col-sm-3'>
 					<div class='thumbnail'>
-						<img src='soundpkg/soundPic.png' alt='I hate bugs, yes I do' style='width:100%'>
+						<img src='soundpkg/soundPic.png' alt='should be replaced with tileset preview thumbnail' style='width:100%'>
 						<div class='caption'>
 							<p>$tileset_name</p>
 							<p>Uploaded by: $uploaderName</p>
