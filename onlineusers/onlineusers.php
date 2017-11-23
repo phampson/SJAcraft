@@ -41,22 +41,21 @@ echo "</script>\n";
 ?>
 
 <!-- Tabs -->
-<div class="container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 transparent-background">
-	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#web">Web</a></li>
-		<li><a data-toggle="tab" href="#game">Game</a></li>
-	</ul>
-
-	<div class="tab-content">
-		<div id="web" class="tab-pane fade in active">
-			<h1>Online Users</h1>
-			<div id="new_user_container_web"></div>
+<div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
+        <h1>Online Users</h1>
+        <hr>
+        <div class="row">
+            <div classs="col-xs-5 col-xs-7">
+                <div class="form-group">
+                    <label for="order-by">View For:</label>
+                    <select class="form-control" id="order-by">
+                        <option value="W">Web</option>
+			<option value="G">Game</option>
+		    </select>
 		</div>
-		<div id="game" class="tab-pane fade">
-			<h1>Online Users</h1>
-                        <div id="new_user_container_game"></div>
-		</div>
-	</div>
+            </div>
+        </div>
+        <div id="new_user_container"></div>
 </div>
 
 </body>

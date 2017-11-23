@@ -1,5 +1,17 @@
-$(document).ready(AddUsers(1));
+/* Display logged in users for Web in page load */
 $(document).ready(AddUsers(2));
+
+/* Display logged in users when selection changes */ 
+$('#order-by').change(function() {
+    document.getElementById('new_user_container').innerHTML = "";
+    var dropdown = document.getElementById("order-by");
+    var val = dropdown.options[dropdown.selectedIndex].value // "W" or "G"
+    if(val == "W") {
+        AddUsers(2);
+    } else {
+        AddUsers(1);
+    }
+});
 
 // returns JSON array of logged in users 
 // type 1: game
@@ -85,12 +97,7 @@ function GetAvatar(input)
 
 function AddUsers(type) 
 {
-	if(type == 1) {
-		var container = document.getElementById("new_user_container_game");
-	}
-	else {
-		var container = document.getElementById("new_user_container_web");
-	}
+	var container = document.getElementById("new_user_container");
 
 	// request	
 	var users = Get(type);
@@ -105,17 +112,12 @@ function AddUsers(type)
 		console.log(users[i]);
 		var html_string = ' \
 		<div class="row"> \
-			<div class="col-xs-3 col-xs-offset-1 col-sm-2"> \
+			<div class="div2 col-xs-12 col-sm-10 col-sm-offset-1"> \
 				<img align=left src="../profile/' + users_avatar[i] +  '" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
-			</div> \
-			<div class="col-xs-4"> \
-				<a href="../profile/profile.php?id=' + users_id[i] +  '"><h3> ' + users[i] + '</h3></a> \
-			</div> \
-			<div class="col-xs-3 col-sm-4"> \
-				<img align=left src="../img/maps/plus.jpg" style="width:60px;height:60px" alt="Add Friend picture"></img> \
+                        	<a href="../profile/profile.php?id=' + users_id[i] + '"><h3> ' + users[i] + '</h3></a> \
 			</div> \
 		</div> \
-		<br>'
+		<br>';
 
 		container.insertAdjacentHTML('beforeend', html_string);
 	}

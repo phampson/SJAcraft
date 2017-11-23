@@ -1,18 +1,7 @@
-.transparent-background {
-	background-color: rgba(0, 0, 0, .5); 
-	color: white; 
-	margin-top: 40px; 
-	padding-bottom: 30px;
-}
-.transparent-background li {
-	font-size: 20px;
+.div2 > img {
+	padding: 10px;
 }
 
-.nav-tabs > li > a:hover {
+label {
 	color: white;
-}
-
-.my-user-name {
-	font-size: 50px;
-	color: blue;
 }
