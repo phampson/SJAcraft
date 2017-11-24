@@ -16,6 +16,7 @@ else{
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -30,41 +31,38 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div class="container col-xs-12 col-xs-offset-0">
-	<!-- Leader Board -->
-	<div class="container col-xs-12 col-sm-8 col-sm-offset-2" style="background-color:white">
-		<h2 class="text-center">Rankings</h2>
-		<div id="leaderboard"></div>
+<!-- Rankings -->
+<div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
+	<h2 class="text-center">Rankings</h2>
 
-        <div class="row">
-            <div class="col-xs-5 col-xs-offset-7">
-                <div class="form-group">
-                    <label for="order-by">Order By:</label>
-                    <select class="form-control" id="order-by">
-                        <option value="W">Wins</option>
-                        <option value="L">Losses</option>
-                        <option value="E">ELO</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-1">
-                <p class="text-right">Rank</p>
-            </div>
-            <div class="col-xs-3 col-xs-offset-1">Player</div>
-            <div class="col-xs-1 col-xs-offset-3">W</div>
-            <div class="col-xs-1">L</div>
-            <div class="col-xs-1">ELO</div>
-            <div class="col-xs-1"></div>
+	<!-- order by select -->
+        <div class="form-group">
+            <label for="order-by">Order By:</label>
+            <select class="form-control" id="order-by">
+                <option value="W">Wins</option>
+                <option value="L">Losses</option>
+                <option value="E">ELO</option>
+            </select>
         </div>
 
-        <div id="rankings"></div></div>
+	<!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>ELO</th>
+                </tr>
+            </thead>
+            <tbody id="rankings">
+            </tbody>
+        </table>
 </div>
 
 </body>
 
-<!-- Load Leaderboard -->
+<!-- Load Rankings -->
 <script>
     updateRankings();
     $('#order-by').change(updateRankings);
@@ -118,28 +116,17 @@ echo "</script>\n";
             var pos = parseInt(i) + 1;
 
             var html_string = ' \
-            <hr> \
-            <div class="row"> \
-                    <div class="col-xs-1"> \
-                        <h4 class="text-right">' + pos + '</h4> \
-                    </div> \
-                    <div class="col-xs-7"> \
-                            <div class="media"> \
-                                    <div class="media-left"> \
-                                            <img src="../img/default.png" class="media-object" style="width:60px"> \
-                                    </div> \
-                                    <div class="media-body"> \
-                                            <h4 class="media-heading">' + users[i].name + '</h4> \
-                                            <p>ELO: ' + users[i].ELO + '</p> \
-                                    </div> \
-                            </div> \
-                    </div> \
-                    <div class="col-xs-1">' + users[i].win + '</div> \
-                    <div class="col-xs-1">' + users[i].lost + '</div> \
-                    <div class="col-xs-1">' + users[i].ELO + '</div> \
-                    <div class="col-xs-1"></div> \
-            </div>';
+            <tr> \
+                <td> \
+                    <img align="left" src="../img/default.png" style="width:60px;height:60px;"> \
+                    <h3>' + users[i].name + '</h3> \
+                </td> \
+                <td>' + users[i].win + '</td> \
+                <td>' + users[i].lost + '</td> \
+                <td>' + users[i].ELO + '</td> \
+            </tr>';
 
+            //<img src="../img/default.png" class="media-object" style="width: 60px">
             document.getElementById("rankings").insertAdjacentHTML('beforeend', html_string);
         }
     }
