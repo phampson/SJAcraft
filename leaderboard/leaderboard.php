@@ -13,7 +13,7 @@ if(isset($_POST))
 		$limit = "10";
 	}
 	else {$limit = $_POST['limit'];}
-	$sql = 'SELECT username, win, lost, ELO FROM user_info ORDER BY '.$order.' DESC LIMIT '.$limit;
+	$sql = 'SELECT username, win, lost, ELO, id FROM user_info ORDER BY '.$order.' DESC LIMIT '.$limit;
  
         $result=$mysqli->query($sql) or die("project query fail");
         $total = array();
@@ -23,6 +23,7 @@ if(isset($_POST))
             $arr["win"] = $row[1];
             $arr["lost"] = $row[2];
             $arr["ELO"] = $row[3];
+            $arr["id"] = $row[4];
           	array_push($total,$arr);
         }
         echo json_encode($total);
