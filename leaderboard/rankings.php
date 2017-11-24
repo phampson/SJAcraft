@@ -33,7 +33,7 @@ echo "</script>\n";
 
 <!-- Rankings -->
 <div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
-	<h1 class="text-center">Rankings</h1>
+	<h1>Rank</h1>
         <hr>
 
 	<!-- order by select -->
@@ -119,8 +119,8 @@ echo "</script>\n";
             var html_string = ' \
             <tr> \
                 <td> \
-                    <img align="left" src="../img/default.png" style="width:60px;height:60px;"> \
-                    <h3>' + users[i].name + '</h3> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
+                    <h3><a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h3> \
                 </td> \
                 <td>' + users[i].win + '</td> \
                 <td>' + users[i].lost + '</td> \

@@ -3,8 +3,9 @@
 include('/home/ubuntu/ECS160WebServer/start.php');
 
 error_reporting(E_ALL); ini_set('display_errors', '1');
-$session_user = $_SESSION['user_id'];
+
 if(isset($_SESSION['user_id'])){
+    $session_user = $_SESSION['user_id'];
 	$navpath = "../navbar/navbarlogged.html";
 }
 else{
@@ -12,6 +13,15 @@ else{
 }
 ?>
 <?php
+// Helper function
+function phpConsole($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode( ',', $output);
+
+    echo "<script>console.log('PHP Console: " . $output . "');</script>";
+} // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
+
 $ID = $_GET['postId'];
  
 
@@ -32,9 +42,10 @@ $sql = 'select * from user_info where id="' .$user. '"';
 	$post_user_id = $fetch['id'];
 	$username = $fetch['username'];
 
-$sql = "UPDATE forum_digest SET last_read_comment_id = '$newest_comment_id' WHERE post_id = '$ID' AND user_id = '$session_user'";
-$mysqli->query($sql);
-
+if(isset($_SESSION['user_id'])){
+    $sql = "UPDATE forum_digest SET last_read_comment_id = '$newest_comment_id' WHERE post_id = '$ID' AND user_id = '$session_user'";
+    $mysqli->query($sql);
+}
 //echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
 
 
