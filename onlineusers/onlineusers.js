@@ -111,13 +111,12 @@ function AddUsers(type)
 	for(var i in users) {
 		console.log(users[i]);
 		var html_string = ' \
-		<div class="row"> \
-			<div class="div2 col-xs-12 col-sm-10 col-sm-offset-1"> \
-				<img align=left src="../profile/' + users_avatar[i] +  '" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
+		<tr> \
+			<td> \
+				<img align="left" src="../profile/' + users_avatar[i] +  '" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
                         	<a href="../profile/profile.php?id=' + users_id[i] + '"><h3> ' + users[i] + '</h3></a> \
-			</div> \
-		</div> \
-		<br>';
+			</td> \
+		</tr>';
 
 		container.insertAdjacentHTML('beforeend', html_string);
 	}
