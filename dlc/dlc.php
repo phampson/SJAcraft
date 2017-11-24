@@ -33,23 +33,39 @@ echo "</script>\n";
 
 <!-- CDN gallery -->
 <h2 style="color: white; text-align: center;">Map Gallery</h2>
+<br>
+<center>
+	<form action='dlc.php' method='get' onsubmit='encodeInput(this)'>
+		<input type='text' name='searchTerm'>
+		<input type='submit' value='SEARCH'>
+	</form>
+</center>
+<br>
+<script type='text/javascript'>
+	function encodeInput(form)
+	{
+		form.elements['searchTerm'].value = encodeURIComponent(form.elements['searchTerm'].value);
+	}
+</script>
 
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 
 
 		<?php
-		
-		$host= "localhost";  //database host
-		$username="root";  //database username for log in
-		$userpass="ecs160web"; //database password for log in
-		$databasew="web"; //database schema name
-		$mysqli = new mysqli($host,$username,$userpass,$databasew);
 
-		if ($mysqli->connect_errno){
-		    echo "we have a problem";
+		if (isset($_GET["searchTerm"]) and $_GET["searchTerm"]!="") {
+			$searchTerm = rawurldecode($_GET["searchTerm"]);
+
+
+			$query = "SELECT id FROM user_info WHERE username='$searchTerm'";
+			if ($id = $mysqli->query($query)) {
+				$id = ($id->fetch_assoc())["id"];
+			}
+			$query = "SELECT * FROM map WHERE (display_name='$searchTerm' OR 
+			          map_name='$searchTerm' OR uploader='$id') AND private=0";
+		} else {
+			$query = "SELECT * FROM map WHERE private=0";
 		}
-
-		$query = "select * from map";
 		
 		if ($result = $mysqli->query($query)) {
 			$count = 0;
@@ -68,7 +84,7 @@ echo "</script>\n";
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
 		<div class='col-sm-3'>
-			<div class='div1 thumbnail'>
+			<div class='thumbnail'>
 
 				
 					<img src=$map_thumbnail alt=$map_name style='width:100%'>
@@ -101,7 +117,7 @@ echo "</script>\n";
 						<form action="upload.php" method="post" enctype="multipart/form-data">
 						    Select map to upload:
 						    <input type="file" name="fileToUpload" id="fileToUpload"> 
-						    <input type="submit" value="Upload Image" name="submit">
+						    <input type="submit" value="Upload Map" name="submit">
 					</form>
 					</div>
 				</a>

@@ -34,13 +34,13 @@ echo "</script>\n";
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 	<?php
 		
-		$host= "localhost";  //database host
-		$username="root";  //database username for log in
-		$userpass="ecs160web"; //database password for log in
-		$databasew="web"; //database schema name
-		$mysqli = new mysqli($host,$username,$userpass,$databasew);
+	$host= "localhost";  //database host
+	$username="root";  //database username for log in
+	$userpass="ecs160web"; //database password for log in
+	$databasew="web"; //database schema name
+	$mysqli = new mysqli($host,$username,$userpass,$databasew);
 
-		if ($mysqli->connect_errno){
+	if ($mysqli->connect_errno) {
 	    echo "we have a problem";
 	}
 	$query = "select * from tilesets";
@@ -58,6 +58,23 @@ echo "</script>\n";
 		
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
+			
+			echo "
+				<div class='col-sm-3'>
+					<div class='thumbnail'>
+						<img src='tilesets/" . $tileset_name . "' alt='should be replaced with tileset preview thumbnail' style='width:100%'>
+						<div class='caption'>
+							<p style='color:black;'>$tileset_name</p>
+							<p style='color:black;'>Uploaded by: $uploaderName</p>
+						</div>
+					<div style='text-align: center'>";
+						echo "
+						<button><a href=$tileset_path download>Download</a></button>
+					</div>
+				</div>
+		
+				</div>";
+			/*
 			echo "
 				<div class='col-sm-3'>
 					<div class='thumbnail'>
@@ -73,6 +90,8 @@ echo "</script>\n";
 				</div>
 		
 				</div>";
+			*/
+
 			if($count % 4 == 3){
 				echo "</div>";		
 			}
