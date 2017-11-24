@@ -109,7 +109,6 @@ echo "</script>\n";
 			$numPlayers = $row['num_players'];
 			$displayName = $row['display_name'];
 			$uploaderID = $row['uploader'];
-			
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
@@ -121,7 +120,7 @@ echo "</script>\n";
 					<div class='caption'>
 						<p>$displayName</p>
 						<p>$numPlayers players</p>
-						<p>Uploaded by: $uploaderName</p>
+						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
 				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
 			</div>
