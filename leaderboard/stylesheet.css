@@ -1,0 +1,11 @@
+table {
+	color: white;
+}
+
+td > img {
+	padding: 10px;
+}
+
+label {
+	color: white;
+}

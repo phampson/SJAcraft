@@ -12,11 +12,11 @@ function phpConsole($data) {
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
-// User logged in
+
 if(isset($_SESSION['user_id'])) {
     	$posterID = $_SESSION['user_id'];
 	$sql = "SELECT * FROM user_info WHERE id=$posterID";
-    $query = $mysqli->query($sql);
+    	$query = $mysqli->query($sql);
 
 	if($query) {
 		$fetch = $query->fetch_assoc();
@@ -34,15 +34,14 @@ if(isset($_SESSION['user_id'])) {
 		$message = $_POST['message'];
 		$category = $_POST['category'];
 
-
+		if (!isset($category)) {
+			$category = "General";
+		}
 
 		// Print Statements (Delete later)
 		echo "Post Name: " . $postName . "<br>";
 		echo "Message: " . $message . "<br>";
 		echo "Category: " . $category . "<br>";
-		
-		
-
 
 		// Store in database
 		$sql = "INSERT into post (user_id, post_header, post_content, tag) 
@@ -55,7 +54,7 @@ if(isset($_SESSION['user_id'])) {
 		    if($query) {
 			    echo "in query check <br>";
 			    $fetch = $query->fetch_assoc();
-		    	$postID = $fetch['post_id'];
+			$postID = $fetch['post_id'];
 			    echo "ID: " . $postID . "<br>";
 			    header( 'refresh:0;url=comments.php?postId=' . $postID . '');
 		    }
@@ -63,13 +62,14 @@ if(isset($_SESSION['user_id'])) {
 		    phpConsole("Error in updating the database.");
 		}
 
-        $sql = 'SELECT post_id FROM post WHERE user_id="'.$user_id.'" ORDER BY post_date DESC LIMIT 1;';
-        $query = $mysqli->query($sql);
-        $fetch = $query->fetch_assoc();
+	$sql = 'SELECT post_id FROM post WHERE user_id="'.$user_id.'" ORDER BY post_date DESC LIMIT 1;';
+	$query = $mysqli->query($sql);
+	$fetch = $query->fetch_assoc();
 		$postID = $fetch['post_id'];
 
-        $sql = "INSERT into forum_digest (post_id, user_id) values('$postID','$posterID')";
-        $mysqli->query($sql);
+	$sql = "INSERT into forum_digest (post_id, user_id) values('$postID','$posterID')";
+	$mysqli->query($sql);
+
 	}
 }
 
@@ -81,8 +81,6 @@ else {
 	$email = "email unknown";
 	$navpath = "../navbar/navbar.html";
 }
-
-
 
 
 
