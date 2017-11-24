@@ -38,7 +38,7 @@ echo "</script>\n";
 	<form action='dlc.php' method='get' onsubmit='encodeInput(this)'>
 		<input type='text' name='searchTerm' placeholder="SEARCH TERM">
 		<select name='sort'>
-			<option>SORT BY</option>
+			<option disabled selected value>SORT BY</option>
 			<option value='players'>players</option>
 			<option value='uploader'>uploader</option>
 			<option value='name'>name</option>
@@ -73,6 +73,9 @@ echo "</script>\n";
 					break;
 				case "date":
 					$sortOption = " ORDER BY upload_date";
+					break;
+				default:
+					$sortOption = "";
 			}
 		} else {
 			$sortOption = "";
