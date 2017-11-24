@@ -164,25 +164,24 @@ echo "</script>\n";
 ?>
 
 <!--Message inbox -->
-<div class = "container-fluid">
-    <div id = "inbox" class = "panel panel-default">
-            <div class= "panel-heading topBar">
-                <div>
-                    <h3 class = "panel-title">
-                        <span class = "glyphicon glyphicon-message-in">
-                        </span> Friends list<br>
-                            <input type="text" id="newfriname">
-                            <button id="addfriendbtn" class="btn" type="submit" onclick="newfriend();">Add Friend</button>
-                    </h3>
-                </div>
+<div class="div1 col-sm-8 col-sm-offset-2" id="border-gold">
+<h3 style="text-align: left;">Friend List</h3>
+    <div class="panel panel-default col-sm-12">
+            <div class="panel-heading">
+                
+                    <p class="panel-title" style="color: black;">                   
+                            <input type="text" placeholder="Search For Friends" id="newfriname">
+                            <button id="addfriendbtn" class="btn-simple" type="submit" onclick="newfriend();">Add Friend</button>
+                    </p>
+                
             </div>
-            <div class = "panel-body msgContainerBase1">
-                <div id="Frilist" class = "panel-group">
+            <div class = "panel-body">
+                <div class="panel-group">
                 <!-- Write php code to list friends -->
 		<?php ShowFriends($user_id,$mysqli);?>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 </div>
 
