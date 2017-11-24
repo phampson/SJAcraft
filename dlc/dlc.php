@@ -36,7 +36,14 @@ echo "</script>\n";
 <br>
 <center>
 	<form action='dlc.php' method='get' onsubmit='encodeInput(this)'>
-		<input type='text' name='searchTerm'>
+		<input type='text' name='searchTerm' placeholder="SEARCH TERM">
+		<select name='sort'>
+			<option>SORT BY</option>
+			<option value='players'>players</option>
+			<option value='uploader'>uploader</option>
+			<option value='name'>name</option>
+			<option value='date'>date</option>
+		</select>
 		<input type='submit' value='SEARCH'>
 	</form>
 </center>
@@ -53,7 +60,25 @@ echo "</script>\n";
 
 		<?php
 
-		if (isset($_GET["searchTerm"]) and $_GET["searchTerm"]!="") {
+		if (isset($_GET["sort"])) {
+			switch ($_GET["sort"]) {
+				case "players":
+					$sortOption = " ORDER BY num_players";
+					break;
+				case "uploader":
+					$sortOption = " ORDER BY uploader";
+					break;
+				case "name":
+					$sortOption = " ORDER BY display_name";
+					break;
+				case "date":
+					$sortOption = " ORDER BY upload_date";
+			}
+		} else {
+			$sortOption = "";
+		}
+
+		if (isset($_GET["searchTerm"]) and $_GET["searchTerm"]!="" and $_GET["searchTerm"]!="SEARCH TERM") {
 			$searchTerm = rawurldecode($_GET["searchTerm"]);
 
 
@@ -67,6 +92,8 @@ echo "</script>\n";
 			$query = "SELECT * FROM map WHERE private=0";
 		}
 		
+		$query .= $sortOption;
+
 		if ($result = $mysqli->query($query)) {
 			$count = 0;
 		    while ($row = $result->fetch_assoc()) {
