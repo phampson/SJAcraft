@@ -1,4 +1,8 @@
-.div2 > img {
+table { 
+	color: white;
+}
+
+td > img {
 	padding: 10px;
 }
 

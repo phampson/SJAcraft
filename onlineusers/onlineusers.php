@@ -40,22 +40,25 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<!-- Tabs -->
+<!-- Online Users -->
 <div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
         <h1>Online Users</h1>
         <hr>
-        <div class="row">
-            <div classs="col-xs-5 col-xs-7">
-                <div class="form-group">
-                    <label for="order-by">View For:</label>
-                    <select class="form-control" id="order-by">
-                        <option value="W">Web</option>
-			<option value="G">Game</option>
-		    </select>
-		</div>
-            </div>
+
+        <!-- order-by select -->
+        <div class="form-group">
+            <label for="order-by">View For:</label>
+            <select class="form-control" id="order-by">
+                <option value="W">Web</option>
+                <option value="G">Game</option>
+            </select>
         </div>
-        <div id="new_user_container"></div>
+
+        <!-- table -->
+        <table class="table">
+            <tbody id="new_user_container">
+            </tbody>
+        </table>
 </div>
 
 </body>
