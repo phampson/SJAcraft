@@ -42,12 +42,14 @@ function ShowFriends($userid,$mysqli) {
 		}
             }
             echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                
+                    <tbody class="col-xs-12">
+                    	<tr>
+                    	<td style="width:6000px; height:50px">
                         <div id="chatButton">
-                                <a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
-                            <button class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
-                                <div class="messages">
+                                <p><a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="'.$picturePath.'"></a>  
+                            <button style="color:white;" class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
+                                
                                     <strong>'.$friendname.'</strong>';
             $numNewMsg = 'select * from message where ((sender = "'.$userid.'" and receiver="'.$friend_id.'") or (sender = "'.$friend_id.'" and receiver = "'.$userid.'")) and message_id > "'.$interact_msgid.'"';
             if($numNM = $mysqli->query($numNewMsg)){
@@ -58,11 +60,15 @@ function ShowFriends($userid,$mysqli) {
                 }
             }
             echo '
-                                </div>
+                                
                             </button>
+                            </p>
                         </div>
-                    </div>
-                </div>
+                        </td>
+                        </tr>
+                    </tbody>
+                    
+                
 ';
             
 	}
@@ -165,22 +171,20 @@ echo "</script>\n";
 
 <!--Message inbox -->
 <div class="div1 col-sm-8 col-sm-offset-2" id="border-gold">
-<h3 style="text-align: left;">Friend List</h3>
-    <div class="panel panel-default col-sm-12">
-            <div class="panel-heading">
-                
-                    <p class="panel-title" style="color: black;">                   
+<h3 style="text-align: left;">Friend List</h3><hr>
+    <div class="div2 col-sm-12">
+            <div class="panel-heading"><br>
+                    <p style="color: black;">                   
                             <input type="text" placeholder="Search For Friends" id="newfriname">
                             <button id="addfriendbtn" class="btn-simple" type="submit" onclick="newfriend();">Add Friend</button>
-                    </p>
-                
+                    </p><hr>               
             </div>
-            <div class = "panel-body">
-                <div class="panel-group">
+            <table class="table-hover">
+                <tbody>
                 <!-- Write php code to list friends -->
 		<?php ShowFriends($user_id,$mysqli);?>
-                </div>
-            </div>
+                </tbody>
+            </table><br>
     </div>
     </div>
 </div>
