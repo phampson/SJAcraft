@@ -119,7 +119,7 @@ echo "</script>\n";
             var html_string = ' \
             <tr> \
                 <td> \
-                    <img align="left" src="../img/default.png" style="width:60px;height:60px;"> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
                     <h3><a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h3> \
                 </td> \
                 <td>' + users[i].win + '</td> \
