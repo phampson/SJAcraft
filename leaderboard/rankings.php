@@ -120,7 +120,7 @@ echo "</script>\n";
             <tr> \
                 <td> \
                     <img align="left" src="../img/default.png" style="width:60px;height:60px;"> \
-                    <h3>' + users[i].name + '</h3> \
+                    <h3><a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h3> \
                 </td> \
                 <td>' + users[i].win + '</td> \
                 <td>' + users[i].lost + '</td> \

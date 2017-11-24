@@ -96,7 +96,7 @@ echo "</script>\n";
                                                 <img src="./img/default.png" class="media-object" style="width:60px"> \
                                         </div> \
                                         <div class="media-body"> \
-                                                <h4 class="media-heading">' + users[i].name + '</h4> \
+                                                <h4 class="media-heading">'+ '<a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h4> \
                                                 <p>ELO: ' + users[i].ELO + '</p> \
                                         </div> \
                                 </div> \
