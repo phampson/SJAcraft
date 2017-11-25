@@ -211,6 +211,27 @@ hr {
     width: 242px;
     height: 90px;
 }
+.btn-fancy-submit {
+    background: url('./img/buttons/submit/submit.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-submit:hover {
+    background: url('./img/buttons/submit/submitHover.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-submit:active {
+    background: url('./img/buttons/submit/submitActive.pnt');
+    background-repeat: no-repeat;
+    background-size: 242px; 90px;
+    width: 242px;
+    height: 90px;
+}
 
 .btn-simple {
 	background: #c28603;
