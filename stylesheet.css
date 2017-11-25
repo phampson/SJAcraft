@@ -169,3 +169,45 @@ hr {
     width: 242px;
     height: 90px;
 }
+.btn-fancy-login {
+    background: url('./img/buttons/login/login.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-login:hover {
+    background: url('./img/buttons/login/loginHover.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-login:active {
+    background: url('./img/buttons/login/loginActive.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-signup {
+    background: url('./img/buttons/signup/signup.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-signup:hover {
+    background: url('./img/buttons/signup/signupHover.png');
+    background-repeat: no-repeat;
+    background-size: 242px 90px;
+    width: 242px;
+    height: 90px;
+}
+.btn-fancy-signup:active {
+    background: url('./img/buttons/signup/signupActive.png');
+    background-repeat: no-repeat;
+    background-size: 242px; 90px;
+    width: 242px;
+    height: 90px;
+}
