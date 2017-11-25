@@ -1,6 +1,9 @@
-h2 {
-    text-align: center;
-    color: white;
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background: url('../img/textures/metalBlue.png');
+    background-repeat: repeat;
+      background-size: 300px 300px;
+        padding-top: 0px;
+
 }
 
 .redpoint{
@@ -19,8 +22,8 @@ h2 {
 }
 
 .chatImg {
-  width: 45px;
-  height: 45px;
+  width: 39px;
+  height: 39px;
   border-radius: 50% 50% 50% 50%; /*don't forget prefixes*/
 }
 
@@ -95,41 +98,43 @@ h2 {
 .inbox > div > .panel-group {
     height: 490px;
 }
-
 .icon_minim {
     padding: 2px 10px;
 }
-
 .msgContainerBase1 {
-  background: #e5e5e5;
+  background: black;
+  
   margin: 0;
   height: 495px;  
   bottom: 0;
   overflow-x: hidden;
 }
-
 .msgContainerBase2 {
-  background: #e5e5e5;
+  background: white;
   margin: 0;
   height: 470px;  
   bottom: 0;
   overflow-x: hidden;
 }
-
-
 .topBar {
-  background: #666;
-  color: white;
+  background-color: transparent;  
   padding: 10px;
   position: relative;
   overflow: hidden;
 }
-
+.panel-default > .panel-heading{
+	background:  #232323 ;
+	
+}
+.panel {
+	background:  #232323;
+	border-color: #c28603;
+	
+}
 .msg_receive {
     padding-left: 0;
     margin-left: 0;
 }
-
 .msg_sent {
     padding-bottom: 20px !important;
     margin-right: 0;
