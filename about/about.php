@@ -31,16 +31,19 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div class="transparent-background">
-	<img align= left src="../img/warcraft.jpg" alt="Warcraft main picture" style="width:100px;height:125px;">
-	<b><h2>Introduction</h2></b>
-	<p1>Ever since the fall of Azeroth in the First war against the Orc from their homeworld Draenor, the humans of Azeroth have been forced into nearby kingdom of Lordaeron. Together with the elves and Dwarves, the humans formed the Alliance to fight against the Orc who have now set their sights on Lordaeron. You, a human, must defend the kingdom of Lordaeron.</p1>
-</div>
-
-
-<div class="transparent-background">
-	<b><h2>How to play</h2></b>
-	<p1>You must collect resources by using your tools on the bottom left corner and then clicking on a resourse. You can also make your buildings and units by clicking on the hammer icon, clicking the type of building and placing it on the map. Once you are done, explore unknonwn territory to find your enemies and unleash your units on the enemy buildings. When all the buildings and units are gone from a side, a victor is declared!</p1>
+<div class="col-xs-12 col-sm-10 col-sm-offset-1" id="border-gold">
+    <h1>About</h1>
+    <hr>
+    <div class="transparent-background">
+	    <img align= left src="../img/warcraft.jpg" alt="Warcraft main picture">
+	    <h3>Introduction</h3>
+	    <p>Ever since the fall of Azeroth in the First war against the Orc from their homeworld Draenor, the humans of Azeroth have been forced into nearby kingdom of Lordaeron. Together with the elves and Dwarves, the humans formed the Alliance to fight against the Orc who have now set their sights on Lordaeron. You, a human, must defend the kingdom of Lordaeron.</p1>
+    </div>
+    <br><br>
+    <div class="transparent-background">
+	    <h3>How to play</h3>
+	    <p>You must collect resources by using your tools on the bottom left corner and then clicking on a resourse. You can also make your buildings and units by clicking on the hammer icon, clicking the type of building and placing it on the map. Once you are done, explore unknonwn territory to find your enemies and unleash your units on the enemy buildings. When all the buildings and units are gone from a side, a victor is declared!</p1>
+    </div>
 </div>
 
 </body>
