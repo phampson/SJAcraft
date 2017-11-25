@@ -42,10 +42,13 @@ if ($uploadOk == 0) {
 	} else {
 		echo $sql."label failed ";
 	}
+	
+	/*
 	echo $thumbnail_path;
 	echo $target_file;
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    	header("location: downloadtilesets.php");
+    	*/
+	header("location: downloadtilesets.php");
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
