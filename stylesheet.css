@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
+html @import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 
 /* Nav Bar */
@@ -169,3 +169,10 @@ hr {
     width: 242px;
     height: 90px;
 }
+.btn-simple {
+	background: #c28603;
+	color: white;
+	font-family: 'Alegreya', serif;
+}
+	
+	
