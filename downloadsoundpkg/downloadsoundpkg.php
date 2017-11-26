@@ -60,7 +60,7 @@ if ($result = $mysqli->query($query)) {
                                 <source src='soundpkg/$soundpkg_name'>
                             </audio>
                             <p>$soundpkg_name</p>
-                            <p>Uploaded by: <a href='../profile?id=$uploaderID'>$uploaderName</a></p>
+                            <p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
                         </div>
                     <div style='text-align: center'>";
         echo '
