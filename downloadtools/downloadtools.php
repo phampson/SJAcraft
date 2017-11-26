@@ -31,11 +31,13 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div class="jumbotron col-xs-12 col-sm-8 col-sm-offset-2" id="banner">
+<div class="div1 col-sm-8 col-sm-offset-2" id="border-gold">
+<div class="col-xs-12 col-sm-12 ">
 	<h1>Install Warcraft II Tools</h1> 
+	<hr>
 </div>
 
-<div id = "btmctn" class="container col-xs-12 col-sm-8 col-sm-offset-2" >
+<div id = "btmctn" class="container col-xs-12 col-sm-12" >
     <div class="jumbotron" id="box">
         <div class="container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0">
             <img src="../img/tools.png" style="width: 20px; height: auto; float: left; margin-right: 0px;"</img>
@@ -48,5 +50,6 @@ echo "</script>\n";
     </div>
 </div>
 
+</div>
 </body>
 </html>

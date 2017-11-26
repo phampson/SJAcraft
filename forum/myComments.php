@@ -47,11 +47,15 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<?php
-$sql = 'select * from comment'; 
+<div class="div1 container col-sm-8 col-sm-offset-2" id="border-gold">
+	<h1> My Comments </h1>
+	<hr>
+	<br>
+	<div class="container col-sm-12 col-sm-offset-0">
 
-echo "
-      <div class='container'>";
+<?php
+
+$sql = 'select * from comment'; 
 
   if($query = $mysqli->query($sql)) {
     while ($row = $query->fetch_assoc()) {
@@ -72,13 +76,13 @@ echo "
 //</a>
 echo "
     <a href='comments.php?postId=$commentPostId'>
-       <div class = 'comments' > 
+       <div class = 'div2 col-xs-12 col-xs-offset-0' > 
         <div class = 'col-sm-1 Cinfo'>
           <img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentUser</p>
         </div> 
 
         <div class = 'col-sm-9'>
-          $commentContent 
+            <h4 style='margin: 20px;'>$commentContent</h4>
         </div>
 
   	<footer> $postDate </footer>
@@ -93,6 +97,8 @@ echo "
   }
 
 ?>
+	</div>
+</div>
 </body>
 </html>
 
