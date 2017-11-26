@@ -2,8 +2,7 @@
 //db connection
 include('/home/ubuntu/ECS160WebServer/start.php');
 if ($_SESSION['user_id']==NULL) {
-	echo 'Please <a href="../login/login.html">log in</a> to upload a sound package';
-	exit;
+	header("Location: ../login/login.html");
 }
 
 
