@@ -1,64 +1,18 @@
-/*login css styling*/
+/*login css styling */
 
-html, body {
-        background: url("../img/Texture.png") repeat;
-}
-
-@media (max-width: 960px) {
-.loginForm {
-    padding: 50px 20px; 
-    margin: auto;
-    position: absolute;
-    background: rgba(0,0,0,0.4);
-}
-}
-
-@media (min-width: 961px) {
-.loginForm {
-	position: relative;
-	float: middle;
-    padding: 70px 40px;
-    width: 400px;
-    height: 460px;
-    margin: auto;
-	background: rgba(0,0,0,0.4);
-}   
-}
-
-.loginForm h2 {
-	color: white;
-	text-align: center;
-}
-
-.loginForm p1 {
-	color: white;
-	font-size: 16px;
-}
-
-.loginForm p2 {
-	color: white;
-	font-size: 15px;
-}
-
-.loginForm input {
+input {
 	width: 100%;
 	margin-bottom: 25px;
 }
 
-.loginForm input[type="user"], input[type="password"], input[type="email"] {
+input[type="user"], input[type="password"], input[type="email"] {
 	border: none;
 	border-bottom: 1px solid #fff;
 	background: transparent;
 	color: #fff;
+    font-size: 17px;
 }
 
-.button {
-	background-color: #30546c;
-	border: 1px solid;
-	border-radius: 4px;
-	color: white;
-	padding: 12px 20px;
-	margin: 14px 0px 0px 0px;
-	cursor: pointer;
-	width: 100%;
+form {
+    color: white;
 }

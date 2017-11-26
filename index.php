@@ -20,7 +20,7 @@ else{
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="bg">
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -31,29 +31,24 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div id="outerctn" class="container col-xs-12 col-xs-offset-0"
+<div class="container text-center">
+    <!-- Logo -->
+    <img class="logo" src="img/Logo.png" style="width:300px;">
+    <br><br><br><br>
+    <!-- Play Button -->
+    <button type="button" class="btn btn-fancy-play"></button>
+    <br><br><br><br>
+</div>
 
-     <!-- Banner -->
-    <img class="banner" src="img/SplashMirror.png">
-
-     <!-- Logo -->
-     <div class="container logoctn col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4">
-        <img class="logo" src="img/Logo.png">
-     </div>     
-   
+<!-- Leader Board -->
+<div class="div1 container col-xs-12 col-sm-8 col-sm-offset-2" id="border-gold">
+    <h1>Leader Board</h1>
+    <hr>
+    <table class="table">
+        <tbody id="leaderboard"></div>
+        </tbody>
+    </table>
     <br>
-
-     <!-- Play Button -->
-    <div class="container btnctn col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">
-     <button type="button" class="btn btn-fancy-play">Play Now</button>
-    </div>
-
-	<!-- Leader Board -->
-	<div class="leaderboard container col-xs-12 col-sm-8 col-sm-offset-2">
-		<h2 class="text-center">Leader Board</h2>
-		<div id="leaderboard"></div>
-		<br>
-	</div>
 </div>
 
 </body>
@@ -82,30 +77,15 @@ echo "</script>\n";
         var users = $.GetUsers("ELO", "10");
 
         for(var i in users) {
-		pos = parseInt(i) + 1;
-	
-                var html_string = ' \
-		<hr> \
-                <div class="row"> \
-                        <div class="col-xs-3"> \
-                                <h4 class="text-right">' + pos + '</h4> \
-                        </div> \
-                        <div class="col-xs-8"> \
-                                <div class="media"> \
-                                        <div class="media-left"> \
-                                                <img src="../profile/'+ users[i].avatar_path +'" class="media-object" style="width:60px"> \
-                                        </div> \
-                                        <div class="media-body"> \
-                                                <h4 class="media-heading">'+ '<a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h4> \
-                                                <p>ELO: ' + users[i].ELO + '</p> \
-                                        </div> \
-                                </div> \
-                        </div> \
-                        <div class="col-xs-1"> \
-                        </div> \
-                </div>';
+            var html_string = ' \
+            <tr> \
+                <td> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style="width:60px;height:60px;"></img> \
+                    <a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '"><h3>' + users[i].name + '</h3></a> \
+                </td> \        
+            </tr>';
 
-                document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
+            document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
         }
 
 </script>
