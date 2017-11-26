@@ -32,8 +32,8 @@ echo "</script>\n";
 ?>
 
 <!-- Rankings -->
-<div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
-	<h1>Rank</h1>
+<div class="div1 container col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
+	<h1>Rankings</h1>
         <hr>
 
 	<!-- order by select -->
