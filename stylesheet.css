@@ -19,41 +19,15 @@
 .dropdown-menu > li > a {
 	font-family: Helvetica;
 }
- 
- 
-/* Outer Container */
-.container #outctn {
-    position: relative;
+
+/* Background image (Index.php) */
+body.bg {
+    background-image: url("./img/SplashMirror.png");
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-
-/* Logo */
-.logo {
-    width: 100%; 
-    position: relative;
-}
-.logoctn {
-    margin-top: -38%;
-}
-
-
-/* Banner */
-.banner {
-    position: relative;
-    width: 100%;
-    margin:auto;
-}
-
-
-/* Leader board */
-.leaderboard {
-    border-radius: 10px;
-    font-color: black;
-    background-color: white;
-    border: solid gray 2px;
-    margin-top: -6%;
-}
-
 
 /* Divs */
 div.div1 {
@@ -83,7 +57,7 @@ body {
 }
 
 
-/* Fonts / Headings */
+/* Fonts & Headings */
 h1 {
     font-family: 'Alegreya', serif;
     margin-top: 0px;
@@ -117,6 +91,25 @@ p {
     font-family: 'Lato', sans-serif;
     font-weight: lighter;
     font-size: 17px;
+}
+
+@media screen and (max-width: 768px) {
+    /* Fonts */
+    h1 {
+        font-size: 65px; 
+    }
+    h2 {
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 30px;
+    }
+
+    /* Divs */
+    div {
+        margin: 0px;
+        padding: 0px;
+    }
 }
 
 

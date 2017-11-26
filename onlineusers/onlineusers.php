@@ -41,7 +41,7 @@ echo "</script>\n";
 ?>
 
 <!-- Online Users -->
-<div class="div1 container col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" id="border-gold">
+<div class="div1 container col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
         <h1>Online Users</h1>
         <hr>
 
