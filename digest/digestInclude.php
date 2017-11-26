@@ -98,6 +98,9 @@ function sendDigest($query,$filepath,$time) {
                 echo "Mailer error: " . $mail->ErrorInfo;    
             }
         }
+
+        // addAddress() adds to a list, so clear that list (oopsies)
+        $mail->ClearAllRecipients();
     }
     
     // open and close file outside of loop to clear contents
