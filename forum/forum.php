@@ -13,27 +13,28 @@
 include('/home/ubuntu/ECS160WebServer/start.php');
 
 // Helper function
-function phpConsole($data) {
+function phpConsole($data)
+{
     $output = $data;
     if (is_array($output))
         $output = implode(',', $output);
-
+    
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
-if(isset($_SESSION['user_id'])) {
-	$sql = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
-    	$query = $mysqli->query($sql);
-	$navpath = "../navbar/navbarlogged.html";
-	if($query) {
-		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
-		$email = $fetch['email'];
-	}
+if (isset($_SESSION['user_id'])) {
+    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query   = $mysqli->query($sql);
+    $navpath = "../navbar/navbarlogged.html";
+    if ($query) {
+        $fetch    = $query->fetch_assoc();
+        $username = $fetch['username'];
+        $email    = $fetch['email'];
+    }
 }
 
-else{
-	$navpath = "../navbar/navbar.html";
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -66,7 +67,7 @@ else{
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
