@@ -55,7 +55,7 @@ if ($res === TRUE) {
             $name      = $item['basename'];
             $path      = $item['dirname'];
             echo $extension . "<br>";
-            t
+
             if ($extension == "map") {
                 $thumbnail = "cMapPkgs/$folder/" . $item["filename"] . ".png";
                 $output    = exec("../dlc/png $thumbnail cMapPkgs/$folder/$path/$name");
