@@ -95,6 +95,7 @@ if ($res === TRUE) {
     
     $zip->close();
     echo 'YEEAAHHH BOI!';
+    header("Location: downloadCMaps.php");
 } 
 else {
     echo 'RATSSSSSS!';
