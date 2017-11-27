@@ -26,8 +26,8 @@ else {
 	$fetch = $query->fetch_assoc();
 	$lastComment = $fetch['newest_comment_id'];
     //print_r($lastComment);
-    
-    $insert = "INSERT into comment (post_id, comment_user, comment_content) values('$ID','$user_id','$comment')";
+    echo "$ID,$user_id,$comment";
+    $insert = 'INSERT into comment (post_id, comment_user, comment_content) values("' . $ID . '","' . $user_id .'","' . $comment .'")';
 	
         if($mysqli->query($insert)) {
             echo "Comment uploaded <br>";
@@ -36,12 +36,12 @@ else {
 		echo"comment NOT uploaded";
 	}
 	
-
-	$sql = "SELECT comment_id FROM comment WHERE post_id = '$ID' ORDER BY comment_date DESC LIMIT 1; ";
+	// find the comment_id of the just uploaded comment and update the post table's newest_comment_id to be the new comment's comment_id
+	$sql = 'SELECT comment_id FROM comment WHERE post_id ="' . $ID . '" ORDER BY comment_date DESC LIMIT 1;';
 	$query = $mysqli->query($sql);
 	$fetch = $query->fetch_assoc();
 	$comment_id = $fetch['comment_id'];
-	$sql = "UPDATE post SET newest_comment_id = '$comment_id' WHERE post_id = '$ID'";
+	$sql = 'UPDATE post SET newest_comment_id = "' . $comment_id . '" WHERE post_id = "' . $ID . '"';
 	
 	if($mysqli->query($sql)) {
 	}
@@ -49,20 +49,19 @@ else {
 		echo "newest_comment_id not added into post table";
 	}
 
-
-	$sql = "select * from forum_digest where user_id='$session_user' AND post_id = '$ID'";
+	// add the user who just posted the new comment into forum_digest table to have them subscribed to the post unless they are already subscribed
+	$sql = 'select * from forum_digest where user_id="' . $session_user . '"AND post_id = "' . $ID . '"';
 	$query = $mysqli->query($sql);
-	if(!mysqli_num_rows($query)) {
+	if(mysqli_num_rows($query) == 0) {
 		$insert = "INSERT into forum_digest (post_id, user_id, last_read_comment_id) values('$ID','$session_user','$comment_id')";
 		$mysqli->query($insert);
-		
 	}
 	else {
 		echo "last_read_comment_id not added into forum_digest table";
 	}
 
-	
-	ignore_user_abort(true);
+
+	/*ignore_user_abort(true);
 	set_time_limit(60);
 
 	$strURL = "comments.php?postId=$ID ";
@@ -74,14 +73,14 @@ else {
 	flush();
 	ob_flush();
 
-	session_write_close();
+	session_write_close();*/
 	/*$file = fopen("text.txt","w");
 	$time_for_execution = time() + 10;
 	flush();*/
-	sleep(0);
+	/*sleep(0);
 	
 	exec("php ../digest/smartDigest.php 2>&1 $ID $lastComment &", $output, $return);
-	
+	*/
 	/*
 	$time_later = time();
 	
@@ -115,7 +114,7 @@ if (!$return)
 
 
 //sleep(60);
-//include '../digest/smartDigest.php';
+include '../digest/smartDigestBackup.php';
 
     
 

@@ -5,26 +5,34 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 error_reporting(E_ALL); ini_set('display_errors', '1');
 
 if(isset($_SESSION['user_id'])){
-    $session_user = $_SESSION['user_id'];
+	$session_user = $_SESSION['user_id'];
+	$ID = $_GET['postId'];
 	$navpath = "../navbar/navbarlogged.html";
+	
+	// update all logged in user's forum_digest table so that all their subscribed posts's last_read_comment is the the newest_comment_id of that post
+	$get_subscribed_posts = "SELECT * FROM forum_digest WHERE user_id = $session_user";
+	$subscribed_posts = $mysqli->query($get_subscribed_posts) or die("Failed to retrieve posts from database.");
+
+	while ($row = $subscribed_posts->fetch_assoc()) {
+		$post_id = $row["post_id"];
+		echo "<script> console.log ('Post Id: " .$post_id. "'); </script>";
+		$get_newest_com = "SELECT newest_comment_id FROM post WHERE post_id = $post_id";
+		$newest_com = $mysqli->query($get_newest_com);
+		$fetch = $newest_com->fetch_assoc();
+		$newest_com = $fetch['newest_comment_id'];
+		echo "<script> console.log ('newestcomment " .$newest_com. "'); </script>";
+		$update_last_read = "UPDATE forum_digest SET last_read_comment_id = $newest_com WHERE post_id = $post_id AND user_id = $session_user";
+		$mysqli->query($update_last_read);
+	}
+
+	//echo json_encode($subscribed_posts);
+
 }
 else{
 	$navpath = "../navbar/navbar.html";
 }
-?>
-<?php
-// Helper function
-function phpConsole($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode( ',', $output);
 
-    echo "<script>console.log('PHP Console: " . $output . "');</script>";
-} // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
-
-$ID = $_GET['postId'];
- 
-
+// get the information of the clicked post to display message content, date, header, etc 
 $sql = 'select * from post where post_id="' .$ID. '"';
 	$query = $mysqli->query($sql);
 	$fetch = $query->fetch_assoc();
@@ -41,14 +49,6 @@ $sql = 'select * from user_info where id="' .$user. '"';
 	$proPic = $fetch['avatar_path'];
 	$post_user_id = $fetch['id'];
 	$username = $fetch['username'];
-
-if(isset($_SESSION['user_id'])){
-    $sql = "UPDATE forum_digest SET last_read_comment_id = '$newest_comment_id' WHERE post_id = '$ID' AND user_id = '$session_user'";
-    $mysqli->query($sql);
-}
-//echo "<script>console.log ('PHP Consol: " .$proPic. "'); </script>";
-
-
 ?>
 
 
@@ -75,7 +75,6 @@ echo "</script>\n";
 
 </head>
 
-
 <body>
 
 <!-- Nav Bar -->
@@ -95,7 +94,7 @@ echo "</script>\n";
       <h3> <?php echo $header ?> </h3>
       <p> <?php echo $content ?> </p>
       <footer> <?php echo $date ?></footer>
-  </div> 
+</div> 
 
 <?php
 	$query = "select * from comment";
