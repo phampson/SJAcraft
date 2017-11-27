@@ -45,7 +45,7 @@ function ShowFriends($userid,$mysqli) {
                 
                     <tbody class="col-xs-12">
                     	<tr>
-                    	<td style="width:6000px; height:50px">
+                    	<td style="width:6000px; height:50px;">
                         <div id="chatButton">
                                 <p><a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="'.$picturePath.'"></a>  
                             <button style="color:white;" class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
@@ -63,7 +63,7 @@ function ShowFriends($userid,$mysqli) {
                                 
                             </button>
                             </p>
-                        </div>
+                        </div><hr>
                         </td>
                         </tr>
                     </tbody>
@@ -170,16 +170,16 @@ echo "</script>\n";
 ?>
 
 <!--Message inbox -->
-<div class="div1 col-sm-8 col-sm-offset-2" id="border-gold">
-<h3 style="text-align: left;">Friend List</h3><hr>
-    <div class="div2 col-sm-12">
-            <div class="panel-heading"><br>
+<div class="div1 col-sm-6 col-sm-offset-3" id="border-gold">
+<h2 style="text-align: left;">Friend List</h2><hr>
+    <div class="div1 col-sm-12">
+            <div class="panel-heading">
                     <p style="color: black;">                   
                             <input type="text" placeholder="Search For Friends" id="newfriname">
                             <button id="addfriendbtn" class="btn-simple" type="submit" onclick="newfriend();">Add Friend</button>
-                    </p><hr>               
-            </div>
-            <table class="table-hover">
+                    </p>              
+            </div><hr>
+            <table class="table-condensed">
                 <tbody>
                 <!-- Write php code to list friends -->
 		<?php ShowFriends($user_id,$mysqli);?>

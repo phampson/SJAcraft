@@ -30,12 +30,14 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
-<div class="jumbotron container col-xs-12 col-sm-8 col-sm-offset-2">
-	<h1>Install Warcraft II</h1>
-	<p>Join the community!</p>	
+<div class="div1 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" id="border-gold">
+<div class="hdrctnr container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+	<h1 style="font-size: 6vw;">Install Warcraft II</h1>
+	<h3 style="font-size: 3vw;">Join the community!</h3>
+	<hr>
 </div>
 
-<div class="container col-xs-12 col-sm-8 col-sm-offset-2" id="midctnr">
+<div class="container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" id="midctnr">
 	<div id="carousel" class="carousel slide" data-ride="carousel">
     		<!-- Indicators -->
     		<ol class="carousel-indicators">
@@ -71,7 +73,7 @@ echo "</script>\n";
 	</div>	
 </div>
 
-<div class="container col-xs-12 col-sm-8 col-sm-offset-2" id="btmctnr">
+<div class="container col-xs-12 col=xs-offset-0 col-sm-8 col-sm-offset-2" id="btmctnr">
 	<div class="container col-xs-12 col-sm-8 col-sm-offset-2">
 		<table id = "reqTable" class="table table-striped" >
 			<thread>
@@ -108,12 +110,14 @@ echo "</script>\n";
 			</thread>
 		<table>
 	</div>
-	`	
-		<div id="downloadButton" class="container">
+
+	<div id="downloadButton" class="container">
 			<button type="button" class="btn btn-primary btn-lg">CLICK HERE to download now!</button>
 		</div>
 	</div>
 </div>
+
+</div> 
 
 </body>
 </html>
