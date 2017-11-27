@@ -4,6 +4,13 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 if ($_SESSION['user_id'] == NULL) {
     header("Location: ../login/login.html");
 }
+function error_re($text)
+{
+    echo '<script type="text/javascript">
+		window.location.href = "./dlc.php?error='.$text.'";
+	 	</script>';
+    exit(0);
+}
 
 //uploading file
 
@@ -18,21 +25,33 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk      = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
+// Check file extension
+$file_parts = pathinfo($target_file);
+
+if($file_parts['extension']!='map')
+{
+	error_re("0");
+}
+
+
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    //$Warning = "1";
     $uploadOk = 0;
+	error_re("1");
 }
+
+
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
-    echo "Sorry, your file is too large.";
+	error_re("2");
     $uploadOk = 0;
 }
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    error_re("3");
     // if everything is ok, try to upload file to server
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -41,15 +60,15 @@ if ($uploadOk == 0) {
         $output         = exec("./png $thumbnail_path $target_file");
         $numPlayers     = substr($output, 0, 1);
         $displayName    = substr($output, 1, strlen($output) - 1);
-        $sql            = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader')";
+        $sql            = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader,private) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader',0)";
         if ($mysqli->query($sql)) {
-            echo "label success";
+            error_re("4");
         } else {
-            echo $sql . "label failed ";
+            error_re("5");
         }
         header("location: dlc.php");
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        error_re("6");
     }
 }
 ?>
