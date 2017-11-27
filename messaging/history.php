@@ -94,19 +94,23 @@ function startNewchat(fri)
     friend_id = fri;
     var msg = "";
     var funct = "update";
-    var sendbox = '<div class="input-group">' +
+    var sendbox = '<div class="panel panel-default">' + '<div class="panel-footer">' + '<div class="input-group">' +
  	        '<form action="attachment.php?frid='+fri+'" method="post" enctype="multipart/form-data">' +
-	            '<upload><font color ="black" >attachment</upload>' +
+	            '<upload><font color ="white">Add Attachment</upload>' +
 	            '<input type="file" name="fileToUpload" id="fileToUpload"></font>' +
 	            '<input type="submit" value="Upload file" name="submit">' +
-                '</form>'+
-                '</div>'+
-                 '<div class="input-group">' +
-                    '<input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' +
-                    '<span class="input-group-btn">' +
-                    '<button id="sendBtn" type="submit" class="btn btn-primary btn-sm" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' +
-                    '</span>' +
-                '</div>';
+                '</form>'+  
+                '</div>' +               
+                '<div class="input-group">' +
+                 '<p>' +
+                    '<input style="width:600px;" id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' + '</p>' +
+                    '<span class="input-group-btn">' + '<h2>' +
+                    '<button id="sendBtn" type="submit" class="btn-simple btn-sm pull-right" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' + 
+               '</h2>' +   
+              '</span>' +
+              '</div>' + 
+              '</div>' + 
+              '</div>';
     
     document.getElementById("sendbox").innerHTML += sendbox;
     /*$.post("test.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
@@ -193,20 +197,24 @@ echo "</script>\n";
 
 <!--Message window -->
 
-<div class="container">
+<div class="div1 col-sm-8 col-sm-offset-2" id="border-gold">
+<h2>Chat Room</h2>
     	<div class="panel panel-default">
-            <div class="panel-heading topBar">
-                <div>
-                    <h3 class="panel-title" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span><?php echo $friendname;?>
-                </div>
-                <button id="ssearchbtn" class="btn" type="button" onclick="window.location.href='searchresult.php?frid=<?php echo $friend_id;?>';">Search</button>
-                <button id="backbtn" class="btn" type="button" onclick="window.location.href='friendslist.php';">Back</button>
-            </div>
-
-            <div id="messages" class="panel-body msgContainerBase2">
+            <div class="panel-heading">
+                <h2>
+                    <div class="panel-title" style="color: white;" id = "friendtitle" ><span class="glyphicon glyphicon-comment"></span>  Your Conversation with <?php echo $friendname;?>
+                <button id="backbtn" class="btn-simple pull-right" type="button" onclick="window.location.href='friendslist.php';">Back</button>
+                <button id="ssearchbtn" class="btn-simple pull-right" type="button" onclick="window.location.href='searchresult.php?frid=<?php echo $friend_id;?>';">Search</button>               
+            		</div>
+            	</h2>
+           	</div>
+				
+            <div id="messages" class="div2">
             <!-- PHP code write here -->
             </div>
-            <div id = "sendbox" class="panel-footer">
+            <div>
+            	<div id = "sendbox">
+            	</div>
             </div>
 		</div>
     </div>

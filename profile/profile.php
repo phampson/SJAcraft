@@ -30,6 +30,7 @@ if(isset($_SESSION['user_id'])){
 }
 else {
 	//$navpath = "../navbar/navbarlogged.html";
+	//echo "no session";
     header('Location: ' . '../login/login.html');
 }
 ?>
@@ -229,7 +230,7 @@ echo "</script>\n";
   };
 
   const xVariable = 'winloss';
-  const yVariable = 'frequency';
+  const yVariable = 'value';
 
   let xScale;
   let yScale;
@@ -272,10 +273,24 @@ echo "</script>\n";
     d[yVariable] = Number(d[yVariable]);
     return d;
   }
-
-  d3.csv('data.csv', type, (error, data) => {
+  var userId = <?php echo $_SESSION["user_id"];?>;
+  
+  d3.json('data.php', function(error, data) {
     console.log('data', data);
-
+    data.forEach(function(d) {
+		if (userId == d.id) {
+			console.log(d.username, d.id, "CHECK SUCCESS");
+			console.log(d.win);
+			//use this user's data
+			//array named wins with ids
+			//array named losses with ids
+			//for the correct user, 
+			
+		}
+		else {
+			// skip user's data
+		}
+	});
     function initChart() {
       const width = 200;
       const height = 100;

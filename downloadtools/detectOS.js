@@ -33,22 +33,22 @@ function findOS()
     }
 	switch(operatingSystem != -9) {
 		case(operatingSystem == 0): // Windows
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Windows"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Windows"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 		case(operatingSystem == 1): // Mac
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Mac"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Mac"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 		case(operatingSystem == 2): // UNIX
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 		case(operatingSystem == 3): // Linux
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Linux"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 		case(operatingSystem == 4): // Android
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Android"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="Android"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 		case(operatingSystem == 5): // iOS
-			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="iOS"><img border="0" src="../img/dldbtn.png"></img></a>';
+			document.getElementById("downloadButton").innerHTML = '<a href="game_files/ECS160Linux-master.zip" download="iOS"><button type="button" class="btn btn-fancy-play"></button></a>';
 			break;
 	}
 }
