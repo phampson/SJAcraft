@@ -158,10 +158,10 @@ echo $content;
        				<h4>";
 if(preg_match($reg_exUrl, $commentsContent, $url)) {
 // make the urls hyper links
-$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
 } 
 if(preg_match($reg_attachment, $commentsContent, $url)){
-	echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+	echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
 } else {
 // if no urls in the text just return the text
 echo $commentsContent;
