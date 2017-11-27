@@ -52,9 +52,10 @@ echo "</script>\n";
 ?>
 
 <!-- CDN gallery -->
-<h2 style="color: white; text-align: center;"><?php echo $mapRepoOwner."'s" ?> Map Repo</h2>
+<div class="div1 col-xs-12 col-sm-8 col-sm-offset-2" id='border-gold'>
+<h2><?php echo $mapRepoOwner."'s" ?> Map Repo</h2><hr>
 
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-2">
 
 <?php
 function showMaps($query, $ownRepo, $private){
@@ -73,17 +74,17 @@ function showMaps($query, $ownRepo, $private){
 			$uploaderID = $row['uploader'];
 			
 			echo "
-		<div class='col-sm-3'>
-			<div class='thumbnail'>
+		<div class='col-sm-8 col-xs-7 col-sm-offset-2 col-xs-offset-0'>
+			<div class='div2 thumbnail'>
 				
 					<img src=$map_thumbnail alt=$map_name style='width:100%'>
-					<div class='caption'>
-						<p>$displayName</p>
-						<p>$numPlayers players</p>";
+					<div class='caption'><h2>
+						<p><strong>$displayName</strong></p>
+						<p>$numPlayers players</p></h2>";
             if ($ownRepo==1) {
-                echo "Change public/private: ";
+                echo "<p>Change public/private: </p>";
                 echo "<input type='checkbox' name='$map_name"."[]' value='switch'>";
-                echo "Delete map: ";
+                echo "<p>Delete map: </p>";
                 echo "<input type='checkbox' name='$map_name"."[]' value='delete'>";
                 
                 if ($private == true) {
@@ -113,10 +114,10 @@ function showMaps($query, $ownRepo, $private){
 		        }
             }
             echo "
-					</div>
-				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
+					
+				<div style='text-align: center;'><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2></div>
 			</div>
-			
+			</div>
 		</div>";
 			if($count % 4 == 3){
 				echo "</div>";		
@@ -133,12 +134,12 @@ function displayUploadButton()
     
 		echo'
 		<div class="row">
-		    <div class="col-sm-3">
-				<div class="thumbnail">
+		    <div class="col-sm-8 col-xs-8 col-sm-offset-2">
+				<div class="div2 thumbnail">
 					
 					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
-					<div class="caption">
-						<form action="upload.php" method="post" enctype="multipart/form-data">
+					<center><div class="caption">
+						<form action="upload.php" method="post" enctype="multipart/form-data"><p>
 						    <input type="radio" name="private" value="1">
 						    Private <br>
 						    <input type="radio" name="private" value="0" checked>
@@ -155,9 +156,9 @@ function displayUploadButton()
 	        echo "<option value='$friendID'>$friendUserName</option>";
 	    }
 		echo '			    </select> 
-		                    <input type="submit" value="Upload Map" name="submit">
-					    </form>
-					</div>
+		                    <h2><input class="btn-simple btn-sm" type="submit" value="Upload Map" name="submit"></h2>
+					  </p>  </form>
+					</div></center>
 				    </a>
 			    </div>
 			</div>
@@ -170,26 +171,26 @@ function displayUploadButton()
 if ($viewingOwnRepo) {
     displayUploadButton();
 
-    echo "<form method='post' action='changemapsettings.php'>";
+    echo "<form method='post' action='changemapsettings.php' class='col-xs-12'>";
 
     echo"<div class='row'>";
-    echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
+    echo "<h2>Public Repo</h2><hr>";
     $query = "select * from map where uploader = $user_id and private=0";
     showMaps($query,1,false);
     echo "</div>";
 
     echo"<div class='row'>";
-    echo "<h2 style='color: white; text-align: center;'>Private Repo</h2>";
+    echo "<h2>Private Repo</h2><hr>";
     $query = "select * from map where uploader = $user_id and private=1";
     showMaps($query,1,true);
     echo "</div>,";
 
-    echo "<input type='submit' value='Apply Map Changes'>";
+    echo "<h2><input class='btn-simple btn-sm' type='submit' value='Apply Map Changes'></h2>";
     echo "</form>";
 
 } else {
     echo"<div class='row'>";
-    echo "<h2 style='color: white; text-align: center;'>Public Repo</h2>";
+    echo "<h2>Public Repo</h2><hr>";
 
     $query = "select * from map where uploader=$user_id and private=0";
     showMaps($query);

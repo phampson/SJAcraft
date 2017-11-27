@@ -32,22 +32,22 @@ echo "</script>\n";
 ?>
 
 <!-- CDN gallery -->
-<h2 style="color: white; text-align: center;">Custom Map Gallery</h2>
-<br>
+<div class='div1 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2' id='border-gold'>
+<h2>Custom Map Gallery</h2><hr>
 <center>
-	<form action='dlc.php' method='get' onsubmit='encodeInput(this)'>
-		<input type='text' name='searchTerm' placeholder="SEARCH TERM">
-		<select name='sort'>
-			<option disabled selected value>SORT BY</option>
+	<form action='dlc.php' method='get' onsubmit='encodeInput(this)'><h2>
+		<input style='color:black;' class='btn-sm' type='text' name='searchTerm' placeholder="Search term">
+		<input class='btn-simple btn-sm' type='submit' value='Search'>
+		<select style='color:black;' class='btn-sm' name='sort'>
+			<option disabled selected value>Sort By</option>
 			<option value='players'>players</option>
 			<option value='uploader'>uploader</option>
 			<option value='name'>name</option>
 			<option value='date'>date</option>
-		</select>
-		<input type='submit' value='SEARCH'>
-	</form>
+		</select></h2>		
+	</form><hr>
 </center>
-<br>
+
 <script type='text/javascript'>
 	function encodeInput(form)
 	{
@@ -111,8 +111,8 @@ echo "</script>\n";
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
-		<div class='col-sm-3'>
-			<div class='thumbnail'>
+		<div class='col-sm-4'>
+			<div class='div2 thumbnail'>
 
 				
 					<img src=$map_thumbnail alt=$displayName style='width:100%'>
@@ -121,9 +121,8 @@ echo "</script>\n";
 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
 				<div style='text-align: center'><button><a href='displayCMap.php?id=$packageID'>Preview</a></button></div>
-			</div>
-			
-		</div>";
+				</div>
+			</div>";
 			if($count % 4 == 3){
 				echo "</div>";		
 			}
@@ -134,25 +133,21 @@ echo "</script>\n";
 		}
 		?>
 		<!--<script type = "text/php" src="show_maps.php"></script>-->
-		<div class="col-sm-3">
+		
 			<!--<div class="thumbnail" onclick="addMap()">-->
-				<div class="thumbnail">
+				<div class="div2 thumbnail col-sm-7 col-xs-7 col-xs-offset-2 col-sm-offset-3">
 				<!--<a href="#"> -->
 					
 					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
 					<div class="caption">
-						<form action="upload.php" method="post" enctype="multipart/form-data">
+						<form action="upload.php" method="post" enctype="multipart/form-data"><center><p>
 						    Select map to upload:
 						    <input type="file" name="fileToUpload" id="fileToUpload"> 
-						    <input type="submit" value="Upload Map" name="submit">
-					</form>
+						    <h2><input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2></p></center>
+						</form>
 					</div>
-				</a>
+				</div>
 			</div>
-		</div>
-	</div>
-
-
 </body>
 <script type="text/javascript" src="cdn.js"></script>
 </html>
