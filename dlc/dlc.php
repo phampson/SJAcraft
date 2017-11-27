@@ -55,7 +55,7 @@ echo "</script>\n";
     }
 </script>
 
-<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+<div class="col-sm-12 col-sm-offset-1 col-md-8 col-md-offset-2">
 
 
 <?php
@@ -113,7 +113,7 @@ if ($result = $mysqli->query($query)) {
         $uploaderName  = $userNameQuery->fetch_assoc();
         $uploaderName  = $uploaderName['username'];
         echo "
-        <div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
             <div class='div2' style='padding:5px'>
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
@@ -158,4 +158,39 @@ if ($result = $mysqli->query($query)) {
 
 
 </body>
+<script src="../login/black.js"></script>
+<script>
+var error=getAllUrlParams().error;
+console.log(window.location.href);
+if (error=='0')
+{
+	alert("Sorry, file format incorrect");
+}
+if (error=='1')
+{
+	alert("Sorry, file already exists");
+}
+if (error=='2')
+{
+	alert("Sorry, your file is too large");
+}   
+if (error=='3')
+{
+	alert("Sorry, your file was not uploaded");
+}  
+if (error=='4')
+{
+	alert("Uploading succeeded");
+}  
+if (error=='5')
+{
+	alert("Uploading failed");
+}
+if (error=='6')
+{
+	alert("Unknown error");
+} 
+  
+    
+</script>
 </html>
