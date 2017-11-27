@@ -30,7 +30,7 @@ echo "</script>\n";
 ?>
 
 <!-- CDN gallery -->
-<div class="div1 col-xs-12 col-sm-8 col-xs-offset-2" id="border-gold">
+<div class="div1 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2" id="border-gold">
 <h2>Map Gallery</h2><hr>
 <center>
     <h2>
@@ -113,7 +113,7 @@ if ($result = $mysqli->query($query)) {
         $uploaderName  = $userNameQuery->fetch_assoc();
         $uploaderName  = $uploaderName['username'];
         echo "
-        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        <div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
             <div class='div2 thumbnail' style='height:390pxpx'>
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
