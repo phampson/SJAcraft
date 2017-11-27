@@ -1,9 +1,10 @@
 <?php
 // Helper function
-function phpConsole($data) {
+function phpConsole($data)
+{
     $output = $data;
     if (is_array($output))
-        $output = implode( ',', $output);
+        $output = implode(',', $output);
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 // Imports
@@ -12,10 +13,10 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 // Error Reporting & Variables
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-$userID = $_SESSION['user_id'];
-$targetDir = "avatar_pics/";
-$fileName = basename($_FILES["fileToUpload"]["name"]);
-$fileSize = $_FILES["fileToUpload"]["size"]; 
+$userID     = $_SESSION['user_id'];
+$targetDir  = "avatar_pics/";
+$fileName   = basename($_FILES["fileToUpload"]["name"]);
+$fileSize   = $_FILES["fileToUpload"]["size"];
 $targetFile = $targetDir . $userID . ".jpg"; // CHECK: later change it to $targetFile = $targetDir . $userID . "_" . $fileName;
 $uploadedOk = 1;
 // Print statements (Delete later)
@@ -32,21 +33,23 @@ if ($fileSize > 1000000) {
 // Upload file to server
 if ($uploadedOk == 1) {
     echo "targetFile: " . $targetFile . "<br>";
- 
+    
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
         $sql = "UPDATE user_info SET avatar_path = '" . $targetFile . "' where id = '" . $userID . "'";
         
-        if($mysqli->query($sql)) {
+        if ($mysqli->query($sql)) {
             phpConsole("Label success");
-        } else {
+        } 
+        else {
             phpConsole("Label failed");
         }
         
         echo "The file " . $fileName . " has been uploaded.";
-    } else {
+    } 
+    else {
         echo "Error: Unable to upload image to server.";
     }
     // Redirect to file
-    header('Location: ' . 'profile.php'); 
+    header('Location: ' . 'profile.php');
 }
 ?>

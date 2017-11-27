@@ -2,35 +2,35 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-if(isset($_GET['id'])){
-  $sql = "select * from user_info where id=".$_GET['id'];
-  $query = $mysqli->query($sql);
-  if ($query) {
-    $fetch = $query->fetch_assoc();
-    $username = $fetch["username"];
-    $email = $fetch["email"];
-    $avatarPath = $fetch["avatar_path"];
-  }
-  // if GET[ID] is set, you're trying to view someone else's profile,
-  // so grab their info
+if (isset($_GET['id'])) {
+    $sql   = "select * from user_info where id=" . $_GET['id'];
+    $query = $mysqli->query($sql);
+    if ($query) {
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch["username"];
+        $email      = $fetch["email"];
+        $avatarPath = $fetch["avatar_path"];
+    }
+    // if GET[ID] is set, you're trying to view someone else's profile,
+    // so grab their info
 }
-if(isset($_SESSION['user_id'])){
-  $navpath = "../navbar/navbarlogged.html";
-
-	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-
-	if (!isset($_GET['id']) and $query) {
-    // if GET[ID] isn't set, view your own profile so grab your own info
-    $fetch = $query->fetch_assoc();
-    $username = $fetch['username'];
-    $email = $fetch['email'];
-    $avatarPath = $fetch['avatar_path'];
-	}
-}
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+    
+    $sql   = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query = $mysqli->query($sql);
+    
+    if (!isset($_GET['id']) and $query) {
+        // if GET[ID] isn't set, view your own profile so grab your own info
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch['username'];
+        $email      = $fetch['email'];
+        $avatarPath = $fetch['avatar_path'];
+    }
+} 
 else {
-	//$navpath = "../navbar/navbarlogged.html";
-	//echo "no session";
+    //$navpath = "../navbar/navbarlogged.html";
+    //echo "no session";
     header('Location: ' . '../login/login.html');
 }
 ?>
@@ -56,7 +56,7 @@ else {
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
@@ -72,82 +72,113 @@ echo "</script>\n";
    
     <div class="container uploadimg col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1" style="margin: 0; padding: 0px">
         <div class="img container" id="profilePic">
-            <img src= <?php echo $avatarPath ?> class="cover" alt="This is where your profile goes">;
+            <img src= <?php
+echo $avatarPath;
+?> class="cover" alt="This is where your profile goes">;
         </div>
     
         <!--<?php
-        echo "<div class='profilePic' id='profilePic'>
+echo "<div class='profilePic' id='profilePic'>
                 <img src=$avatarPath alt='This is where your profile picture goes' class='container col-xs-2 col-xs-offset-1'>
-             </div>"
-        ?>-->
+             </div>";
+?>-->
 
       <!-- This part lets you change profile picture, which should only display
        if $_GET["id"] isn't set, meaning you're viewing your own profile -->
         <div class="selectimg container">
-             <?php if(!isset($_GET['id'])): ?>
+             <?php
+if (!isset($_GET['id'])):
+?>
  	        <form action="uploadProfile.php" method="post" enctype="multipart/form-data">
 	            <upload><font color ="white" >Select image to upload:</upload>
 	            <input type="file" name="fileToUpload" id="fileToUpload"></font>
 	            <input type="submit" value="Upload Image" name="submit">
             </form>
-            <?php endif; ?>
+            <?php
+endif;
+?>
         </div>
    </div>
 
    <!-- Aaaand end if --> 
 
 	<userinfo class="container col-xs-10 col-xs-offset-0 col-sm-4 col-sm-offset-1">
-		<username><?php echo $username; ?></username><br>
-    	<email><?php echo $email; ?></email>
+		<username><?php
+echo $username;
+?></username><br>
+    	<email><?php
+echo $email;
+?></email>
         <br>
-        <?php if(isset($_GET['id'])): ?>
-        <?php if(isset($_SESSION['user_id'])): ?>
+        <?php
+if (isset($_GET['id'])):
+?>
+        <?php
+    if (isset($_SESSION['user_id'])):
+?>
 	    <?php
-	        $query = 'select friend_id from friendlist where user_id= "'.$_SESSION['user_id'].'"';
-	        $foundFriend = FALSE;
+        $query       = 'select friend_id from friendlist where user_id= "' . $_SESSION['user_id'] . '"';
+        $foundFriend = FALSE;
+        
+        if ($result = $mysqli->query($query)) {
             
-            if ($result = $mysqli->query($query)){
-               
-                while($row = $result->fetch_assoc()){
-                    $friend_id = $row['friend_id'];
-			        if($friend_id == $_GET['id']){
-				    $foundFriend = TRUE;
-			    }
-		        }
-	        }
-	    ?>
+            while ($row = $result->fetch_assoc()) {
+                $friend_id = $row['friend_id'];
+                if ($friend_id == $_GET['id']) {
+                    $foundFriend = TRUE;
+                }
+            }
+        }
+?>
     
-        <?php if($foundFriend == FALSE): ?>
+        <?php
+        if ($foundFriend == FALSE):
+?>
         <div class = "box">
-	    <?php 
-	        $addLink = "FriendFromProfile.php?id=".$_GET["id"];
-   	        echo "<a class='button' href='$addLink' style=background-color: white>Add Friend</a>";
-	    ?>
+	    <?php
+            $addLink = "FriendFromProfile.php?id=" . $_GET["id"];
+            echo "<a class='button' href='$addLink' style=background-color: white>Add Friend</a>";
+?>
    	    </div>
    
-        <?php endif?>
-        <?php if($foundFriend == TRUE): ?>
+        <?php
+        endif;
+?>
+        <?php
+        if ($foundFriend == TRUE):
+?>
         <div class = "box">
      		<a class="button" href="../messaging/friendslist.php" style=background-color: white>Message User</a>
         </div>
-        <?php endif?>
-        <?php endif; ?>
-        <?php endif; ?>
+        <?php
+        endif;
+?>
+        <?php
+    endif;
+?>
+        <?php
+endif;
+?>
 
 		<?php
-		if (isset($_GET["id"])) {
- 			$addLink = "maprepo.php?id=".$_GET["id"];
-		} else {
-			$addLink = "maprepo.php";
-        }
-        ?>
+if (isset($_GET["id"])) {
+    $addLink = "maprepo.php?id=" . $_GET["id"];
+} 
+else {
+    $addLink = "maprepo.php";
+}
+?>
    		<div class="box">	
-            <a class='button' href=<?php echo $addLink ?>>Map Repo</a>
+            <a class='button' href=<?php
+echo $addLink;
+?>>Map Repo</a>
         </div>
         <br style="margin: 5px"> 
     <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
-    <?php if(!isset($_GET['id'])): ?>
+    <?php
+if (!isset($_GET['id'])):
+?>
 	
         <div class="box">
             <a class="button" href="#popup1">Edit info</a>
@@ -200,7 +231,9 @@ echo "</script>\n";
                     <input type="text" name="password" placeholder= "Password">
                     <button  id="password">Update</button><br>
 				</form> -->
-    <?php endif; ?>
+    <?php
+endif;
+?>
 			</div>
 		</div>
 		</div>
@@ -273,7 +306,9 @@ echo "</script>\n";
     d[yVariable] = Number(d[yVariable]);
     return d;
   }
-  var userId = <?php echo $_SESSION["user_id"];?>;
+  var userId = <?php
+echo $_SESSION["user_id"];
+?>;
   
   d3.json('data.php', function(error, data) {
     console.log('data', data);
