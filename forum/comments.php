@@ -112,7 +112,7 @@ $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $cont
 }
 if(preg_match($reg_attachment, $content, $url)){
 // if no urls in the text just return the text
-echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);;
+echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
 } else {
 echo $content;
 }?></h4>
@@ -186,6 +186,7 @@ $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $cont
 
 } 
 if(preg_match($reg_attachment, $content, $url)){
+	echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
 } else {
 
 
