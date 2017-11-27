@@ -37,13 +37,13 @@ if ($result = $mysqli->query($query)){
 	   }
         }
         echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                
+                    
                         <div id="chatButton">
-                                <a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
-                            <button class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'">
+                                <a href="../profile/profile.php?id='.$friend_id.'"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a> 
+                            <p><button class="btn btn-link" id = '.$friend_id.' onclick=window.location.href="history.php?frid='.$friend_id.'"></p>
                                 <div class="messages">
-                                    <strong>'.$friendname.'</strong>';
+                                   <p><strong>'.$friendname.'</strong></p>';
             $numNewMsg = 'select * from message where ((sender = "'.$usid.'" and receiver="'.$friend_id.'") or (sender = "'.$friend_id.'" and receiver = "'.$usid.'")) and message_id > "'.$interact_msgid.'"';
             if($numNM = $mysqli->query($numNewMsg)){
                 $numM = $numNM->num_rows;
@@ -57,8 +57,8 @@ if ($result = $mysqli->query($query)){
                                 </div>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    
+                
 ';
 }
 }
