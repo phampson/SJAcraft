@@ -9,7 +9,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-
+function error_re($text)
+{
+    echo '<script type="text/javascript">
+		window.location.href = "./signup.html?error='.$text.'";
+	 	</script>';
+    exit(0);
+}
 
 $email    = $_POST['email'];
 $username = $_POST['username'];
@@ -23,7 +29,8 @@ $insert = "insert into user_info (username, password, email, avatar_path, hash)
 
 $query = $mysqli->query($check);
 if ($query->num_rows > 0) {
-    echo "Username already taken";
+	error_re("1");
+    //echo "Username already taken";
 } 
 else {
     
@@ -60,10 +67,11 @@ else {
         $mail->AltBody = 'This is a plain-text message body'; // dunno if needed tbh
         
         if (!$mail->send()) {
-            echo "Mailer Error: " . $mail->ErrorInfo;
+		error_re("2");
+            //echo "Mailer Error: " . $mail->ErrorInfo;
         } 
         else {
-            echo "<br>Please verify your account!";
+           error_re("3");
         }
     }
 }

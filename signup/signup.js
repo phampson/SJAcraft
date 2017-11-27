@@ -1,4 +1,5 @@
 console.log(location.href+'#'+location.hash+'?'+location.search);
+
 	function signUpError(form) {
 
 		var email = document.getElementById("email").value;
@@ -70,3 +71,21 @@ console.log(location.href+'#'+location.hash+'?'+location.search);
 	 $('#form').submit(function (e) {
         if (!signUpError(this)) e.preventDefault();
     });
+
+var error =getAllUrlParams().error;
+if (error=="1")
+{
+	alert("Username already taken");
+}
+if (error=="2")
+{
+	alert("Mailer Error");
+}
+if (error=="3")
+{
+	alert("Sign up successfully. Please verify your account by link in email sent to you");
+}
+if (error=="1")
+{
+	console.log("Username already taken");
+}
