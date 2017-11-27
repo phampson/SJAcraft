@@ -56,9 +56,7 @@ echo "</script>\n";
 </script>
 
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-
-
-		<?php
+	<?php
 
 		if (isset($_GET["sort"])) {
 			switch ($_GET["sort"]) {
@@ -89,10 +87,10 @@ echo "</script>\n";
 			if ($id = $mysqli->query($query)) {
 				$id = ($id->fetch_assoc())["id"];
 			}
-			$query = "SELECT * FROM map WHERE (display_name='$searchTerm' OR 
-			          map_name='$searchTerm' OR uploader='$id') AND private=0";
+			$query = "SELECT * FROM packages WHERE (display_name='$searchTerm' OR 
+			          uploader='$id')";
 		} else {
-			$query = "SELECT * FROM map WHERE private=0";
+			$query = "SELECT * FROM packages";
 		}
 		
 		$query .= $sortOption;
@@ -103,12 +101,13 @@ echo "</script>\n";
 			if($count % 4 == 0){
 				echo "<div class='row'>";		
 			}
-			$map_path = $row['map_path'];
-			$map_name = $row['map_name'];
-			$map_thumbnail = $row['map_thumbnail'];
-			$numPlayers = $row['num_players'];
-			$displayName = $row['display_name'];
+			$filepath = $row['filepath'];
+			$pname = $row['name'];
+			//$map_thumbnail = $row['map_thumbnail'];
+			//$numPlayers = $row['num_players'];
+			$displayName = $row['name'];
 			$uploaderID = $row['uploader'];
+			$packageID = $row['id'];
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 			echo "
@@ -116,13 +115,12 @@ echo "</script>\n";
 			<div class='thumbnail'>
 
 				
-					<img src=$map_thumbnail alt=$map_name style='width:100%'>
+					<img src=$map_thumbnail alt=$displayName style='width:100%'>
 					<div class='caption'>
 						<p>$displayName</p>
-						<p>$numPlayers players</p>
 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
-				<div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
+				<div style='text-align: center'><button><a href='displayCMap.php?id=$packageID'>Preview</a></button></div>
 			</div>
 			
 		</div>";
