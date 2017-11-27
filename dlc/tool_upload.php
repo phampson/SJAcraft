@@ -10,7 +10,8 @@ if (!empty($_POST['uploader'])) {
         deliver_response(1, 200, "invalid id", $_POST['uploader'], "uploader");
         die;
     }
-} else {
+} 
+else {
     deliver_response(2, 200, "no uploader", NULL, "uploader");
     die;
 }
@@ -26,7 +27,8 @@ if (!empty($_POST['private'])) {
         deliver_response(8, 200, "incorrect private or public", $_POST['uploader'], "uploader");
         die;
     }
-} else {
+} 
+else {
     deliver_response(9, 200, "empty private or public", $_POST['uploader'], "uploader");
     die;
 }
@@ -67,7 +69,8 @@ if ($uploadOk == 0) {
     deliver_response(5, 200, "file was not uploaded", $uploader, "uploader");
     die;
     // if everything is ok, try to upload file to server
-} else {
+} 
+else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $thumbnail_path = "maps/thumbnails/" . substr($name, 0, strlen($name) - 4) . ".png";
         $output         = exec("./png $thumbnail_path $target_file");
@@ -76,13 +79,15 @@ if ($uploadOk == 0) {
         $sql            = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader, private) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader','$private')";
         if ($mysqli->query($sql)) {
             //echo "label success";
-        } else {
+        } 
+        else {
             deliver_response(6, 200, "query falied", $uploader, "uploader");
             die;
         }
         deliver_response(0, 200, $_FILES["fileToUpload"]["name"] + " has been uploaded", $uploader, "uploader");
         die;
-    } else {
+    } 
+    else {
         deliver_response(7, 200, "unknown error", $uploader, "uploader");
         die;
     }

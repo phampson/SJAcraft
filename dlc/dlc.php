@@ -3,7 +3,8 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
-} else {
+} 
+else {
     $navpath = "../navbar/navbar.html";
 }
 ?>
@@ -76,7 +77,8 @@ if (isset($_GET["sort"])) {
         default:
             $sortOption = "";
     }
-} else {
+} 
+else {
     $sortOption = "";
 }
 
@@ -91,7 +93,8 @@ if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTe
     }
     $query = "SELECT * FROM map WHERE (display_name='$searchTerm' OR 
                       map_name='$searchTerm' OR uploader='$id') AND private=0";
-} else {
+} 
+else {
     $query = "SELECT * FROM map WHERE private=0";
 }
 
@@ -112,7 +115,7 @@ if ($result = $mysqli->query($query)) {
         $userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
         $uploaderName  = $userNameQuery->fetch_assoc();
         $uploaderName  = $uploaderName['username'];
-	//$uploaderName="ss";
+        //$uploaderName="ss";
         echo "
         <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
