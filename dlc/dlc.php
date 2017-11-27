@@ -112,8 +112,9 @@ if ($result = $mysqli->query($query)) {
         $userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
         $uploaderName  = $userNameQuery->fetch_assoc();
         $uploaderName  = $uploaderName['username'];
+	//$uploaderName="ss";
         echo "
-        <div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
             <div class='div2 thumbnail' style='height:390pxpx'>
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
@@ -160,6 +161,7 @@ if ($result = $mysqli->query($query)) {
 </body>
 <script src="../login/black.js"></script>
 <script>
+//console.log("asaa");
 var error=getAllUrlParams().error;
 console.log(window.location.href);
 if (error=='0')
