@@ -7,7 +7,7 @@ if ($_SESSION['user_id'] == NULL) {
 function error_re($text)
 {
     echo '<script type="text/javascript">
-		window.location.href = "./dlc.php?error='.$text.'";
+		window.location.href = "./dlc.php?error=' . $text . '";
 	 	</script>';
     exit(0);
 }
@@ -28,9 +28,8 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check file extension
 $file_parts = pathinfo($target_file);
 
-if($file_parts['extension']!='map')
-{
-	error_re("0");
+if ($file_parts['extension'] != 'map') {
+    error_re("0");
 }
 
 
@@ -38,14 +37,14 @@ if($file_parts['extension']!='map')
 if (file_exists($target_file)) {
     //$Warning = "1";
     $uploadOk = 0;
-	error_re("1");
+    error_re("1");
 }
 
 
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
-	error_re("2");
+    error_re("2");
     $uploadOk = 0;
 }
 
@@ -53,7 +52,8 @@ if ($_FILES["fileToUpload"]["size"] > 1000000) {
 if ($uploadOk == 0) {
     error_re("3");
     // if everything is ok, try to upload file to server
-} else {
+} 
+else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         $uploader       = $_SESSION['user_id'];
         $thumbnail_path = "maps/thumbnails/" . substr($name, 0, strlen($name) - 4) . ".png";
@@ -63,11 +63,13 @@ if ($uploadOk == 0) {
         $sql            = "insert into map (map_name, map_path, map_thumbnail, num_players, display_name, uploader,private) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$uploader',0)";
         if ($mysqli->query($sql)) {
             error_re("4");
-        } else {
+        } 
+        else {
             error_re("5");
         }
         header("location: dlc.php");
-    } else {
+    } 
+    else {
         error_re("6");
     }
 }
