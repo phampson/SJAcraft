@@ -115,7 +115,7 @@ if ($result = $mysqli->query($query)) {
         echo "
         <div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
-            <div class='div2' style='padding:5px'>
+            <div class='div2 thumbnail' style='height:390pxpx'>
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
                     <div class='caption'>
                         <p><strong>$displayName</strong></p>
@@ -138,9 +138,9 @@ if ($result = $mysqli->query($query)) {
 
 
        <!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-sm-7 col-xs-7 col-xs-offset-2 col-sm-offset-3"><br>
+        <div class="col-sm-8 col-xs-8 col-xs-offset-2"><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
-                <div class='div2' style='padding:5px'>
+                <div class='div2 thumbnail'>
                 <!--<a href="#"> -->
                     
                     <img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
