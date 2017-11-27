@@ -160,7 +160,7 @@ if(preg_match($reg_exUrl, $commentsContent, $url)) {
 // make the urls hyper links
 $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
 } 
-if(preg_match($reg_attachment, $content, $url)){
+if(preg_match($reg_attachment, $commentsContent, $url)){
 	echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
 } else {
 // if no urls in the text just return the text
