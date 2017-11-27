@@ -20,7 +20,7 @@ else{
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body class="bg">
+<body>
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -31,13 +31,14 @@ echo "<script>\n";
 echo "</script>\n";
 ?>
 
+<div class="bg" style="margin-right: 50px; margin-left: 50px;"</div>
 <div class="container text-center">
     <!-- Logo -->
-    <img class="logo" src="img/Logo.png" style="width:300px;">
-    <br><br><br><br>
+    <img src="img/Logo.png" style="width:300px;">
+    <br>
     <!-- Play Button -->
     <button type="button" class="btn btn-fancy-play"></button>
-    <br><br><br><br>
+    <br><br><br>
 </div>
 
 <!-- Leader Board -->
@@ -45,7 +46,7 @@ echo "</script>\n";
     <h1>Leader Board</h1>
     <hr>
     <table class="table">
-        <tbody id="leaderboard"></div>
+        <tbody id="leaderboard">
         </tbody>
     </table>
     <br>
@@ -55,6 +56,7 @@ echo "</script>\n";
 
 <!-- Load Leaderboard -->
 <script>
+    
         var users;
 
         // Request top 10 users by ELO
@@ -76,14 +78,15 @@ echo "</script>\n";
         });
         var users = $.GetUsers("ELO", "10");
 
+        
         for(var i in users) {
-            var html_string = ' \
-            <tr> \
-                <td> \
-                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style="width:60px;height:60px;"></img> \
-                    <a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id='+ users[i].id + '"><h3>' + users[i].name + '</h3></a> \
-                </td> \        
-            </tr>';
+            var html_string = '' +
+            '<tr> ' +
+                '<td>' +
+                    '<img align="left" src="../profile/'+ users[i].avatar_path +'" style="width:60px;height:60px;"></img>' +
+                    '<h3><a href="http://' + "<?php echo $_SERVER['HTTP_HOST']; ?>" + '/profile/profile.php?id=' + users[i].id + '"> ' + users[i].name + '</a></h3>' +
+                '</td>' +
+            '</tr>';
 
             document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
         }
