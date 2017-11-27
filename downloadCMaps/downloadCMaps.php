@@ -110,31 +110,36 @@ else {
 			$uploaderID = $row['uploader'];
 			$packageID = $row['id'];
 			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
+			$packagePathQuery = $mysqli->query("select * from packages where id = $packageID");
 			$imagePathQuery = $mysqli->query("select * from package_contents where id = $packageID AND type = 0");
 		if(!$userNameQuery){	
 			throw new Exception("Error in Database query");
 		} else {
 			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
 		}	
-		
+		if(!$packagePathQuery){	
+			throw new Exception("Error in Database query");
+		} else {
+			$packagePath = ($packagePathQuery->fetch_assoc())['filepath'];
+		}
+
 		if(!$imagePathQuery){	
 			throw new Exception("Error in Database query");
 		} else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
-				
 		echo "
-    <div class='col-sm-4'>
-            <div class='div2 thumbnail'>
-
-
-			
+    			<div class='col-sm-4'>
+            			<div class='div2 thumbnail'>
 					<img src='$imagePath' alt='$imagePath' style='width:100%'>
 					<div class='caption'>
 						<p>$displayName</p>
 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
-				<div style='text-align: center'><button><a href='displayCMap.php?id=$packageID'>Preview</a></button></div>
+				<div style='text-align: center'>
+					<button><a href='$packagePath' download>download</a></button>
+					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
+				</div>
 				</div>
 			</div>";
         if ($count % 4 == 3) {
