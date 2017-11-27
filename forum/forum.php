@@ -194,29 +194,31 @@ echo "</script>\n";
 			<center><img alt="defaultProfPic" src="../img/profpic.png" style="width:100px;height:100px;"></center>
                         <h3 style="color: black;">Username</h3>
 		</div>
-		<form action="post.php" method="post">
-			<div class="postInfo">
-				<label><h2 style="color: black;">Select Post Category: </h2></label>
-                                <br>
-				<select name="category">
-					<option value="" disabled selected>Select One</option>
-				    	<option value="beginner">Beginner</option>
-				    	<option value="strategies">Strategies</option>
-			    		<option value="maps">Maps</option>
-			    		<option value="gameUpdates">Game Updates</option>
-			   	 	<option value="general">General</option>
-  				</select>
-  				<br><br>
-				<label><h2 style="color: black;">Post Name: </h2></label>
-					<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
-				<label><h2 style="color: black;">Message: </h2></label><br>
-				<textarea id="postMsg" name="message" placeholder="Message"></textarea>
-                        	<input type="file" name="fileToUpload" id="fileToUpload">
-                        	<input type="button" class="btn-simple" id="upJQuery" value="upload"><br>
-				<button class="btn-simple" onclick="" id="submit">Submit</button>
+		<div class="container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+			<form action="post.php" method="post">
+				<div class="postInfo">
+					<label><h2 style="color: black;">Select Post Category: </h2></label>
+                                	<br>
+					<select name="category">
+						<option value="" disabled selected>Select One</option>
+				    		<option value="beginner">Beginner</option>
+				    		<option value="strategies">Strategies</option>
+			    			<option value="maps">Maps</option>
+			    			<option value="gameUpdates">Game Updates</option>
+			   	 		<option value="general">General</option>
+  					</select>
+  					<br><br>
+					<label><h2 style="color: black;">Post Name: </h2></label>
+						<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
+					<label><h2 style="color: black;">Message: </h2></label><br>
+					<textarea id="postMsg" name="message" placeholder="Message"></textarea>
+                        		<input type="file" name="fileToUpload" id="fileToUpload">
+                        		<input type="button" class="btn-simple" id="upJQuery" value="upload"><br>
+					<button class="btn-simple" onclick="" id="submit">Submit</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	</form>
 </div>
 </div>
 
