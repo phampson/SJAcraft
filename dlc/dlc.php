@@ -3,7 +3,8 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
-} else {
+} 
+else {
     $navpath = "../navbar/navbar.html";
 }
 ?>
@@ -30,22 +31,24 @@ echo "</script>\n";
 ?>
 
 <!-- CDN gallery -->
-<h2 style="color: white; text-align: center;">Map Gallery</h2>
-<br>
+<div class="div1 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2" id="border-gold">
+<h2>Map Gallery</h2><hr>
 <center>
+    <h2>
     <form action='dlc.php' method='get' onsubmit='encodeInput(this)'>
-        <input type='text' name='searchTerm' placeholder="SEARCH TERM">
-        <select name='sort'>
+   	    <input class='input-sm' type='text' name='searchTerm' style='color:black;' placeholder="Search Term">
+        <input class='btn-simple btn-sm' type='submit' value='SEARCH'>
+        <select name='sort' class='btn-sm' style='color:black'>
             <option disabled selected value>SORT BY</option>
             <option value='players'>players</option>
             <option value='uploader'>uploader</option>
             <option value='name'>name</option>
             <option value='date'>date</option>
         </select>
-        <input type='submit' value='SEARCH'>
     </form>
+    </h2>
 </center>
-<br>
+<hr>
 <script type='text/javascript'>
     function encodeInput(form)
     {
@@ -53,7 +56,7 @@ echo "</script>\n";
     }
 </script>
 
-<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+<div class="col-sm-12 col-sm-offset-1 col-md-8 col-md-offset-2">
 
 
 <?php
@@ -74,7 +77,8 @@ if (isset($_GET["sort"])) {
         default:
             $sortOption = "";
     }
-} else {
+} 
+else {
     $sortOption = "";
 }
 
@@ -89,7 +93,8 @@ if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTe
     }
     $query = "SELECT * FROM map WHERE (display_name='$searchTerm' OR 
                       map_name='$searchTerm' OR uploader='$id') AND private=0";
-} else {
+} 
+else {
     $query = "SELECT * FROM map WHERE private=0";
 }
 
@@ -110,18 +115,20 @@ if ($result = $mysqli->query($query)) {
         $userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
         $uploaderName  = $userNameQuery->fetch_assoc();
         $uploaderName  = $uploaderName['username'];
+        //$uploaderName="ss";
         echo "
-        <div class='col-sm-3'>
-            <div class='thumbnail'>
+        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        <h2>
+            <div class='div2 thumbnail' style='height:390pxpx'>
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
                     <div class='caption'>
-                        <p>$displayName</p>
+                        <p><strong>$displayName</strong></p>
                         <p>$numPlayers players</p>
-                        <p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
+                        <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
                     </div>
-                <div style='text-align: center'><button><a href=$map_path download>Download</a></button></div>
+                <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
             </div>
-            
+            </h2>
         </div>";
         if ($count % 4 == 3) {
             echo "</div>";
@@ -135,19 +142,19 @@ if ($result = $mysqli->query($query)) {
 
 
        <!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-sm-3">
+        <div class="col-sm-8 col-xs-8 col-xs-offset-2"><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
-                <div class="thumbnail">
+                <div class='div2 thumbnail'>
                 <!--<a href="#"> -->
                     
                     <img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
-                    <div class="caption">
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <center><div class="caption">
+                        <form action="upload.php" method="post" enctype="multipart/form-data"><p>
                             Select map to upload:
-                            <input type="file" name="fileToUpload" id="fileToUpload"> 
-                            <input type="submit" value="Upload Map" name="submit">
+                            <input type="file" name="fileToUpload" id="fileToUpload"></p><h2>
+                           <input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2>
                     </form>
-                    </div>
+                    </div></center>
                 </a>
             </div>
         </div>
@@ -155,4 +162,40 @@ if ($result = $mysqli->query($query)) {
 
 
 </body>
+<script src="../login/black.js"></script>
+<script>
+//console.log("asaa");
+var error=getAllUrlParams().error;
+console.log(window.location.href);
+if (error=='0')
+{
+	alert("Sorry, file format incorrect");
+}
+if (error=='1')
+{
+	alert("Sorry, file already exists");
+}
+if (error=='2')
+{
+	alert("Sorry, your file is too large");
+}   
+if (error=='3')
+{
+	alert("Sorry, your file was not uploaded");
+}  
+if (error=='4')
+{
+	alert("Uploading succeeded");
+}  
+if (error=='5')
+{
+	alert("Uploading failed");
+}
+if (error=='6')
+{
+	alert("Unknown error");
+} 
+  
+    
+</script>
 </html>

@@ -2,64 +2,66 @@
 
 include('start.php');
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
 
-if(isset($_SESSION['user_id'])){
-        $user_id = $_SESSION['user_id'];
-	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-	if ($query) {
-		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
-		$navpath = "../navbar/navbarlogged.html";	
-	}
-}
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query   = $mysqli->query($sql);
+    if ($query) {
+        $fetch    = $query->fetch_assoc();
+        $username = $fetch['username'];
+        $navpath  = "../navbar/navbarlogged.html";
+    }
+} 
 else {
     header("Location: ../index.php");
     exit();
 }
 
-$message_sql = 'select * from message';
+$message_sql   = 'select * from message';
 $message_query = $mysqli->query($message_sql);
-$message_rows = $message_query->num_rows;
+$message_rows  = $message_query->num_rows;
 
 
-function ShowFriends($userid,$mysqli) {
-    $query = 'select friend_id from friendlist where user_id= "'.$userid.'"';
-    if ($result = $mysqli->query($query)){
-        while($row = $result->fetch_assoc()){
-            $friend_id = $row['friend_id'];
-            $find_friend = 'select * from user_info where id = "'.$friend_id.'"';
-            if ($friends = $mysqli->query($find_friend)){
-                $friend = $friends->fetch_assoc();
-                $friendname = $friend['username'];
-		$friendAvatar = $friend['avatar_path'];
-		if (is_null($friendAvatar)) {
-			$picturePath = '../img/profpic.png';
-		}
-		else {
-			$picturePath = "../profile/$friendAvatar";
-		}
+function ShowFriends($userid, $mysqli)
+{
+    $query = 'select friend_id from friendlist where user_id= "' . $userid . '"';
+    if ($result = $mysqli->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $friend_id   = $row['friend_id'];
+            $find_friend = 'select * from user_info where id = "' . $friend_id . '"';
+            if ($friends = $mysqli->query($find_friend)) {
+                $friend       = $friends->fetch_assoc();
+                $friendname   = $friend['username'];
+                $friendAvatar = $friend['avatar_path'];
+                if (is_null($friendAvatar)) {
+                    $picturePath = '../img/profpic.png';
+                } 
+                else {
+                    $picturePath = "../profile/$friendAvatar";
+                }
             }
             echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div >
+                    
                         <div id="chatButton">
-                                <a href="../profile/profile.php"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="'.$picturePath.'"></a>  
-                            <button class="btn btn-link" id = '.$friend_id.' onclick="removeAllmessages();startNewchat(this.id)">
+                                <a href="../profile/profile.php"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="' . $picturePath . '"></a>  
+                            <button class="btn btn-link" id = ' . $friend_id . ' onclick="removeAllmessages();startNewchat(this.id)">
                                 <div class="messages">
-                                    <strong>'.$friendname.'</strong>
+                                    <strong>' . $friendname . '</strong>
                                 </div>
-                            </button>
+                            </button></p>
                         </div>
-                    </div>
+                    
                 </div>
 ';
             
-	}
+        }
     }
-
+    
 }
 
 
@@ -117,7 +119,9 @@ function sendMessage(frid)
     var msg = document.getElementById("btn-input").value;
     var fid = frid.getAttribute('sendto');
     document.getElementById("btn-input").value = "";
-    $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
+    $.post("sendmessage.php",{usid:<?php
+echo $user_id;
+?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
 }
 
 function sendAttachment(frid)
@@ -126,8 +130,12 @@ function sendAttachment(frid)
     var fid = frid.getAttribute('sendto');
     var msg = "";
     document.getElementById("btn-input").value = "";
-    $.post("attachment.php",{usid:<?php echo $user_id;?>,frid:Number(fid),attach:attach},function(data){msg = data;});
-    $.post("sendmessage.php",{usid:<?php echo $user_id;?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
+    $.post("attachment.php",{usid:<?php
+echo $user_id;
+?>,frid:Number(fid),attach:attach},function(data){msg = data;});
+    $.post("sendmessage.php",{usid:<?php
+echo $user_id;
+?>,frid:Number(fid),msg:msg},function(){removeAllmessages();startNewchat(fid);});
 }
 
 function startNewchat(fri, msgcnt)
@@ -151,10 +159,14 @@ function startNewchat(fri, msgcnt)
                 '</div>';
     
     document.getElementById("sendbox").innerHTML += sendbox;
-    $.post("test.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
+    $.post("test.php",{usid:<?php
+echo $user_id;
+?>,frid:fri},function(data){
 	oldData = data;
     });
-    $.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:fri},function(data){
+    $.post("showmessage.php",{usid:<?php
+echo $user_id;
+?>,frid:fri},function(data){
 	document.getElementById("messages").innerHTML += data;
 	var messages = document.getElementById("messages");	
 	if (msgcnt != undefined) {
@@ -169,7 +181,9 @@ function startNewchat(fri, msgcnt)
     setInterval(updateData, 2500);
 }
 function updateData() {
-    $.post("test.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+    $.post("test.php",{usid:<?php
+echo $user_id;
+?>,frid:friend_id},function(data){
 	newData = data;
 	if (oldData != newData) {
 		updatechat();
@@ -180,7 +194,9 @@ function updateData() {
 
 function updatechat()
 {
-    $.post("showmessage.php",{usid:<?php echo $user_id;?>,frid:friend_id},function(data){
+    $.post("showmessage.php",{usid:<?php
+echo $user_id;
+?>,frid:friend_id},function(data){
 	var div = document.getElementById("messages");
     	while(div.hasChildNodes())
     	{
@@ -204,7 +220,9 @@ function newfriend()
     {
         oldFriendlist.removeChild(oldFriendlist.firstChild);
     }
-    $.post("newfriend.php",{usid:<?php echo $user_id;?>,frnm:friendname},function(data){
+    $.post("newfriend.php",{usid:<?php
+echo $user_id;
+?>,frnm:friendname},function(data){
 document.getElementById("Frilist").innerHTML += data;});
 
 }
@@ -220,7 +238,9 @@ function messageSearch(searchType)
         {
             oldFriendlist.removeChild(oldFriendlist.firstChild);
         }
-        $.post("messageSearch.php",{usid:<?php echo $user_id;?>,msgSrch:mesSearch,type:searchType},function(data){
+        $.post("messageSearch.php",{usid:<?php
+echo $user_id;
+?>,msgSrch:mesSearch,type:searchType},function(data){
 document.getElementById("Frilist").innerHTML += data;});    
     }
 }
@@ -237,7 +257,7 @@ document.getElementById("Frilist").innerHTML += data;});
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
@@ -267,7 +287,9 @@ echo "</script>\n";
 			    <div class = "panel-body msgContainerBase1">
 				<div id="Frilist" class = "panel-group">
 				<!-- Write php code to list friends -->
-				<?php ShowFriends($user_id,$mysqli);?>
+				<?php
+ShowFriends($user_id, $mysqli);
+?>
 				</div>
 			    </div>
 			</div>

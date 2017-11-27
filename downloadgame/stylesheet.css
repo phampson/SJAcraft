@@ -1,49 +1,57 @@
 /*Css style for downloadgame page*/
 
-#midctnr {
-	padding: 0;
-	margin-bottom: 0px;
-}
+/*@media (min-width: 780px) {
+	.btn {
+		text-align: center;
+	}
+}*/
 
-#btmctnr {
+/*.btn {
+	margin: 0px;
+	padding: 0pxl;
+}*/
+
+/*#btmctnr {
 	margin-top: 0px;
 	background-color: rgba(0,0,0,0.5);
-}
+	margin-left:0px;
+	padding:0px;
+}*/
 
-.jumbotron {
+/*
+.hdrctnr {
 	background-color: rgba(0,0,0,0.5) !important;
 	padding: 5px;
 	margin-bottom: 0;
 	margin-top: 0;
 	border-radius: 20px 20px 0px 0px; 
-}
+}*/
 
-.jumbotron h1 {
+/*.jumbotron h1 {
 	font-family: Palatino;
 	text-align: center;
 	color: white;
 	font-size: 30px;
 	font-weight: bold;
 
-}
+}*/
 
-.jumbotron p {
+/*.jumbotron p {
 	text-align: center;
 	font-family: Garamond;
 	color: white;
 	font-size: 15px;
-}
+}*/
 
 table {
-	margin: 10px 0px; 
 	border-collapse: separate;
-	float: left;
 	background-color:white;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	opacity: .5;
 	font-size: 11px;
-	padding: 0px;
+	margin-top: 10px;
+	margin-left: auto;
 }
 
 th {
@@ -58,5 +66,4 @@ td, th {
     	border-left: solid gray 1px;
     	border-top: solid white 1px;
 }
-
 

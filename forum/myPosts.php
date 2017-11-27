@@ -2,22 +2,23 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-if(isset($_SESSION['user_id'])){
-	$navpath = "../navbar/navbarlogged.html";
-	$sql = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
-    	$query = $mysqli->query($sql);
-
-	if($query = $mysqli->query($sql)) {
-		$fetch = $query->fetch_assoc();
-		$username = $fetch['username'];
-		$avatarPath = $fetch['avatar_path'];
-		$user_id = $_SESSION['user_id'];
-	}
-}
-else{
-	$navpath = "../navbar/navbar.html";
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query   = $mysqli->query($sql);
+    
+    if ($query = $mysqli->query($sql)) {
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch['username'];
+        $avatarPath = $fetch['avatar_path'];
+        $user_id    = $_SESSION['user_id'];
+    }
+} 
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -42,11 +43,12 @@ else{
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
 <?php
+
 
 echo"<div class='container div1' id='border-gold'>
 	<h1> My Posts </h1>
@@ -68,6 +70,7 @@ echo "
 			<a href='comments.php?postId=$postId'>
 				<div class='jumbotron div2'>
 					<div class='col-sm-2'> <img align=left src='../profile/$avatarPath' alt='Warcraft main picture' style='width:100px;height:100px;'><br><br><br><br><br> <p>$username</p></div>
+
 					<h3> $postHeader</h3>
 					<p> $postContent </p>
 					<footer><h4> $postDate </h4></footer>
@@ -79,6 +82,7 @@ echo "
 
 		}
 	}
+
 
 echo"</div>";
 

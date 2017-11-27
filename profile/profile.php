@@ -2,34 +2,35 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-if(isset($_GET['id'])){
-  $sql = "select * from user_info where id=".$_GET['id'];
-  $query = $mysqli->query($sql);
-  if ($query) {
-    $fetch = $query->fetch_assoc();
-    $username = $fetch["username"];
-    $email = $fetch["email"];
-    $avatarPath = $fetch["avatar_path"];
-  }
-  // if GET[ID] is set, you're trying to view someone else's profile,
-  // so grab their info
+if (isset($_GET['id'])) {
+    $sql   = "select * from user_info where id=" . $_GET['id'];
+    $query = $mysqli->query($sql);
+    if ($query) {
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch["username"];
+        $email      = $fetch["email"];
+        $avatarPath = $fetch["avatar_path"];
+    }
+    // if GET[ID] is set, you're trying to view someone else's profile,
+    // so grab their info
 }
-if(isset($_SESSION['user_id'])){
-  $navpath = "../navbar/navbarlogged.html";
-
-	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-
-	if (!isset($_GET['id']) and $query) {
-    // if GET[ID] isn't set, view your own profile so grab your own info
-    $fetch = $query->fetch_assoc();
-    $username = $fetch['username'];
-    $email = $fetch['email'];
-    $avatarPath = $fetch['avatar_path'];
-	}
-}
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+    
+    $sql   = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query = $mysqli->query($sql);
+    
+    if (!isset($_GET['id']) and $query) {
+        // if GET[ID] isn't set, view your own profile so grab your own info
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch['username'];
+        $email      = $fetch['email'];
+        $avatarPath = $fetch['avatar_path'];
+    }
+} 
 else {
-	//$navpath = "../navbar/navbarlogged.html";
+    //$navpath = "../navbar/navbarlogged.html";
+    //echo "no session";
     header('Location: ' . '../login/login.html');
 }
 ?>
@@ -55,7 +56,7 @@ else {
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
@@ -68,6 +69,7 @@ echo "</script>\n";
     <!--profile picture-->
     <div class="container uploading col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1" style="margin: 0; padding: 0px">
         <div class="img container" id="profilePic">
+
             <img src= <?php echo $avatarPath ?> class="cover" alt="Profile pic">;
         </div>
     
@@ -76,12 +78,15 @@ echo "</script>\n";
         if $_GET["id"] isn't set, meaning you're viewing your own profile -->
         <div class="selecting container">
             <?php if(!isset($_GET['id'])): ?>
+
  	        <form action="uploadProfile.php" method="post" enctype="multipart/form-data">
 	            <upload><p>Select image to upload:</upload>
 	            <input type="file" name="fileToUpload" id="fileToUpload"><p>
 	            <input type="submit" class="btn-simple"value="Upload Image" name="submit">
             </form>
-            <?php endif; ?>
+            <?php
+endif;
+?>
         </div>
     </div>
 
@@ -131,11 +136,13 @@ echo "</script>\n";
         }
         ?> 	
         <a class='btn-simple' href=<?php echo $addLink ?>>Map Repo</a>
-        <br style="margin: 5px"> 
+<br style="margin: 5px"> 
 
         <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
+
         <?php if(!isset($_GET['id'])): ?>
+
 	
             <a class="btn-simple" href="#popup1">Edit info</a>
         
@@ -180,20 +187,6 @@ echo "</script>\n";
          <?php endif; ?>	
     
 	</div>
-
-<div class="container col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-1">
-<br>
-</div>
-
-<div class="container col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-1">
-<br>
-</div>
-
-<div class="container col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-1">
-<br>
-</div>
-
- 
 
 
     <!-- graph -->

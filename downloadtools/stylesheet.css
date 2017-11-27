@@ -1,8 +1,8 @@
 /*Css style for downloadgame page */
 #banner h1 {
-    font-family: Palatino;
+    /*font-family: Palatino;*/
     text-align: center;
-    color: white;
+    /*color: white;*/
     font-size: 30px;
     font-weight: bold;
 }
@@ -17,33 +17,44 @@
 }
 
 #btmctn {
-    background-color: #d3d3d3;   
+   /*background-color: #d3d3d3;*/   
     padding: 0px;
 }
 
 #box {
     margin: 10px;
-    position: relative;
+	position: relative;
 }
 
 @media (min-width: 960px) {
     
     #downloadbutton {
         float: right;
-        margin-top: -4%;
-       }
+        top:11px;
+	position: absolute;
+	margin-top: 2px;
+	}
+
 }
 
 @media (max-width: 960px) {
     #downloadbutton {
-        margin: auto;
+    	margin:-7px;
+	padding: 0px;
     }
+
+	#box {
+		padding: 0px;
+		padding-top: 20px;
+	}
 }
 
-#box h1 {
+#box h3 {
     font-size: 20px;
     margin: 0px 0px 20px 0px;
-    padding: 0px; 
+    padding:opx; 
+    color: white;
+    
 }
 
 /*
@@ -68,13 +79,13 @@ h2 {
   text-shadow: #fff 0px 1px 1px;
   align-content: center;
 }
+*/
 
 #container {
   width: 80%;
   margin: auto;
   height: 100%;
-  background-image: url("../img/wowbckgrnd.jpg"); 
-  -webkit-background-size: cover;
+ -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -83,11 +94,10 @@ h2 {
 
 
 
-#downloadButton {
-
+/*#downloadButton {
   position: absolute;
   margin-top: -1%;
-}
+}*/
    
 body {
   background-color:black;

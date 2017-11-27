@@ -21,9 +21,8 @@
 }
 
 /* Background image (Index.php) */
-body.bg {
+.bg {
     background-image: url("./img/SplashMirror.png");
-    height: 50%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -56,7 +55,10 @@ body {
     background-size: 300px 300px;
 }
 
-
+/* Table Image */
+td > img {
+    padding: 10px;
+}
 /* Fonts & Headings */
 h1 {
     font-family: 'Alegreya', serif;
@@ -65,7 +67,7 @@ h1 {
     color: rgb(255, 195, 0);
     font-weight: bold;
     font-variant: small-caps;
-    font-size: 80px;
+    font-size:  80px;
     text-shadow: -1px -1px 3px black;
 }
 h2 {
@@ -96,13 +98,16 @@ p {
 @media screen and (max-width: 768px) {
     /* Fonts */
     h1 {
-        font-size: 65px; 
+        font-size: 9vw;
+	/*font-size: 65px;*/ 
     }
     h2 {
-        font-size: 40px;
+        /*font-size: 40px;*/
+	font-size: 5vw;
     }
     h3 {
-        font-size: 30px;
+        /*font-size: 30px;*/
+	font-size: 3vw;
     }
 
     /* Divs */

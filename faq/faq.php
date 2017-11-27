@@ -2,11 +2,11 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-if(isset($_SESSION['user_id'])){
-	$navpath = "../navbar/navbarlogged.html";
-}
-else{
-	$navpath = "../navbar/navbar.html";
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+} 
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -28,7 +28,7 @@ else{
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 <div class="container">
