@@ -85,9 +85,9 @@ echo "</script>\n";
     <form class="navbar-form navbar-left" action="search.php" method="post"> -->
     <form class="navbar-form navbar-left">    
         <div class="input-group">
-            <input type="text" name="searchText" class="form-control" placeholder="Search Threads/Users">
+            <input type="text" name="searchText" class="form-control btn-sm" placeholder="Search Threads/Users">
               <div class="input-group-btn">
-                <input class="btn btn-default" type="button" name="submitButton" value="Search" onClick="search(this.form);">
+                <input class="btn-sm btn-simple" type="button" name="submitButton" value="SEARCH" onClick="search(this.form);">
                 <!-- <button class="btn btn-default" type="submit"> -->
                   <i class="glyphicon glyphicon-search"></i>
                 </button>
@@ -107,7 +107,7 @@ echo "</script>\n";
         <li>
         	<div id="discussionButton">
 	        	<button class="btn btn-link" onclick="on()">
-	        		<h4 style="margin-top: 0px"><span class="glyphicon glyphicon-plus"></span>Start New Discussion</h4>
+	        		<h4 style="margin-top: 0px"><span class="glyphicon glyphicon-plus"></span> Start New Discussion</h4>
 	        	</button>
 	        </div>
         </li>
@@ -181,39 +181,39 @@ echo "</script>\n";
 </div>
 
 <!-- Create Post Container  -->
-<div class="container-fluid" id="postContainer">
+<div class="container-fluid col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1" id="postContainer">
 <div class="panel panel-default">
-	
 	<div class="panel-heading">
-	<div class="panel-title">
-		<img id="close" src="../img/close.png" onclick ="off()">
-		<h1>Create a New Post</h1>
-	</div>
+		<div class="panel-title">
+			<span class="glyphicon glyphicon-remove" onclick="off()" style="float: right;"></span>
+			<h3 style="color: black;">Create a New Post</h3>
+		</div>
 	</div>
 	<div class="panel-body">
-		<div class="profInfo">
-			<img alt="defaultProfPic" src="../img/profpic.png" style="width:100px;height:100px;">
-			<h3>username</h3>
+		<div class="profInfo container col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0">
+			<center><img alt="defaultProfPic" src="../img/profpic.png" style="width:100px;height:100px;"></center>
+                        <h3 style="color: black;">Username</h3>
 		</div>
 		<form action="post.php" method="post">
-		<div class="postInfo">
-			<label>Select Post Category: </label>
-			<select name="category">
-				<option value="" disabled selected>Select One</option>
-			    <option value="beginner">Beginner</option>
-			    <option value="strategies">Strategies</option>
-			    <option value="maps">Maps</option>
-			    <option value="gameUpdates">Game Updates</option>
-			    <option value="general">General</option>
-  			</select>
-  			<br>
-			<label>Post Name: </label>
-			<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
-			<label> Message: </label><br>
-			<textarea id="postMsg" name="message" placeholder="Message"></textarea>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        <input type="button" id="upJQuery" value="upload"><br>
-			<button class="btn-primary" onclick="" id="submit">Submit</button>
+			<div class="postInfo">
+				<label><h2 style="color: black;">Select Post Category: </h2></label>
+                                <br>
+				<select name="category">
+					<option value="" disabled selected>Select One</option>
+				    	<option value="beginner">Beginner</option>
+				    	<option value="strategies">Strategies</option>
+			    		<option value="maps">Maps</option>
+			    		<option value="gameUpdates">Game Updates</option>
+			   	 	<option value="general">General</option>
+  				</select>
+  				<br><br>
+				<label><h2 style="color: black;">Post Name: </h2></label>
+					<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
+				<label><h2 style="color: black;">Message: </h2></label><br>
+				<textarea id="postMsg" name="message" placeholder="Message"></textarea>
+                        	<input type="file" name="fileToUpload" id="fileToUpload">
+                        	<input type="button" class="btn-simple" id="upJQuery" value="upload"><br>
+				<button class="btn-simple" onclick="" id="submit">Submit</button>
 		</div>
 	</div>
 	</form>
