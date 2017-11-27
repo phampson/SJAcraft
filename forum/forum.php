@@ -69,7 +69,7 @@ echo "</script>\n";
 
 <!-- Search bar-->
 <div id="searchBar">
-  <h1><font color="white"><center> Forums </center></font></h1>
+  <h1><center> Forums </center></font></h1>
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
 
@@ -90,7 +90,7 @@ echo "</script>\n";
         <li>
         	<div id="myProfButton">
 	        	<button id="myProfButton" class="btn btn-link" onclick = "visitProfile();"> 
-	        		<span class="glyphicon glyphicon-user"></span> My Profile
+	        		<h4 style="margin-top: 0px;"><span class="glyphicon glyphicon-user"></span> My Profile</h4>
 	        	</button>
 	        </div>
         </li>
@@ -99,7 +99,7 @@ echo "</script>\n";
         <li>
         	<div id="discussionButton">
 	        	<button class="btn btn-link" onclick="on()">
-	        		<span class="glyphicon glyphicon-plus"></span> Start New Discussion
+	        		<h4 style="margin-top: 0px"><span class="glyphicon glyphicon-plus"></span>Start New Discussion</h4>
 	        	</button>
 	        </div>
         </li>
@@ -116,16 +116,16 @@ echo "</script>\n";
 <!-- Tab Container -->
 <div id="tabContainer" class="container">
 
-	<div id="tab" class="tab">
-		<button class="tablinks" onclick="openCategory(event, 'Beginners')">Beginners</button>
-		<button class="tablinks" onclick="openCategory(event, 'Strategies')">Strategies</button>
-		<button class="tablinks" onclick="openCategory(event, 'Maps')">Maps</button>
-		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')">Game Updates</button>
-		<button class="tablinks" onclick="openCategory(event, 'General')">General</button>
+	<div id="tab" class="tab div1">
+		<button class="tablinks" onclick="openCategory(event, 'Beginners')"><h3>Beginners</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Strategies')"><h3>Strategies</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Maps')"><h3>Maps</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')"><h3>Game Updates</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'General')"><h3>General</h3></button>
 	</div>
 
 
-	<div id="Beginners" class="tabcontent">
+	<div id="Beginners" class="tabcontent div1" style="height: 100%">
 		<p>
 		
 			<!-- 
@@ -143,25 +143,24 @@ echo "</script>\n";
 	</div>
 
 
-	<div id="Strategies" class="tabcontent">
+	<div id="Strategies" class="tabcontent div1" style="height: 100%">
     		<p>
 			
 		</p> 
 	</div>
 
-  	<div id="Maps" class="tabcontent">
+  	<div id="Maps" class="tabcontent div1" style="height: 100%">
     		<p>
-			
     		</p>
   		</div>
 
-  	<div id="Game_Updates" class="tabcontent">
+  	<div id="Game_Updates" class="tabcontent div1" style="height: 100%">
     		<p>
-			
+
     		</p>
   	</div>
 
-  	<div id="General" class="tabcontent">
+  	<div id="General" class="tabcontent div1" style="height: 100%">
     		<p>
 			
 

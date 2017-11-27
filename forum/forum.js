@@ -112,7 +112,7 @@ function formatHTMLString(data, path, container, username) {
 	
  			var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
-            		<div class="jumbotron"> \
+            		<div class="jumbotron div2"> \
               			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
               			<h3> ' + header + '</h3> \
               			<p> ' + content + ' </p> \
