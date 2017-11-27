@@ -14,11 +14,10 @@ $userID = $_SESSION["user_id"];
 $name        = basename($_FILES["fileToUpload"]["name"]);
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
-// check to see if file exists
-/*if (file_exists($target_file)) {
-echo "Sorry, file already exists.";
-exit;
-}*/
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    exit;
+}
 
 // move file from tmp location to its new location
 $tempLocation = $_FILES["fileToUpload"]["tmp_name"];
@@ -56,10 +55,10 @@ if ($res === TRUE) {
             $name      = $item['basename'];
             $path      = $item['dirname'];
             echo $extension . "<br>";
-            
+            t
             if ($extension == "map") {
                 $thumbnail = "cMapPkgs/$folder/" . $item["filename"] . ".png";
-                $output    = exec("../dlc/png $thumbnail cMapPkgs/$folder/$name");
+                $output    = exec("../dlc/png $thumbnail cMapPkgs/$folder/$path/$name");
                 
                 $numPlayers  = substr($output, 0, 1);
                 $displayName = substr($output, 1, strlen($output) - 1);
@@ -67,11 +66,10 @@ if ($res === TRUE) {
                 $mapUploadQuery = "INSERT INTO package_contents 
                            (id, name, filepath, type, map_thumbnail, num_players, display_name) 
                            VALUES 
-                           ('$folder', '$name', 'cMapPkgs/$folder/$name',
+                           ('$folder', '$name', 'cMapPkgs/$folder/$path/$name',
                             0, '$thumbnail', '$numPlayers', '$displayName')";
                 
                 $mysqli->query($mapUploadQuery) or die("bad map upload");
-                // to-do: create thumbnail, add it to the query ^^
             } 
             elseif ($extension == "png") {
                 $tileSetUploadQuery = "INSERT INTO package_contents 
@@ -103,58 +101,5 @@ else {
     exit;
 }
 
-/*
-//fileToUpload is the name from html file, [“name”] is an attribute of $_FILES instance. It also have attribute [“size”] below
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-// Check if file already exists
-if (file_exists($target_file)) {
-echo "Sorry, file already exists.";
-$uploadOk = 0;
-}
-
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 1000000) {
-echo "Sorry, your file is too large.";
-$uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file to server
-} else {
-if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-//Write the variables we put intp the database
-
-//Map info 
-$thumbnail_path = "cMapPkgs/thumbnails/" . substr($name,0,strlen($name)-4) . ".png";
-$output = exec("./png $thumbnail_path $target_file");
-$numPlayers = substr($output,0,1);
-$displayName = substr($output,1,strlen($output)-1);
-
-//Image info 
-$image_path = $target_dir . "/images";
-//Sound info
-$sound_path = $target_dir . "/sound";
-//User info
-$uploader = $_SESSION['user_id'];
-
-$sql = "insert into cMaps (map_name, map_path, map_thumbnail, num_players, display_name, soundpkg_path, image_path, uploader) values('$name','$target_file','$thumbnail_path','$numPlayers','$displayName','$image_path', '$sound_path', '$uploader')";
-if($mysqli->query($sql)) {
-echo "label success";
-} else {
-echo $sql."label failed ";
-}
-echo $thumbnail_path;
-echo $target_file;
-echo $numPlayers;
-echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-header("location: dlc.php");
-} else {
-echo "Sorry, there was an error uploading your file.";
-}
-}*/
 ?>
 
