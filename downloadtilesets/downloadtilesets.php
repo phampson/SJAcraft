@@ -2,7 +2,8 @@
 include('/home/ubuntu/ECS160WebServer/start.php');
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
-} else {
+} 
+else {
     $navpath = "../navbar/navbar.html";
 }
 ?>

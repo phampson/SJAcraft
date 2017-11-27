@@ -1,12 +1,13 @@
 <?php
 include('/home/ubuntu/ECS160WebServer/start.php');
-error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 session_start();
-if(isset($_SESSION['user_id'])){
-  $navpath = "../navbar/navbarlogged.html";
-}
-else{
-  $navpath = "../navbar/navbar.html";
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+} 
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -29,7 +30,7 @@ else{
 <div id="navbar"></div>
 <?php
 echo "<script>\n";
-  echo '$("#navbar").load("'.$navpath.'")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 

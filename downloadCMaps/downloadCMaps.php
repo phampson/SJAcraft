@@ -2,11 +2,11 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-if(isset($_SESSION['user_id'])){
-	$navpath = "../navbar/navbarlogged.html";
-}
-else{
-	$navpath = "../navbar/navbar.html";
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+} 
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -27,7 +27,7 @@ else{
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
@@ -58,59 +58,63 @@ echo "</script>\n";
 <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 	<?php
 
-		if (isset($_GET["sort"])) {
-			switch ($_GET["sort"]) {
-				case "players":
-					$sortOption = " ORDER BY num_players";
-					break;
-				case "uploader":
-					$sortOption = " ORDER BY uploader";
-					break;
-				case "name":
-					$sortOption = " ORDER BY display_name";
-					break;
-				case "date":
-					$sortOption = " ORDER BY upload_date";
-					break;
-				default:
-					$sortOption = "";
-			}
-		} else {
-			$sortOption = "";
-		}
+if (isset($_GET["sort"])) {
+    switch ($_GET["sort"]) {
+        case "players":
+            $sortOption = " ORDER BY num_players";
+            break;
+        case "uploader":
+            $sortOption = " ORDER BY uploader";
+            break;
+        case "name":
+            $sortOption = " ORDER BY display_name";
+            break;
+        case "date":
+            $sortOption = " ORDER BY upload_date";
+            break;
+        default:
+            $sortOption = "";
+    }
+} 
+else {
+    $sortOption = "";
+}
 
-		if (isset($_GET["searchTerm"]) and $_GET["searchTerm"]!="" and $_GET["searchTerm"]!="SEARCH TERM") {
-			$searchTerm = rawurldecode($_GET["searchTerm"]);
-
-
-			$query = "SELECT id FROM user_info WHERE username='$searchTerm'";
-			if ($id = $mysqli->query($query)) {
-				$id = ($id->fetch_assoc())["id"];
-			}
-			$query = "SELECT * FROM packages WHERE (display_name='$searchTerm' OR 
+if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTerm"] != "SEARCH TERM") {
+    $searchTerm = rawurldecode($_GET["searchTerm"]);
+    
+    
+    $query = "SELECT id FROM user_info WHERE username='$searchTerm'";
+    if ($result = $mysqli->query($query)) {
+        $fetch = $id->fetch_assoc();
+        $id    = $fetch["id"];
+    }
+    $query = "SELECT * FROM packages WHERE (display_name='$searchTerm' OR 
 			          uploader='$id')";
-		} else {
-			$query = "SELECT * FROM packages";
-		}
-		
-		$query .= $sortOption;
+} 
+else {
+    $query = "SELECT * FROM packages";
+}
 
-		if ($result = $mysqli->query($query)) {
-			$count = 0;
-		    while ($row = $result->fetch_assoc()) {
-			if($count % 4 == 0){
-				echo "<div class='row'>";		
-			}
-			$filepath = $row['filepath'];
-			$pname = $row['name'];
-			//$map_thumbnail = $row['map_thumbnail'];
-			//$numPlayers = $row['num_players'];
-			$displayName = $row['name'];
-			$uploaderID = $row['uploader'];
-			$packageID = $row['id'];
-			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
-			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
-			echo "
+$query .= $sortOption;
+
+if ($result = $mysqli->query($query)) {
+    $count = 0;
+    while ($row = $result->fetch_assoc()) {
+        if ($count % 4 == 0) {
+            echo "<div class='row'>";
+        }
+        $filepath          = $row['filepath'];
+        $pname             = $row['name'];
+        //$map_thumbnail = $row['map_thumbnail'];
+        //$numPlayers = $row['num_players'];
+        $displayName       = $row['name'];
+        $uploaderID        = $row['uploader'];
+        $packageID         = $row['id'];
+        $userNameQuery     = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
+        $uploaderNameFetch = $userNameQuery->fetch_assoc();
+        $uploaderName      = $uploaderNameFetch['username'];
+        echo "
 		<div class='col-sm-4'>
 			<div class='div2 thumbnail'>
 
@@ -123,15 +127,15 @@ echo "</script>\n";
 				<div style='text-align: center'><button><a href='displayCMap.php?id=$packageID'>Preview</a></button></div>
 				</div>
 			</div>";
-			if($count % 4 == 3){
-				echo "</div>";		
-			}
-			$count = $count + 1;
-		    }
-
-		    $result->close();
-		}
-		?>
+        if ($count % 4 == 3) {
+            echo "</div>";
+        }
+        $count = $count + 1;
+    }
+    
+    $result->close();
+}
+?>
 		<!--<script type = "text/php" src="show_maps.php"></script>-->
 		
 			<!--<div class="thumbnail" onclick="addMap()">-->
