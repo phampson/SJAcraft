@@ -37,7 +37,7 @@ echo "</script>\n";
     <img src="img/Logo.png" style="width:300px;">
     <br>
     <!-- Play Button -->
-    <button type="button" class="btn btn-fancy-play"></button>
+    <button onclick="go()" id="thebutton" type="button" class="btn btn-fancy-play"></button>
     <br><br><br>
 </div>
 
@@ -56,7 +56,8 @@ echo "</script>\n";
 
 <!-- Load Leaderboard -->
 <script>
-    
+    	function go()
+    	{window.location.href = './downloadgame/downloadgame.php'; }
         var users;
 
         // Request top 10 users by ELO
