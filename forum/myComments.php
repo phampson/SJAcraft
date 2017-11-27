@@ -2,22 +2,23 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-if(isset($_SESSION['user_id'])){
-  $navpath = "../navbar/navbarlogged.html";
-  $sql = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
-      $query = $mysqli->query($sql);
-	
-  if($query = $mysqli->query($sql)) {
-    $fetch = $query->fetch_assoc();
-    $username = $fetch['username'];
-    $avatarPath = $fetch['avatar_path'];
-	$user_id = $fetch['id'];
-  }
-}
-else{
-  $navpath = "../navbar/navbar.html";
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query   = $mysqli->query($sql);
+    
+    if ($query = $mysqli->query($sql)) {
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch['username'];
+        $avatarPath = $fetch['avatar_path'];
+        $user_id    = $fetch['id'];
+    }
+} 
+else {
+    $navpath = "../navbar/navbar.html";
 }
 ?>
 
@@ -43,7 +44,7 @@ else{
 <?php
 
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
@@ -55,26 +56,24 @@ echo "</script>\n";
 
 <?php
 
-$sql = 'select * from comment'; 
+$sql = 'select * from comment';
 
-  if($query = $mysqli->query($sql)) {
+if ($query = $mysqli->query($sql)) {
     while ($row = $query->fetch_assoc()) {
-      $commentUser = $row['comment_user']; 
-
-      if ($commentUser == $user_id)
-      {
-	$commentPostId = $row['post_id'];
-        $commentContent = $row['comment_content'];
-        $postDate = $row['comment_date'];
-	
-	if($avatarPath == null)
-	{
-	    $avatarPath = "avatar_pics/profile_default.jpg";
-	}
-
-//<a href='comments.php?postId=$commentPostId'>
-//</a>
-echo "
+        $commentUser = $row['comment_user'];
+        
+        if ($commentUser == $user_id) {
+            $commentPostId  = $row['post_id'];
+            $commentContent = $row['comment_content'];
+            $postDate       = $row['comment_date'];
+            
+            if ($avatarPath == null) {
+                $avatarPath = "avatar_pics/profile_default.jpg";
+            }
+            
+            //<a href='comments.php?postId=$commentPostId'>
+            //</a>
+            echo "
     <a href='comments.php?postId=$commentPostId'>
        <div class = 'div2 col-xs-12 col-xs-offset-0' > 
         <div class = 'col-sm-1 Cinfo'>
@@ -89,12 +88,12 @@ echo "
     
       </div>
   </a> ";
-
-      } 
-
-
+            
+        }
+        
+        
     }
-  }
+}
 
 ?>
 	</div>

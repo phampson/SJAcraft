@@ -1,34 +1,38 @@
 <?php
 include("/home/ubuntu/ECS160WebServer/start.php");
 
-function phpConsole($data) 
+function phpConsole($data)
 {
     $output = $data;
     if (is_array($output))
-        $output = implode( ',', $output);
+        $output = implode(',', $output);
     echo "<script>console.log('PHP Console: " . $output . "');</script>";
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 
-if(isset($_SESSION["user_id"])) {
+if (isset($_SESSION["user_id"])) {
     $navpath = "../navbar/navbarlogged.html";
-} else {
+} 
+else {
     $navpath = "../navbar/navbar.html";
 }
 
 
 
 if (isset($_GET["id"])) {
-    $user_id = $_GET["id"];
+    $user_id        = $_GET["id"];
     $viewingOwnRepo = false;
-} elseif (isset($_SESSION["user_id"])) {
-    $user_id = $_SESSION["user_id"];
+} 
+elseif (isset($_SESSION["user_id"])) {
+    $user_id        = $_SESSION["user_id"];
     $viewingOwnRepo = true;
-} else {
+} 
+else {
     header("Location: ../login/login.html");
 }
-$query = $mysqli->query("select * from user_info where id=$user_id");
-$mapRepoOwner = $query->fetch_assoc()["username"];
+$query        = $mysqli->query("select * from user_info where id=$user_id");
+$fetch        = $query->fetch_assoc();
+$mapRepoOwner = $fetch["username"];
 ?>
 
 <!DOCTYPE html>
@@ -47,33 +51,36 @@ $mapRepoOwner = $query->fetch_assoc()["username"];
 <div id="navbar"></div>
 <?php
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
 <!-- CDN gallery -->
 <div class="div1 col-xs-12 col-sm-8 col-sm-offset-2" id='border-gold'>
-<h2><?php echo $mapRepoOwner."'s" ?> Map Repo</h2><hr>
+<h2><?php
+echo $mapRepoOwner . "'s";
+?> Map Repo</h2><hr>
 
 <div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-2">
 
 <?php
-function showMaps($query, $ownRepo, $private){
+function showMaps($query, $ownRepo, $private)
+{
     $mysqli = $GLOBALS['mysqli'];
-		if ($result = $mysqli->query($query)) {
-		    $count = 0;
-		    while ($row = $result->fetch_assoc()) {
-		        if($count % 4 == 0){
-				    echo "<div class='row'>";		
-		        }
-			$map_path = "../dlc/".$row['map_path'];
-			$map_name = $row['map_name'];
-			$map_thumbnail = "../dlc/".$row['map_thumbnail'];
-			$numPlayers = $row['num_players'];
-			$displayName = $row['display_name'];
-			$uploaderID = $row['uploader'];
-			
-			echo "
+    if ($result = $mysqli->query($query)) {
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            if ($count % 4 == 0) {
+                echo "<div class='row'>";
+            }
+            $map_path      = "../dlc/" . $row['map_path'];
+            $map_name      = $row['map_name'];
+            $map_thumbnail = "../dlc/" . $row['map_thumbnail'];
+            $numPlayers    = $row['num_players'];
+            $displayName   = $row['display_name'];
+            $uploaderID    = $row['uploader'];
+            
+            echo "
 		<div class='col-sm-8 col-xs-7 col-sm-offset-2 col-xs-offset-0'>
 			<div class='div2 thumbnail'>
 				
@@ -81,37 +88,41 @@ function showMaps($query, $ownRepo, $private){
 					<div class='caption'><h2>
 						<p><strong>$displayName</strong></p>
 						<p>$numPlayers players</p></h2>";
-            if ($ownRepo==1) {
+            if ($ownRepo == 1) {
                 echo "<p>Change public/private: </p>";
-                echo "<input type='checkbox' name='$map_name"."[]' value='switch'>";
+                echo "<input type='checkbox' name='$map_name" . "[]' value='switch'>";
                 echo "<p>Delete map: </p>";
-                echo "<input type='checkbox' name='$map_name"."[]' value='delete'>";
+                echo "<input type='checkbox' name='$map_name" . "[]' value='delete'>";
                 
                 if ($private == true) {
                     echo "<br>Share with a friend only:
-				          <select name='$map_name"."[]' value='share'>
+				          <select name='$map_name" . "[]' value='share'>
 				            <option value='share'></option>";
-	                $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
-	                while ($friend = $friends->fetch_assoc()) {
-	                    $friendID = $friend["friend_id"];
-	                    $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
-	                    echo "<option value='$friendID'>$friendUserName</option>";
-	                }
-		            echo '</select>';
-		            
-		            phpConsole($map_name);
-		            $friendsSharedWith = $mysqli->query("SELECT shared_user FROM map_settings WHERE map_name='$map_name'");
-		      
-		            echo "<br>Unshare with a friend: <br> <select name='$map_name"."[]' value='share'><option value='unshare'></option>";
-		            while ($friend = $friendsSharedWith->fetch_assoc()) {
-		                $friendID = $friend["shared_user"];
-		                phpConsole($friendID);
-		                $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
-		                
-		                echo "<option value='$friendID'>$friendUserName</option>";
-		            }
-		            echo '</select>';
-		        }
+                    $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
+                    while ($friend = $friends->fetch_assoc()) {
+                        $friendID       = $friend["friend_id"];
+                        $friendQuery    = $mysqli->query("SELECT username FROM user_info WHERE id=$friendID");
+                        $friendFetch    = $friendQuery->fetch_assoc();
+                        $friendUserName = $friendFetch["username"];
+                        echo "<option value='$friendID'>$friendUserName</option>";
+                    }
+                    echo '</select>';
+                    
+                    phpConsole($map_name);
+                    $friendsSharedWith = $mysqli->query("SELECT shared_user FROM map_settings WHERE map_name='$map_name'");
+                    
+                    echo "<br>Unshare with a friend: <br> <select name='$map_name" . "[]' value='share'><option value='unshare'></option>";
+                    while ($friend = $friendsSharedWith->fetch_assoc()) {
+                        $friendID = $friend["shared_user"];
+                        phpConsole($friendID);
+                        $friendQuery    = $mysqli->query("SELECT username FROM user_info WHERE id=$friendID");
+                        $friendFetch    = $friendQuery->fetch_assoc();
+                        $friendUserName = $friendFetch["username"];
+                        
+                        echo "<option value='$friendID'>$friendUserName</option>";
+                    }
+                    echo '</select>';
+                }
             }
             echo "
 					
@@ -119,20 +130,20 @@ function showMaps($query, $ownRepo, $private){
 			</div>
 			</div>
 		</div>";
-			if($count % 4 == 3){
-				echo "</div>";		
-			}
-			$count = $count + 1;
-		}
-		$result->close();
-	}
+            if ($count % 4 == 3) {
+                echo "</div>";
+            }
+            $count = $count + 1;
+        }
+        $result->close();
+    }
 }
 
-function displayUploadButton() 
+function displayUploadButton()
 {
     $mysqli = $GLOBALS["mysqli"];
     
-		echo'
+    echo '
 		<div class="row">
 		    <div class="col-sm-8 col-xs-8 col-sm-offset-2">
 				<div class="div2 thumbnail">
@@ -149,13 +160,15 @@ function displayUploadButton()
 				            Share with a friend only:
 				            <select>
 				            <option value=""></option>"';
-	    $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
-	    while ($friend = $friends->fetch_assoc()) {
-	        $friendID = $friend["friend_id"];
-	        $friendUserName = (($mysqli->query("SELECT username FROM user_info WHERE id=$friendID"))->fetch_assoc())["username"];
-	        echo "<option value='$friendID'>$friendUserName</option>";
-	    }
-		echo '			    </select> 
+    $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
+    while ($friend = $friends->fetch_assoc()) {
+        $friendID       = $friend["friend_id"];
+        $friendQuery    = $mysqli->query("SELECT username FROM user_info WHERE id=$friendID");
+        $friendFetch    = $friendQuery->fetch_assoc();
+        $friendUserName = $friendFetch["username"];
+        echo "<option value='$friendID'>$friendUserName</option>";
+    }
+    echo '			    </select> 
 		                    <h2><input class="btn-simple btn-sm" type="submit" value="Upload Map" name="submit"></h2>
 					  </p>  </form>
 					</div></center>
@@ -170,35 +183,38 @@ function displayUploadButton()
 
 if ($viewingOwnRepo) {
     displayUploadButton();
-
+    
     echo "<form method='post' action='changemapsettings.php' class='col-xs-12'>";
-
-    echo"<div class='row'>";
+    
+    echo "<div class='row'>";
     echo "<h2>Public Repo</h2><hr>";
     $query = "select * from map where uploader = $user_id and private=0";
-    showMaps($query,1,false);
+    showMaps($query, 1, false);
     echo "</div>";
-
-    echo"<div class='row'>";
+    
+    echo "<div class='row'>";
     echo "<h2>Private Repo</h2><hr>";
     $query = "select * from map where uploader = $user_id and private=1";
-    showMaps($query,1,true);
+    showMaps($query, 1, true);
     echo "</div>,";
-
+    
     echo "<h2><input class='btn-simple btn-sm' type='submit' value='Apply Map Changes'></h2>";
     echo "</form>";
-
-} else {
-    echo"<div class='row'>";
+    
+} 
+else {
+    echo "<div class='row'>";
     echo "<h2>Public Repo</h2><hr>";
-
+    
     $query = "select * from map where uploader=$user_id and private=0";
     showMaps($query);
 }
-		
+
 
 ?>
 
 </div>
 </body>
 </html>
+
+

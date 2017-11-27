@@ -1,28 +1,5 @@
 <?php
-
-include('/home/ubuntu/ECS160WebServer/start.php');
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-if (isset($_SESSION['user_id'])) {
-    $navpath = "../navbar/navbarlogged.html";
-    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
-    $query   = $mysqli->query($sql);
-    
-    if ($query = $mysqli->query($sql)) {
-        $fetch      = $query->fetch_assoc();
-        $username   = $fetch['username'];
-        $avatarPath = $fetch['avatar_path'];
-        $user_id    = $_SESSION['user_id'];
-    }
-} 
-else {
-    $navpath = "../navbar/navbar.html";
-}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

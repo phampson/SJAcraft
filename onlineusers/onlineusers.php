@@ -1,19 +1,19 @@
 <?php
 include('/home/ubuntu/ECS160WebServer/start.php');
-if(isset($_SESSION['user_id'])){
-  $navpath = "../navbar/navbarlogged.html";
-	$sql = 'select * from user_info where id="'.$_SESSION['user_id'].'"';
-	$query = $mysqli->query($sql);
-	if (!isset($_GET['id']) and $query) {
-    // if GET[ID] isn't set, view your own profile so grab your own info
-    $fetch = $query->fetch_assoc();
-    $username = $fetch['username'];
-    $email = $fetch['email'];
-    $avatarPath = $fetch['avatar_path'];
-	}
-}
+if (isset($_SESSION['user_id'])) {
+    $navpath = "../navbar/navbarlogged.html";
+    $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
+    $query   = $mysqli->query($sql);
+    if (!isset($_GET['id']) and $query) {
+        // if GET[ID] isn't set, view your own profile so grab your own info
+        $fetch      = $query->fetch_assoc();
+        $username   = $fetch['username'];
+        $email      = $fetch['email'];
+        $avatarPath = $fetch['avatar_path'];
+    }
+} 
 else {
-	$navpath = "../navbar/navbar.html";
+    $navpath = "../navbar/navbar.html";
     //header('Location: ' . '../login/login.html');
 }
 ?>
@@ -36,7 +36,7 @@ else {
 <div id="navbar"></div>
 <?php
 echo "<script>\n";
-        echo '$("#navbar").load("' . $navpath . '")';
+echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
