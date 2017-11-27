@@ -30,6 +30,7 @@ if(isset($_SESSION['user_id'])){
 }
 else {
 	//$navpath = "../navbar/navbarlogged.html";
+	//echo "no session";
     header('Location: ' . '../login/login.html');
 }
 ?>
