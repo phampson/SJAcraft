@@ -54,6 +54,9 @@ else{
 	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+
+</script>
 </head>
 
 <body onload="dumpAllPosts();">
@@ -207,6 +210,8 @@ echo "</script>\n";
 			<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
 			<label> Message: </label><br>
 			<textarea id="postMsg" name="message" placeholder="Message"></textarea>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="button" id="upJQuery" value="upload"><br>
 			<button class="btn-primary" onclick="" id="submit">Submit</button>
 		</div>
 	</div>
@@ -217,6 +222,27 @@ echo "</script>\n";
 </body>
 
 <script type="text/javascript" src="forum.js">
+</script>
+<script>
+$('#upJQuery').on('click', function() {
+ var fd = new FormData();
+ fd.append("upload", 1);
+ fd.append("fileToUpload", $("#fileToUpload").get(0).files[0]);
+ $.ajax({
+ url: "Forumattachment.php",
+ type: "POST",
+ processData: false,
+ contentType: false,
+ data: fd,
+ success: function(d) {
+ if (d.indexOf("Error") <0){
+ $("#fileToUpload").val("");
+ document.getElementById("postMsg").value +="\n"+d+"\n";
+ }
+ else {alert("Cannot Upload");}
+ }
+ });
+});
 </script>
 
 </html>

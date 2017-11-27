@@ -23,6 +23,9 @@ function phpConsole($data) {
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 $ID = $_GET['postId'];
+$reg_exUrl = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+
+$reg_attachment = '/attachment_files\/.*/';
  
 
 $sql = 'select * from post where post_id="' .$ID. '"';
@@ -102,7 +105,17 @@ echo "</script>\n";
 			<div class = "col-sm-12">
         			<h2> <?php echo $header ?> </h2>
 	        		<div class="container col-sm-11 col-xs-11"> 
-					<h4><?php echo $content ?></h4>
+					<h4><?php 
+if(preg_match($reg_exUrl, $content, $url)) {
+// make the urls hyper links
+$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+}
+if(preg_match($reg_attachment, $content, $url)){
+// if no urls in the text just return the text
+echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);;
+} else {
+echo $content;
+}?></h4>
 				</div>
 			</div>
   		</div>
@@ -163,7 +176,25 @@ echo "</script>\n";
        			</div>
 
 			<div class = 'col-sm-11'>
-       				<h4>$commentsContent</h4>
+       				<h4>";
+if(preg_match($reg_exUrl, $commentsContent, $url)) {
+
+
+// make the urls hyper links
+$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+
+
+} 
+if(preg_match($reg_attachment, $content, $url)){
+} else {
+
+
+// if no urls in the text just return the text
+echo $commentsContent;
+
+
+}
+                echo "</h4>
        			</div>
 
 		</div>";
@@ -174,10 +205,33 @@ echo "</script>\n";
 
 if(isset($_SESSION['user_id'])){
 	echo "<form id='form' action='uploadComments.php?' method='post'>
-      <textarea name='comment' placeholder='enter comments'></textarea>
+      <textarea id='commentcontent' name='comment' placeholder='enter comments'></textarea>
       <input type='hidden' name='ID' value='$ID'/>
+      <input type='file' name='fileToUpload' id='fileToUpload'>
+      <input type='button' id='upJQuery' value='upload'><br>
       <button class='btn-default' onclick='' id='submit'>Send</button>
-    </form>";
+    </form>
+<script>
+$('#upJQuery').on('click', function() {
+ var fd = new FormData();
+ fd.append('upload', 1);
+ fd.append('fileToUpload', $('#fileToUpload').get(0).files[0]);
+ $.ajax({
+ url: 'Forumattachment.php',
+ type: 'POST',
+ processData: false,
+ contentType: false,
+ data: fd,
+ success: function(d) {
+ if (d.indexOf('Error') <0){
+ $('#fileToUpload').val('');
+ document.getElementById('commentcontent').value +='\\n'+d+'\\n';
+ }
+ else {alert('Cannot Upload');}
+ }
+ });
+});
+</script>";
 }
 
 ?>
