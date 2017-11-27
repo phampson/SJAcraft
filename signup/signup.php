@@ -24,7 +24,8 @@ $insert = "insert into user_info (username, password, email, avatar_path, hash)
 $query = $mysqli->query($check);
 if ($query->num_rows > 0) {
     echo "Username already taken";
-} else {
+} 
+else {
     
     if ($mysqli->query($insert)) {
         
@@ -60,7 +61,8 @@ if ($query->num_rows > 0) {
         
         if (!$mail->send()) {
             echo "Mailer Error: " . $mail->ErrorInfo;
-        } else {
+        } 
+        else {
             echo "<br>Please verify your account!";
         }
     }
