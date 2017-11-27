@@ -70,6 +70,10 @@ echo "</script>\n";
 <!-- Search bar-->
 <div id="searchBar">
   <h1><center> Forums </center></font></h1>
+	<div class="container col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+		<hr>
+	</div>
+	<br>
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
 
@@ -79,7 +83,7 @@ echo "</script>\n";
         <div class="input-group">
             <input type="text" name="searchText" class="form-control" placeholder="Search Threads/Users">
               <div class="input-group-btn">
-                <input class="btn btn-default" type="button" name="submitButton" value="Click" onClick="search(this.form);">
+                <input class="btn btn-default" type="button" name="submitButton" value="Search" onClick="search(this.form);">
                 <!-- <button class="btn btn-default" type="submit"> -->
                   <i class="glyphicon glyphicon-search"></i>
                 </button>
