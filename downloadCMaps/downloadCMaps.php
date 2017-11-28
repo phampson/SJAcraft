@@ -130,9 +130,14 @@ else {
 		}
 		echo "
     			<div class='col-sm-4'>
-            			<div class='div2 thumbnail'>
-					<img src='$imagePath' alt='$imagePath' style='width:100%'>
-					<div class='caption'>
+            			<div class='div2 thumbnail'>";
+		if(file_exists($imagePath)){
+			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
+		} else {
+			echo "<img src='package.jpg' alt='RATSSSS' style='width:100%'>";
+ 		}
+
+				echo"	<div class='caption'>
 						<p>$displayName</p>
 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
