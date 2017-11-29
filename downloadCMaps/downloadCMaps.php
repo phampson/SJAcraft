@@ -134,7 +134,7 @@ else {
 		if(file_exists($imagePath)){
 			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
 		} else {
-			echo "<img src='package.jpg' alt='RATSSSS' style='width:100%'>";
+			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
  		}
 
 				echo"	<div class='caption'>

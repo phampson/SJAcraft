@@ -29,16 +29,35 @@ echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
-<h2 style="color: white; text-align: center;">Contents</h2>
-<div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
+<?php
+//get the user's id
+$id =  $_GET['id'];
+$query = "select * from packages where id = " . $id;
+$result = $mysqli->query($query);
+$row = $result->fetch_assoc();
+$userID = $row['uploader']; 
+$packageName = $row['name'];
+
+//get the actual user name
+$query = "select * from user_info where id = " . $userID;
+$result = $mysqli->query($query);
+$row = $result->fetch_assoc();
+$username = $row['username']; 
+
+
+echo "
+  <h1 style='color: white; text-align: center;'>" . substr($packageName, 0, -4) . "</h1>
+  <h5  style='color: white; text-align: center;'>Custom Map Package from <a href='../profile/profile.php?id=" . $userID . "'>" . $username . "</a> </h5>
+  <div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
+";
+?>
 
 <?php
-$id =  $_GET['id'];
-
 //gets the correct package based on the id passed to this page
 $query = "select * from packages where id = " . $id;
 $result = $mysqli->query($query); 
 if ($result !== NULL && $result->num_rows !== 0) {
+
     //collect data about this id in the packages database
     $row = $result->fetch_assoc();
     $uploader = $row['uploader'];
@@ -67,7 +86,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
                         <img src='$image' alt='$image' style='width:100%'>
                         <div class='caption'>
                             <p>$name</p>
-                            <p>Uploaded by: <a href='../profile/profile.php?id=$uploader'>$uploader</a></p>
+                            <p>Map file</p>
                         </div>
                     <div style='text-align: center'>
                     </div>
@@ -102,7 +121,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
                         <img src='$filepath' alt='$filepath' style='width:100%'>
                         <div class='caption'>
                             <p>$name</p>
-                            <p>Uploaded by: <a href='../profile/profile.php?id=$uploader'>$uploader</a></p>
+                            <p>Image file</p>
                         </div>
                     <div style='text-align: center'>
                     </div>
@@ -136,8 +155,8 @@ if ($result !== NULL && $result->num_rows !== 0) {
                     <div class='div1 thumbnail'>
                         <img src='$filepath' alt='$filepath' style='width:100%'>
                         <div class='caption'>
-                            <p>$name</p>
-                            <p>Uploaded by: <a href='../profile/profile.php?id=$uploader'>$uploader</a></p>
+                            <p>" . substr($name, 0, -4) . "</p>
+                            <p>Animation file</p>
                         </div>
                     <div style='text-align: center'>
                     </div>
@@ -176,7 +195,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
 			  </audio>
 
                             <p>$name</p>
-                            <p>Uploaded by: <a href='../profile/profile.php?id=$uploader'>$uploader</a></p>
+                            <p>Sound file</p>
                         </div>
                     <div style='text-align: center'>
                        <button onclick='document.getElementById($count).play()'>Play</button> 
