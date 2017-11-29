@@ -5,7 +5,6 @@ if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
 } else {
     $navpath = "../navbar/navbar.html";
-    header("../login/login.html");
 }
 ?>
 
@@ -65,13 +64,6 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $name = $row['name'];
     $packageFilePath = $row['filepath'];
 
-    $query2 = "select * from package_sharing where id = " . $id . " AND uploader = " . $uploader . " AND shared_user = " . $_SESSION['user_id'];
-    $result2 = $mysqli->query($query2);
-    if($result2->num_rows < 1) {
-	echo "We apologize for the inconvenience. However, you do not have permission to view the map. This is not our fault -- but rather yours, for not being sociable enough. Toodleoo!";
-    }
-
-    else {
     //First displays the maps
     $query = "select * from package_contents where id = " . $id . " AND type = 0";
     $result = $mysqli->query($query);
@@ -223,7 +215,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
   echo "
     <h2 style='color: white; text-align: center;'>No Package Found :(</h2>
   ";
-}}
+}
 ?>
 
 </div>
