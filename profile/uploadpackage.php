@@ -6,7 +6,9 @@ if ($_SESSION['user_id'] == NULL) {
     header("Location: ../login/login.html");
 }
 
-$target_dir = "cMapPkgs/";
+$private = $_POST['private'];
+
+$target_dir = "../downloadCMaps/cMapPkgs/";
 
 $userID = $_SESSION["user_id"];
 
@@ -18,6 +20,7 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     exit;
+    echo "Exit??";
 }
 
 // move file from tmp location to its new location
@@ -36,7 +39,8 @@ $folder      = $fetchFolder['id'];
 $packageQuery = "UPDATE packages SET
                  uploader = '$userID', 
                  name     = '$name', 
-                 filepath = '$newLocation' 
+                 filepath = '$newLocation', 
+		 private  = '$private'
                  WHERE id = '$folder'";
 $mysqli->query($packageQuery) or die("Error inserting package: " . $mysqli->error);
 
@@ -59,8 +63,8 @@ if ($res === TRUE) {
             echo $extension . "<br>";
 
             if ($extension == "map") {
-                $thumbnail = "cMapPkgs/$folder/" . $item["filename"] . ".png";
-                $output    = exec("../dlc/png $thumbnail cMapPkgs/$folder/$path/$name");
+                $thumbnail = "../downloadCMaps/cMapPkgs/$folder/" . $item["filename"] . ".png";
+                $output    = exec("../dlc/png $thumbnail ../downloadCMaps/cMapPkgs/$folder/$path/$name");
                 
                 $numPlayers  = substr($output, 0, 1);
                 $displayName = substr($output, 1, strlen($output) - 1);
@@ -74,20 +78,20 @@ if ($res === TRUE) {
                 $mysqli->query($mapUploadQuery) or die("bad map upload");
             } elseif ($extension == "png") {
 		        // check for .dat, if it's there then it's an animation
-		        if (file_exists("cMapPkgs/$folder/$path/$basename.dat")) {
-                    list($width,$height,$type,$attr) = getimagesize("cMapPkgs/$folder/$path/$name");
+		        if (file_exists("../downloadCMaps/cMapPkgs/$folder/$path/$basename.dat")) {
+                    list($width,$height,$type,$attr) = getimagesize("../downloadCMaps/cMapPkgs/$folder/$path/$name");
                     $size = $width . "x" . $width;
 
                     //split into individual frames
-                    exec("convert -crop $size cMapPkgs/$folder/$path/$name cMapPkgs/$folder/c_%d.png");
+                    exec("convert -crop $size ../downloadCMaps/cMapPkgs/$folder/$path/$name ../downloadCMaps/cMapPkgs/$folder/c_%d.png");
                     
                     // repage so it's not a super tall gif
-                    for ($j=0; file_exists("cMapPkgs/$folder/c_$j.png"); $j++) {
-                        exec("convert -page $size+0+0 cMapPkgs/$folder/c_$j.png cMapPkgs/$folder/c_$j.png");
+                    for ($j=0; file_exists("../downloadCMaps/cMapPkgs/$folder/c_$j.png"); $j++) {
+                        exec("convert -page $size+0+0 ../downloadCMaps/cMapPkgs/$folder/c_$j.png ../downloadCMaps/cMapPkgs/$folder/c_$j.png");
                     }
 
-                    exec("convert -dispose Background -delay 20 -loop 0 cMapPkgs/$folder/c_*.png cMapPkgs/$folder/$basename.gif");
-                    exec("rm cMapPkgs/$folder/c_*.png");
+                    exec("convert -dispose Background -delay 20 -loop 0 ../downloadCMaps/cMapPkgs/$folder/c_*.png ../downloadCMaps/cMapPkgs/$folder/$basename.gif");
+                    exec("rm ../downloadCMaps/cMapPkgs/$folder/c_*.png");
                     
                     $animationInsertQuery = "INSERT INTO package_contents
                                              (id, name, filepath, type)
@@ -118,7 +122,7 @@ if ($res === TRUE) {
     
     $zip->close();
     echo 'YEEAAHHH BOI!';
-    header("Location: downloadCMaps.php");
+    header("Location: uploadpackage.php");
 } 
 else {
     echo 'RATSSSSSS!';
