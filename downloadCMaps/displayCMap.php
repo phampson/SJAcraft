@@ -1,6 +1,5 @@
 <?php
 include('/home/ubuntu/ECS160WebServer/start.php');
-
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
 } else {
@@ -33,21 +32,17 @@ echo "</script>\n";
 
 <?php
 $id =  $_GET['id'];
-
 //gets the correct package based on the id passed to this page
 $query = "select * from packages where id = " . $id;
-
 if ($result = $mysqli->query($query)) {
     //collect data about this id in the packages database
     $row = $result->fetch_assoc();
     $uploader = $row['uploader'];
     $name = $row['name'];
     $packageFilePath = $row['filepath'];
-
     //First displays the maps
     echo "<h2 style='color: white; text-align: center;'>Maps</h2>
           <div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>";
-
     $query = "select * from package_contents where id = " . $id . " AND type = 0";
     if($result = $mysqli->query($query)){
       $count = 0;
@@ -60,7 +55,6 @@ if ($result = $mysqli->query($query)) {
         }
 	
 		
-
         echo "
                 <div class='col-sm-3'>
                     <div class='div1 thumbnail'>
@@ -79,13 +73,10 @@ if ($result = $mysqli->query($query)) {
         }
         $count = $count + 1;
 	}
-
         echo "</div>";
     }
-
     //Now display all images
     echo "<h2 style='color: white; text-align: center;'>Images</h2>";
-
     $query = "select * from package_contents where id = " . $id . " AND type = 1";
     if($result = $mysqli->query($query)){
       $count = 0;
@@ -95,7 +86,6 @@ if ($result = $mysqli->query($query)) {
         if ($count % 4 == 0) {
           echo "<div class='row'>";
         }
-
         echo "
                 <div class='col-sm-3'>
                     <div class='div1 thumbnail'>
@@ -116,10 +106,8 @@ if ($result = $mysqli->query($query)) {
         }
         echo "</div>";
     }
-
     //Now display all sounds     
     echo "<h2 style='color: white; text-align: center;'>Sound</h2>";
-
     $query = "select * from package_contents where id = " . $id . " AND type = 2";
     if($result = $mysqli->query($query)){
       $count = 0;
@@ -130,7 +118,6 @@ if ($result = $mysqli->query($query)) {
 	if ($count % 4 == 0) {
           echo "<div class='row'>";
         }
-
         echo "
                 <div class='col-sm-3'>
                     <div class='div1 thumbnail'>
@@ -139,7 +126,6 @@ if ($result = $mysqli->query($query)) {
 		 	  <audio id='$count'>
 			    <source src='$filepath'>
 			  </audio>
-
                             <p>$name</p>
                             <p>Uploaded by: <a href='../profile/profile.php?id=$uploader'>$uploader</a></p>
                         </div>
