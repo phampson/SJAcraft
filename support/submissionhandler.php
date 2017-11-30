@@ -14,6 +14,17 @@ if (isset($_SESSION['user_id'])) {
 else {
     $navpath = "../navbar/navbar.html";
 }
+
+$id = $_SESSION['user_id'];
+$title = $_POST['title'];
+$details = $_POST['details'];
+
+$sql = 'insert into support (user_id, title, details)values("'.$id.'","'.$title.'","'.$details.'")';
+
+if($mysqli->query($sql))
+	{echo "label success";}
+else{echo $sql."label failed";}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,19 +52,9 @@ echo "</script>\n";
 <h2>Submit An Error</h2><hr>
 
 <?php echo 
-	"<form action='submissionhandler.php' id='bugform' method='post'>
-    	Title:<br>
-    	<input type='text' name='title' value='Name'>
-    	<br>
-    	Details:<br>
-    	<textarea rows='4' cols='50' name='details'>
-    	Enter Text Here ...
-    	</textarea>
-    	<input type='submit' value='Submit'>
-	</form>"; 
+	"<h1>Thank you for your submission</h1>";
 ?>
 
 </div>
 </body>
 </html>
-
