@@ -53,7 +53,7 @@ echo "</script>\n";
                 <p>You will likely make a loop of these echo statements when iterating through database. This post assumes you can't see the delete and resolve buttons since you are not admin</p>
             </div>";
             
-      echo "<button class='btn-simple btn-sm' style='margin-left:25%'><a  style='color:white;' href='submit.php'>Submit Error</a></button>";
+      echo "<button class='btn-simple btn-sm' style='margin-left:75%'><a  style='color:white;' href='submit.php'>Submit New Error</a></button>";
 ?>
 </div>
 </body>
