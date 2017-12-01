@@ -12,7 +12,8 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 else {
-    $navpath = "../navbar/navbar.html";
+    //$navpath = "../navbar/navbar.html";
+    header('Location: ' . '../login/login.html');
 }
 ?>
 
