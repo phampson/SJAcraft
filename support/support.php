@@ -38,43 +38,42 @@ echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
-<div class="container">
+<div class="div1 container" id="border-gold">
 <h1>Support Page</h1><hr>
-<div class="container">
 	<div class="panel-group" id="accordion">
 
 <?php 
-        echo "<div class='panel panel-default'>
-		  		<div class='div1 panel-heading'>
-				    <h3 class='panel-title'>
+        echo "<div class='panel panel-success'>
+		  		<div class='panel-heading'>
+				    <div class='panel-title'>
 				    	<a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>
-				        <font color='white'><center>Bug Title</center></font></a>
-				    </h3>
+				        <center>Bug Title (Resolved)</center></a>
+				    </div>
 		    	</div>
-		    	<div id='collapse1' class='div2 panel-collapse collapse'>
-				    <p class='panel-body'>In this paragraph, you would put the text describing the bug</p>
-				    <button class='btn-simple btn-sm'><a  style='color:white;' href='support.php'>Delete</a></button>
-                <button class='btn-simple btn-sm'><a  style='color:white;' href='support.php'>Resolve</a></button>
+		    	<div id='collapse1' class='panel-collapse collapse'>
+				    <div class='panel-body'>In this paragraph, you would put the text describing the bug</div>
+                    <div class='text-center'>
+                        <button class='btn btn-default'><a href='support.php'>Resolve</a></button>
+                    </div>
 			    </div>
 	  		</div>";
 	  		
-	  	echo "<div class='panel panel-default'>
-		  		<div class='div1 panel-heading'>
-				    <h3 class='panel-title'>
+	  	echo "<div class='panel panel-danger'>
+		  		<div class='panel-heading'>
+				    <div class='panel-title'>
 				    	<a data-toggle='collapse' data-parent='#accordion' href='#collapse2'>
-				        <font color='white'><center>For backend</center></font></a>
-				    </h3>
+				        <center>For Backend (In Progress)</center></a>
+				    </div>
 		    	</div>
-		    	<div id='collapse2' class='div2 panel-collapse collapse'>
-				    <p class='panel-body'>You will likely make a loop of these echo statements when iterating through database. This post assumes you can't see the delete and resolve buttons since you are not admin</p>
+		    	<div id='collapse2' class='panel-collapse collapse'>
+				    <div class='panel-body'>You will likely make a loop of these echo statements when iterating through database. This post assumes you can't see the delete and resolve buttons since you are not admin</div>
 			    </div>
 	  		</div>";
 	  		
 	  	echo "</div>";
             
-      echo "<button class='btn-simple btn-sm' style='margin-left:75%'><a  style='color:white;' href='submit.php'>Submit New Error</a></button>";
+      echo "<button class='btn btn-defult' style='margin-left:75%'><a href='submit.php'>Submit New Error</a></button>";
 ?>
-</div>
 </div>
 </body>
 </html>
