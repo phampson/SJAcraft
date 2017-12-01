@@ -72,7 +72,8 @@ echo "</script>\n";
 	  		
 	  	echo "</div>";
             
-      echo "<button class='btn btn-defult' style='margin-left:75%'><a href='submit.php'>Submit New Error</a></button>";
+      echo "<a href='submit1.php' class='btn btn-simple' role='button'>Submit New Error</a>";
+		
 ?>
 </div>
 </body>
