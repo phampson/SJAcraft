@@ -38,22 +38,42 @@ echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
-<div class="container">
+<div class="div1 container" id="border-gold">
 <h1>Support Page</h1><hr>
+	<div class="panel-group" id="accordion">
 
 <?php 
-        echo "<div class='jumbotron div2' style='width:50%;margin-left:25%'>
-                <p><strong>Bug Title</strong></p>
-                <p>In this paragraph, you would put the text describing the bug</p>
-                <button class='btn-simple btn-sm'><a  style='color:white;' href='support.php'>Delete</a></button>
-                <button class='btn-simple btn-sm'><a  style='color:white;' href='support.php'>Resolve</a></button>
-            </div>";
-       echo "<div class='jumbotron div2' style='width:50%;margin-left:25%'>
-                <p><strong>For backend</strong></p>
-                <p>You will likely make a loop of these echo statements when iterating through database. This post assumes you can't see the delete and resolve buttons since you are not admin</p>
-            </div>";
+        echo "<div class='panel panel-success'>
+		  		<div class='panel-heading'>
+				    <div class='panel-title'>
+				    	<a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>
+				        <center>Bug Title (Resolved)</center></a>
+				    </div>
+		    	</div>
+		    	<div id='collapse1' class='panel-collapse collapse'>
+				    <div class='panel-body'>In this paragraph, you would put the text describing the bug</div>
+                    <div class='text-center'>
+                        <button class='btn btn-default'><a href='support.php'>Resolve</a></button>
+                    </div>
+			    </div>
+	  		</div>";
+	  		
+	  	echo "<div class='panel panel-danger'>
+		  		<div class='panel-heading'>
+				    <div class='panel-title'>
+				    	<a data-toggle='collapse' data-parent='#accordion' href='#collapse2'>
+				        <center>For Backend (In Progress)</center></a>
+				    </div>
+		    	</div>
+		    	<div id='collapse2' class='panel-collapse collapse'>
+				    <div class='panel-body'>You will likely make a loop of these echo statements when iterating through database. This post assumes you can't see the delete and resolve buttons since you are not admin</div>
+			    </div>
+	  		</div>";
+	  		
+	  	echo "</div>";
             
-      echo "<button class='btn-simple btn-sm' style='margin-left:75%'><a  style='color:white;' href='submit.php'>Submit New Error</a></button>";
+      echo "<a href='submit1.php' class='btn btn-simple' role='button'>Submit New Error</a>";
+		
 ?>
 </div>
 </body>

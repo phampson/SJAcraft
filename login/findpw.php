@@ -10,10 +10,15 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
+$email = "";
+$username = "";
 
-
-$email    = $_POST['email'];
-$username = $_POST['username'];
+if (isset($_POST['email'])) {
+    $email    = $_POST['email'];
+}
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+}
 
 $check = 'select * from user_info where username="' . $username . '" and email="' . $email . '"';
 /*$insert = 'insert into user_info (username, password, email, hash) values("'.$username.'", "'.$password.'", "'.$email.'", "'.$hash.'")';
@@ -22,10 +27,10 @@ $query = $mysqli->query($check);
 /*echo $query->num_rows;*/
 
 if ($query->num_rows <= 0) {
-    echo "User Not Exist or you entered wrong email address";
+    $pwmsg = "User Does Not Exist or you entered wrong email address";
 } 
 else if ($query->num_rows > 1) {
-    echo "Sorry, something wrong (more than one same user) , we will fix it";
+    $pwmsg = "Sorry, something wrong (more than one same user) , we will fix it";
 } 
 else {
     $row  = $query->fetch_assoc();
@@ -57,13 +62,43 @@ Please click this link to reset your password:
     $mail->Subject = 'Warcraft II Account Verification';
     $mail->Body    = "$msg";
     $mail->AltBody = 'This is a plain-text message body'; // dunno if needed tbh
+
+    $pwmsg = "";
     
     if (!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+        $pwmsg = "Mailer Error: " . $mail->ErrorInfo;
     } 
     else {
-        echo "Please verify your account!";
+        $pwmsg = "Please check your email, you will receive a link to reset your password";
     }
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Warcraft II</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<script>
+        $("#navbar").load("../navbar/navbar.html")
+</script>
+
+<!-- Login form -->
+<div class="div1 col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
+        <h1 class="text-center">Reset Password</h1>
+        <p><?php echo $pwmsg ?></p>
+</div>
+
+</body>
+</html>

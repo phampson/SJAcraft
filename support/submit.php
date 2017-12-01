@@ -12,7 +12,8 @@ if (isset($_SESSION['user_id'])) {
     }
 }
 else {
-    $navpath = "../navbar/navbar.html";
+    //$navpath = "../navbar/navbar.html";
+    header('Location: ' . '../login/login.html');
 }
 ?>
 
@@ -42,14 +43,17 @@ echo "</script>\n";
 
 <?php echo 
 	"<form action='submissionhandler.php' id='bugform' method='post'>
-    	Title:<br>
-    	<input type='text' name='title' value='Name'>
-    	<br>
-    	Details:<br>
-    	<textarea rows='4' cols='50' name='details'>
-    	Enter Text Here ...
-    	</textarea>
-    	<input type='submit' value='Submit'>
+        <div class='form-group'>
+            <label for='title'>Title:</label>
+            <br>
+    	    <input type='text' name='title' id='title'>
+        </div>
+        <div class='form-group'>
+            <label for='details'>Details:</label>
+            <br>
+            <textarea rows='10' name='details' id='details'></textarea>
+        </div>
+    	<button type='submit' class='btn btn-default'>Submit</button>
 	</form>"; 
 ?>
 
