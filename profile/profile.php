@@ -184,6 +184,31 @@ endif;
 			    </div>
 		    </div>
 		    </div>
+         <?php endif; ?>
+         
+         <?php if(!isset($_GET['id'])): ?>
+		<br> <br>
+	
+            <a class="btn-simple" href="#popup2">Refer A Friend</a>
+        
+		    <div id="popup2" class="overlay container col-xs-12">
+		    <div class="popup container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
+			    <h2>Refer A Friend</h2>
+			    <a class="close" href="#">&times;</a>
+			    <div class="content">
+		
+	                <!-- These are the forms to change refer friend -->	
+		            <form id="form" action="referfriend.php" method="post">
+                        <input type="value" name="friendemail" placeholder= "email">
+                        <br>
+                        <button class="btn-simple" id="referfriend">Refer</button>
+                        <br>
+		             </form>
+              
+              
+			    </div>
+		    </div>
+		    </div>
          <?php endif; ?>	
     
 	</div>
@@ -397,7 +422,6 @@ endif;
         </svg>
         </div> 
      <!--ending for bar graph-->
-
 	
 </div>
 </body>

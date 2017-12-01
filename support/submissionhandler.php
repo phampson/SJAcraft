@@ -49,10 +49,10 @@ echo "</script>\n";
 ?>
 
 <div class='div1 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2' id='border-gold'>
-<h2>Submit An Error</h2><hr>
 
 <?php echo 
-	"<h1>Thank you for your submission</h1>";
+	"<h2>Thank you for your Submission!</h2>
+    <p>Our administrators will notify you by e-mail when your submission has been resolved.</p>";
 ?>
 
 </div>
