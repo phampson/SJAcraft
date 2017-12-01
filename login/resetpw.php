@@ -9,14 +9,40 @@ if (isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && 
     
     if ($search->num_rows) {
         echo '
-<div class="loginForm">
-        <h2>Reset Your password</h2>
+<html lang="en">
+<head>
+	<title>Warcraft II</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Nav Bar -->
+<div id="navbar"></div>
+<script>
+        $("#navbar").load("../navbar/navbar.html")
+</script>
+
+<!-- Login form -->
+<div class="div1 col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
+        <h1 class="text-center">Reset Password</h1>
         <form action="newpw.php" method="post" enctype="multipart/form-data">
                 <p1>New Password</p1>
                 <input type="password" name="password" placeholder="Enter New Password">
-                <input type="submit" class="button" value="Reset">
+                <div class="text-center">
+                    <input type="submit" class="btn btn-fancy-submit" value="">
+                    <br><br>
+                </div>
         </form>
 </div>
+
+</body>
+</html>
+
 ';
         // We have a match, activate the account
         
