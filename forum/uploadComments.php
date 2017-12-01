@@ -28,11 +28,10 @@ $fetch          = $query->fetch_assoc();
 $lastComment    = $fetch['newest_comment_id'];
 //print_r($lastComment);
 
-$insert = "INSERT into comment (post_id, comment_user, comment_content) values('$ID','$user_id','$comment')";
+$insert = 'INSERT into comment (post_id, comment_user, comment_content) values("' . $ID . '", "' . $user_id . '", "' . $comment . '")';
 
 if ($mysqli->query($insert)) {
     echo "Comment uploaded <br>";
-    echo "Redirecting...";
 } 
 else {
     echo "comment NOT uploaded";
@@ -77,12 +76,16 @@ flush();
 ob_flush();
 
 session_write_close();
+
+
 /*$file = fopen("text.txt","w");
 $time_for_execution = time() + 10;
 flush();*/
+/*
 sleep(0);
 
 exec("php ../digest/smartDigest.php 2>&1 $ID $lastComment &", $output, $return);
+*/
 
 /*
 $time_later = time();
@@ -97,12 +100,12 @@ fclose($file);*/
 
 //include '../digest/smartDigest.php';
 
-
-/*header('refresh:0;url=comments.php?postId=' . $ID . '');
-
-exec("nohup php ../digest/smartDigest.php 2>&1 $ID $lastComment &", $output, $return);
-//var_dump($output);
+/*
+header('refresh:0;url=comments.php?postId=' . $ID . '');
 */
+
+exec("nohup php ../digest/smartDigestBackup.php 2>&1 $ID $lastComment $user_id &", $output, $return);
+//var_dump($output);
 /*foreach ($output as $line) {
 echo "$line";
 }*/
@@ -116,9 +119,10 @@ echo "fail";
 print_r($output);
 }*/
 
+//header('refresh:0;url=comments.php?postId=' . $ID . '');
 
 //sleep(60);
-include '../digest/smartDigestBackup.php';
+//include '../digest/smartDigestBackup.php';
 
 
 
