@@ -19,7 +19,7 @@ $id = $_SESSION['user_id'];
 $title = $_POST['title'];
 $details = $_POST['details'];
 
-$sql = 'insert into support (user_id, title, details)values("'.$id.'","'.$title.'","'.$details.'")';
+$sql = "insert into support (user_id, title, details)values('$id','$title','$details')";
 
 if($mysqli->query($sql))
 	{echo "label success";}
