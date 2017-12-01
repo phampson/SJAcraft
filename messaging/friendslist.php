@@ -28,6 +28,7 @@ function ShowFriends($userid, $mysqli)
         while ($row = $result->fetch_assoc()) {
             $friend_id      = $row['friend_id'];
             $interact_msgid = $row['interact_msgid'];
+            $request        = $row['request'];
             if ($interact_msgid == NULL) {
                 $interact_msgid = 0;
             }
@@ -43,6 +44,7 @@ function ShowFriends($userid, $mysqli)
                     $picturePath = "../profile/$friendAvatar";
                 }
             }
+            if ($request == 0){
             echo '
                 
                     <tbody class="col-xs-12">
@@ -71,7 +73,7 @@ function ShowFriends($userid, $mysqli)
                     </tbody>
                     
                 
-';
+';          }
             
         }
     }
