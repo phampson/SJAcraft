@@ -29,8 +29,11 @@ move_uploaded_file($tempLocation, $newLocation);
 $mysqli->query("INSERT INTO packages () VALUES ()");
 $folderQuery = "SELECT MAX(id) as 'id' FROM packages";
 $fq          = $mysqli->query($folderQuery);
-$fetchFolder = $fq->fetch_assoc();
-$folder      = $fetchFolder['id'];
+$folder      = "";
+if ($fq) {
+    $fetchFolder = $fq->fetch_assoc();
+    $folder      = $fetchFolder['id'];
+}
 
 // insert it into the database
 $packageQuery = "UPDATE packages SET
