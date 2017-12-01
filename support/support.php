@@ -38,8 +38,8 @@ echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
-<div class='div1 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2' id='border-gold'>
-<h2>Support Page</h2><hr>
+<div class="container">
+<h1>Support Page</h1><hr>
 
 <?php 
         echo "<div class='jumbotron div2' style='width:50%;margin-left:25%'>
