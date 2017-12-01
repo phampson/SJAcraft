@@ -45,17 +45,17 @@ function ShowFriends($userid, $mysqli)
                 }
             }
             echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div >
+                    
                         <div id="chatButton">
                                 <a href="../profile/profile.php"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="' . $picturePath . '"></a>  
                             <button class="btn btn-link" id = ' . $friend_id . ' onclick="removeAllmessages();startNewchat(this.id)">
                                 <div class="messages">
                                     <strong>' . $friendname . '</strong>
                                 </div>
-                            </button>
+                            </button></p>
                         </div>
-                    </div>
+                    
                 </div>
 ';
             

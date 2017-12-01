@@ -36,9 +36,10 @@ if ($result = $mysqli->query($query)) {
             }
         }
         echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                
+                    
                         <div id="chatButton">
+
                                 <a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="' . $picturePath . '"></a>  
                             <button class="btn btn-link" id = ' . $friend_id . ' onclick=window.location.href="history.php?frid=' . $friend_id . '">
                                 <div class="messages">
@@ -56,8 +57,8 @@ if ($result = $mysqli->query($query)) {
                                 </div>
                             </button>
                         </div>
-                    </div>
-                </div>
+                    
+                
 ';
     }
 }

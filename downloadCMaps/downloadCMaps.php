@@ -96,35 +96,55 @@ else {
     $query = "SELECT * FROM packages";
 }
 
-$query .= $sortOption;
+		if ($result = $mysqli->query($query)) {
+			$count = 0;
+		    while ($row = $result->fetch_assoc()) {
+			if($count % 4 == 0){
+				echo "<div class='row'>";		
+			}
+			$filepath = $row['filepath'];
+			$pname = $row['name'];
+			//$map_thumbnail = $row['map_thumbnail'];
+			//$numPlayers = $row['num_players'];
+			$displayName = $row['name'];
+			$uploaderID = $row['uploader'];
+			$packageID = $row['id'];
+			$userNameQuery = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
+			$packagePathQuery = $mysqli->query("select * from packages where id = $packageID");
+			$imagePathQuery = $mysqli->query("select * from package_contents where id = $packageID AND type = 0");
+		if(!$userNameQuery){	
+			throw new Exception("Error in Database query");
+		} else {
+			$uploaderName = ($userNameQuery->fetch_assoc())['username'];
+		}	
+		if(!$packagePathQuery){	
+			throw new Exception("Error in Database query");
+		} else {
+			$packagePath = ($packagePathQuery->fetch_assoc())['filepath'];
+		}
 
-if ($result = $mysqli->query($query)) {
-    $count = 0;
-    while ($row = $result->fetch_assoc()) {
-        if ($count % 4 == 0) {
-            echo "<div class='row'>";
-        }
-        $filepath          = $row['filepath'];
-        $pname             = $row['name'];
-        //$map_thumbnail = $row['map_thumbnail'];
-        //$numPlayers = $row['num_players'];
-        $displayName       = $row['name'];
-        $uploaderID        = $row['uploader'];
-        $packageID         = $row['id'];
-        $userNameQuery     = $mysqli->query("SELECT * FROM user_info WHERE id=$uploaderID");
-        $uploaderNameFetch = $userNameQuery->fetch_assoc();
-        $uploaderName      = $uploaderNameFetch['username'];
-        echo "
-		<div class='col-sm-4'>
-			<div class='div2 thumbnail'>
+		if(!$imagePathQuery){	
+			throw new Exception("Error in Database query");
+		} else {
+			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
+		}
+		echo "
+    			<div class='col-sm-4'>
+            			<div class='div2 thumbnail'>";
+		if(file_exists($imagePath)){
+			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
+		} else {
+			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
+ 		}
 
-				
-					<img src=$map_thumbnail alt=$displayName style='width:100%'>
-					<div class='caption'>
+				echo"	<div class='caption'>
 						<p>$displayName</p>
 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 					</div>
-				<div style='text-align: center'><button><a href='displayCMap.php?id=$packageID'>Preview</a></button></div>
+				<div style='text-align: center'>
+					<button><a href='$packagePath' download>download</a></button>
+					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
+				</div>
 				</div>
 			</div>";
         if ($count % 4 == 3) {
