@@ -104,7 +104,7 @@ fclose($file);*/
 header('refresh:0;url=comments.php?postId=' . $ID . '');
 */
 
-exec("nohup php ../digest/smartDigestBackup.php 2>&1 $ID $lastComment $user_id &", $output, $return);
+exec("nohup php ../digest/smartDigest.php 2>&1 $ID $lastComment $user_id &", $output, $return);
 //var_dump($output);
 /*foreach ($output as $line) {
 echo "$line";
