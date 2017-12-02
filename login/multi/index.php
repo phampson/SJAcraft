@@ -117,6 +117,20 @@ else if (!empty($_GET['name']) && !empty($_GET['info_request'])) {
             deliver_response(0, 200, "Friends returned", $res, "friends_list");
         }
     } 
+    else if ($request == "MAP") {
+    	$no_map =1;
+    	$res = get_map($name, $no_map, $mysqli);
+        if ($valid_username == 0) {
+            deliver_response(1, 200, "User not found", NULL, "friends_list");
+        } 
+        else if ($no_map) {
+            $res = array();
+            deliver_response(0, 200, "maps returned", $res, "maps");
+        } 
+        else if (!$no_map) {
+            deliver_response(0, 200, "maps returned", $res, "maps");
+        }
+    }
     else if ($request == "ALL") {
         if ($valid_username == 0) {
             header("HTTP/1.1 200 User not found");
@@ -255,6 +269,7 @@ else if (!empty($_GET['name']) && !empty($_GET['action'])) {
                 deliver_response2(0, 200, "User logged in");
             }
         }
+
     }
 } 
 else {
@@ -288,6 +303,28 @@ function get_friend($name, &$no_friend, $mysqli)
     $sql = 'select friend_id, username from user_info,(select friend_id from friendlist,(select id from user_info where username = "' . $name . '") as ids where ids.id=friendlist.user_id)as ids2 where ids2.friend_id = id';
     $result = $mysqli->query($sql) or die("project query fail");
     $res = null;
+    while ($temp = $result->fetch_row()) {
+        $res[$temp[1]] = $temp[0];
+        $no_friend     = 0;
+        //$temp2['friend']
+    }
+    //print_r($res);
+    return $res;
+}
+
+function get_map($name, &$no_map, $mysqli)
+{
+	$sql = 'SELECT map_name, private from map, (SELECT id FROM user_info where username = "'.$name.'") as t1 where t1.id = map.uploader;';
+    $result = $mysqli->query($sql) or die("project query fail");
+    $res = null;
+    while ($temp = $result->fetch_row()) {
+        $res[$temp[0]] = $temp[1];
+       // $res["isPrivate"] = $temp[1];
+        $no_map     = 0;
+        //$temp2['friend']
+    }
+    $sql = 'SELECT 0 as pp, name from packages, (SELECT id FROM user_info where username = "' . $name . '") as t2 where t2.id = packages.uploader';
+    $result = $mysqli->query($sql) or die("project query fail");
     while ($temp = $result->fetch_row()) {
         $res[$temp[1]] = $temp[0];
         $no_friend     = 0;
