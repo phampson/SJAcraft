@@ -9,6 +9,7 @@ if (isset($_SESSION['user_id'])) {
         $fetch    = $query->fetch_assoc();
         $username = $fetch['username'];
         $email    = $fetch['email'];
+        $admin = $fetch['admin'];
     }
 }
 else {
@@ -44,14 +45,15 @@ echo "</script>\n";
 
 <?php 
 	
-	$sql = 'SELECT title, details, resolved FROM support';
+	$sql = 'SELECT bug_id, title, details, resolved FROM support';
 	$result = $mysqli->query($sql) or die("project query fail");
     	
     $pos = 1;
 	while ($row = $result->fetch_row()) {
-        $title  		= $row[0];
-        $details	    = $row[1];
-        $resolved 		= $row[2];
+        $bugID  		= $row[0];
+        $title  		= $row[1];
+        $details	    = $row[2];
+        $resolved 		= $row[3];
         
         if($resolved == "true") {
         	$status = '<span class="glyphicon glyphicon-ok"></span>';
@@ -67,11 +69,13 @@ echo "</script>\n";
 				    </div>
 		    	</div>
 		    	<div id='collapse$pos' class='panel-collapse collapse'>
-				    <div class='panel-body'>$details</div>
-                    <div class='text-center'>
-                        <button class='btn btn-default'><a href='support.php'>Resolve</a></button>
-                    </div>
-			    </div>
+				    <div class='panel-body'>$details</div>";
+				    if($admin==1 && $resolved != 'true') {
+                    	echo"<div class='text-center'>
+                        	<button class='btn btn-default'><a href='resolve.php?bugID=$bugID'>Resolve</a></button>
+                    	</div>";
+                    }
+			    echo"</div>
 	  		</div>";
 	  	$pos++;
 	}
