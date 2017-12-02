@@ -30,6 +30,7 @@ if (isset($_SESSION['user_id'])) {
         $fetch    = $query->fetch_assoc();
         $username = $fetch['username'];
         $email    = $fetch['email'];
+	$path     = $fetch['avatar_path'];
     }
 }
 
@@ -191,8 +192,8 @@ echo "</script>\n";
 	</div>
 	<div class="panel-body">
 		<div class="profInfo container col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0">
-			<center><img alt="defaultProfPic" src="../img/profpic.png" style="width:100px;height:100px;"></center>
-                        <h3 style="color: black;">Username</h3>
+			<center><img src="../profile/<?php echo $path; ?>"  alt= "<?php echo $path;?> " style="width:100px;height:100px;"></center>
+                        <h3 style="color: black;"> <?php echo $username; ?> </h3>
 		</div>
 		<div class="container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
 			<form action="post.php" method="post">

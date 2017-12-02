@@ -49,9 +49,10 @@ echo "</script>\n";
 
 <?php
 
-
 echo"<div class='container div1' id='border-gold'>
 	<h1> My Posts </h1>
+	<hr>
+	<br>
 ";
 $sql = 'select * from post';
 	if($query = $mysqli->query($sql)) {
@@ -73,7 +74,7 @@ echo "
 
 					<h3> $postHeader</h3>
 					<p> $postContent </p>
-					<footer><h4> $postDate </h4></footer>
+					<footer><font color='white'> $postDate </font></footer>
 				</div>
 			</a> 
 ";

@@ -76,15 +76,17 @@ if ($query = $mysqli->query($sql)) {
             echo "
     <a href='comments.php?postId=$commentPostId'>
        <div class = 'div2 col-xs-12 col-xs-offset-0' > 
-        <div class = 'col-sm-1 Cinfo'>
-          <img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentUser</p>
+        <div class = 'col-xs-1 Cinfo'>
+          <img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$username</p>
         </div> 
 
-        <div class = 'col-sm-9'>
+        <div class = 'col-xs-9 col-xs-offset-1'>
             <h4 style='margin: 20px;'>$commentContent</h4>
         </div>
 
-  	<footer> $postDate </footer>
+	<div class = 'col-xs-5 col-xs-offset-1'>
+            <footer><font color='white'> &nbsp &nbsp $postDate </font></footer>
+        </div>
     
       </div>
   </a> ";

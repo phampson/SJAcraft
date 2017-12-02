@@ -33,21 +33,20 @@ echo "</script>\n";
 
 <div class="div1 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0" id="border-gold">
 	<div class="col-xs-12 col-sm-12 ">
-		<h1>Install Warcraft II Tools</h1> 
+		<h1>Install Warcraft II Tools</h1>
 		<hr>
 	</div>
-
-	<div id = "btmctn" class="container col-xs-12 col-sm-12" >
-	    <div class="jumbotron div2 container col-xs-12" id="box" ">
-	        <div class="container col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0">
-	            <img src="../img/tools.png" style="width: 20px; height: auto; float: left; margin-right: 0px;"</img>
-	            <h3 style="float: right;">Download tools now!</h3>
-	        </div>
 	
-        	<div class="button container col-sm-2 col-sm-offset-7 col-xs-12 col-xs-offset-0" id="downloadButton">
-        		<a href="game_files/ECS160Tools-week4.zip" download="ToolsApp"><button type="button" class="btn btn-fancy-download"></button></a>
-       		 </div>
-    	</div>
+	<div style = "border-radius: 10px; padding: 20px;" class="div2 container col-xs-12 col-xs-offset-0">
+		<div class="container col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0">
+			<center><h3 style="color: white;">Download tools now!</h3></center>
+		</div>
+				    			   
+		<div style="align: center; position: relative;" class="button container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" id="downloadButton">
+			<center><a href="game_files/ECS160Tools-week4.zip" download="ToolsApp"><button type="button" class="btn btn-fancy-download"></button></a><center>
+		</div>
+	</div>
+
 </div>
 
 </body>

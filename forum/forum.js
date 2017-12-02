@@ -113,10 +113,10 @@ function formatHTMLString(data, path, container, username) {
  			var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron div2"> \
-              			<div class="col-sm-2"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
-              			<h3> ' + header + '</h3> \
-              			<p> ' + content + ' </p> \
-              			<footer> ' + date +' </footer> \
+              			<div class="col-sm-1"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
+              			<div class = "col-xs-9 col-xs-offset-1"><h3> ' + header + '</h3></div> \
+              			<div class = "col-xs-4 col-xs-offset-1"><p> ' + content + ' </p></div> \
+              			<div class = "col-xs-9 col-xs-offset-1"><footer><font color="white"> ' + date +' </font></footer></div> \
             		</div> \
           	            </a> '
 
