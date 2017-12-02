@@ -46,7 +46,7 @@ echo "</script>\n";
 <?php 
 	
 	$sql = 'SELECT bug_id, title, details, resolved FROM support';
-	$result = $mysqli->query($sql) or die("project query fail");
+	$result = $mysqli->query($sql) or die(mysqli_error($mysqli));
     	
     $pos = 1;
 	while ($row = $result->fetch_row()) {
@@ -82,7 +82,7 @@ echo "</script>\n";
 	  		
 	  	echo "</div>";
             
-      echo "<a href='submit.php' class='btn btn-simple' role='button'>Submit New Error</a>";
+      echo "<a href='submit.php' class='btn-simple' role='button'>Submit New Error</a>";
 		
 ?>
 </div>
