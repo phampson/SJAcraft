@@ -72,7 +72,7 @@ echo "</script>\n";
 	  		
 	  	echo "</div>";
             
-      echo "<a href='submit1.php' class='btn btn-simple' role='button'>Submit New Error</a>";
+      echo "<a href='submit.php' class='btn btn-simple' role='button'>Submit New Error</a>";
 		
 ?>
 </div>
