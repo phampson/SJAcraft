@@ -1,3 +1,4 @@
+
 <?php
 
 include('/home/ubuntu/ECS160WebServer/start.php');
@@ -216,11 +217,11 @@ endif;
 
     <!-- graph -->
    
-
+<!--
         <svg class="container" id="barChart">
         <div class="container col-xs-3">
 
-        <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e--> 
+        <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e
 
         <script>
         const maxWidth = 340;
@@ -421,7 +422,7 @@ endif;
         </div>
         </svg>
         </div> 
-     <!--ending for bar graph-->
+     ending for bar graph-->
 	
 </div>
 </body>
