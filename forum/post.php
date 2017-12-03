@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
         $category = $_POST['category'];
         
         if (!isset($category)) {
-            $category = "General";
+            $category = "general";
         }
         
         // Print Statements (Delete later)

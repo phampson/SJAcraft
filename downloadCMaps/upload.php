@@ -105,13 +105,22 @@ if ($res === TRUE) {
                                ('$folder', '$name', 'cMapPkgs/$folder/$path/$name', 1)";
                     $mysqli->query($tileSetUploadQuery) or die("bad map upload");
                 }
-            } elseif ($extension == "mid" || $extension == "mp3" || $extension == "wav") {
+            } elseif ($extension == "mp3" || $extension == "wav") {
                 $soundUploadQuery = "INSERT INTO package_contents
                              (id, name, filepath, type)
                              VALUES
                              ('$folder', '$name', 'cMapPkgs/$folder/$path/$name', 2)";
                 $mysqli->query($soundUploadQuery) or die("bad map upload");
-            } else {
+            } elseif ($extension == "mid" || $extension == "midi") {
+	 	//We will convert the midi to a wav so we can actually play it
+		exec("timidity cMapPkgs/$folder/$path/$name -Ow -o cMapPkgs/$folder/$path/$basename.mp3");	
+	        $soundUploadQuery = "INSERT INTO package_contents
+                             (id, name, filepath, type)
+                             VALUES
+                             ('$folder', '$name', 'cMapPkgs/$folder/$path/$basename.mp3', 2)";
+                $mysqli->query($soundUploadQuery) or die("bad map upload");
+		echo "sudo timidity cMapPkgs/$folder/$path/$name -Ow -o cMapPkgs/$folder/$path/$basename.mp3";
+	    } else {
                 // unwanted file, delete it (this probably doesn't work, fix later)
                 // or reject the whole upload? :thinking:
                 //exec("rm $name");

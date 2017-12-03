@@ -56,7 +56,7 @@ echo "</script>\n";
 
 <?php
 
-$sql = 'select * from comment';
+$sql = 'SELECT * FROM comment';
 
 if ($query = $mysqli->query($sql)) {
     while ($row = $query->fetch_assoc()) {
@@ -70,26 +70,34 @@ if ($query = $mysqli->query($sql)) {
             if ($avatarPath == null) {
                 $avatarPath = "avatar_pics/profile_default.jpg";
             }
-            
-            //<a href='comments.php?postId=$commentPostId'>
-            //</a>
+            	
+		    $sql2        = 'SELECT * FROM post WHERE post_id = '. $commentPostId;	
+		    $query2      = $mysqli->query($sql2);
+ 		    	
+			if ($mysqli->query($sql2)) {
+			    $fetch       = $query2->fetch_assoc();
+			    $post_header = $fetch['post_header'];
+			    $post_tag    = $fetch['tag'];  
+			}
+		
             echo "
-    <a href='comments.php?postId=$commentPostId'>
-       <div class = 'div2 col-xs-12 col-xs-offset-0' > 
-        <div class = 'col-xs-1 Cinfo'>
-          <img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$username</p>
-        </div> 
+		<h3> $post_tag &lt;&lt; <a href='comments.php?postId=$commentPostId'>$post_header </a> </h3>
 
-        <div class = 'col-xs-9 col-xs-offset-1'>
-            <h4 style='margin: 20px;'>$commentContent</h4>
-        </div>
+		<a href='comments.php?postId=$commentPostId'>
+			<div class = 'div2 col-xs-12 col-xs-offset-0'> 
+				<div class = 'col-xs-1 Cinfo'>
+			  		<img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$username</p>
+				</div> 
 
-	<div class = 'col-xs-5 col-xs-offset-1'>
-            <footer><font color='white'> &nbsp &nbsp $postDate </font></footer>
-        </div>
-    
-      </div>
-  </a> ";
+				<div class = 'col-xs-9 col-xs-offset-1'>
+				    	<h4 style='margin: 20px;'>$commentContent</h4>
+				</div>
+
+				<div class = 'col-xs-5 col-xs-offset-1'>
+				    	<footer><font color='white'> &nbsp &nbsp $postDate </font></footer>
+				</div>
+		      	</div>
+		</a> ";
             
         }
         

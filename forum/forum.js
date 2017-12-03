@@ -2,9 +2,15 @@
 //$(document).ready(dumpAllPosts());
 
 // Turn on overlay when 'Start New Discussion' is clicked
-function on() {
-    document.getElementById("overlay").style.display = "block";
-    document.getElementById("postContainer").style.display = "block";
+function on(loggedIn) {
+    console.log("logged in: " + loggedIn);
+    if (loggedIn == true) {
+	    document.getElementById("overlay").style.display = "block";
+	    document.getElementById("postContainer").style.display = "block";
+    }
+    else {
+	alert("Please log in to start a new discussion!");
+    }
 }
 
 // Turn off overlay when exit button is clicked
@@ -15,7 +21,7 @@ function off() {
 
 // Display Posts when tab is clicked
 function openCategory(evt, cityName) {
-      var i, tabcontent, tablinks;
+      var i, tabcontent, tablinks, buttonid;
       tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
@@ -25,9 +31,29 @@ function openCategory(evt, cityName) {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
       document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-}
+      
+     switch (cityName) {
+	case "Beginners":
+		buttonid = 'btn-beginners';
+		break;
+	case "Strategies":
+		buttonid = 'btn-strategies';
+		break;
+	case "Maps":
+		buttonid = 'btn-maps';
+		break;
+	case "Game_Updates":
+		buttonid = 'btn-gameupdates';
+		break;
+	case "General":
+		buttonid= 'btn-general';
+		break;
+	default:
+		buttonid= 'btn-general';
+     }
 
+	document.getElementById(buttonid).className += " active";
+}
 
 // Dump all posts from database
 function dumpAllPosts() {
@@ -110,7 +136,7 @@ function formatHTMLString(data, path, container, username) {
 	content = data[3];
 	date = data[4];
 	
- 			var html_string = ' \
+ 		var html_string = ' \
              	<a href="comments.php?postId=' + postId + '"> \
             		<div class="jumbotron div2"> \
               			<div class="col-sm-1"> <img align=left src="../profile/' + path + ' " alt= "' + path + ' " style="width:100px;height:100px;"> <p> ' + username +' </p></div> \
@@ -141,17 +167,21 @@ function search(form)
 
 function printSearchResults(data)
 {
+
     document.getElementById("overlay").style.display = "none";
     document.getElementById("postContainer").style.display = "none";
     document.getElementById("searchBar").style.display = "none";
     document.getElementById("tabContainer").style.display = "none";
 
     var container = document.getElementById("searchResults");
+	container.className = "div1 container col-xs-10 col-xs-offset-1";
     
     // ADD: Style the below html string
     var htmlString = '\
-                     <p style="background-color:white; text-align:center"> Search Results </p> \
-                     <button onClick="window.location.reload();"> Back </button>'
+                     <h3> Search Results:  </h3> \
+		     <a href="forum.php"> \
+  			<h4 style="color:white;"> &lt&lt Go back to Forums</h4> \
+		     </a>'
     container.insertAdjacentHTML('beforeend', htmlString);
 
     for (var i = 0; i < data.length; i++) {

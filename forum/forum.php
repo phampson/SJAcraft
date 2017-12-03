@@ -23,6 +23,7 @@ function phpConsole($data)
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 if (isset($_SESSION['user_id'])) {
+    $loggedIn = "true";
     $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
     $query   = $mysqli->query($sql);
     $navpath = "../navbar/navbarlogged.html";
@@ -36,6 +37,7 @@ if (isset($_SESSION['user_id'])) {
 
 else {
     $navpath = "../navbar/navbar.html";
+    $loggedIn = "false";
 }
 ?>
 
@@ -61,7 +63,7 @@ else {
 </script>
 </head>
 
-<body onload="dumpAllPosts();">
+<body onload="dumpAllPosts(); openCategory(event, 'Beginners');">
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -82,9 +84,9 @@ echo "</script>\n";
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
 
-    <!-- Commented for now. Delete later.      
+    <!-- Commented for now. Delete later.
     <form class="navbar-form navbar-left" action="search.php" method="post"> -->
-    <form class="navbar-form navbar-left">    
+    <form class="navbar-form navbar-left">
         <div class="input-group">
             <input type="text" name="searchText" class="form-control btn-sm" placeholder="Search Threads/Users">
               <div class="input-group-btn">
@@ -107,7 +109,7 @@ echo "</script>\n";
       <ul class="nav navbar-nav navbar-right">
         <li>
         	<div id="discussionButton">
-	        	<button class="btn btn-link" onclick="on()">
+	        	<button class="btn btn-link" onclick="on(<?php echo $loggedIn; ?>);">
 	        		<h4 style="margin-top: 0px"><span class="glyphicon glyphicon-plus"></span> Start New Discussion</h4>
 	        	</button>
 	        </div>
@@ -118,7 +120,7 @@ echo "</script>\n";
 </div>
 
 <!-- For search results only -->
-<div id="searchResults">
+<div id="searchResults" >
 
 </div>
 
@@ -126,50 +128,37 @@ echo "</script>\n";
 <div id="tabContainer" class="container">
 
 	<div id="tab" class="tab div1">
-		<button class="tablinks" onclick="openCategory(event, 'Beginners')"><h3>Beginners</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Strategies')"><h3>Strategies</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Maps')"><h3>Maps</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')"><h3>Game Updates</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'General')"><h3>General</h3></button>
+		<button class="tablinks active" onclick="openCategory(event, 'Beginners')" id="btn-beginners"><h3>Beginners</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Strategies')" id="btn-strategies"><h3>Strategies</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Maps')" id="btn-maps"><h3>Maps</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')" id="btn-gameupdates"><h3>Game Updates</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'General')" id="btn-general"><h3>General</h3></button>
 	</div>
 
 
-	<div id="Beginners" class="tabcontent div1" style="height: 100%">
+	<div id="Beginners" class="tabcontent div1" style="height: auto;" >
 		<p>
-		
-			<!-- 
-			<a href="#">
-				<div class="jumbotron">
-					<div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
-					<h3> How do I move around?</h3>
-					<p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
-					<footer> 10/17/17 </footer>
-				</div>
-			</a>
-			-->
-
     		</p>
 	</div>
 
 
-	<div id="Strategies" class="tabcontent div1" style="height: 100%">
+	<div id="Strategies" class="tabcontent div1" style="height: auto;">
     		<p>
-			
-		</p> 
+		</p>
 	</div>
 
-  	<div id="Maps" class="tabcontent div1" style="height: 100%">
+  	<div id="Maps" class="tabcontent div1" style="height: auto;">
     		<p>
     		</p>
   		</div>
 
-  	<div id="Game_Updates" class="tabcontent div1" style="height: 100%">
+  	<div id="Game_Updates" class="tabcontent div1" style="height: auto;">
     		<p>
 
     		</p>
   	</div>
 
-  	<div id="General" class="tabcontent div1" style="height: 100%">
+  	<div id="General" class="tabcontent div1" style="height: auto;">
     		<p>
 			
 
