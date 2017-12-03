@@ -1,4 +1,3 @@
-160web
 <?php
 include('start.php');
 error_reporting(E_ALL);
