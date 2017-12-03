@@ -259,7 +259,7 @@ echo $friend_id;
             		</div>
             	</h2>
             	<?php $isfriend = $mysqli->query("select * from friendlist where user_id=".$friend_id." and friend_id=".$user_id.";");
-            	      if ($isfriend->num_rows >0){
+            	      if ($isfriend->num_rows){
             	          $friend_req = $isfriend->fetch_assoc();
             	          if($friend_req['request']==1){
             	              echo "<br> <font color = 'red'>This peopel have not accepted your friend request. You message may not be delivered.</font>";
