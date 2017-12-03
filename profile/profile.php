@@ -121,7 +121,7 @@ endif;
             <?php endif?>
 
             <?php if($foundFriend == TRUE): ?>
-         		<a class="btn-simple" href="../messaging/friendslist.php">Message User</a>
+         		<a class="btn-simple" href="../messaging/history.php?frid=<?php echo $_GET["id"] ?>">Message User</a>
 
             <?php endif?>
         <?php endif; ?>
