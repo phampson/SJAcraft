@@ -70,10 +70,15 @@ echo "</script>\n";
 		    	</div>
 		    	<div id='collapse$pos' class='panel-collapse collapse'>
 				    <div class='panel-body'>$details</div>";
-				    if($admin==1 && $resolved != 'true') {
-                    	echo"<div class='text-center'>
-                        	<button class='btn btn-default'><a href='resolve.php?bugID=$bugID'>Resolve</a></button>
-                    	</div>";
+
+				    if (isset($admin)) {
+
+                        if($admin==1 && $resolved != 'true') {
+                            echo"<div class='text-center'>
+                                <button class='btn btn-default'><a href='resolve.php?bugID=$bugID'>Resolve</a></button>
+                            </div>";
+                        }
+
                     }
 			    echo"</div>
 	  		</div>";
