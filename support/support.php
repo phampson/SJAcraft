@@ -41,6 +41,7 @@ echo "</script>\n";
 
 <div class="div1 container" id="border-gold">
 <h1>Support</h1><hr>
+<div class="col-xs-12 col-sm-10 col-sm-offset-1">
 	<div class="panel-group" id="accordion">
 
 <?php 
@@ -56,12 +57,12 @@ echo "</script>\n";
         $resolved 		= $row[3];
         
         if($resolved == "true") {
-        	$status = '<span class="glyphicon glyphicon-ok"></span>';
+        	$status = '<span style="color: green;" class="pull-right glyphicon glyphicon-ok"></span>';
         } else {
-        	$status = '<span class="glyphicon glyphicon-hourglass"></span>';
+        	$status = '<span style="color: red;" class="pull-right glyphicon glyphicon-hourglass"></span>';
         }
     
-        echo "<div class='panel panel-success'>
+        echo "<div class='panel panel-default'>
 		  		<div class='panel-heading'>
 				    <div class='panel-title'>
 				    	<a data-toggle='collapse' data-parent='#accordion' href='#collapse$pos'>
@@ -69,7 +70,7 @@ echo "</script>\n";
 				    </div>
 		    	</div>
 		    	<div id='collapse$pos' class='panel-collapse collapse'>
-				    <div class='panel-body'>$details</div>";
+				    <div class='panel-body text-center'>$details</div>";
 
 				    if (isset($admin)) {
 
@@ -90,6 +91,7 @@ echo "</script>\n";
       echo "<a href='submit.php' class='btn-simple' role='button'>Submit New Error</a>";
 		
 ?>
+    </div>
 </div>
 </body>
 </html>
