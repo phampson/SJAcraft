@@ -129,24 +129,19 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-    			<div class='col-sm-4'>
-            			<div class='div2 thumbnail'>";
-		if(file_exists($imagePath)){
-			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
-		} else {
-			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
- 		}
-
-				echo"	<div class='caption'>
-						<p>$displayName</p>
-						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
-					</div>
-				<div style='text-align: center'>
-					<button><a href='$packagePath' download>download</a></button>
-					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
-				</div>
-				</div>
-			</div>";
+    		<div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        	<h2>
+           	<div class='div2 thumbnail' style='overflow:auto;'>
+                    <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
+                    <div class='caption'>
+                        <p><strong>$displayName</strong></p>
+                        <p>$numPlayers players</p>
+                        <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
+                    </div>
+                <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
+            	</div>
+            	</h2>
+        	</div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
@@ -156,22 +151,25 @@ else {
     $result->close();
 }
 ?>
-		<!--<script type = "text/php" src="show_maps.php"></script>-->
-		
-			<!--<div class="thumbnail" onclick="addMap()">-->
-				<div class="div2 thumbnail col-sm-7 col-xs-7 col-xs-offset-2 col-sm-offset-3">
-				<!--<a href="#"> -->
-					
-					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
-					<div class="caption">
-						<form action="upload.php" method="post" enctype="multipart/form-data"><center><p>
-						    Select map to upload:
-						    <input type="file" name="fileToUpload" id="fileToUpload"> 
-						    <h2><input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2></p></center>
-						</form>
-					</div>
-				</div>
-			</div>
+	<!--<script type = "text/php" src="show_maps.php"></script>-->
+        <div class="col-xs-7 col-xs-offset-2"><br>
+            <!--<div class="thumbnail" onclick="addMap()">-->
+                <div class='div2 thumbnail' style='overflow:auto;'>
+                <!--<a href="#"> -->
+                    
+                    <p><i><img src="../img/maps/plus.jpg" alt="Map1" style="width:100%"></i></p>
+                    <center><div class="caption">
+                        <form action="upload.php" method="post" enctype="multipart/form-data"><p>
+                            Select map to upload:
+                            <input type="file" name="fileToUpload" id="fileToUpload"></p><h2>
+                           <input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2>
+                    </form>
+                    </div></center>
+                </a>
+            </div>
+        </div>
+    </div>
+	
 </body>
 <script type="text/javascript" src="cdn.js"></script>
 </html>
