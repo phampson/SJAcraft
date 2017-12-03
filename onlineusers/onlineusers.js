@@ -95,6 +95,34 @@ function GetAvatar(input)
 	return tem;
 }
 
+/*
+*This is a copy of the above function to try and get 
+*the current user's id
+*/
+function GetMyId(input)
+{
+	jQuery.extend({
+		GetUser: function(type) 
+		{	
+			var result = null;
+			$.ajax({
+			method: "POST",
+			url: "onlineMyId.php",
+			async : false,
+			data: { user_type: type },
+			dataType: "json",
+			success: function(data) {
+		            result = data;
+		        }
+			});
+			 return result;
+		}
+	});
+	var tem= $.GetUser(input);
+	return tem;
+}
+
+
 function AddUsers(type) 
 {
 	var container = document.getElementById("new_user_container");
@@ -105,18 +133,33 @@ function AddUsers(type)
 	var users_id = GetId(type);
         // array of user's avatar image pathway
 	var users_avatar = GetAvatar(type);
+        // current user id
+        var my_id = GetMyId(type);
 
 	// add users
 	console.log(users);
 	for(var i in users) {
 		console.log(users[i]);
-		var html_string = ' \
+                console.log(users_id[i]);
+  		console.log(my_id[0]);
+                if (users_id[i] == my_id[0]) {
+			var html_string = ' \
+		<tr> \
+			<td> \
+				<img align="left" src="../profile/' + users_avatar[i] +  '" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
+                        	<a href="../profile/profile.php"><h3> ' + users[i] + '</h3></a> \
+			</td> \
+		</tr>';
+		}
+		else {
+			var html_string = ' \
 		<tr> \
 			<td> \
 				<img align="left" src="../profile/' + users_avatar[i] +  '" style="width:60px;height:60px" alt="Warcraft main picture"></img> \
                         	<a href="../profile/profile.php?id=' + users_id[i] + '"><h3> ' + users[i] + '</h3></a> \
 			</td> \
 		</tr>';
+		}
 
 		container.insertAdjacentHTML('beforeend', html_string);
 	}
