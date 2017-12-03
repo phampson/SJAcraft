@@ -54,6 +54,7 @@ echo "</script>\n";
                     <th>W</th>
                     <th>L</th>
                     <th>ELO</th>
+		    <th>Rank</th>
                 </tr>
             </thead>
             <tbody id="rankings">
@@ -130,6 +131,7 @@ echo $_SERVER['HTTP_HOST'];
                 <td>' + users[i].win + '</td> \
                 <td>' + users[i].lost + '</td> \
                 <td>' + users[i].ELO + '</td> \
+		<td>' + pos + '</td> \
             </tr>';
 	    }
 	    else {
@@ -144,6 +146,7 @@ echo $_SERVER['HTTP_HOST'];
                 <td>' + users[i].win + '</td> \
                 <td>' + users[i].lost + '</td> \
                 <td>' + users[i].ELO + '</td> \
+		<td>' + pos + '</td> \
             </tr>';
 
 	    }
