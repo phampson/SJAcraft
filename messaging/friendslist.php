@@ -49,7 +49,7 @@ function ShowFriends($userid, $mysqli)
                     	<tr>
                     	<td style="width:6000px; height:50px;">
                         <div id="chatButton">
-                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="' . $picturePath . '"></a>                                  
+                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px; height:37px;" src="' . $picturePath . '"></a>                                  
                                     <strong>' . $friendname . '</strong>';
             $numNewMsg = 'select * from message where ((sender = "' . $userid . '" and receiver="' . $friend_id . '") or (sender = "' . $friend_id . '" and receiver = "' . $userid . '")) and message_id > "' . $interact_msgid . '"';
             if ($numNM = $mysqli->query($numNewMsg)) {
@@ -104,7 +104,7 @@ function ShowFriends($userid, $mysqli)
                     	<tr>
                     	<td style="width:6000px; height:50px;">
                         <div id="chatButton">
-                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="' . $picturePath . '"></a>  
+                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px; height:37px;" src="' . $picturePath . '"></a>  
                             <button style="color:white;" class="btn btn-link" id = ' . $friend_id . ' onclick=window.location.href="history.php?frid=' . $friend_id . '">
                                 
                                     <strong>' . $friendname . '</strong>';
