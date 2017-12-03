@@ -42,15 +42,7 @@ function update_newestmsg($user_id, $friend_id, $mysqli)
 	
         //messaging email digest
         exec("nohup php ../digest/smartDigest2.php 2>&1 $friend_id &", $output, $return);
-       if (!$return)
-        {
-        echo "success";
-        print_r($output);
-        } else {
-        echo "fail";
-        print_r($output); 
-        }
-
+     
         //rest of update
         $update_newest_sql = 'update friendlist set interact_msgid=' . $newest_msgid . ',newest_msgid=' . $newest_msgid . ' where user_id=' . $user_id . ' and friend_id=' . $friend_id . ';update friendlist set newest_msgid=' . $newest_msgid . ' where user_id=' . $friend_id . ' and friend_id=' . $user_id . ';';
         $mysqli->multi_query($update_newest_sql);
