@@ -115,8 +115,25 @@ echo "</script>\n";
 
         for(var i in users) {
             var pos = parseInt(i) + 1;
-
-            var html_string = ' \
+            
+            if (users[i].id == 
+	        <?php if (isset($_SESSION['user_id'])) { echo $_SESSION['user_id'];}
+			else {echo -1;}?>) {
+	        var html_string = ' \
+            <tr> \
+                <td> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
+                    <h3><a href="http://' + "<?php
+echo $_SERVER['HTTP_HOST'];
+?>" + '/profile/profile.php">' + users[i].name + '</a></h3> \
+                </td> \
+                <td>' + users[i].win + '</td> \
+                <td>' + users[i].lost + '</td> \
+                <td>' + users[i].ELO + '</td> \
+            </tr>';
+	    }
+	    else {
+            	var html_string = ' \
             <tr> \
                 <td> \
                     <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
@@ -129,6 +146,7 @@ echo $_SERVER['HTTP_HOST'];
                 <td>' + users[i].ELO + '</td> \
             </tr>';
 
+	    }
             //<img src="../img/default.png" class="media-object" style="width: 60px">
             document.getElementById("rankings").insertAdjacentHTML('beforeend', html_string);
         }
