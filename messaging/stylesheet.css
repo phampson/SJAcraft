@@ -5,6 +5,12 @@
         padding-top: 0px;
 
 }
+
+#messages {
+	overflow-y: scroll;
+	overflow-x: auto;
+	height: 400px;
+}
 .redpoint{
     height:16px;
     width:16px;
@@ -22,12 +28,12 @@
 .chatImg {
   width: 39px;
   height: 39px;
-  border-radius: 50% 50% 50% 50%; /*don't forget prefixes*/
+   /*don't forget prefixes*/
 }
 .chatImg1 {
   width: 65px;
   height: 65px;
-  border-radius: 50% 50% 50% 50%; /*don't forget prefixes*/
+   /*don't forget prefixes*/
 }
 .close {
     height: 20px;
@@ -121,7 +127,7 @@
 	margin-bottom: 0px;
 	
 }
-.panel-default > .panel-footer{
+.panel-default > .panel-footer {
 	background:  #232323;
 	border: none;
 		
@@ -134,20 +140,19 @@
     padding-bottom: 20px !important;
     margin-right: 0;
 }
-
 .messages {
   background: white;
   padding: 10px;
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   max-width: 100%;
+  overflow: auto;
 }
-
 .messages > p {
     font-size: 13px;
     margin: 0 0 0.2rem 0;
+    color: black;
 }
-
 .messages > time {
     font-size: 11px;
     color: #ccc;
@@ -158,7 +163,6 @@
     overflow: hidden;
     display: flex;
 }
-
 img {
     display: block;
     width: 100%;
