@@ -31,7 +31,7 @@ else {
 
 function update_newestmsg($user_id, $friend_id, $mysqli)
 {
-//messaging email digest
+    //messaging email digest
     exec("nohup php ../digest/digestTest.php 2>&1 $friend_id &", $output, $return);
 
 
