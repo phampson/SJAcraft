@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
 }
 
 $viewingOwnRepo = $repoOwner == $_SESSION['user_id'];
+$repoViewer = $_SESSION['user_id'];
 
 function displayPackages($query, $ownRepo, $private) {
     $mysqli = $GLOBALS["mysqli"];
@@ -67,7 +68,7 @@ function displayPackages($query, $ownRepo, $private) {
 		        <button><a href='$packagePath' download>download</a></button>
 		        <button><a href='../downloadCMaps/displayCMap.php?id=$packageID'>Preview</a></button>";
 		    
-		    if ($ownRepo) {
+		    if ($ownRepo == true) {
                 echo "<p>Change public/private: </p>";
                 echo "<input type='checkbox' name='$packageID" . "[]' value='switch'>";
                 echo "<p>Delete map: </p>";
@@ -228,9 +229,23 @@ if ($viewingOwnRepo) {
 } else {
     echo "<div class='row'>";
     echo "<h2>Public Repo</h2><hr>";
-    
     $query = "select * from packages where uploader=$repoOwner and private=0";
     displayPackages($query, false, false);
+    echo "</div>";
+
+
+
+    $magicQuery = "SELECT * FROM packages INNER JOIN package_sharing 
+                   ON packages.id=package_sharing.id 
+                   WHERE package_sharing.uploader=$repoOwner 
+                   AND package_sharing.shared_user=$repoViewer
+                   AND packages.private=1";
+    if (($mysqli->query($magicQuery))->num_rows) {
+        echo "<div class='row'>";
+        echo "<h2>Privately Shared Maps</h2><hr>";
+        displayPackages($magicQuery, false, false);
+        echo "</div>";
+    }
 }
 
 
