@@ -21,7 +21,7 @@ function off() {
 
 // Display Posts when tab is clicked
 function openCategory(evt, cityName) {
-      var i, tabcontent, tablinks;
+      var i, tabcontent, tablinks, buttonid;
       tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
           tabcontent[i].style.display = "none";
@@ -31,9 +31,29 @@ function openCategory(evt, cityName) {
           tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
       document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-}
+      
+     switch (cityName) {
+	case "Beginners":
+		buttonid = 'btn-beginners';
+		break;
+	case "Strategies":
+		buttonid = 'btn-strategies';
+		break;
+	case "Maps":
+		buttonid = 'btn-maps';
+		break;
+	case "Game_Updates":
+		buttonid = 'btn-gameupdates';
+		break;
+	case "General":
+		buttonid= 'btn-general';
+		break;
+	default:
+		buttonid= 'btn-general';
+     }
 
+	document.getElementById(buttonid).className += " active";
+}
 
 // Dump all posts from database
 function dumpAllPosts() {

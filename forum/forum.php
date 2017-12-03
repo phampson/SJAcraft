@@ -128,36 +128,23 @@ echo "</script>\n";
 <div id="tabContainer" class="container">
 
 	<div id="tab" class="tab div1">
-		<button class="tablinks active" onclick="openCategory(event, 'Beginners')"><h3>Beginners</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Strategies')"><h3>Strategies</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Maps')"><h3>Maps</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')"><h3>Game Updates</h3></button>
-		<button class="tablinks" onclick="openCategory(event, 'General')"><h3>General</h3></button>
+		<button class="tablinks active" onclick="openCategory(event, 'Beginners')" id="btn-beginners"><h3>Beginners</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Strategies')" id="btn-strategies"><h3>Strategies</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Maps')" id="btn-maps"><h3>Maps</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')" id="btn-gameupdates"><h3>Game Updates</h3></button>
+		<button class="tablinks" onclick="openCategory(event, 'General')" id="btn-general"><h3>General</h3></button>
 	</div>
 
 
-	<div id="Beginners" class="tabcontent div1 active" style="height: auto;" >
+	<div id="Beginners" class="tabcontent div1" style="height: auto;" >
 		<p>
-		
-			<!-- 
-			<a href="#">
-				<div class="jumbotron">
-					<div class="col-sm-2"> <img align=left src="../img/default.png" alt="Warcraft main picture" style="width:100px;height:100px;"> <p>Alice</p></div>
-					<h3> How do I move around?</h3>
-					<p> I don't even know how to move in this game? It's not the arrow keys. It's not asdw. How?? I swear I clicked every button on my keyboard and my character still won't move. I really want to play this game because it looks like so much fun when other people play it but I can't because I don't know how to move. Edit: Jk I know how to move. You click your person aand then click on where you want to go and your character will go there. </p>
-					<footer> 10/17/17 </footer>
-				</div>
-			</a>
-			-->
-
     		</p>
 	</div>
 
 
 	<div id="Strategies" class="tabcontent div1" style="height: auto;">
     		<p>
-			
-		</p> 
+		</p>
 	</div>
 
   	<div id="Maps" class="tabcontent div1" style="height: auto;">
