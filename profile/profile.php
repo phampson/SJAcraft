@@ -70,8 +70,7 @@ echo "</script>\n";
     <!--profile picture-->
     <div class="container uploading col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-1" style="margin: 0; padding: 0px">
         <div class="img container" id="profilePic">
-
-            <img src= <?php echo $avatarPath ?> class="cover" alt="Profile pic">;
+            <img src= <?php echo $avatarPath ?> class="cover" alt="Profile pic" style="width:200px; height: 200px;">
         </div>
     
        
@@ -121,12 +120,12 @@ endif;
 	  	<?php endif;?>
 
             <?php if($foundFriend == TRUE): ?>
-         		<a class="btn-simple" href="../messaging/history.php?frid=<?php echo $_GET["id"] ?>">Message User</a>
+         		<a class="btn-simple" href="../messaging/friendslist.php"><input type="submit" class="btn-simple"value="Message User" name="submit"></a>
 
             <?php endif;?>
         <?php endif; ?>
         <?php endif; ?>
-        <br style="margin: 5px"> 
+        <br> 
 
 		<?php
 		if (isset($_GET["id"])) {
@@ -136,9 +135,7 @@ endif;
         }
         ?> 	
         <a class='btn-simple' href=<?php echo $addLink ?>><input type="submit" class="btn-simple"value="Map Repo" name="submit"></a>
-
-<br style="margin: 5px"> 
-
+	<br>
         <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
 
@@ -188,8 +185,7 @@ endif;
          <?php endif; ?>
          
          <?php if(!isset($_GET['id'])): ?>
-		<br> <br>
-	
+		<br>
             <a class="btn-simple" href="#popup2"><input type="submit" class="btn-simple"value="Refer A Friend" name="submit"></a>
         
 		    <div id="popup2" class="overlay container col-xs-12">
@@ -427,3 +423,4 @@ endif;
 </div>
 </body>
 </html>
+

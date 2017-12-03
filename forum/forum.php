@@ -23,6 +23,7 @@ function phpConsole($data)
 } // Source: https://stackoverflow.com/questions/4323411/how-can-i-write-to-console-in-php
 
 if (isset($_SESSION['user_id'])) {
+    $loggedIn = "true";
     $sql     = 'select * from user_info where id="' . $_SESSION['user_id'] . '"';
     $query   = $mysqli->query($sql);
     $navpath = "../navbar/navbarlogged.html";
@@ -36,6 +37,7 @@ if (isset($_SESSION['user_id'])) {
 
 else {
     $navpath = "../navbar/navbar.html";
+    $loggedIn = "false";
 }
 ?>
 
@@ -107,7 +109,7 @@ echo "</script>\n";
       <ul class="nav navbar-nav navbar-right">
         <li>
         	<div id="discussionButton">
-	        	<button class="btn btn-link" onclick="on()">
+	        	<button class="btn btn-link" onclick="on(<?php echo $loggedIn; ?>);">
 	        		<h4 style="margin-top: 0px"><span class="glyphicon glyphicon-plus"></span> Start New Discussion</h4>
 	        	</button>
 	        </div>
@@ -118,7 +120,7 @@ echo "</script>\n";
 </div>
 
 <!-- For search results only -->
-<div id="searchResults">
+<div id="searchResults" >
 
 </div>
 
@@ -134,7 +136,7 @@ echo "</script>\n";
 	</div>
 
 
-	<div id="Beginners" class="tabcontent div1" style="height: 100%">
+	<div id="Beginners" class="tabcontent div1" style="height: auto;">
 		<p>
 		
 			<!-- 
@@ -152,24 +154,24 @@ echo "</script>\n";
 	</div>
 
 
-	<div id="Strategies" class="tabcontent div1" style="height: 100%">
+	<div id="Strategies" class="tabcontent div1" style="height: auto;">
     		<p>
 			
 		</p> 
 	</div>
 
-  	<div id="Maps" class="tabcontent div1" style="height: 100%">
+  	<div id="Maps" class="tabcontent div1" style="height: auto;">
     		<p>
     		</p>
   		</div>
 
-  	<div id="Game_Updates" class="tabcontent div1" style="height: 100%">
+  	<div id="Game_Updates" class="tabcontent div1" style="height: auto;">
     		<p>
 
     		</p>
   	</div>
 
-  	<div id="General" class="tabcontent div1" style="height: 100%">
+  	<div id="General" class="tabcontent div1" style="height: auto;">
     		<p>
 			
 

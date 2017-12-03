@@ -12,18 +12,21 @@ if(isset($_SESSION['user_id'])){
 
 	while ($row = $subscribed_posts->fetch_assoc()) {
 		$post_id = $row["post_id"];
-		echo "<script> console.log ('Post Id: " .$post_id. "'); </script>";
 		$get_newest_com = "SELECT newest_comment_id FROM post WHERE post_id = $post_id";
 		$newest_com = $mysqli->query($get_newest_com);
 		$fetch = $newest_com->fetch_assoc();
 		if ($fetch['newest_comment_id']) {
 			$newest_com = $fetch['newest_comment_id'];
 			$update_last_read = "UPDATE forum_digest SET last_read_comment_id = $newest_com WHERE post_id = $post_id AND user_id = $session_user";
-			$mysqli->query($update_last_read);
+		$mysqli->query($update_last_read);
 		}
 	}
+    
+    // update notification column in forum_digest
+	$update_notification = "UPDATE forum_digest SET notifications = 0 WHERE user_id = $session_user AND post_id = $ID";
+	$mysqli->query($update_notification);
 
-	//echo json_encode($subscribed_posts);
+    //echo json_encode($subscribed_posts);
 
 }
 else{
@@ -107,136 +110,132 @@ echo "</script>\n";
 	</a>
   	<hr><br>
 
-<!--<div class="container div1">
-<br>-->
-  	<div class="jumbotron div2 col-xs-12 col-xs-offset-0">
-		<div class= "col-sm-1">
-   			<img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;">
-			<p><?php echo $date?></p>
-		</div>
-		<div class = "col-sm-9">
-			<a href="../profile/profile.php?id=<?php echo $post_user_id ?>"><?php echo $username ?></a>
-			<div class = "col-sm-12">
-        			<h2> <?php echo $header ?> </h2>
-	        		<div class="container col-sm-11 col-xs-11"> 
-					<h4><?php 
-if(preg_match($reg_exUrl, $content, $url)) {
-// make the urls hyper links
-$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
-}
-if(preg_match($reg_attachment, $content, $url)){
-// if no urls in the text just return the text
-echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
-} else {
-echo $content;
-}?></h4>
-				</div>
-			</div>
-  		</div>
-	</div>
+    <div class="container div1">
+    <br>
+      	<div class="jumbotron div2 col-xs-12 col-xs-offset-0">
+            <br>
+		    <div class= "col-sm-1">
+                <a href="../profile/profile.php?id=<?php echo $post_user_id ?>">
+       			<img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;">
+			    <p><?php echo $username ?><p></a>
+		    </div>
+		    <div class = "col-sm-10 col-xs-10 col-xs-offset-1">
+        			    <h2> <?php echo $header ?> </h2>
+				        <h4> <?php 
+                        if(preg_match($reg_exUrl, $content, $url)) {
+                        // make the urls hyper links
+                        $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+                        }
+                        if(preg_match($reg_attachment, $content, $url)){
+                        // if no urls in the text just return the text
+                        echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $content);
+                        } else {
+                        echo $content;
+                        }?></h4>
+                        <p><footer><font color="white"><?php echo $date?></font></footer></p>
+      		</div>
+	    </div> <!--ends jumbotron-->
 
-	<div class="container col-sm-10 col-sm-offset-1">
-		<h3 style="color: white; margin-left: 20px;"> Comments </h3>
-	<?php
-		$query = "select * from comment";
-		if ($result = $mysqli->query($query)) {
-	    		while ($row = $result->fetch_assoc()) {
-				$commentsPostId = $row['post_id'];
-				if ($ID == $commentsPostId)
-				{
-					$commentsUser = $row['comment_user'];
-					$commentQuery ="SELECT avatar_path FROM user_info WHERE id = '$commentsUser' LIMIT 1";
-					$commentQuery2 ="SELECT username FROM user_info WHERE id = '$commentsUser' LIMIT 1";
-					$host= "localhost";
-					$username="root";
-					$userpass="ecs160web";
-					$databasew="web";
-					$commentSqli = new mysqli($host,$username,$userpass,$databasew);
-					if ($commentSqli->connect_errno){
-			    			echo "Error connecting to Database";
-			    			exit;
-					}
-					$commentPicPath = "../profile/avatar_pics/$commentsUser.jpg";
-					$commentUsername = "username";
-					if($commentResult = $commentSqli->query($commentQuery)){
-						while ($commentRow = $commentResult->fetch_assoc())
-						{
-							$commentPicPath = $commentRow['avatar_path'];
-						}
-					} 
-					if($commentResult = $commentSqli->query($commentQuery2)){
-						while ($commentRow = $commentResult->fetch_assoc())
-						{
-							$commentUsername = $commentRow['username'];
-						}
-					} 
-					$commentSqli->close();
-					$commentsContent = $row['comment_content'];
-					$commentsDate = $row['comment_date'];
-		echo "
-       		<div class = 'div2' > 
-        		<div class = 'col-sm-1 Cinfo'>
-          			<img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'> <p>$commentsDate</p>
-        		</div> 
-       			<div class = 'col-sm-9'>
-       				<a href='../profile/profile.php?id=$commentsUser'> $commentUsername </a> 
-       			</div>
-			<div class = 'col-sm-11'>
-       				<h4>";
-if(preg_match($reg_exUrl, $commentsContent, $url)) {
-// make the urls hyper links
-$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
-} 
-if(preg_match($reg_attachment, $commentsContent, $url)){
-	echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
-} else {
-// if no urls in the text just return the text
-echo $commentsContent;
-}
-                echo "</h4>
-       			</div>
-		</div>";
-				} //end if
-	    		} //end while
-		}//end if
-if(isset($_SESSION['user_id'])){
-	echo "<form id='form' action='uploadComments.php?' method='post'>
-      <textarea id='commentcontent' name='comment' placeholder='enter comments'></textarea>
-      <input type='hidden' name='ID' value='$ID'/>
-      <input type='file' name='fileToUpload' id='fileToUpload'>
-      <input type='button' id='upJQuery' value='upload'><br>
-      <button class='btn-default' onclick='' id='submit'>Send</button>
-    </form>
-<script>
-$('#upJQuery').on('click', function() {
- var fd = new FormData();
- fd.append('upload', 1);
- fd.append('fileToUpload', $('#fileToUpload').get(0).files[0]);
- $.ajax({
- url: 'Forumattachment.php',
- type: 'POST',
- processData: false,
- contentType: false,
- data: fd,
- success: function(d) {
- if (d.indexOf('Error') <0){
- $('#fileToUpload').val('');
- document.getElementById('commentcontent').value +='\\n'+d+'\\n';
- }
- else {alert('Cannot Upload');}
- }
- });
-});
-</script>";
-}
-?>
-<!--
-    <form id="form" action="uploadComments.php?" method="post">
-      <textarea name="comment" placeholder="enter comments"></textarea>
-      <input type="hidden" name="ID" value='<?php echo "$ID"; ?>'/>
-      <button class="btn-default" onclick="" id="submit">Send</button>
-    </form>
--->
+	    <div class="container col-sm-10 col-sm-offset-1">
+		    <h3 style="color: white; margin-left: 20px;"> Comments </h3>
+	    <?php
+		    $query = "select * from comment";
+		    if ($result = $mysqli->query($query)) {
+	        		while ($row = $result->fetch_assoc()) {
+				    $commentsPostId = $row['post_id'];
+				    if ($ID == $commentsPostId)
+				    {
+					    $commentsUser = $row['comment_user'];
+					    $commentQuery ="SELECT avatar_path FROM user_info WHERE id = '$commentsUser' LIMIT 1";
+					    $commentQuery2 ="SELECT username FROM user_info WHERE id = '$commentsUser' LIMIT 1";
+					    $host= "localhost";
+					    $username="root";
+					    $userpass="ecs160web";
+					    $databasew="web";
+					    $commentSqli = new mysqli($host,$username,$userpass,$databasew);
+					    if ($commentSqli->connect_errno){
+			        			echo "Error connecting to Database";
+			        			exit;
+					    }
+					    $commentPicPath = "../profile/avatar_pics/$commentsUser.jpg";
+					    $commentUsername = "username";
+					    if($commentResult = $commentSqli->query($commentQuery)){
+						    while ($commentRow = $commentResult->fetch_assoc())
+						    {
+							    $commentPicPath = $commentRow['avatar_path'];
+						    }
+					    } 
+					    if($commentResult = $commentSqli->query($commentQuery2)){
+						    while ($commentRow = $commentResult->fetch_assoc())
+						    {
+							    $commentUsername = $commentRow['username'];
+						    }
+					    } 
+					    $commentSqli->close();
+					    $commentsContent = $row['comment_content'];
+					    $commentsDate = $row['comment_date'];
+		    echo "
+           		<div class ='div2' > 
+            		<div class = 'col-sm-1 Cinfo'>
+                        <a href='../profile/profile.php?id=$commentsUser'>              			
+                        <img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'>
+                        <font color ='white'>$commentUsername</font> 
+                        </a>
+            		</div> 
 
+			        <div class = 'col-sm-10 col-sm-offset-1'>
+           				<h4>";
+                        if(preg_match($reg_exUrl, $commentsContent, $url)) {
+                        // make the urls hyper links
+                        $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
+                        } 
+                        if(preg_match($reg_attachment, $commentsContent, $url)){
+	                        echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
+                        } else {
+                        // if no urls in the text just return the text
+                        echo $commentsContent;
+                        }
+                    echo "</h4>
+           			</div>
+                    <footer><div class = 'col-sm-10 col-sm-offset-1'>
+                        <font color='white'> $commentsDate</font>
+                    <div></footer>
+		        </div>";
+				    } //end if
+	        		} //end while
+		    }//end if
+    if(isset($_SESSION['user_id'])){
+	    echo "<form id='form' action='uploadComments.php?' method='post'>
+          <textarea id='commentcontent' name='comment' placeholder='enter comments'></textarea>
+          <input type='hidden' name='ID' value='$ID'/>
+          <input type='file' name='fileToUpload' id='fileToUpload'>
+          <input type='button' class = 'btn-simple' id='upJQuery' value='upload'><br>
+          <button class='btn-simple' onclick='' id='submit'>Send</button>
+        </form>
+    <script>
+    $('#upJQuery').on('click', function() {
+     var fd = new FormData();
+     fd.append('upload', 1);
+     fd.append('fileToUpload', $('#fileToUpload').get(0).files[0]);
+     $.ajax({
+     url: 'Forumattachment.php',
+     type: 'POST',
+     processData: false,
+     contentType: false,
+     data: fd,
+     success: function(d) {
+     if (d.indexOf('Error') <0){
+     $('#fileToUpload').val('');
+     document.getElementById('commentcontent').value +='\\n'+d+'\\n';
+     }
+     else {alert('Cannot Upload');}
+     }
+     });
+    });
+    </script>";
+    }
+    ?>
+    </div>
 	</div>
 </div>
+</body>
