@@ -63,7 +63,7 @@ else {
 </script>
 </head>
 
-<body onload="dumpAllPosts();">
+<body onload="dumpAllPosts(); openCategory(event, 'Beginners');">
 
 <!-- Nav Bar -->
 <div id="navbar"></div>
@@ -84,9 +84,9 @@ echo "</script>\n";
   <div class="container" id="hdrContainer">
     <nav class="navbar navbar-inverse">
 
-    <!-- Commented for now. Delete later.      
+    <!-- Commented for now. Delete later.
     <form class="navbar-form navbar-left" action="search.php" method="post"> -->
-    <form class="navbar-form navbar-left">    
+    <form class="navbar-form navbar-left">
         <div class="input-group">
             <input type="text" name="searchText" class="form-control btn-sm" placeholder="Search Threads/Users">
               <div class="input-group-btn">
@@ -128,7 +128,7 @@ echo "</script>\n";
 <div id="tabContainer" class="container">
 
 	<div id="tab" class="tab div1">
-		<button class="tablinks" onclick="openCategory(event, 'Beginners')"><h3>Beginners</h3></button>
+		<button class="tablinks active" onclick="openCategory(event, 'Beginners')"><h3>Beginners</h3></button>
 		<button class="tablinks" onclick="openCategory(event, 'Strategies')"><h3>Strategies</h3></button>
 		<button class="tablinks" onclick="openCategory(event, 'Maps')"><h3>Maps</h3></button>
 		<button class="tablinks" onclick="openCategory(event, 'Game_Updates')"><h3>Game Updates</h3></button>
@@ -136,7 +136,7 @@ echo "</script>\n";
 	</div>
 
 
-	<div id="Beginners" class="tabcontent div1" style="height: auto;">
+	<div id="Beginners" class="tabcontent div1 active" style="height: auto;" >
 		<p>
 		
 			<!-- 
