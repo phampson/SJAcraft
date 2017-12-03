@@ -128,16 +128,17 @@ function startNewchat(fri)
  	        '<form action="attachment.php?frid='+fri+'" method="post" enctype="multipart/form-data">' +
 	            '<upload><font color ="white">Add Attachment</upload>' +
 	            '<input type="file" name="fileToUpload" id="fileToUpload"></font>' +
-	            '<input type="submit" value="Upload file" name="submit">' +
-                '</form>'+  
-                '</div>' +               
+	            '<h2><input type="submit" class="btn-simple btn-sm" value="Upload file" name="submit"></h2>' +
+                               
                 '<div class="input-group">' +
                  '<p>' +
-                    '<input style="width:600px;" id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />' + '</p>' +
+                    '<textarea style="color:black;" id="btn-input" name="message" placeholder="Write your message here..."></textarea>' + '</p>' +
                     '<span class="input-group-btn">' + '<h2>' +
                     '<button id="sendBtn" type="submit" class="btn-simple btn-sm pull-right" sendto="'+fri+'" onclick = "sendMessage(this);">Send</button>' + 
                '</h2>' +   
-              '</span>' +
+              '</span>' + 
+              '</form>'+  
+              '</div>' +
               '</div>' + 
               '</div>' + 
               '</div>';
@@ -259,7 +260,7 @@ echo $friend_id;
             	</h2>
            	</div>
 				
-            <div id="messages" class="div2">
+            <div id="messages" class="div2 col-xs-12">
             <!-- PHP code write here -->
             </div>
             <div>
