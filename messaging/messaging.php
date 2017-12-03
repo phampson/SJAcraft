@@ -123,7 +123,7 @@ function addFriend($frnm, $user_id)
         $notfriend = 'select * from friendlist where (user_id = "' . (int) $user_id . '" and friend_id = "' . $friend_id . '") or (user_id = "' . $friend_id . '" and friend_id = "' . (int) $user_id . '")';
         $isfriend  = $mysqli->query($notfriend);
         if ($isfriend->num_rows == 0 and $user_id != $friend_id) {
-            $addnewfriend = 'insert into friendlist (user_id,friend_id) value ("' . (int) $user_id . '","' . $friend_id . '");insert into friendlist (user_id,friend_id) value ("' . $friend_id . '","' . (int) $user_id . '")';
+            $addnewfriend = 'insert into friendlist (user_id,friend_id) value ("' . (int) $user_id . '","' . $friend_id . '");insert into friendlist (user_id,friend_id,request) value ("' . $friend_id . '","' . (int) $user_id . '",1)';
             $mysqli->multi_query($addnewfriend);
         }
     }
