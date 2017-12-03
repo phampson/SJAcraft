@@ -1,3 +1,4 @@
+160web
 <?php
 include('start.php');
 error_reporting(E_ALL);
@@ -15,7 +16,10 @@ if (isset($_SESSION['user_id']) && isset($_GET['frid'])) {
     }
 } 
 else {
-    header("Location: ../index.php");
+    
+
+
+("Location: ../index.php");
     exit();
 }
 
@@ -28,10 +32,27 @@ else {
 
 function update_newestmsg($user_id, $friend_id, $mysqli)
 {
+//messaging email digest
+    exec("nohup php ../digest/digestTest.php 2>&1 $friend_id &", $output, $return);
+
+
     $message_sql   = 'select * from message where (sender=' . $user_id . ' and receiver=' . $friend_id . ') or (sender=' . $friend_id . ' and receiver = ' . $user_id . ') ORDER BY message_date DESC';
     $message_query = $mysqli->query($message_sql);
     if ($newest_msg = $message_query->fetch_assoc()) {
         $newest_msgid      = $newest_msg['message_id'];
+	
+        //messaging email digest
+        exec("nohup php ../digest/smartDigest2.php 2>&1 $friend_id &", $output, $return);
+       if (!$return)
+        {
+        echo "success";
+        print_r($output);
+        } else {
+        echo "fail";
+        print_r($output); 
+        }
+
+        //rest of update
         $update_newest_sql = 'update friendlist set interact_msgid=' . $newest_msgid . ',newest_msgid=' . $newest_msgid . ' where user_id=' . $user_id . ' and friend_id=' . $friend_id . ';update friendlist set newest_msgid=' . $newest_msgid . ' where user_id=' . $friend_id . ' and friend_id=' . $user_id . ';';
         $mysqli->multi_query($update_newest_sql);
     }

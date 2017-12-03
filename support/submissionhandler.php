@@ -19,6 +19,10 @@ $id = $_SESSION['user_id'];
 $title = $_POST['title'];
 $details = $_POST['details'];
 
+if(($title == "") || ($details == "")) {
+	header('Location: ' . '../support/submit.php');
+} 
+
 $sql = "insert into support (user_id, title, details)values('$id','$title','$details')";
 
 if($mysqli->query($sql))

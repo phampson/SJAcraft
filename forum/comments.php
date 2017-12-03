@@ -16,10 +16,11 @@ if(isset($_SESSION['user_id'])){
 		$get_newest_com = "SELECT newest_comment_id FROM post WHERE post_id = $post_id";
 		$newest_com = $mysqli->query($get_newest_com);
 		$fetch = $newest_com->fetch_assoc();
-		$newest_com = $fetch['newest_comment_id'];
-		echo "<script> console.log ('newestcomment " .$newest_com. "'); </script>";
-		$update_last_read = "UPDATE forum_digest SET last_read_comment_id = $newest_com WHERE post_id = $post_id AND user_id = $session_user";
-		$mysqli->query($update_last_read);
+		if ($fetch['newest_comment_id']) {
+			$newest_com = $fetch['newest_comment_id'];
+			$update_last_read = "UPDATE forum_digest SET last_read_comment_id = $newest_com WHERE post_id = $post_id AND user_id = $session_user";
+			$mysqli->query($update_last_read);
+		}
 	}
 
 	//echo json_encode($subscribed_posts);
@@ -105,6 +106,9 @@ echo "</script>\n";
   		<h4 style="color:white;"> &lt&lt Go back to Forums</h4>
 	</a>
   	<hr><br>
+
+<!--<div class="container div1">
+<br>-->
   	<div class="jumbotron div2 col-xs-12 col-xs-offset-0">
 		<div class= "col-sm-1">
    			<img align=left src="../profile/<?php echo $proPic ?>" alt="Warcraft main picture" style="width:100px;height:100px;">

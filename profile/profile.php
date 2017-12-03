@@ -1,3 +1,4 @@
+
 <?php
 
 include('/home/ubuntu/ECS160WebServer/start.php');
@@ -82,7 +83,7 @@ echo "</script>\n";
  	        <form action="uploadProfile.php" method="post" enctype="multipart/form-data">
 	            <upload><p>Select image to upload:</upload>
 	            <input type="file" name="fileToUpload" id="fileToUpload"><p>
-	            <input type="submit" class="btn-simple"value="Upload Image" name="submit">
+	            <input type="submit" class="btn-simple" value="Upload Image" name="submit">
             </form>
             <?php
 endif;
@@ -113,17 +114,16 @@ endif;
 	            }
 	        ?>
     
-            <?php if($foundFriend == FALSE): ?>
-	        <?php 
-	            $addLink = "FriendFromProfile.php?id=".$_GET["id"];
-       	        echo "<a class='btn-simple' href='$addLink'>Add Friend</a>";
-	        ?>
-            <?php endif?>
+            <?php 
+		if($foundFriend == FALSE):
+	        	$addLink = "FriendFromProfile.php?id=".$_GET["id"]; ?>
+       	        	<a href= <?php echo $addLink?> ><input type="submit" class="btn-simple" value="Add Friend" name="submit"> </a>
+	  	<?php endif;?>
 
             <?php if($foundFriend == TRUE): ?>
          		<a class="btn-simple" href="../messaging/history.php?frid=<?php echo $_GET["id"] ?>">Message User</a>
 
-            <?php endif?>
+            <?php endif;?>
         <?php endif; ?>
         <?php endif; ?>
         <br style="margin: 5px"> 
@@ -135,7 +135,8 @@ endif;
 			$addLink = "maprepo.php";
         }
         ?> 	
-        <a class='btn-simple' href=<?php echo $addLink ?>>Map Repo</a>
+        <a class='btn-simple' href=<?php echo $addLink ?>><input type="submit" class="btn-simple"value="Map Repo" name="submit"></a>
+
 <br style="margin: 5px"> 
 
         <!-- This part is what lets you update profile info, and should only show
@@ -144,7 +145,7 @@ endif;
         <?php if(!isset($_GET['id'])): ?>
 
 	
-            <a class="btn-simple" href="#popup1">Edit info</a>
+            <a class="btn-simple" href="#popup1"><input type="submit" class="btn-simple"value="Edit Info" name="submit"></a>
         
 		    <div id="popup1" class="overlay container col-xs-12">
 		    <div class="popup container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
@@ -189,7 +190,7 @@ endif;
          <?php if(!isset($_GET['id'])): ?>
 		<br> <br>
 	
-            <a class="btn-simple" href="#popup2">Refer A Friend</a>
+            <a class="btn-simple" href="#popup2"><input type="submit" class="btn-simple"value="Refer A Friend" name="submit"></a>
         
 		    <div id="popup2" class="overlay container col-xs-12">
 		    <div class="popup container col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
@@ -216,11 +217,11 @@ endif;
 
     <!-- graph -->
    
-
+<!--
         <svg class="container" id="barChart">
         <div class="container col-xs-3">
 
-        <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e--> 
+        <!--Bar Chart adapted from https://bl.ocks.org/jfsiii/55f1c89944cd96718bdccc8260aeea4e
 
         <script>
         const maxWidth = 340;
@@ -421,7 +422,7 @@ endif;
         </div>
         </svg>
         </div> 
-     <!--ending for bar graph-->
+     ending for bar graph-->
 	
 </div>
 </body>

@@ -121,6 +121,61 @@ function showMaps($query, $ownRepo, $private){
         $result->close();
     }
 }
+
+function showSharedMaps($query)
+{
+    $mysqli = $GLOBALS['mysqli'];
+        if ($result = $mysqli->query($query) or die(mysqli_error($mysqli))) {
+            $count = 0;
+            while ($row = $result->fetch_assoc() or die(mysqli_error($mysqli))) {
+                if($count % 4 == 0){
+                    echo "<div class='row'>";       
+                }
+                
+                $map_name = $row['map_name'];
+                $uploader = $row['uploader'];
+
+                phpConsole($map_name);
+                phpConsole($uploader);
+
+                $query_map = "select * from map where map_name='" . $map_name . "'AND uploader='" . $uploader . "'";
+
+                $result_query_map = $mysqli->query($query_map) or die(mysqli_error($mysqli));
+                $row_map = $result_query_map->fetch_assoc() or die(mysqli_error($mysqli));
+
+                $map_path = "../dlc/".$row_map['map_path'];
+                $map_name = $row_map['map_name'];
+                $map_thumbnail = "../dlc/".$row_map['map_thumbnail'];
+                $numPlayers = $row_map['num_players'];
+                $displayName = $row_map['display_name'];
+                $uploaderID = $row_map['uploader'];
+                
+                echo "
+            <div class='col-sm-8 col-xs-7 col-sm-offset-2 col-xs-offset-0'>
+                <div class='div2 thumbnail'>
+                    
+                        <img src=$map_thumbnail alt=$map_name style='width:100%'>
+                        <div class='caption'><h2>
+                            <p><strong>$displayName</strong></p>
+                            <p>$numPlayers players</p></h2>";
+            
+                echo "  
+                    <div style='text-align: center;'><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2></div>
+                </div>
+                </div>
+            </div>";
+                if($count % 4 == 3){
+                    echo "</div>";      
+                }
+                $count = $count + 1;
+                
+            }
+        $row_map->close();
+        $result->close();
+    }
+    
+}
+
 function displayUploadButton() 
 {
     $mysqli = $GLOBALS["mysqli"];
@@ -181,8 +236,12 @@ if ($viewingOwnRepo) {
     echo"<div class='row'>";
     echo "<h2>Private Repo</h2><hr>";
     //TODO GET MAPS THAT ARE SHARED
-    //$query = "select * from map_setting where shared_user = $_GET["id"]";
-    //showMaps($query,1,true);
+    $usr_id =$_SESSION["user_id"];
+    $repo_id = $user_id;
+    phpConsole($repo_id);
+    phpConsole($usr_id);
+    $query = "select * from map_settings where uploader=$repo_id AND shared_user=$usr_id";
+    showSharedMaps($query);
     echo "</div>,";
 }
         
@@ -190,4 +249,3 @@ if ($viewingOwnRepo) {
 
 </div>
 </body>
-</html>
