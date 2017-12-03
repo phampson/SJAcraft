@@ -1,4 +1,3 @@
-160web
 <?php
 include('start.php');
 error_reporting(E_ALL);
@@ -258,6 +257,14 @@ echo $friend_id;
 ?>';">Search</button>               
             		</div>
             	</h2>
+            	<?php $isfriend = $mysqli->query("select * from friendlist where user_id=".$friend_id." and friend_id=".$user_id.";");
+            	      if (is_object($isfriend) && $isfriend->num_rows){
+            	          $friend_req = $isfriend->fetch_assoc();
+            	          if($friend_req['request']==1){
+            	              echo "<br> <font color = 'red'>This peopel have not accepted your friend request. You message may not be delivered.</font>";
+            	          }
+            	      }
+            	?>
            	</div>
 				
             <div id="messages" class="div2 col-xs-12">

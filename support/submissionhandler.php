@@ -26,8 +26,8 @@ if(($title == "") || ($details == "")) {
 $sql = "insert into support (user_id, title, details)values('$id','$title','$details')";
 
 if($mysqli->query($sql))
-	{echo "label success";}
-else{echo $sql."label failed";}
+	{echo "";}
+else{echo $sql."";}
 
 ?>
 

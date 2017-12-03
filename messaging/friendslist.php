@@ -23,12 +23,66 @@ $message_rows  = $message_query->num_rows;
 
 function ShowFriends($userid, $mysqli)
 {
-    $query = 'select * from friendlist where user_id= "' . $userid . '"';
+    $query = 'select * from friendlist where user_id= "' . $userid . '" and request = 1';
     if ($result = $mysqli->query($query)) {
         while ($row = $result->fetch_assoc()) {
             $friend_id      = $row['friend_id'];
             $interact_msgid = $row['interact_msgid'];
-            $request        = $row['request'];
+            if ($interact_msgid == NULL) {
+                $interact_msgid = 0;
+            }
+            $find_friend = 'select * from user_info where id = "' . $friend_id . '"';
+            if ($friends = $mysqli->query($find_friend)) {
+                $friend       = $friends->fetch_assoc();
+                $friendname   = $friend['username'];
+                $friendAvatar = $friend['avatar_path'];
+                if (is_null($friendAvatar)) {
+                    $picturePath = '../img/profpic.png';
+                }
+                else {
+                    $picturePath = "../profile/$friendAvatar";
+                }
+            }
+            echo '
+                
+                    <tbody class="col-xs-12">
+                    	<tr>
+                    	<td style="width:6000px; height:50px;">
+                        <div id="chatButton">
+                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="' . $picturePath . '"></a>                                  
+                                    <strong>' . $friendname . '</strong>';
+            $numNewMsg = 'select * from message where ((sender = "' . $userid . '" and receiver="' . $friend_id . '") or (sender = "' . $friend_id . '" and receiver = "' . $userid . '")) and message_id > "' . $interact_msgid . '"';
+            if ($numNM = $mysqli->query($numNewMsg)) {
+                $numM = $numNM->num_rows;
+                if ($numM > 0) {
+                    echo '
+                                    <span class="redpoint">' . $numM . '</span>';
+                }
+            }
+            echo '
+                            <button style="color: black;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=accept">
+                            accept
+                            </button>
+                            <button style="color: black;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=decline">
+                            decline
+                            </button>
+                            </p>
+                        </div><hr>
+                        </td>
+                        </tr>
+                    </tbody>
+                    
+                
+';
+            
+        }
+    }
+    
+    $query = 'select * from friendlist where user_id= "' . $userid . '" and request = 0';
+    if ($result = $mysqli->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $friend_id      = $row['friend_id'];
+            $interact_msgid = $row['interact_msgid'];
             if ($interact_msgid == NULL) {
                 $interact_msgid = 0;
             }
@@ -44,7 +98,6 @@ function ShowFriends($userid, $mysqli)
                     $picturePath = "../profile/$friendAvatar";
                 }
             }
-            if ($request == 0){
             echo '
                 
                     <tbody class="col-xs-12">
@@ -73,7 +126,7 @@ function ShowFriends($userid, $mysqli)
                     </tbody>
                     
                 
-';          }
+';
             
         }
     }

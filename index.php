@@ -36,7 +36,7 @@ echo "</script>\n";
     <div class="text-center" style="position: absolute; left: 0; top: 25%; width: 100%;">
         <img src="img/Logo.png" class="logo">
         <br><br><br>
-        <button type="button" class="btn btn-fancy-play"></button>
+        <a href="./downloadgame/downloadgame.php" class="btn btn-fancy-play" role="button"></a>
     </div>
 </div>
 </body>
@@ -78,7 +78,7 @@ echo $_SERVER['HTTP_HOST'];
                 '</td>' +
             '</tr>';
 
-            document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
+            //document.getElementById("leaderboard").insertAdjacentHTML('beforeend', html_string);
         }
 
 </script>

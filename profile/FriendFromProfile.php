@@ -52,7 +52,7 @@ $mysqli->multi_query($addnewfriend);*/
 
 $user1      = $_GET["id"];
 $user2      = $_SESSION["user_id"];
-$addFriend1 = "INSERT INTO friendlist (user_id,friend_id) VALUES ('$user1','$user2')";
+$addFriend1 = "INSERT INTO friendlist (user_id,friend_id,request) VALUES ('$user1','$user2',1)";
 $addFriend2 = "INSERT INTO friendlist (user_id,friend_id) VALUES ('$user2','$user1')";
 
 $mysqli->query($addFriend1) or die("Add friend 1");
