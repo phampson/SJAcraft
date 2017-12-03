@@ -1,4 +1,5 @@
 <?php
+// Jon's alternate homepage design
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
@@ -31,27 +32,13 @@ echo '$("#navbar").load("' . $navpath . '")';
 echo "</script>\n";
 ?>
 
-<div class="bg" style="margin-right: 50px; margin-left: 50px;"</div>
-<div class="container text-center">
-    <!-- Logo -->
-    <img src="img/Logo.png" style="width:300px;">
-    <br>
-    <!-- Play Button -->
-    <button onclick="go()" id="thebutton" type="button" class="btn btn-fancy-play"></button>
-    <br><br><br>
+<div class="bg">
+    <div class="text-center" style="position: absolute; left: 0; top: 25%; width: 100%;">
+        <img src="img/Logo.png" class="logo">
+        <br><br><br>
+        <button type="button" class="btn btn-fancy-play"></button>
+    </div>
 </div>
-
-<!-- Leader Board -->
-<div class="div1 container col-xs-12 col-sm-8 col-sm-offset-2" id="border-gold">
-    <h1>Leader Board</h1>
-    <hr>
-    <table class="table">
-        <tbody id="leaderboard">
-        </tbody>
-    </table>
-    <br>
-</div>
-
 </body>
 
 <!-- Load Leaderboard -->
