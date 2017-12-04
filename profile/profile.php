@@ -137,10 +137,9 @@ endif;
     }
     ?> 	
         <a class='btn-simple' href=<?php echo $mapRepo ?>><input type="submit" class="btn-simple"value="Map Repo" name="submit"></a>
-<<<<<<< HEAD
+
   <br>
-=======
->>>>>>> 52d532fa203abf178ba7ddbebb42940a333a7186
+
         <a class='btn-simple' href=<?php echo $packageRepo ?>><input type="submit" class="btn-simple"value="Package Repo" name="submit"></a>	
   <br>
 
