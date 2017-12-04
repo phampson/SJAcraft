@@ -127,52 +127,6 @@ function addFriend($frnm, $user_id)
             $mysqli->multi_query($addnewfriend);
         }
     }
-    $query = 'select * from friendlist where user_id= "' . (int) $user_id . '"';
-    if ($result = $mysqli->query($query)) {
-        while ($row = $result->fetch_assoc()) {
-            $friend_id      = $row['friend_id'];
-            $interact_msgid = $row['interact_msgid'];
-            if ($interact_msgid == NULL) {
-                $interact_msgid = 0;
-            }
-            $find_friend = 'select * from user_info where id = "' . $friend_id . '"';
-            if ($friends = $mysqli->query($find_friend)) {
-                $friend       = $friends->fetch_assoc();
-                $friendname   = $friend['username'];
-                $friendAvatar = $friend['avatar_path'];
-                if (is_null($friendAvatar)) {
-                    $picturePath = '../img/profpic.png';
-                } 
-                else {
-                    $picturePath = "../profile/$friendAvatar";
-                }
-            }
-            echo '
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div id="chatButton">
-                                <a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:45px;" style="height:45px;" src="' . $picturePath . '"></a>  
-                            <button class="btn btn-link" id = ' . $friend_id . ' onclick=window.location.href="history.php?frid=' . $friend_id . '">
-                                <div class="messages">
-                                    <strong>' . $friendname . '</strong>';
-            $numNewMsg = 'select * from message where ((sender = "' . $user_id . '" and receiver="' . $friend_id . '") or (sender = "' . $friend_id . '" and receiver = "' . $user_id . '")) and message_id > "' . $interact_msgid . '"';
-            if ($numNM = $mysqli->query($numNewMsg)) {
-                $numM = $numNM->num_rows;
-                if ($numM > 0) {
-                    echo '
-                                    <span class="redpoint">' . $numM . '</span>';
-                }
-            }
-            
-            echo '
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            ';
-        }
-    }
 }
 
 if ($fnt == "sendMessage") {

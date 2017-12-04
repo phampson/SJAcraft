@@ -156,14 +156,6 @@ document.addEventListener("keyup", function(event) {
     }
     return true;
 } );
-document.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if(event.which === 13) {
-        document.getElementById("sendBtn").click();
-        return false;
-    }
-    return true;
-} );
 function updateFriends()
 {
 }
@@ -209,7 +201,7 @@ document.getElementById("Frilist").innerHTML += data;});*/
     $.post("messaging.php",{usid:<?php
 echo $user_id;
 ?>,frid:friendname, msg:msg, fnt:funct},function(data){
-document.getElementById("Frilist").innerHTML += data;});
+window.location.reload();});
 }
 //setInterval(update, 2500);
         </script>
@@ -236,13 +228,11 @@ echo "</script>\n";
                     </p>              
             </div><hr>
     </div>
-    <table class="table-condensed">
-        <tbody>
+    <table  id = "Frilist" class="table-condensed">
         <!-- Write php code to list friends -->
 	<?php
 	ShowFriends($user_id, $mysqli);
 	?>
-        </tbody>
     </table><br>
 </div>
 
