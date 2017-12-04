@@ -47,6 +47,15 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk      = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
+
+// check the extension
+$file_parts = pathinfo($target_file);
+
+if ($file_parts['extension'] != 'map') {
+    deliver_response(10, 200, "not map file", $uploader , "uploader");
+    die;
+}
+
 // Check if file already exists
 if (file_exists($target_file)) {
     //echo "Sorry, file already exists.";
