@@ -9,22 +9,32 @@ if ($_SESSION['user_id'] == NULL) {
 
 //uploading file
 $target_dir    = "../dlc/maps/";
+
 // you will copy file into this directory
 $name          = basename($_FILES["fileToUpload"]["name"]);
+
 $target_file   = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //fileToUpload is the name from html file, [“name”] is an attribute of $_FILES instance. It also have attribute [“size”] below
 $uploadOk      = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+if ($imageFileType != ".png" || $imageFileType != ".jpg" || $imageFileType != ".gif" ) {
+    echo "Sorry, that file type is not allowed.<br>";
+    echo "Allowable file types: .png, .jpg, .gif";
+    $uploadOk = 0;
+}
+
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
 }
+
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
+
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
@@ -50,7 +60,7 @@ else {
         echo $target_file;
         echo $numPlayers;
         echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-        header("location: maprepo.php");
+        //header("location: maprepo.php");
     } 
     else {
         echo "Sorry, there was an error uploading your file.";
