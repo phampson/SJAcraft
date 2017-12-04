@@ -137,7 +137,7 @@ echo $_SERVER['HTTP_HOST'];
 	    else {
             	var html_string = ' \
             <tr> \
-                <td> \
+                <td style="overflow-wrap: break-word; word-wrap: break-word;" > \
                     <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
                     <h3><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
