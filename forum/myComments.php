@@ -94,9 +94,9 @@ if (isset($_SESSION['user_id'])) {
 		    echo "
 				<h3> $post_tag &lt;&lt; <a href='comments.php?postId=$commentPostId'>$post_header </a> </h3>
 				<a href='comments.php?postId=$commentPostId'>
-			   		<div class ='container div2 col-xs-12 col-xs-offset-0'> 
-				    		<div class = 'col-sm-1 Cinfo'> 			
-								<img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'>
+			   		<div class ='container div2 col-xs-12 col-xs-offset-0'>
+				    		<div class = 'col-sm-1 Cinfo'>
+								<img align=left src='../profile/$commentPicPath' alt='Warcraft main picture' style='width:90px;height:90px;'>
 				    		</div> 
 						<div class = 'container col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0'> 
 							<font color ='white'>$commentUsername</font>
