@@ -52,5 +52,5 @@ if ($list = $mysqli->query("SELECT * FROM map WHERE uploader=$id")) {
         }
     }
 }
-//header("Location: maprepo.php");
+header("Location: maprepo.php");
 ?>
