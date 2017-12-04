@@ -46,14 +46,14 @@ echo "</script>\n";
         <div class='form-group'>
             <label for='title'>Title:</label>
             <br>
-    	    <input type='text' name='title' id='title'>
+    	    <input type='text' name='title' id='title' required>
         </div>
         <div class='form-group'>
             <label for='details'>Details:</label>
             <br>
             <textarea rows='10' name='details' id='details'></textarea>
         </div>
-    	<button type='submit' class='btn btn-default'>Submit</button>
+    	<button type='submit' class='btn btn-simple'>Submit</button>
 	</form>"; 
 ?>
 

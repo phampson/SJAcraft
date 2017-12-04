@@ -134,7 +134,7 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-			<div class='col-sm-3 col-xs-7 col-sm-offset-0 col-xs-offset-2'>
+			<div class='col-sm-3 col-xs-12 col-sm-offset-0 col-xs-offset-0'>
              		<div class='div2 thumbnail' style='overflow:auto;'>";
  		if(file_exists($imagePath)){
  			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
