@@ -57,6 +57,7 @@ echo "</script>\n";
 <?php echo 
 	"<h2>Thank you for your Submission!</h2>
     <p>Our administrators will notify you by e-mail when your submission has been resolved.</p>";
+	echo "<a href='support.php' class='btn-simple' role='button'><input type='submit' class='btn-simple' value='Support' name='submit' style='width:150px'></a>";
 ?>
 
 </div>
