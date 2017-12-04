@@ -129,9 +129,9 @@ if ($result = $mysqli->query($query)) {
                         <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
                     </div>
                 <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
-	    	            
-	    </div></h2>";
-
+            </div>
+            </h2>
+        </div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
