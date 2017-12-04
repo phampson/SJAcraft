@@ -15,11 +15,11 @@ $name          = basename($_FILES["fileToUpload"]["name"]);
 $target_file   = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //fileToUpload is the name from html file, [“name”] is an attribute of $_FILES instance. It also have attribute [“size”] below
 $uploadOk      = 1;
-$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-if ($imageFileType != ".map") {
+$imgFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+if ($imgFileType != "map") {
     echo "Sorry, that file type is not allowed.<br>";
     echo "Allowable file types: .map";
-    $uploadOk = 0;
+    exit;
 }
 
 // Check if file already exists
