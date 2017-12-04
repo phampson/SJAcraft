@@ -13,11 +13,14 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 // Error Reporting & Variables
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+print_r($_FILES);
 $userID     = $_SESSION['user_id'];
 $targetDir  = "avatar_pics/";
 $fileName   = basename($_FILES["fileToUpload"]["name"]);
 $fileSize   = $_FILES["fileToUpload"]["size"];
 $targetFile = $targetDir . $userID . ".jpg"; // CHECK: later change it to $targetFile = $targetDir . $userID . "_" . $fileName;
+$imgFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+echo "<br>$imgFileType<br>";
 $uploadedOk = 1;
 // Print statements (Delete later)
 echo "username: " . $userID . "<br>";
@@ -26,6 +29,12 @@ echo "tmp_name: " . $_FILES["fileToUpload"]["tmp_name"] . "<br>";
 echo "fileSize: " . $fileSize . "<br>";
 // Error Checking
 // Check file size
+if ($imgFileType != "png" && $imgFileType != "gif" && $imgFileType != "jpg") {
+    echo "That file extension is not allowed.<br>";
+    echo "Allowable file extensions: .png, .gif, .jpg";
+    exit;
+}
+
 if ($fileSize > 1000000) {
     echo "Error: File size too large.";
     $uploadedOk = 0;
