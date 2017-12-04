@@ -34,11 +34,11 @@ function Get(name, pass)
 		}
 
 		if(user == "") {
-			displayAlert("empty username");
+			displayAlert("Error: Please fill in all the required fields.");
 			return false;
 		}
 		else if(pass == "") {
-			displayAlert("empty password");
+			displayAlert("Error: Please type a password.");
 			return false;
 		}
 		if(res!=null)		

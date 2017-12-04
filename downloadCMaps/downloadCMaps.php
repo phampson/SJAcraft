@@ -17,6 +17,7 @@ else {
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -95,6 +96,10 @@ if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTe
 else {
     $query = "SELECT * FROM packages";
 }
+?>
+</div>
+<?php
+
 
 		if ($result = $mysqli->query($query)) {
 			$count = 0;
@@ -129,7 +134,7 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-			<div class='col-sm-4 col-xs-7 col-sm-offset-0 col-xs-offset-2'>
+			<div class='col-sm-3 col-xs-7 col-sm-offset-0 col-xs-offset-2'>
              		<div class='div2 thumbnail' style='overflow:auto;'>";
  		if(file_exists($imagePath)){
  			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
@@ -139,10 +144,10 @@ else {
  
  				echo"	<div class='caption' style='color:white;'>
  						<p>$displayName</p>
- 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
+ 						<p>Uploaded by: <a class='uploaderName' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
  					</div>
  				<div style='text-align: center'>
- 					<button><a href='$packagePath' download>download</a></button>
+ 					<button><a href='$packagePath'>download</a></button>
  					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
  				</div>
  				</div>
@@ -156,13 +161,14 @@ else {
     $result->close();
 }
 ?>
+	</div>
+	<div class='row'>
 	<!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-xs-8 col-sm-7 col-xs-offset-2"><br>
+        <div class="col-xs-12 col-sm-12 "><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
                 <div class='div2 thumbnail' style='overflow:auto;'>
                 <!--<a href="#"> -->
                     
-                    <p><i><img src="../img/maps/plus.jpg" alt="Map1" style="width:100%"></i></p>
                     <center><div class="caption">
                         <form action="upload.php" method="post" enctype="multipart/form-data"><p>
                             Select map to upload:
@@ -173,6 +179,7 @@ else {
                 </a>
             </div>
         </div>
+	</div>
     </div>
 	
 </body>

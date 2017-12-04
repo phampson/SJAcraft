@@ -22,26 +22,28 @@
 
 <!-- Login form -->
 <div class="div1 col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
+	<br><br>
 	<h1 class="text-center">Log In</h1>
-	<form id="form1" method="post" enctype="multipart/form-data">
+	<form id="form" method="post" enctype="multipart/form-data">
 		<p>Username</p>
 		<input type="user" id="username" name="username" placeholder="Enter Username or Email">
-        <br><br>
-        <p>Password</p>
-        <input type="password" id="password" name="password" placeholder="Enter Password">
-        <br><br>
-        <div class="text-center">
-		    <button onclick="return loginError(this)" class="btn btn-fancy-login"></button>
-            <br><br>
-            <a href="findpw.html">Forgot Your Password?</a>
-            <br>
-		    <a href="../signup/signup.html">Click Here </a> to create a new account
-        </div>
+        	<br><br>
+        	<p>Password</p>
+        	<input type="password" id="password" name="password" placeholder="Enter Password">
+        	<br><br>
+			<div class="text-center">
+				    <button onclick="return loginError(this)" class="btn btn-fancy-login"></button>
+			    	<br><br>
+			    	<a href="findpw.html">Forgot Your Password?</a>
+			    	<br>
+				<a href="../signup/signup.html">Click Here </a> to create a new account
+			</div>
 		<br>
-		<div id="myAlert" class="alert alert-danger collapse">
-            <strong>Error: </strong> Please fill in all the required fields.
-        </div>
+			<div id="myAlert" class="alert alert-danger collapse container col-xs-12" style="position: relative; margin: 0px;">
+		    Error: Please fill in all the required fields.
+			</div>
 	</form>
+	<br><br>
 </div>
 
 </body>
