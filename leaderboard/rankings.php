@@ -124,7 +124,7 @@ echo "</script>\n";
             <tr> \
                 <td> \
                     <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
-                    <h3><a style="word-wrap: break-word" href="http://' + "<?php
+                    <h3 style="word-wrap: break-word"><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
 ?>" + '/profile/profile.php">' + users[i].name + '</a></h3> \
                 </td> \
