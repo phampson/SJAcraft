@@ -140,6 +140,12 @@ hr {
     color: darkgrey;
 }
 
+/* Table */
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
 /* Buttons */
 .btn-fancy-play {
     background: url('./img/buttons/play/play.png');
