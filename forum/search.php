@@ -31,7 +31,7 @@ if (isset($_POST['searchText'])) {
     
     // searchText does not match any post in database
     else {
-        echo "0 results";
+        echo "0";
     }
 }
 

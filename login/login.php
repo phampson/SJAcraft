@@ -39,7 +39,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         }
     }
     else {
-        deliver_response("username or password invalid");
+        deliver_response("Error: Invalid Username or Password");
     }
 } 
 else {

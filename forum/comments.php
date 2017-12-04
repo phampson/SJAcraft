@@ -206,7 +206,7 @@ echo "</script>\n";
 		    }//end if
     if(isset($_SESSION['user_id'])){
 	    echo "<form id='form' action='uploadComments.php?' method='post'>
-          <textarea id='commentcontent' name='comment' placeholder='enter comments'></textarea>
+          <textarea id='commentcontent' name='comment' placeholder='enter comments' required></textarea>
           <input type='hidden' name='ID' value='$ID'/>
           <input type='file' name='fileToUpload' id='fileToUpload'>
           <input type='button' class = 'btn-simple' id='upJQuery' value='upload'><br>

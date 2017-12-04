@@ -49,7 +49,7 @@ echo "</script>\n";
 <div class="div1 col-xs-12 col-sm-8 col-sm-offset-2" id='border-gold'>
 <h2><?php echo $mapRepoOwner."'s" ?> Map Repo</h2><hr>
 
-<div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-2">
+<div class="col-sm-8 col-xs-12 col-sm-offset-2 col-xs-offset-0">
 
 <?php
 function showMaps($query, $ownRepo, $private){
@@ -69,7 +69,7 @@ function showMaps($query, $ownRepo, $private){
             
             echo "
         <div class='col-sm-8 col-xs-7 col-sm-offset-2 col-xs-offset-0'>
-            <div class='div2 thumbnail'>
+            <div class='div2 thumbnail' style='overflow:auto;'>
                 
                     <img src=$map_thumbnail alt=$map_name style='width:100%'>
                     <div class='caption'><h2>
@@ -82,7 +82,7 @@ function showMaps($query, $ownRepo, $private){
                 echo "<input type='checkbox' name='$map_name"."[]' value='delete'>";
                 
                 if ($private == true) {
-                    echo "<br>Share with a friend only:
+                    echo "<br><p>Share with a friend only:</p>
                           <select name='$map_name"."[]' value='share'>
                             <option value='share'></option>";
                     $friends = $mysqli->query("SELECT friend_id FROM friendlist WHERE user_id=" . $_SESSION["user_id"]);
@@ -96,7 +96,7 @@ function showMaps($query, $ownRepo, $private){
                     phpConsole($map_name);
                     $friendsSharedWith = $mysqli->query("SELECT shared_user FROM map_settings WHERE map_name='$map_name'");
               
-                    echo "<br>Unshare with a friend: <br> <select name='$map_name"."[]' value='share'><option value='unshare'></option>";
+                    echo "<br><p>Unshare with a friend: </p> <select name='$map_name"."[]' value='share'><option value='unshare'></option>";
                     while ($friend = $friendsSharedWith->fetch_assoc()) {
                         $friendID = $friend["shared_user"];
                         phpConsole($friendID);
@@ -109,7 +109,7 @@ function showMaps($query, $ownRepo, $private){
             }
             echo "
                     
-                <div style='text-align: center;'><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2></div>
+               <div style='text-align: center;'><br><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2></div>
             </div>
             </div>
         </div>";
@@ -151,17 +151,18 @@ function showSharedMaps($query)
                 $uploaderID = $row_map['uploader'];
                 
                 echo "
-            <div class='col-sm-8 col-xs-7 col-sm-offset-2 col-xs-offset-0'>
-                <div class='div2 thumbnail'>
+            <div class='col-sm-4 col-xs-8 col-sm-offset-0 col-xs-offset-2'>
+                <div class='div2 thumbnail' style='overflow:auto;'>
                     
-                        <img src=$map_thumbnail alt=$map_name style='width:100%'>
+                        <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
                         <div class='caption'><h2>
                             <p><strong>$displayName</strong></p>
                             <p>$numPlayers players</p></h2>";
             
                 echo "  
-                    <div style='text-align: center;'><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2></div>
-                </div>
+                    		<div style='text-align: center;'><h2><button class='btn-simple btn-sm'><a style='color:white' href=$map_path download>Download</a></button></h2>
+		</div>
+                	</div>
                 </div>
             </div>";
                 if($count % 4 == 3){
@@ -182,10 +183,10 @@ function displayUploadButton()
     
         echo'
         <div class="row">
-            <div class="col-sm-8 col-xs-8 col-sm-offset-2">
-                <div class="div2 thumbnail">
+            <div class="col-sm-7 col-xs-8 col-xs-offset-0 col-sm-offset-3">
+                <div class="div2 thumbnail" style="overflow:auto;">
                     
-                    <img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
+                    <p><i><img src="../img/maps/plus.jpg" alt="Map1" style="width:100%"></i></p>
                     <center><div class="caption">
                         <form action="upload.php" method="post" enctype="multipart/form-data"><p>
                             <input type="radio" name="private" value="1">
@@ -205,7 +206,7 @@ function displayUploadButton()
         }
         echo '              </select> 
                             <h2><input class="btn-simple btn-sm" type="submit" value="Upload Map" name="submit"></h2>
-                      </p>  </form>
+                      </p></form>
                     </div></center>
                     </a>
                 </div>
@@ -214,7 +215,7 @@ function displayUploadButton()
 }
 if ($viewingOwnRepo) {
     displayUploadButton();
-    echo "<form method='post' action='changemapsettings.php' class='col-xs-12'>";
+    echo "<form method='post' action='changemapsettings.php' class='col-x'>";
     echo"<div class='row'>";
     echo "<h2>Public Repo</h2><hr>";
     $query = "select * from map where uploader = $user_id and private=0";

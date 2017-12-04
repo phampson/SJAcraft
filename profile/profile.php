@@ -120,7 +120,7 @@ endif;
 	  	<?php endif;?>
 
             <?php if($foundFriend == TRUE): ?>
-         		<a class="btn-simple" href="../messaging/friendslist.php"><input type="submit" class="btn-simple"value="Message User" name="submit"></a>
+         		<a class="btn-simple" href="../messaging/history.php?frid=<?php echo $friend_id ?>"><input type="submit" class="btn-simple"value="Message User" name="submit"></a>
 
             <?php endif;?>
         <?php endif; ?>

@@ -97,7 +97,9 @@ if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTe
 else {
     $query = "SELECT * FROM map WHERE private=0";
 }
-
+?>
+</div>
+<?php
 $query .= $sortOption;
 
 if ($result = $mysqli->query($query)) {
@@ -117,12 +119,13 @@ if ($result = $mysqli->query($query)) {
         $uploaderName  = $uploaderName['username'];
         //$uploaderName="ss";
         echo "
+        <div class='col-sm-3 col-xs-12 col-xs-offset-0 col-sm-offset-0'>
         <h2>
-            <div class='div2 thumbnail col-xs-8 col-sm-3 col-xs-offset-2' style='overflow:auto;'>
+            <div class='div2 thumbnail' style='overflow:auto;'>
                     <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
                     <div class='caption'>
                         <p><strong>$displayName</strong></p>
-                        <p>$numPlayers players</p>
+                        <p>$numPlayers players </p>
                         <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
                     </div>
                 <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
@@ -141,12 +144,12 @@ if ($result = $mysqli->query($query)) {
 
 
        <!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-sm-8 col-xs-8 col-xs-offset-2"><br>
+        <div class="col-sm-12 col-xs-12 "><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
-                <div class='div2 thumbnail'>
+                <div class='div2 thumbnail' style='overflow:auto;'>
                 <!--<a href="#"> -->
                     
-                    <img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
+                   
                     <center><div class="caption">
                         <form action="upload.php" method="post" enctype="multipart/form-data"><p>
                             Select map to upload:

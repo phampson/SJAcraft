@@ -17,6 +17,7 @@ else {
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../stylesheet.css">
+	<link rel="stylesheet" href="stylesheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -95,6 +96,10 @@ if (isset($_GET["searchTerm"]) and $_GET["searchTerm"] != "" and $_GET["searchTe
 else {
     $query = "SELECT * FROM packages";
 }
+?>
+</div>
+<?php
+
 
 		if ($result = $mysqli->query($query)) {
 			$count = 0;
@@ -129,24 +134,24 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-    			<div class='col-sm-4'>
-            			<div class='div2 thumbnail' style='overlow:auto;'>";
-		if(file_exists($imagePath)){
-			echo "<p><i><img src='$imagePath' alt='RATSSSS' style='width:100%'></i></p>";
-		} else {
-			echo "<p><i><img src='package.png' alt='RATSSSS' style='width:100%'>";
+			<div class='col-sm-3 col-xs-7 col-sm-offset-0 col-xs-offset-2'>
+             		<div class='div2 thumbnail' style='overflow:auto;'>";
+ 		if(file_exists($imagePath)){
+ 			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
+ 		} else {
+ 			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
  		}
-
-				echo"	<div class='caption'>
-						<p>$displayName</p>
-						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
-					</div>
-				<div style='text-align: center'>
-					<button><a href='$packagePath' download>download</a></button>
-					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
-				</div>
-				</div>
-			</div>";
+ 
+ 				echo"	<div class='caption' style='color:white;'>
+ 						<p>$displayName</p>
+ 						<p>Uploaded by: <a class='uploaderName' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
+ 					</div>
+ 				<div style='text-align: center'>
+ 					<button><a href='$packagePath'>download</a></button>
+ 					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
+ 				</div>
+ 				</div>
+ 			</div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
@@ -156,22 +161,27 @@ else {
     $result->close();
 }
 ?>
-		<!--<script type = "text/php" src="show_maps.php"></script>-->
-		
-			<!--<div class="thumbnail" onclick="addMap()">-->
-				<div class="div2 thumbnail col-sm-7 col-xs-7 col-xs-offset-2 col-sm-offset-3">
-				<!--<a href="#"> -->
-					
-					<img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
-					<div class="caption">
-						<form action="upload.php" method="post" enctype="multipart/form-data"><center><p>
-						    Select map to upload:
-						    <input type="file" name="fileToUpload" id="fileToUpload"> 
-						    <h2><input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2></p></center>
-						</form>
-					</div>
-				</div>
-			</div>
+	</div>
+	<div class='row'>
+	<!--<script type = "text/php" src="show_maps.php"></script>-->
+        <div class="col-xs-12 col-sm-12 "><br>
+            <!--<div class="thumbnail" onclick="addMap()">-->
+                <div class='div2 thumbnail' style='overflow:auto;'>
+                <!--<a href="#"> -->
+                    
+                    <center><div class="caption">
+                        <form action="upload.php" method="post" enctype="multipart/form-data"><p>
+                            Select map to upload:
+                            <input type="file" name="fileToUpload" id="fileToUpload"></p><h2>
+                           <input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2>
+                    </form>
+                    </div></center>
+                </a>
+            </div>
+        </div>
+	</div>
+    </div>
+	
 </body>
 <script type="text/javascript" src="cdn.js"></script>
 </html>

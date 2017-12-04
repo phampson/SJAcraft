@@ -37,13 +37,13 @@ echo "</script>\n";
 		<hr>
 	</div>
 	
-	<div style = "border-radius: 10px; padding: 20px;" class="div2 container col-xs-12 col-xs-offset-0">
+	<div style = "border-radius: 10px; margin:auto; padding:0px;" class="div2 container col-xs-12 col-xs-offset-0">
 		<div class="container col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0">
-			<center><h3 style="color: white;">Download tools now!</h3></center>
+			<center><h3 style="color: white; padding:5px; ">Download tools now!</h3></center>
 		</div>
 				    			   
 		<div style="align: center; position: relative;" class="button container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" id="downloadButton">
-			<center><a href="game_files/ECS160Tools-week4.zip" download="ToolsApp"><button type="button" class="btn btn-fancy-download"></button></a><center>
+			<center><a href="../gamefiles/ECS160Tools-week4.zip" download="ToolsApp"><button style="margin-bottom:20px;" type="button" class="btn btn-fancy-download"></button></a><center>
 		</div>
 	</div>
 

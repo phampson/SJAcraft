@@ -72,7 +72,7 @@ echo "</script>\n";
 		</div>	
 	</div>
 
-	<div class="container col-xs-12 col=xs-offset-0 col-sm-12 col-sm-offset-0" id="btmcntr">
+	<div class="container col-xs-12 col=xs-offset-0 col-sm-12 col-sm-offset-0" id="btmcntr" style="margin:auto; padding:0px; align: center;">
 		<div class="container col-xs-12 col-sm-8 col-sm-offset-2">
 			<table id = "reqTable" class="table table-striped" >
 				<thread>
@@ -110,9 +110,10 @@ echo "</script>\n";
 			<table>
 		</div>
 
-		<div style="padding: 0px; align: center;" class="container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" id="downloadButton" class="container">
-		</div>
 	</div>
+		<div class="div" style="position: relative; margin: auto; align: center;" class="container col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" id="downloadButton">
+		</div>
+	
 </div>
 
 </body>
