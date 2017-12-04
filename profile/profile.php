@@ -129,13 +129,17 @@ endif;
 
 		<?php
 		if (isset($_GET["id"])) {
- 			$addLink = "maprepo.php?id=".$_GET["id"];
+ 			$mapRepo = "maprepo.php?id=".$_GET["id"];
+      $packageRepo = "packagerepo.php?id=".$_GET["id"];
 		} else {
-			$addLink = "maprepo.php";
-        }
-        ?> 	
-        <a class='btn-simple' href=<?php echo $addLink ?>><input type="submit" class="btn-simple"value="Map Repo" name="submit"></a>
-	<br>
+			$mapRepo = "maprepo.php";
+      $packageRepo = "packagerepo.php";
+    }
+    ?> 	
+        <a class='btn-simple' href=<?php echo $mapRepo ?>><input type="submit" class="btn-simple"value="Map Repo" name="submit"></a>
+        <a class='btn-simple' href=<?php echo $packageRepo ?>><input type="submit" class="btn-simple"value="Package Repo" name="submit"></a>	
+  <br>
+
         <!-- This part is what lets you update profile info, and should only show
          if $_GET["id"] isn't set, meaning you're viewing your own profile -->
 
