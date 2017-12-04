@@ -62,5 +62,5 @@ if ($list = $mysqli->query("SELECT * FROM packages WHERE uploader=$id")) {
 }
 
 
-//header("Location: maprepo.php");
+header("Location: maprepo.php");
 ?>
