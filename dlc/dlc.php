@@ -117,10 +117,10 @@ if ($result = $mysqli->query($query)) {
         $uploaderName  = $uploaderName['username'];
         //$uploaderName="ss";
         echo "
-        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
+        <div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
-            <div class='div2 thumbnail' style='height:390pxpx'>
-                    <img src=$map_thumbnail alt=$map_name style='width:100%'>
+            <div class='div2 thumbnail' style='overflow:auto;'>
+                    <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
                     <div class='caption'>
                         <p><strong>$displayName</strong></p>
                         <p>$numPlayers players</p>
@@ -142,9 +142,9 @@ if ($result = $mysqli->query($query)) {
 
 
        <!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-sm-8 col-xs-8 col-xs-offset-2"><br>
+        <div class="col-sm-8 col-xs-7 col-xs-offset-2"><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
-                <div class='div2 thumbnail'>
+                <div class='div2 thumbnail' style='overflow:auto;'>
                 <!--<a href="#"> -->
                     
                     <img src="../img/maps/plus.jpg" alt="Map1" style="width:100%">
