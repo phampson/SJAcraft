@@ -4,8 +4,7 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
-} 
-else {
+} else {
     $navpath = "../navbar/navbar.html";
 }
 ?>
@@ -61,17 +60,11 @@ echo "</script>\n";
 
 if (isset($_GET["sort"])) {
     switch ($_GET["sort"]) {
-        case "players":
-            $sortOption = " ORDER BY num_players";
-            break;
         case "uploader":
             $sortOption = " ORDER BY uploader";
             break;
         case "name":
             $sortOption = " ORDER BY display_name";
-            break;
-        case "date":
-            $sortOption = " ORDER BY upload_date";
             break;
         default:
             $sortOption = "";
@@ -171,9 +164,9 @@ else {
                     
                     <center><div class="caption">
                         <form action="upload.php" method="post" enctype="multipart/form-data"><p>
-                            Select map to upload:
+                            Select package to upload:
                             <input type="file" name="fileToUpload" id="fileToUpload"></p><h2>
-                           <input class='btn-simple btn-sm' type="submit" value="Upload Map" name="submit"></h2>
+                           <input class='btn-simple btn-sm' type="submit" value="Upload Package" name="submit"></h2>
                     </form>
                     </div></center>
                 </a>
@@ -183,5 +176,4 @@ else {
     </div>
 	
 </body>
-<script type="text/javascript" src="cdn.js"></script>
 </html>
