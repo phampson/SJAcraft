@@ -88,7 +88,7 @@ echo "</script>\n";
 	  		
 	  	echo "</div>";
             
-      echo "<a href='submit.php' class='btn-simple' role='button'>Submit New Error</a>";
+      echo "<a href='submit.php' class='btn-simple' role='button'><input type='submit' class='btn-simple' value='Submit New Error' name='submit' style='width:150px'></a>";
 		
 ?>
     </div>

@@ -44,13 +44,13 @@ function ShowFriends($userid, $mysqli)
                 }
             }
             echo '
-                
-                    <tbody class="col-xs-12">
+                    <tbody class="container col-xs-12">
                     	<tr>
                     	<td style="width:6000px; height:50px;">
-                        <div id="chatButton">
-                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px; height:37px;" src="' . $picturePath . '"></a>                                  
-                                    <strong>' . $friendname . '</strong>';
+                        <div id="chatButton" style="float:left;">
+                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="' . $picturePath . '"></a>  
+			<button style="color:white;" class="btn btn-link" id = ' . $friend_id . ' onclick=window.location.href="history.php?frid=' . $friend_id . '"><strong>' . $friendname . '</strong>
+			</div>';
             $numNewMsg = 'select * from message where ((sender = "' . $userid . '" and receiver="' . $friend_id . '") or (sender = "' . $friend_id . '" and receiver = "' . $userid . '")) and message_id > "' . $interact_msgid . '"';
             if ($numNM = $mysqli->query($numNewMsg)) {
                 $numM = $numNM->num_rows;
@@ -59,13 +59,14 @@ function ShowFriends($userid, $mysqli)
                                     <span class="redpoint">' . $numM . '</span>';
                 }
             }
-            echo '
-                            <button style="color: black;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=accept">
+            echo '	<div style="float:right;">
+                            <button style="background-color: green;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=accept">
                             accept
-                            </button>
-                            <button style="color: black;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=decline">
+                            </button><br>
+                            <button class="btn-simple" style="background-color: red;" onclick=window.location.href="request.php?frid='.$friend_id.'&action=decline">
                             decline
                             </button>
+			</div><br><br>
                             </p>
                         </div><hr>
                         </td>
@@ -104,7 +105,7 @@ function ShowFriends($userid, $mysqli)
                     	<tr>
                     	<td style="width:6000px; height:50px;">
                         <div id="chatButton">
-                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px; height:37px;" src="' . $picturePath . '"></a>  
+                                <p><a href="../profile/profile.php?id=' . $friend_id . '"><img class="img-circle pull-left" style="width:37px;" style="height:37px;" src="' . $picturePath . '"></a>  
                             <button style="color:white;" class="btn btn-link" id = ' . $friend_id . ' onclick=window.location.href="history.php?frid=' . $friend_id . '">
                                 
                                     <strong>' . $friendname . '</strong>';
@@ -244,17 +245,17 @@ echo "</script>\n";
                             <button id="addfriendbtn" class="btn-simple" type="submit" onclick="newfriend();">Add Friend</button>
                     </p>              
             </div><hr>
-            <table class="table-condensed">
-                <tbody>
-                <!-- Write php code to list friends -->
-		<?php
-ShowFriends($user_id, $mysqli);
-?>
-                </tbody>
-            </table><br>
     </div>
-    </div>
+    <table class="table-condensed">
+        <tbody>
+        <!-- Write php code to list friends -->
+	<?php
+	ShowFriends($user_id, $mysqli);
+	?>
+        </tbody>
+    </table><br>
 </div>
 
 </body>
 </html>
+

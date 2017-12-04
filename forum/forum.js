@@ -57,7 +57,6 @@ function openCategory(evt, cityName) {
 
 // Dump all posts from database
 function dumpAllPosts() {
-
     $.ajax({
         url: 'getPosts.php',
         type: 'GET',
@@ -154,15 +153,33 @@ function search(form)
 {
     searchText = form.searchText.value;
 
-    $.ajax({
+    if (searchText != "")
+    {
+	searchKeyWord(searchText);
+    }
+
+    else {
+    	alert("Please provide search keyword");
+    }
+    
+}
+
+function searchKeyWord(searchText) {
+	$.ajax({
 		method: "POST",
 		url: "search.php",
 		data: { searchText: searchText },
 		success: function(data) {
-            var obj = jQuery.parseJSON(data);
-            printSearchResults(obj);
-		}
+            		var obj = jQuery.parseJSON(data);
+			if(obj == '0') {
+				alert("Your search yielded no results.");
+			}
+			else {
+				printSearchResults(obj);				
+			}
+		},
 	});
+
 }
 
 function printSearchResults(data)
@@ -182,9 +199,17 @@ function printSearchResults(data)
 		     <a href="forum.php"> \
   			<h4 style="color:white;"> &lt&lt Go back to Forums</h4> \
 		     </a>'
-    container.insertAdjacentHTML('beforeend', htmlString);
-
-    for (var i = 0; i < data.length; i++) {
-        getAvatarPath(data[i], container); 
+	
+    if (data.length == 0) {
+	alert("Your search yielded no results");
     }
+    
+    else {
+	    container.insertAdjacentHTML('beforeend', htmlString);
+
+	    
+	    for (var i = 0; i < data.length; i++) {
+		getAvatarPath(data[i], container); 
+	    }
+   }
 }

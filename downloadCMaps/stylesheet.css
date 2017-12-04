@@ -1,26 +1,13 @@
-.panel-title {
-	text-align: center;
-	color: black;}
-	
-.panel-body {
-	text-align: center;}
-
-a, a:link, a:visited {
+a.uploaderName, a.uploaderName:link, a.uploaderName:visited {
     color: white;
     background-color: transparent;
     text-decoration: none;
 }
 
 
-a:hover {
+a.uploaderName:hover{
     color: blue;
     background-color: transparent;
     text-decoration: underline;
 }
-
-
-
-
- 
-	
 

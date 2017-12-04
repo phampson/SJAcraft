@@ -51,7 +51,7 @@ table {
 	opacity: .5;
 	font-size: 11px;
 	margin-top: 10px;
-	margin-left: auto;
+	/*margin-left: auto;*/
 }
 
 th {

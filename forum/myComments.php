@@ -55,54 +55,81 @@ echo "</script>\n";
 	<div class="container col-sm-12 col-sm-offset-0">
 
 <?php
+$reg_exUrl = '@(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))@';
+$reg_attachment = '/attachment_files\/.*/';
 
-$sql = 'SELECT * FROM comment';
-
-if ($query = $mysqli->query($sql)) {
-    while ($row = $query->fetch_assoc()) {
-        $commentUser = $row['comment_user'];
-        
-        if ($commentUser == $user_id) {
-            $commentPostId  = $row['post_id'];
-            $commentContent = $row['comment_content'];
-            $postDate       = $row['comment_date'];
-            
-            if ($avatarPath == null) {
-                $avatarPath = "avatar_pics/profile_default.jpg";
-            }
-            	
-		    $sql2        = 'SELECT * FROM post WHERE post_id = '. $commentPostId;	
-		    $query2      = $mysqli->query($sql2);
- 		    	
-			if ($mysqli->query($sql2)) {
-			    $fetch       = $query2->fetch_assoc();
-			    $post_header = $fetch['post_header'];
-			    $post_tag    = $fetch['tag'];  
-			}
+if (isset($_SESSION['user_id'])) {
+	$sql = 'SELECT * FROM comment';
+	if ($query = $mysqli->query($sql)) {
+	    while ($row = $query->fetch_assoc()) {
+		$commentUser = $row['comment_user'];
 		
-            echo "
-		<h3> $post_tag &lt;&lt; <a href='comments.php?postId=$commentPostId'>$post_header </a> </h3>
+		if ($commentUser == $user_id) {
+		    $commentPostId  = $row['post_id'];
+		    $commentContent = $row['comment_content'];
+		    $commentDate       = $row['comment_date'];
+		    $commentPicPath = "../profile/avatar_pics/$commentUser.jpg";
+		    
+		    if ($avatarPath == null) {
+		        $avatarPath = "avatar_pics/profile_default.jpg";
+		    }
+		    	
+			    $sql2        = 'SELECT * FROM post WHERE post_id = '. $commentPostId;	
+			    $query2      = $mysqli->query($sql2);
+	 		    	
+				if ($mysqli->query($sql2)) {
+				    $fetch       = $query2->fetch_assoc();
+				    $post_header = $fetch['post_header'];
+				    $post_tag    = $fetch['tag'];  
+				}
 
-		<a href='comments.php?postId=$commentPostId'>
-			<div class = 'div2 col-xs-12 col-xs-offset-0'> 
-				<div class = 'col-xs-1 Cinfo'>
-			  		<img align=left src='../profile/$avatarPath' alt='Picture' style='width:90px;height:90px;'> <p>$username</p>
-				</div> 
+			    $commentQuery2 ="SELECT username FROM user_info WHERE id = '$commentUser' LIMIT 1";
+			    if($commentResult = $mysqli->query($commentQuery2)){
+				    while ($commentRow = $commentResult->fetch_assoc())
+				    {
+					    $commentUsername = $commentRow['username'];
+				    }
+			    } 
+		
+		    echo "
+				<h3> $post_tag &lt;&lt; <a href='comments.php?postId=$commentPostId'>$post_header </a> </h3>
+				<a href='comments.php?postId=$commentPostId'>
+			   		<div class ='container div2 col-xs-12 col-xs-offset-0'> 
+				    		<div class = 'col-sm-1 Cinfo'> 			
+								<img align=left src='../profile/$commentPicPath' alt='Picture' style='width:90px;height:90px;'>
+				    		</div> 
+						<div class = 'container col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0'> 
+							<font color ='white'>$commentUsername</font>
+						</div>
+						<div class = 'container col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0'>
+			   				<h4>";
+							if(preg_match($reg_exUrl, $commentContent, $url)) {
+							// make the urls hyper links
+							$content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentContent);
+							} 
+							if(preg_match($reg_attachment, $commentContent, $url)){
+								echo preg_replace($reg_attachment, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentContent);
+							} else {
+							// if no urls in the text just return the text
+							echo $commentContent;
+							}
+						    echo "</h4>
+			   			</div>
+						<footer>
+							<div class = 'container col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0'>
+								<font color='white'> $commentDate</font>
+							</div>
+						</footer>
+					</div>
+				</a>";
+		    
+		} // end if
+	    } // end while
+	} // end if
+} // end if
 
-				<div class = 'col-xs-9 col-xs-offset-1'>
-				    	<h4 style='margin: 20px;'>$commentContent</h4>
-				</div>
-
-				<div class = 'col-xs-5 col-xs-offset-1'>
-				    	<footer><font color='white'> &nbsp &nbsp $postDate </font></footer>
-				</div>
-		      	</div>
-		</a> ";
-            
-        }
-        
-        
-    }
+else {
+	echo"<script language='javascript'> alert('Please log in'); </script>";
 }
 
 ?>

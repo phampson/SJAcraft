@@ -76,7 +76,7 @@ echo "</script>\n";
 
 <!-- Search bar-->
 <div id="searchBar">
-  <h1><center> Forums </center></font></h1>
+  <h1><center> Forums </center></h1>
 	<div class="container col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 		<hr>
 	</div>
@@ -88,12 +88,10 @@ echo "</script>\n";
     <form class="navbar-form navbar-left" action="search.php" method="post"> -->
     <form class="navbar-form navbar-left">
         <div class="input-group">
-            <input type="text" name="searchText" class="form-control btn-sm" placeholder="Search Threads/Users">
+            <input type="text" name="searchText" class="form-control btn-sm" placeholder="Search Threads/Users" required>
               <div class="input-group-btn">
-                <input class="btn-sm btn-simple" type="button" name="submitButton" value="SEARCH" onClick="search(this.form);">
-                <!-- <button class="btn btn-default" type="submit"> -->
+                <input class="btn-sm btn-simple" type="Button" name="submitButton" value="SEARCH" onclick="search(this.form);">
                   <i class="glyphicon glyphicon-search"></i>
-                </button>
               </div>
           </div>
       </form>
@@ -189,7 +187,7 @@ echo "</script>\n";
 				<div class="postInfo">
 					<label><h2 style="color: black;">Select Post Category: </h2></label>
                                 	<br>
-					<select name="category">
+					<select name="category" required>
 						<option value="" disabled selected>Select One</option>
 				    		<option value="beginner">Beginner</option>
 				    		<option value="strategies">Strategies</option>
@@ -199,7 +197,7 @@ echo "</script>\n";
   					</select>
   					<br><br>
 					<label><h2 style="color: black;">Post Name: </h2></label>
-						<input type="text" id="postName" name="postName" placeholder="Enter Post Name"><br><br>
+						<input type="text" id="postName" name="postName" placeholder="Enter Post Name" required><br><br>
 					<label><h2 style="color: black;">Message: </h2></label><br>
 					<textarea id="postMsg" name="message" placeholder="Message"></textarea>
                         		<input type="file" name="fileToUpload" id="fileToUpload">

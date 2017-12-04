@@ -29,22 +29,22 @@ function findOS()
     }
 	switch(operatingSystem != -9) {
 		case(operatingSystem == 0): //Windows
-			document.getElementById("downloadButton").innerHTML = '<a href="gamefiles/thegame_win.zip" download><center><button type="button" class="btn btn-fancy-download"></center></button></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/thegame_win.zip" download><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 		case(operatingSystem == 1): //Mac
-			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160OSX-week3.zip" download><center><button type="button" class="btn btn-fancy-download"></center></button></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/ECS160OSX-week3.zip" download><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 		case(operatingSystem == 2): //UNIX
-			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Linux-master.zip" download><center><button type="button" class="btn btn-fancy-download"></button></center></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/ECS160Linux-master.zip" download><center><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 		case(operatingSystem == 3): //Linux
-			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Linux-master.zip" download><center><button type="button" class="btn btn-fancy-download"></center></button></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/ECS160Linux-master.zip" download><center><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 		case(operatingSystem == 4): //Android
-			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160Android-week4.zip" download><center><button type="button" class="btn btn-fancy-download"></button></center></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/ECS160Android-week4.zip" download><center><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 		case(operatingSystem == 5): //iOS
-			document.getElementById("downloadButton").innerHTML = '<a href="../gamefiles/ECS160iOS-week4.zip" download><center><button type="button" class="btn btn-fancy-download"></center></button></a>';
+			document.getElementById("downloadButton").innerHTML = '<center><a href="../gamefiles/ECS160iOS-week4.zip" download><center><button type="button" class="btn btn-fancy-download"></button></a></center>';
 			break;
 	}
 }
