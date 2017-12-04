@@ -130,11 +130,11 @@ else {
 		}
 		echo "
     			<div class='col-sm-4'>
-            			<div class='div2 thumbnail'>";
+            			<div class='div2 thumbnail' style='overlow:auto;'>";
 		if(file_exists($imagePath)){
-			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
+			echo "<p><i><img src='$imagePath' alt='RATSSSS' style='width:100%'></i></p>";
 		} else {
-			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
+			echo "<p><i><img src='package.png' alt='RATSSSS' style='width:100%'>";
  		}
 
 				echo"	<div class='caption'>

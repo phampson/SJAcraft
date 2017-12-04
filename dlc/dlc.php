@@ -117,19 +117,18 @@ if ($result = $mysqli->query($query)) {
         $uploaderName  = $uploaderName['username'];
         //$uploaderName="ss";
         echo "
-        <div class='col-sm-3 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
         <h2>
-            <div class='div2 thumbnail' style='height:390pxpx'>
-                    <img src=$map_thumbnail alt=$map_name style='width:100%'>
+            <div class='div2 thumbnail col-xs-8 col-sm-3 col-xs-offset-2' style='overflow:auto;'>
+                    <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
                     <div class='caption'>
                         <p><strong>$displayName</strong></p>
                         <p>$numPlayers players</p>
                         <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
                     </div>
                 <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
-            </div>
-            </h2>
-        </div>";
+	    	            
+	    </div></h2>";
+
         if ($count % 4 == 3) {
             echo "</div>";
         }
