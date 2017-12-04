@@ -129,19 +129,24 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-    		<div class='col-sm-4 col-xs-7 col-xs-offset-2 col-sm-offset-0'>
-        	<h2>
-           	<div class='div2 thumbnail' style='overflow:auto;'>
-                    <p><i><img src=$map_thumbnail alt=$map_name style='width:100%'></i></p>
-                    <div class='caption'>
-                        <p><strong>$displayName</strong></p>
-                        <p>$numPlayers players</p>
-                        <p>Uploaded by: <a  style='color:white;' href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
-                    </div>
-                <center><button class='btn-simple btn-sm'><a  style='color:white;' href=$map_path download>Download</a></button></center>
-            	</div>
-            	</h2>
-        	</div>";
+			<div class='col-sm-4'>
+             		<div class='div2 thumbnail'>";
+ 		if(file_exists($imagePath)){
+ 			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
+ 		} else {
+ 			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
+ 		}
+ 
+ 				echo"	<div class='caption'>
+ 						<p>$displayName</p>
+ 						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
+ 					</div>
+ 				<div style='text-align: center'>
+ 					<button><a href='$packagePath' download>download</a></button>
+ 					<button><a href='displayCMap.php?id=$packageID'>Preview</a></button>				
+ 				</div>
+ 				</div>
+ 			</div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
