@@ -33,10 +33,10 @@ echo "</script>\n";
 ?>
 
 <div class="bg">
-    <div class="text-center" style="position: relative; left: 0; top: 0%; width: 100%;">
+    <div class="text-center" style="position: relative; left: 0; top: 20%; width: 100%;">
         <img src="img/Logo.png" class="logo">
         <br><br><br>
-        <a href="./downloadgame/downloadgame.php" class="btn btn-fancy-play" role="button" style="margin-top: -20vw; padding-top:0px;"></a>
+        <a href="./downloadgame/downloadgame.php" class="btn btn-fancy-play" role="button"></a>
     </div>
 </div>
 </body>
