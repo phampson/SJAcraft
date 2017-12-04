@@ -129,15 +129,15 @@ else {
 			$imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
 		}
 		echo "
-			<div class='col-sm-4'>
-             		<div class='div2 thumbnail'>";
+			<div class='col-sm-4 col-xs-7 col-sm-offset-0 col-xs-offset-2'>
+             		<div class='div2 thumbnail' style='overflow:auto;'>";
  		if(file_exists($imagePath)){
  			echo "<img src='$imagePath' alt='RATSSSS' style='width:100%'>";
  		} else {
  			echo "<img src='package.png' alt='RATSSSS' style='width:100%'>";
  		}
  
- 				echo"	<div class='caption'>
+ 				echo"	<div class='caption' style='color:white;'>
  						<p>$displayName</p>
  						<p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
  					</div>
@@ -157,7 +157,7 @@ else {
 }
 ?>
 	<!--<script type = "text/php" src="show_maps.php"></script>-->
-        <div class="col-xs-7 col-xs-offset-2"><br>
+        <div class="col-xs-8 col-sm-7 col-xs-offset-2"><br>
             <!--<div class="thumbnail" onclick="addMap()">-->
                 <div class='div2 thumbnail' style='overflow:auto;'>
                 <!--<a href="#"> -->
