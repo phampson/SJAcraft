@@ -65,7 +65,7 @@ function displayPackages($query, $ownRepo, $private) {
 			        <p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
 		        </div>
 	        <div style='text-align: center'>
-		        <button><a href='$packagePath' download>download</a></button>
+		        <button><a href='$packagePath' download>Download</a></button>
 		        <button><a href='../downloadCMaps/displayCMap.php?id=$packageID'>Preview</a></button>";
 		    
 		    if ($ownRepo == true) {
@@ -88,12 +88,10 @@ function displayPackages($query, $ownRepo, $private) {
                     }
                     echo '</select>';
                     
-                    $friendsSharedWith = $mysqli->query("SELECT shared_user FROM package_sharing WHERE id='$packageID'");
-                    
-                    echo "<br>Unshare with a friend: <br> <select name='$packageID" . "[]' value='share'><option value='unshare'></option>";
+                    $friendsSharedWith = $mysqli->query("SELECT DISTINCT(shared_user) FROM package_sharing WHERE id=$packageID");
+                    echo "<br>Unshare with a friend: <select name='$packageID" . "[]' value='share'><option value='unshare'></option>";
                     while ($friend = $friendsSharedWith->fetch_assoc()) {
                         $friendID = $friend["shared_user"];
-                        phpConsole($friendID);
                         $friendQuery    = $mysqli->query("SELECT username FROM user_info WHERE id=$friendID");
                         $friendFetch    = $friendQuery->fetch_assoc();
                         $friendUserName = $friendFetch["username"];
