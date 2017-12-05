@@ -48,18 +48,20 @@ function displayPackages($query, $ownRepo, $private) {
             if(!$imagePathQuery){	
 	            throw new Exception("Error in Database query");
             } else {
-	            $imagePath = "../downloadCmaps/" . ($imagePathQuery->fetch_assoc())['map_thumbnail'];
+	            $imagePath = ($imagePathQuery->fetch_assoc())['map_thumbnail'];
             }
             
             echo "
 		            <div class='col-sm-4'>
                 			<div class='div2 thumbnail'>";
-            if(file_exists($imagePath)){
+            if(file_exists("$imagePath")){
 	            echo "<img src='../downloadCMaps/$imagePath' alt='RATSSSS' style='width:100%'>";
             } else {
-	            echo "<img src='../downloadCMaps/package.png' alt='RATSSSS' style='width:100%'>";
-            }
+	            echo "<img src='../downloadCMaps/package.png' alt='CATSSSS' style='width:100%'>";
+	            
 
+	           //echo "<img src='../downloadCMaps/package.png' alt='CATSSSS' style='width:100%'>";
+            }
 	        echo"	<div class='caption'>
 			        <p>$displayName</p>
 			        <p>Uploaded by: <a href='../profile/profile.php?id=$uploaderID'>$uploaderName</a></p>
@@ -219,7 +221,7 @@ if ($viewingOwnRepo) {
     echo "<h2>Private Repo</h2><hr>";
     $query = "select * from packages where uploader=$repoOwner and private=1";
     displayPackages($query, true, true);
-    echo "</div>,";
+    echo "</div>";
     
     echo "<h2><input class='btn-simple btn-sm' type='submit' value='Apply Map Changes'></h2>";
     echo "</form>";

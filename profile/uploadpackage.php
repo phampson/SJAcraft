@@ -23,6 +23,13 @@ if (file_exists($target_file)) {
     echo "Exit??";
 }
 
+// check for valid extension
+$extension = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
+if ($extension != "zip") {
+    header("Location: packagerepo.php?badUpload=1");
+}
+
+
 // move file from tmp location to its new location
 $tempLocation = $_FILES["fileToUpload"]["tmp_name"];
 $newLocation  = $target_dir . $name;
@@ -40,7 +47,7 @@ $packageQuery = "UPDATE packages SET
                  uploader = '$userID', 
                  name     = '$name', 
                  filepath = '$newLocation', 
-		 private  = '$private'
+		         private  = '$private'
                  WHERE id = '$folder'";
 $mysqli->query($packageQuery) or die("Error inserting package: " . $mysqli->error);
 
@@ -104,14 +111,21 @@ if ($res === TRUE) {
                                (id, name, filepath, type)
                                VALUES
                                ('$folder', '$name', 'cMapPkgs/$folder/$path/$name', 1)";
-                    $mysqli->query($tileSetUploadQuery) or die("bad map upload");
+                    $mysqli->query($tileSetUploadQuery) or die("bad animation upload");
                 }
-            } elseif ($extension == "mid" || $extension == "mp3" || $extension == "wav") {
-                $soundUploadQuery = "INSERT INTO package_contents
+            } elseif ($extension == "mp3" || $extension == "wav") {
+		$soundUploadQuery = "INSERT INTO package_contents
                              (id, name, filepath, type)
                              VALUES
                              ('$folder', '$name', 'cMapPkgs/$folder/$path/$name', 2)";
-                $mysqli->query($soundUploadQuery) or die("bad map upload");
+                $mysqli->query($soundUploadQuery) or die("bad map mp3/wav upload");
+            } elseif ($extension == "mid") {
+                exec("timidity ../downloadCMaps/cMapPkgs/$folder/$path/$name -Ow -o ../downloadCMaps/cMapPkgs/$folder/$path/$basename.mp3");
+		$soundUploadQuery = "INSERT INTO package_contents
+                             (id, name, filepath, type)
+                             VALUES
+                             ('$folder', '$name', 'cMapPkgs/$folder/$path/$basename.mp3', 2)";
+                $mysqli->query($soundUploadQuery) or die("bad midi upload");
             } else {
                 // unwanted file, delete it (this probably doesn't work, fix later)
                 // or reject the whole upload? :thinking:
