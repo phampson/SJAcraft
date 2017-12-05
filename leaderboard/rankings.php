@@ -32,7 +32,7 @@ echo "</script>\n";
 ?>
 
 <!-- Rankings -->
-<div class="div1 container col-xs-12 col-sm-6 col-sm-offset-3" id="border-gold">
+<div class="div1 container col-xs-12 col-sm-8 col-sm-offset-2" id="border-gold">
 	<h1>Rankings</h1>
         <hr>
 
@@ -47,7 +47,7 @@ echo "</script>\n";
         </div>
 
 	<!-- Table -->
-        <table class="table">
+        <table class="table" style="table-layout: fixed">
             <thead>
                 <tr>
                     <th>Player</th>
@@ -122,8 +122,8 @@ echo "</script>\n";
 			else {echo -1;}?>) {
 	        var html_string = ' \
             <tr> \
-                <td> \
-                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
+                <td style="overflow-wrap: break-word; word-wrap: break-word;"> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=max-width:100%; display:block;"> \
                     <h3 style="word-wrap: break-word"><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
 ?>" + '/profile/profile.php">' + users[i].name + '</a></h3> \
@@ -138,7 +138,7 @@ echo $_SERVER['HTTP_HOST'];
             	var html_string = ' \
             <tr> \
                 <td style="overflow-wrap: break-word; word-wrap: break-word;" > \
-                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=width:60px;height:60px;"> \
+                    <img align="left" src="../profile/'+ users[i].avatar_path +'" style=max-width:100%; display:block;"> \
                     <h3><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
 ?>" + '/profile/profile.php?id='+ users[i].id + '">' + users[i].name + '</a></h3> \
