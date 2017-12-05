@@ -19,7 +19,8 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 // check to see if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
-    exit;
+    header("Location: packagerepo.php");
+    exit();
     echo "Exit??";
 }
 
@@ -136,7 +137,7 @@ if ($res === TRUE) {
     
     $zip->close();
     echo 'YEEAAHHH BOI!';
-    header("Location: uploadpackage.php");
+    header("Location: packagerepo.php");
 } 
 else {
     echo 'RATSSSSSS!';
