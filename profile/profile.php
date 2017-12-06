@@ -3,6 +3,34 @@
 
 include('/home/ubuntu/ECS160WebServer/start.php');
 
+if (isset($_GET['badUpload'])) {
+   switch ($_GET['badUpload']) {
+       case "1":
+           echo '
+           <script>
+               alert("Upload error: Invalid extension.");
+           </script>';
+           break;
+       case "2":
+           echo '
+           <script>
+               alert("Upload error: Filesize too large.");
+           </script>';
+           break;
+       case "3":
+           echo '
+           <script>
+               alert("Upload error: File already exists. Try renaming.");
+           </script>';
+           break;
+       default:
+           echo '
+           <script>
+               alert("Upload error: Something went wrong!");
+           </script>';
+   }
+}
+
 if (isset($_GET['id'])) {
     $sql   = "select * from user_info where id=" . $_GET['id'];
     $query = $mysqli->query($sql);
@@ -15,6 +43,7 @@ if (isset($_GET['id'])) {
     // if GET[ID] is set, you're trying to view someone else's profile,
     // so grab their info
 }
+
 if (isset($_SESSION['user_id'])) {
     $navpath = "../navbar/navbarlogged.html";
     

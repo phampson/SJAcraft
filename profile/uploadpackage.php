@@ -19,8 +19,8 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 // check to see if file already exists
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
-    header("Location: packagerepo.php");
-    exit();
+    header("Location: packagerepo.php?badUpload=3");
+    exit;
     echo "Exit??";
 }
 
@@ -28,6 +28,7 @@ if (file_exists($target_file)) {
 $extension = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
 if ($extension != "zip") {
     header("Location: packagerepo.php?badUpload=1");
+    exit;
 }
 
 
@@ -138,9 +139,10 @@ if ($res === TRUE) {
     $zip->close();
     echo 'YEEAAHHH BOI!';
     header("Location: packagerepo.php");
+    exit;
 } 
 else {
-    echo 'RATSSSSSS!';
+    header("Location: packagerepo.php?badUpload=4");
     exit;
 }
 

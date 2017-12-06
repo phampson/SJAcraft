@@ -16,22 +16,22 @@ $target_file   = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //fileToUpload is the name from html file, [“name”] is an attribute of $_FILES instance. It also have attribute [“size”] below
 $uploadOk      = 1;
 $imgFileType = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
+echo "$imgFileType <br> <br>";
 if ($imgFileType != "map") {
-    echo "Sorry, that file type is not allowed.<br>";
-    echo "Allowable file types: .map";
+    header("Location: maprepo.php?badUpload=1");
     exit;
 }
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
+    header("Location: maprepo.php?badUpload=3");
+    exit;
 }
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 1000000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
+    header("Location: maprepo.php?badUpload=2");
+    exit;
 }
 
 // Check if $uploadOk is set to 0 by an error
@@ -59,10 +59,11 @@ else {
         echo $target_file;
         echo $numPlayers;
         echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-        //header("location: maprepo.php");
+        header("location: maprepo.php");
     } 
     else {
-        echo "Sorry, there was an error uploading your file.";
+        header("Location: maprepo.php?badUpload=4");
+        exit;
     }
 }
 ?>
