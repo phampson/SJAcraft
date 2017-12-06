@@ -35,7 +35,7 @@ $msg = '
     You have been invited to join the Warcraft 2 community by the following player: ' . $username . '.
     <br><br>
     If you would like to sign up and join the community, please click on the following link:
-    ' . $_SERVER['HTTP_HOST'] . '/signup/signup.php
+    ' . $_SERVER['HTTP_HOST'] . '/signup/signup.html
      
     <br><br>
     Best,
