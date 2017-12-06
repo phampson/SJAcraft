@@ -42,8 +42,8 @@ $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
 $username = $row['username']; 
 echo "
-  <h1 style='color: white; text-align: center;'>" . substr($packageName, 0, -4) . "</h1>
-  <h5  style='color: white; text-align: center;'>Custom Map Package from <a href='../profile/profile.php?id=" . $userID . "'>" . $username . "</a> </h5>
+  <h1 style='text-align: center;'>" . substr($packageName, 0, -4) . "</h1>
+  <h5 style='text-align: center;'>Custom Map Package from <a href='../profile/profile.php?id=" . $userID . "'>" . $username . "</a> </h5>
   <div class='col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2'>
 ";
 ?>
@@ -62,7 +62,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $query = "select * from package_contents where id = " . $id . " AND type = 0";
     $result = $mysqli->query($query);
     if($result !== NULL && $result->num_rows !== 0){
-      echo "<h2 style='color: white; text-align: center;'>Maps</h2>";
+      echo "<h2 style='text-align: center;'>Maps</h2>";
       $count = 0;
       while ($row = $result->fetch_assoc()) {
         $name = $row['name'];
@@ -97,7 +97,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $query = "select * from package_contents where id = " . $id . " AND type = 1";
     $result = $mysqli->query($query);
     if($result !== NULL && $result->num_rows !== 0){
-      echo "<h2 style='color: white; text-align: center;'>Images</h2>";
+      echo "<h2 style='text-align: center;'>Images</h2>";
       $count = 0;
       while ($row = $result->fetch_assoc()) {
         $name = $row['name'];
@@ -129,7 +129,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $query = "select * from package_contents where id = " . $id . " AND type = 3";
     $result = $mysqli->query($query);
     if($result !== NULL && $result->num_rows !== 0){
-      echo "<h2 style='color: white; text-align: center;'>Animations</h2>";
+      echo "<h2 style='text-align: center;'>Animations</h2>";
       $count = 0;
       while ($row = $result->fetch_assoc()) {
         $name = $row['name'];
@@ -161,7 +161,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $query = "select * from package_contents where id = " . $id . " AND type = 2";
     $result = $mysqli->query($query);
     if($result !== NULL && $result->num_rows !== 0){
-      echo "<h2 style='color: white; text-align: center;'>Sound</h2>";
+      echo "<h2 style='text-align: center;'>Sound</h2>";
       $count = 0;
       while ($row = $result->fetch_assoc()) {
         
@@ -197,7 +197,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     }
 } else {
   echo "
-    <h2 style='color: white; text-align: center;'>No Package Found :(</h2>
+    <h2 style='text-align: center;'>No Package Found :(</h2>
   ";
 }
 ?>
