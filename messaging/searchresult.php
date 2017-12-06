@@ -75,7 +75,7 @@ echo "</script>\n";
     	<div class="panel panel-default">
             <div class="panel-heading topBar">
                 <div>
-                    <h3 class="panel-title" id = "friendtitle" >Searching message history with <?php
+                    <h3 class="panel-title" id = "friendtitle" style="color:white" >Searching message history with <?php
 echo $friendname;
 ?>
                 </div>

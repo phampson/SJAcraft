@@ -43,7 +43,7 @@ function DisplayMessage($friend_id, $user_id, $msgSrch)
 		<div class='row msgContainer base_sent'>
                     <div class='col-md-10 col-xs-10'>
                         <div id='$msgid' class='messages msg_sent'>
-                            <p><a href='history.php?frid=$friend_id&mid=$msgid'>$content</a></p>
+                            <p style='word-wrap:break-word'><a href='history.php?frid=$friend_id&mid=$msgid'>$content</a></p>
 				<br>
                             <time>$myname | $date</time>
                         </div>
@@ -62,7 +62,7 @@ function DisplayMessage($friend_id, $user_id, $msgSrch)
                     </div>
                     <div class='col-xs-10 col-md-10'>
                         <div id='$msgid' class='messages msg_receive'>
-                            <p><a href='history.php?frid=$friend_id&mid=$msgid'>$content</a></p>
+                            <p style='word-wrap:break-word'><a href='history.php?frid=$friend_id&mid=$msgid'>$content</a></p>
                             <time>$friendname | $date</time>
                         </div>
                     </div>
