@@ -122,9 +122,9 @@ echo "</script>\n";
 			else {echo -1;}?>) {
 	        var html_string = ' \
             <tr> \
-                <td style="overflow-wrap: break-word; word-wrap: break-word;"> \
+                <td> \
                     <img align="left" src="../profile/'+ users[i].avatar_path +'" style=max-width:100%; display:block;"> \
-                    <h3 style="word-wrap: break-word"><a href="http://' + "<?php
+                    <h3><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
 ?>" + '/profile/profile.php">' + users[i].name + '</a></h3> \
                 </td> \
@@ -137,7 +137,7 @@ echo $_SERVER['HTTP_HOST'];
 	    else {
             	var html_string = ' \
             <tr> \
-                <td style="overflow-wrap: break-word; word-wrap: break-word;" > \
+                <td> \
                     <img align="left" src="../profile/'+ users[i].avatar_path +'" style=max-width:100%; display:block;"> \
                     <h3><a href="http://' + "<?php
 echo $_SERVER['HTTP_HOST'];
