@@ -58,6 +58,7 @@ if ($result !== NULL && $result->num_rows !== 0) {
     $uploader = $row['uploader'];
     $name = $row['name'];
     $packageFilePath = $row['filepath'];
+
     //First displays the maps
     $query = "select * from package_contents where id = " . $id . " AND type = 0";
     $result = $mysqli->query($query);
@@ -90,9 +91,12 @@ if ($result !== NULL && $result->num_rows !== 0) {
             echo "</div>";
         }
         $count = $count + 1;
-	}
+      }
+      if($count % 4 !== 0){
         echo "</div>";
+      }
     }
+
     //Now display all images
     $query = "select * from package_contents where id = " . $id . " AND type = 1";
     $result = $mysqli->query($query);
@@ -122,9 +126,12 @@ if ($result !== NULL && $result->num_rows !== 0) {
             echo "</div>";
         }
         $count = $count + 1;
-        }
+      }
+      if($count % 4 !== 0){
         echo "</div>";
+      }
     }
+
     //Now display all animations
     $query = "select * from package_contents where id = " . $id . " AND type = 3";
     $result = $mysqli->query($query);
@@ -140,23 +147,24 @@ if ($result !== NULL && $result->num_rows !== 0) {
         echo "
                 <div class='col-sm-3'>
                     <div class='div1 thumbnail'>
-                        <img src='$filepath' alt='$filepath' style='width:100%'>
-                        <div class='caption'>
-                            <p>" . substr($name, 0, -4) . "</p>
-                            <p>Animation file</p>
-                        </div>
-                    <div style='text-align: center'>
+                      <img src='$filepath' alt='$filepath' style='width:100%'>
+                      <div class='caption'>
+                         <p>" . substr($name, 0, -4) . "</p>
+                         <p>Animation file</p>
+                      </div>
+                    <div style='text-align: center'></div>
                     </div>
-                </div>
-        
                 </div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
         $count = $count + 1;
-        }
+      }
+      if($count % 4 !== 0){
         echo "</div>";
+      }
     }
+
     //Now display all sounds     
     $query = "select * from package_contents where id = " . $id . " AND type = 2";
     $result = $mysqli->query($query);
@@ -178,22 +186,24 @@ if ($result !== NULL && $result->num_rows !== 0) {
 		 	  <audio id='$count'>
 			    <source src='$filepath'>
 			  </audio>
-                            <p>$name</p>
-                            <p>Sound file</p>
+                          <p>$name</p>
+                          <p>Sound file</p>
                         </div>
-                    <div style='text-align: center'>
-                       <button onclick='document.getElementById($count).play()'>Play</button> 
-                       <button onclick='document.getElementById($count).pause()'>Pause</button>
-                       <button onclick='document.getElementById($count).pause(); document.getElementById($count).currentTime = 0;'>Stop</button>
+                      <div style='text-align: center'>
+                        <button onclick='document.getElementById($count).play()'>Play</button> 
+                        <button onclick='document.getElementById($count).pause()'>Pause</button>
+                        <button onclick='document.getElementById($count).pause(); document.getElementById($count).currentTime = 0;'>Stop</button>
+                      </div>
                     </div>
-                </div>
-        
-                </div>";
+		</div>";
         if ($count % 4 == 3) {
             echo "</div>";
         }
-        $count = $count + 1;
-        }
+      $count = $count + 1;
+      }
+    }
+    if($count % 4 !== 0){
+      echo "</div>";
     }
 } else {
   echo "

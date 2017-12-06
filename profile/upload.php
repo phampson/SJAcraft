@@ -4,6 +4,7 @@ include('/home/ubuntu/ECS160WebServer/start.php');
 
 if ($_SESSION['user_id'] == NULL) {
     header("Location: ../login/login.hmtl");
+    exit;
 }
 
 //uploading file
