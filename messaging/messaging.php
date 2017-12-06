@@ -70,7 +70,7 @@ function DisplayMessage($friend_id, $user_id)
                          <p><a href='$content'>$content</a></p>";
                 } 
                 else {
-                    echo "<p>$content</p>";
+                    echo "<p style='word-wrap:break-word'>$content</p>";
                 }
                 echo "
                          
@@ -97,7 +97,7 @@ function DisplayMessage($friend_id, $user_id)
                          <p><a href='$content'>$content</a></p>";
                 } 
                 else {
-                    echo "<p>$content</p>";
+                    echo "<p style='word-wrap:break-word'>$content</p>";
                 }
                 echo "
                            
