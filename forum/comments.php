@@ -184,7 +184,7 @@ echo "</script>\n";
             		</div> 
 
 			        <div class = 'col-sm-10 col-sm-offset-1'>
-           				<h4>";
+           				<h4 style='word-wrap: break-word;'>";
                         if(preg_match($reg_exUrl, $commentsContent, $url)) {
                         // make the urls hyper links
                         $content=preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a>', $commentsContent);
