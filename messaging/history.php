@@ -253,7 +253,7 @@ echo $friend_id;
             	      if (is_object($isfriend) && $isfriend->num_rows){
             	          $friend_req = $isfriend->fetch_assoc();
             	          if($friend_req['request']==1){
-            	              echo "<br> <font color = 'red'>This peopel have not accepted your friend request. You message may not be delivered.</font>";
+            	              echo "<br> <font color = 'red'>This person has not accepted your friend request. Your message(s) may not be delivered.</font>";
             	          }
             	      }
             	?>
